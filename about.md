@@ -4,10 +4,6 @@ title: About
 sidebar_link: true
 ---
 
-<p class="message">
-  Hey there! This page is included as an example. Feel free to customize it
-  for your own use upon downloading. Carry on!
-</p>
-
-To make pages show up in the sidebar, add `sidebar_link: true` to the front
-matter.
+<p>I am Geoffroy Couprie, a french geek and developer on VLC media player.</p>
+<p>I work as a freelance in software development and security.</p>
+<p><a title="Geoffroy Couprie" href="http://geoffroycouprie.com" target="_blank">Contact me</a></p>
