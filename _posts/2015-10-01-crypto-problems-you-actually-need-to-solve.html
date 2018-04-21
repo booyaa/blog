@@ -1,0 +1,53 @@
+---
+layout: post
+title: Crypto problems you actually need to solve
+date: 2015-10-01 14:59:20.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Architecture
+- Crypto
+- Protocols
+tags:
+- cryptography
+- decentralized
+- OTR
+- pgp
+- protocols
+meta:
+  _edit_last: '3997956'
+  geo_public: '0'
+  reddit: a:2:{s:5:"count";i:0;s:4:"time";i:1515362415;}
+  _publicize_job_id: '15362211849'
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=14335834&stype=M&topic=6055350081794686976&type=U&a=XkPL
+  _publicize_done_97921: '1'
+  _wpas_done_77741: '1'
+author:
+  login: geaaal
+  email: geo.couprie@gmail.com
+  display_name: Géal
+  first_name: ''
+  last_name: ''
+---
+<p>To follow up on the <a href="https://twitter.com/gcouprie/status/649166702278770688" target="_blank">small Twitter rant</a> that got people to explain GPG and OTR to me for a whole day, I'll explain the ideas behind this.</p>
+<p><img class="aligncenter size-full wp-image-791" src="/assets/screen-shot-2015-10-01-at-14-08-49.png" alt="tweet rant screenshot" width="525" height="438" />There is always a new project around self hosting email and PGP, or building a new encrypted chat app. Let's say it aloud right now: those projects are not trying to improve the situation, they just want to build their own. Otherwise, they would help one of the 150 already existing projects. Worse, a lot of those try to build a business out of it, and end up making a system where you need to completely trust their business (as a side note, building a business is fine, but just be honest about your goals).</p>
+<p>There are things that attract new projects, because the concept is easy to get, and this drives developers right into the "I'm smarter than everybody and can do better than existing projects" territory. But there's a reason they fail.</p>
+<p>Making an encrypted chat app is solving the same problem as making a chat app -moving people off their existing platform, onto a new one- and additionally writing a safe protocol. Building a whole new infrastructure is not an easy task.</p>
+<p>Making email and PGP easier to use is not only a UX issue. There is a complete mental model of how it works, what are the failure modes, and what are the trust levels. And you add above that the issues of email's metadata leaks, the lack of forward secrecy, the key management. Even with the simplest interface, it requires that the user builds that mental model, and that she understands other users may have different models. This is pervasive to the way PGP works. It has always been and will always be an expert's tool, and as such unfit to be deployed massively. You cannot solve infrastructure problems by teaching people.</p>
+<blockquote><p>You cannot solve infrastructure problems by teaching people</p></blockquote>
+<p>There is a pattern here: people want to build tools that will be the basis of safe communications for the years to come. Those are infrastructure problems, like electricity, running water or Internet access. They cannot be solved by teaching people how to use a tool. The tool has to work. They cannot be solved either by decentralization. At some point, someone has to pay for the infrastructure's maintenance. As much as I like the idea of decentralizing everything, this is not how people solve serious engineering problems. But the difference with other types of business is that infrastructure businesses are dumb pipes. They don't care what's running through them, and you can easily replace one with the other.</p>
+<p>There is a strong need for "private by default", authenticated, anonymous communication. This will only come if the basic building blocks are here:</p>
+<ul>
+<li>multiparty Off-The-Record(or other protocols like Axolotl): forward secret communication currently only works in two-party communication. Adding more members and making the protocols safe against partitions is a real challenge</li>
+<li>multidevice PGP (or alternate message encryption and authentication system): currently, to use PGP on multiple devices, either you synchronize all your private keys on all your devices, or you accept that some devices will not be able to decrypt messages. This will probably not work unless you have a live server somewhere, or at least some hardware device containing keys</li>
+<li>redundant key storage: systems where a single key holds everything are very seducing, but they're a nightmare for common operation. You will lose the key. And the backup. And the other backup. You will end up copying your master key everywhere, encrypted with a password used infrequently. Either it will be too simple and easily crackable, or too complex and you will forget it. How can a friend or family access the key in case of emergency?</li>
+<li>private information retrieval: PIR systems are databases that you can query for data, and the database will not know (in some margins) which piece of data you wanted. You do not need to go wild on homomorphic encryption to build something useful</li>
+<li>encrypted search: the tradeoffs in search on encrypted data are well known, but there are not enough implementations</li>
+<li>usable cryptography primitives: there is some work in that space, but people still rely on OpenSSL as their goto crypto library. Crypto primitives should not even let you make mistakes</li>
+</ul>
+<p>Those are worthwhile targets if you know a fair bit of cryptography and security, and know how to build a complete library or product.</p>
+<p>But for products, we need better models for infrastructure needs. A like <a href="https://www.tahoe-lafs.org/trac/tahoe-lafs">Tahoe-LAFS</a> is a good model: the user is in control of the data, the provider is oblivious to the content, the user can be the client of multiple providers, and switching from one to another is easy. This does not make for shiny businesses. Infrastructure companies compete mainly on cost, scale, availability, speed, support, since they all provide roughly the same features.</p>
+<p>Of course, infrastructure requires standards and interoperability, and this usually does not make good material for startup hype. But everyone wins from this in the end.</p>

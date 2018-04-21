@@ -1,0 +1,139 @@
+---
+layout: post
+title: Filter Rails JSON input with route constraints
+date: 2013-02-06 18:40:51.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Ruby
+- Security
+tags:
+- json
+- rails
+- ruby
+- security
+- SQL injection
+meta:
+  _edit_last: '3997956'
+  reddit: a:2:{s:5:"count";i:0;s:4:"time";i:1453158279;}
+  _wpas_done_77741: '1'
+  _publicize_done_external: a:1:{s:8:"linkedin";a:1:{s:10:"SRxrIwgSA1";b:1;}}
+  tagazine-media: a:7:{s:7:"primary";s:0:"";s:6:"images";a:0:{}s:6:"videos";a:0:{}s:11:"image_count";i:0;s:6:"author";s:7:"3997956";s:7:"blog_id";s:8:"11260360";s:9:"mod_stamp";s:19:"2013-02-06
+    17:40:51";}
+  _wpas_skip_77741: '1'
+  _oembed_afc941718bdf4e4abc4aadfbd6cc8e58: "{{unknown}}"
+  _oembed_3d651bceff74270cea37800dfc9684b6: "{{unknown}}"
+  _oembed_77fb6e54ef773e79b3f05a894c482e75: "{{unknown}}"
+  _oembed_e9d3a8371b062be4f02ec9ce8a0928c1: "{{unknown}}"
+  _oembed_6f44f012f3719f87c0a5d9982d7bf848: "{{unknown}}"
+  _oembed_b5b8ff09d2de25e79d6d8981e902e232: "{{unknown}}"
+  _oembed_45231701c4bda6d232ead82a36f53c55: "{{unknown}}"
+  _oembed_bf1001067a4ebfa901dc3b181491369f: "{{unknown}}"
+  _oembed_8e0cd41f0a156c370abf9ff9de6edc0c: "{{unknown}}"
+  _oembed_e35b010458fddfcfe560c581f6ce772c: "{{unknown}}"
+  _oembed_e236c73b487e3d7c7ee32db621be338d: "{{unknown}}"
+  _oembed_76011394a68ef27ac6fa145195936b4c: "{{unknown}}"
+  _oembed_22fba3a163529930d5f7114e318c17a5: "{{unknown}}"
+  _oembed_08d28d997ac7532b0b70463c3dd4e3b7: "{{unknown}}"
+  _oembed_4abd8ec83c3ff77bd06975bcf3e72117: "{{unknown}}"
+  _oembed_fe505bfed311b16f2ed9807abf78bb50: "{{unknown}}"
+  _oembed_2bcdbfd9f46fac21c01bb077915e013f: "{{unknown}}"
+  _oembed_86ad4f8402d57ff5b5cc248bce7e37b0: "{{unknown}}"
+  _oembed_0ee1ce779b483a59b5ecfe9c837732cc: "{{unknown}}"
+  _oembed_0b61b29317c04385a64d983d9d27b26d: "{{unknown}}"
+  _oembed_084b6e874e176e47db777febedc8c276: "{{unknown}}"
+  _oembed_5002c13b5963e201ea38067a395fe9ac: "{{unknown}}"
+  _oembed_002aa8e4dbeba1240a0d04038169c38b: "{{unknown}}"
+  _oembed_1241ca712d5d0352ae16d459362c59a3: "{{unknown}}"
+  _oembed_bcd376ae150fa6824b744101333f0fa7: "{{unknown}}"
+  _oembed_aeca0136c84747aa9e9d17f8c2b9e3b7: "{{unknown}}"
+  _oembed_3f4f9084f0368a833df0ae10a1b2407d: "{{unknown}}"
+  _oembed_2a9f25844cb7449f66800011ede4358d: "{{unknown}}"
+  _oembed_8a84cfe87517f7f5bbed350080f42c8b: "{{unknown}}"
+  _oembed_cea2d0970501b91d6d46b3627d760c80: "{{unknown}}"
+  _oembed_ebcb33e5d2f06a994b8c4b4011d9b8cd: "{{unknown}}"
+  _oembed_8a5b91b474a29f4cc9b247a6f083ec84: "{{unknown}}"
+  _oembed_bdcf1f42fc3fdc00b310518aa730e5da: "{{unknown}}"
+  _oembed_b30e0dd7bd432640e18cb6949868aad2: "{{unknown}}"
+  _oembed_d8dca47529b876314f9d361a2aff0346: "{{unknown}}"
+  _oembed_b2c4041e63200a3a700cb11896bc39f6: "{{unknown}}"
+  _oembed_e6b2cdb93745f0ea8a7ab557517564a4: "{{unknown}}"
+  _oembed_f4834efe9bf66c032504d0fe3eae1ef6: "{{unknown}}"
+  _oembed_27103d39173c0c27c500e58774815f4d: "{{unknown}}"
+  _oembed_36a7f6653334ae2208f63a76dc89dfa9: "{{unknown}}"
+  _oembed_d58ea750118f704cb441eb1eb6652955: "{{unknown}}"
+  _oembed_30d8108029959b3a3f54f89952de8d4f: "{{unknown}}"
+  _oembed_87317195a27d5cf92bf76eab1b7131dc: "{{unknown}}"
+  _oembed_206acdf24653cd1e17a94cd804f5179f: "{{unknown}}"
+  _oembed_f7fe4f30d9970e6f7f11c45430e07c3a: "{{unknown}}"
+  geo_public: '0'
+author:
+  login: geaaal
+  email: geo.couprie@gmail.com
+  display_name: Géal
+  first_name: ''
+  last_name: ''
+---
+<p>Following the recent <a title="Vulnerability in JSON Parser in Ruby on Rails 3.0 and 2.3" href="https://groups.google.com/forum/?fromgroups=#!topic/rubyonrails-security/1h2DR63ViGo" target="_blank">YAML parsing vulnerabilities in Rails</a>, I decided to act on an idea I had a few months ago: using route constraints to define strict API contracts in Rails.</p>
+<p>Sadly, it does not protect against the YAML parsing problem (and the probable similar vulnerabilities we will see in the following months), because the request is interpreted before going through the route constraints. But it can protect from the <a title="Rails security guide: mass assignment" href="http://guides.rubyonrails.org/security.html#mass-assignment" target="_blank">mass assignment vulnerability</a>., and probably some SQL injections.</p>
+<p>Here is the idea: Rails 3 introduced the route constraints, a way to execute fonctions on the request before it is passed to the controllers. By combining it with the json-schema gem, we can filter the JSON input quite easily.</p>
+<p>For the following example data:</p>
+<p>[sourcecode language="javascript"]<br />
+{&quot;echo&quot; : &quot;blah&quot;, &quot;nb&quot; : 1, &quot;data&quot;: [1, 2, 3]}<br />
+[/sourcecode]</p>
+<p>We can define the following schema:</p>
+<p>[sourcecode language="javascript"]<br />
+{<br />
+    &quot;type&quot;: &quot;object&quot;,<br />
+    &quot;$schema&quot;: &quot;http://json-schema.org/draft-03/schema&quot;,<br />
+    &quot;id&quot;: &quot;#&quot;,<br />
+    &quot;required&quot;: false,<br />
+    &quot;additionalProperties&quot;: false,<br />
+    &quot;properties&quot;: {<br />
+        &quot;data&quot;: {<br />
+            &quot;type&quot;: &quot;array&quot;,<br />
+            &quot;id&quot;: &quot;data&quot;,<br />
+            &quot;required&quot;: false,<br />
+            &quot;items&quot;: {<br />
+                &quot;type&quot;: &quot;number&quot;,<br />
+                &quot;id&quot;: &quot;0&quot;,<br />
+                &quot;required&quot;: false<br />
+            }<br />
+        },<br />
+        &quot;echo&quot;: {<br />
+            &quot;type&quot;: &quot;string&quot;,<br />
+            &quot;id&quot;: &quot;echo&quot;,<br />
+            &quot;required&quot;: false<br />
+        },<br />
+        &quot;nb&quot;: {<br />
+            &quot;type&quot;: &quot;number&quot;,<br />
+            &quot;id&quot;: &quot;nb&quot;,<br />
+            &quot;required&quot;: false<br />
+        }<br />
+    }<br />
+}<br />
+[/sourcecode]</p>
+<p>(Use the <a title="JSON schema generator" href="http://www.jsonschema.net/" target="_blank">JSON schema generator</a> to create your own)</p>
+<p>Save this schema to "data.schema" and add "json-schema" to your Gemfile. You will then be able to filter inputs with code like the following "config/routes.rb":</p>
+<p>[sourcecode language="ruby"]<br />
+require &quot;json-schema&quot;<br />
+class LolJSONConstraint<br />
+  def matches?(request)<br />
+    if(request.headers[&quot;CONTENT_TYPE&quot;] == &quot;application/json&quot;)<br />
+      JSON::Validator.validate(&quot;data.schema&quot;, request.headers[&quot;action_dispatch.request.request_parameters&quot;])<br />
+    end<br />
+  end<br />
+end</p>
+<p>Yamlvuln::Application.routes.draw do<br />
+  resources :posts, :constraints =&gt; LolJSONConstraint.new<br />
+end<br />
+[/sourcecode]</p>
+<p>The constraint will load the schema, and apply it to the incoming data, and return a 404 error if the JSON is invalid. The "additionalProperties" set to false in the schema is required to refuse the properties you didn't define and protect the application from mass assignment.</p>
+<p>If I tried, for example, to send the following JSON to the application, there would be an error:</p>
+<p>[sourcecode language="javascript"]<br />
+{&quot;echo&quot; : &quot;blah&quot;, &quot;nb&quot; : &quot;UNION ALL SELECT LOAD_FILE(CHAR(34,47,101,116,99,47,112,97,115,115,119,100,34))&quot;, &quot;data&quot;: [1, 2, 3]}<br />
+[/sourcecode]</p>
+<p>As I said before, it is not safe against the YAML parsing vulnerability. Also, I did not really test the performance of this. But it is still a nice and easy solution for API filtering.</p>

@@ -1,0 +1,300 @@
+---
+layout: post
+title: Theoretical definitions for crypto wannabes
+date: 2013-08-09 18:45:08.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Crypto
+- Security
+tags:
+- authentication
+- cryptography
+- privacy
+- security
+- vulnerabilities
+meta:
+  draft_feedback: "a:3:{s:19:\"envygeeks@gmail.com\";a:1:{i:0;a:2:{s:4:\"time\";s:10:\"1376065223\";s:7:\"content\";s:1670:\"*
+    Add some italics around the \"if you don't have a good threat model, you don't
+    have a good mental model\" because that is the thing that sticks out the most
+    to me and it's very important for people to understand that concept, at least
+    to me and it's very hard to get people to understand that.\n\n* \"Psuedo-Random\"
+    instead of \"Psuedo Random\"\n\n* The hash function seems to imply that MD5 and
+    SHA1 are valid hashing functions.  I think in order to break that implication
+    it should mention \"Fast examples\" and then \"Good but slow\" examples, this
+    way they don't assume you are recommending they use MD5 and SHA1.\n\n* Mention
+    zero-knowledge encyrption somewhere, I don't quite know where it would fit in,
+    more than likely in the authentication + encryption section but it would be nice
+    to throw that out there as the future of valid solutions, putting all the security
+    of their data in the users hands and then telling them \"We've no access to your
+    data even if we have access to it, because you are not only authenticated to access
+    your data but you must also authenticate to read your data.\"\n\n* Most of the
+    articles now mention only the NSA but it's not just the NSA doing it (this is
+    more of a shot at The Guardian who featured an article that took a shot at the
+    NSA and featured a quote from a Brit saying they don't trust the US with their
+    data, which is fair, until you realize the irony in that the Brits own country
+    does it too, except they have no right to stop it and they tap directly into the
+    lines.)  It would be nice if you also mentioned the GCHQ.  Not in the title or
+    anything, but in the first sentence do \"NSA/GCHQ\".\n\nAlso, great article, I
+    enjoyed reading it.\";}}s:28:\"adrien.duclos@cybelangel.com\";a:1:{i:0;a:2:{s:4:\"time\";s:10:\"1376065781\";s:7:\"content\";s:2893:\"D'abord
+    les remarques au fil de la lecture, les typos, etc. :\n\n s/lauch/started (launch
+    est souvent employer au sens figuré par les français, mais en pratique c'est très
+    rare en anglais)\n\nPour les noobs (comme moi), tu devrais peut être définir AES.\n\ns/corresponds/matches
+    (j'ai un doute, mais je me méfierais de correspond)\n\ns/you need forget/you need
+    to forget\n\n(It has no permission on m'étonne un peu, surtout associé à \"data\",
+    mais je ne suis pas sûr là)\n\nchooses to messages -> he chooses to message, si
+    c'est le verbe, mais je suppose que c'est plutôt \"two messages\". Coupe peut
+    être la phrase en 2 parce que c'est un peu chaud à suivre tel quel.\n\n\"Attack
+    types\", je mettrais plutôt \"Types of attack\"\n\ns/only cover/covers only\n\ns/worst
+    cae /worst case\n\nSur l'oracle dans BREACH, la faille n'est pas tant l'algorithme
+    que la compression (je le mets parce que mes amis en crypto semblent prendre très
+    à coeur la défense de TLS !)\n\ns/problems like the projects/problems similar
+    to those encountered by the projects\n\n(J'en ai sûrement loupé, mais c'est ce
+    que j'ai vu)\n---------------------------\n\nEnsuite sur le fond : c'est un très
+    bon papier. \n\nCe que je comprends, pour prendre une analogie, c'est que tu reproches
+    aux gens de construire directement des serrures, généralement en s'inspirant de
+    tel ou tel truc qu'ils ont vu ailleurs, au lieu de réfléchir au contexte général
+    d'un cambriolage, de mettre en place de bons scénarios d'attaque et enfin, en
+    fonction de tout ce qui a été établi, de choisir quels outils ou quelle combinaison
+    d'outil doit être employée.\n\nSi c'est bien la ligne directrice, le titre du
+    papier pourrait peut être plus descriptif. Quelque chose comme \"Security design
+    & theorical definitions for crypto wannabes\", mais c'est peut-être trop long.
+    (In fine, je te soupçonne de surtout vouloir dire \"Crypto & security experts
+    exist for a reason\" :p, ce avec quoi je suis d'ailleurs tout à fait d'accord
+    !).\n\nQuelques liens, à chaque fois que tu fais des listes (propriétés, tests,
+    types d'attaques et de fonctions algorithmiques), seraient bienvenus, mais bon,
+    ça risque de te prendre pas mal de temps. \n\nLa partie \"General cyrptographic
+    functions\" est un petit peu hardcore pour les gens qui, comme moi, n'ont qu'une
+    connaissance très, très, très limité sur le sujet. Peut être que quelques schémas
+    pourraient aider. En revanche, le fait de lier avec les tests au-dessus est une
+    excellente idée et aide à voir déjà un peu plus les fonctionnalités. SPRF et PSR
+    me sont particulièrement hermétique (sans doute parce que très mathématique dans
+    leur définition).\n\nBref, ça donne surtout envie de lire d'autres papiers sur
+    le sujet, détaillant chaque liste :)\n\nPas sûr que ma relecture t'ait été très
+    utile, mais c'est un papier que je suis très content d'avoir lu en tout cas :)\n\n\nBien
+    à toi,\n\nAdrien.\";}}s:16:\"amos@lockfree.ch\";a:1:{i:0;a:2:{s:4:\"time\";s:10:\"1376066673\";s:7:\"content\";s:319:\"
+    unsufficient => insufficient\n\n\"he chooses to messages\" => \"he chooses two
+    messages\"\n\n\"Y(other message space)\" => missing space\n\n\"from a perf standpoint\"
+    => \"performance\" (you lazy bum)\n\n\"we did not event start coding\" => \"even\"
+    (huhu)\n\n\"a safe construct\" => j'utiliserais plutôt \"a safe system\", pas
+    \"construct\", cf. \";}}}"
+  draftfeedback_requests: a:3:{s:19:"envygeeks@gmail.com";a:3:{s:3:"key";s:13:"5205114ebeecd";s:4:"time";s:10:"1376063822";s:7:"user_id";s:7:"3997956";}s:16:"amos@lockfree.ch";a:3:{s:3:"key";s:13:"5205114f12ed9";s:4:"time";s:10:"1376063823";s:7:"user_id";s:7:"3997956";}s:28:"adrien.duclos@cybelangel.com";a:3:{s:3:"key";s:13:"5205114f5b3ae";s:4:"time";s:10:"1376063823";s:7:"user_id";s:7:"3997956";}}
+  _edit_last: '3997956'
+  geo_public: '0'
+  tagazine-media: a:7:{s:7:"primary";s:0:"";s:6:"images";a:0:{}s:6:"videos";a:0:{}s:11:"image_count";i:0;s:6:"author";s:7:"3997956";s:7:"blog_id";s:8:"11260360";s:9:"mod_stamp";s:19:"2013-08-09
+    17:45:08";}
+  _wpas_done_77741: '1'
+  _publicize_done_external: a:1:{s:8:"linkedin";a:1:{s:10:"SRxrIwgSA1";b:1;}}
+  reddit: a:2:{s:5:"count";i:0;s:4:"time";i:1453158279;}
+  _wpas_skip_77741: '1'
+  _oembed_f08b54d25e9555ab7f7ae63cec440830: "{{unknown}}"
+  _oembed_0b5e4a7da9b7bf9694fd0f8427c99514: "{{unknown}}"
+  _oembed_29be2a9dddfe092fcc19b8acf28929e5: "{{unknown}}"
+  _oembed_69e0526978900c3797b05e6bb84814c7: "{{unknown}}"
+  _oembed_bc02f9ab57b9ed013398d5f6d575f07c: "{{unknown}}"
+  _oembed_239e6cb8f722352e7dadb0490d453732: "{{unknown}}"
+  _oembed_80ddda36ce0acc7c959a6df5fe5a9fe0: "{{unknown}}"
+  _oembed_ec9d5c95273fcee1256cacd277582dcb: "{{unknown}}"
+  _oembed_9c2a8d177b3aecfd1f1de6a71df724b6: "{{unknown}}"
+  _oembed_387abdbb9907602546b54a2aebd5d48b: "{{unknown}}"
+  _oembed_70102c854277a98dbafd2ae833c940b1: "{{unknown}}"
+  _oembed_1304470007173e4d96fb3da015a46376: "{{unknown}}"
+  _oembed_bd90cd6f1d51fc0f23b6724a59b2a0b0: "{{unknown}}"
+  _oembed_03286ca483feb7866a194c1c97bc85f5: "{{unknown}}"
+  _oembed_3bb6bfa8e096dc434cecee1489d4d2f2: "{{unknown}}"
+  _oembed_943edfd17608666c43bb94742297e37b: "{{unknown}}"
+  _oembed_14f55808bce8a5f380383ab45e171e04: "{{unknown}}"
+  _oembed_4f6a8abf276a820f7c74efa279956c33: "{{unknown}}"
+  _oembed_62679cda8725396577076e65c41d1568: "{{unknown}}"
+  _oembed_b5898c2d62df11fc1843c8bab9890345: "{{unknown}}"
+  _oembed_b26222b6ba3f34827f3f085c7fa8b556: "{{unknown}}"
+  _oembed_0e8d8bd86ae27a54149634aea99cc720: "{{unknown}}"
+  _oembed_5678e3fcc140d16d1f0883ae1f24b412: "{{unknown}}"
+  _oembed_397ac438c027619b445d5541a8efa15a: "{{unknown}}"
+  _oembed_55b6a197b992e647553b2933a1e78218: "{{unknown}}"
+  _oembed_14b60188c52c0f58cd1a6bde7652883a: "{{unknown}}"
+  _oembed_f12c1d05abbba837ad566ffb8aaebfee: "{{unknown}}"
+  _oembed_a3ef460308716e32cf93513da80ed9f7: "{{unknown}}"
+  _oembed_56e0b641fd25680dd89f0a92873f0799: "{{unknown}}"
+  _oembed_b092a3fb2b534c55869045ce81daba21: "{{unknown}}"
+  _oembed_fbdd1b6a93da9f74e501e9457f628ba9: "{{unknown}}"
+  _oembed_f1f916f4e437077a1bea9194847f70ab: "{{unknown}}"
+  _oembed_a5ec6b70b624d62890a04e568c5657e0: "{{unknown}}"
+  _oembed_59e1fdec4f2da85cfa4b9a4f055f4550: "{{unknown}}"
+  _oembed_6c493efce6de24146c87c17d12131b56: "{{unknown}}"
+  _oembed_17d9fd9d8beb833539d239267cc18f87: "{{unknown}}"
+  _oembed_2542a7df8d7b9f6468b78484e6dbf976: "{{unknown}}"
+  _oembed_7098b2aace13fe087cc53b26be2ee399: "{{unknown}}"
+  _oembed_2758083971c554b4cfbadfdb17973bab: "{{unknown}}"
+  _oembed_8f399c338712d9634f78159cee3a1eec: "{{unknown}}"
+  _oembed_c03d95194cd17769036e4ed742da6b16: "{{unknown}}"
+  _oembed_609f3986edb22604c3f361161e0ce603: "{{unknown}}"
+  _oembed_17a6ba615d18f13d77141ec3b52e298f: "{{unknown}}"
+  _oembed_a57135b3e0bf11ec77f2140e8a8da4cd: "{{unknown}}"
+  _oembed_e504c19a6986ce83dfe3e99fd30583b6: "{{unknown}}"
+  _oembed_9cad14cc7d9731da2c08d7bb913c943a: "{{unknown}}"
+  _oembed_616e38b621afedd4b3349159bed16d9a: "{{unknown}}"
+  _oembed_10e60eb1cce36a64981adb0a6822bed6: "{{unknown}}"
+  _oembed_a486af725245abaeac6ebce3fe8627e9: "{{unknown}}"
+  _oembed_28c3ec57b57935e929de29281ffedc87: "{{unknown}}"
+  _oembed_d4969e7ac335dd76b980bcc5d6a7be29: "{{unknown}}"
+  _oembed_c68f5967eea78ed853fdba196f70efc8: "{{unknown}}"
+  _oembed_6cc5f6246c773846b1e333363a7b72ce: "{{unknown}}"
+  _oembed_ebee8cc336ecec49561a50df5e263985: "{{unknown}}"
+  _oembed_650d91b7ffc80e66348f157ac3f6e614: "{{unknown}}"
+  _oembed_3c3ef9a80ad20d031a991b4b5b8453ce: "{{unknown}}"
+  _oembed_9e0bf09f256a9f3786022b28b4f4ba3d: "{{unknown}}"
+  _oembed_38712a88aacdec8c0041e39da30e17e6: "{{unknown}}"
+  _oembed_1b2e22619758ce5fc20f25af7be430fe: "{{unknown}}"
+  _oembed_90e253a225fc62c34fd43931a371ac12: "{{unknown}}"
+  _oembed_921040a011ca5d9315ef1ca2c847a8de: "{{unknown}}"
+  _oembed_07dac0be7947a8cd70fbcd41b692e30c: "{{unknown}}"
+  _oembed_f4d7bd53ea96abe91b9cbd0a76055d1e: "{{unknown}}"
+  _oembed_365f1538d942a3225cd115cec8a2b198: "{{unknown}}"
+  _oembed_eebaf885c6323a2f8c048ffca33d27d6: "{{unknown}}"
+  _oembed_4303ea4ae1f019bdd29a71ffd60a8bc0: "{{unknown}}"
+  _oembed_01cd883319a495faf6786baf8a119d3c: "{{unknown}}"
+  _oembed_3e813b0faf45fb29cf3ae52f779bd7c1: "{{unknown}}"
+  _oembed_bf7af4e68a4e8a04b977ba32cc8fe9ac: "{{unknown}}"
+  _oembed_9f520a5c9464fc955f4fc17cc2dd364c: "{{unknown}}"
+  _oembed_e78e368c002eb8e6bd693b8900649fcb: "{{unknown}}"
+  _oembed_a212df4384f681a5774c0d340cf9ec82: "{{unknown}}"
+  _oembed_6fcf2e64a209b02a5d59893dd65ffeac: "{{unknown}}"
+  _oembed_7de52b42a18e0686d9a4a1402062f50a: "{{unknown}}"
+  _oembed_90da9fffbbc3b3e2f26f236f22cf53a9: "{{unknown}}"
+  _oembed_e16816c095c14872318301264da1703c: "{{unknown}}"
+  _oembed_66346fb1194c3c4180a5d1128d1d72c6: "{{unknown}}"
+  _oembed_f07262e3c822f929b6b0349bd42fd2ff: "{{unknown}}"
+  _oembed_60ed902776179cc882d2efd8daaa07d3: "{{unknown}}"
+  _oembed_ab296cf4e2ee89400dbacafc8c786fd2: "{{unknown}}"
+  _oembed_54c3dbad6bef2357290bc904e6732465: "{{unknown}}"
+  _oembed_f99318a8eebcdf2382757a7c753ccb14: "{{unknown}}"
+  _oembed_296673f9893f3ec208403204ec7d3f40: "{{unknown}}"
+  _oembed_74b73ac6b9d634d0570d1bed1a415915: "{{unknown}}"
+  _oembed_9791ea99d5d4ae1c654eafa7ccdc0009: "{{unknown}}"
+  _oembed_2ca58e7b469f53cdaf097cbaec3622cd: "{{unknown}}"
+  _oembed_36031993dc9bf0dbcd2966f96d8bb729: "{{unknown}}"
+  _oembed_9e90cc75699bf35ba154ab8d3e6011ac: "{{unknown}}"
+  _oembed_41e7dd7b7b16b7f7d78f2042b7060975: "{{unknown}}"
+  _oembed_9045ae8013de34456011b5502809e5f3: "{{unknown}}"
+  _oembed_4995f6ca15cd9fbcfec152055dfdbad1: "{{unknown}}"
+  _oembed_86f0b2efa658cca97e6ca465512d0a9e: "{{unknown}}"
+  _oembed_b8d82eefc7047bf0512d820f38966a87: "{{unknown}}"
+  _oembed_2e23debcf56e4215737bc0962ec140ad: "{{unknown}}"
+  _oembed_6127282a5bc224e7ce6a3b49f9fe4c0f: "{{unknown}}"
+  _oembed_5d28ca10043865cc31e9c6a5c7c911d5: "{{unknown}}"
+  _oembed_0a6254ff01d4be9efa5666a86a13222c: "{{unknown}}"
+  _oembed_eacb320240fc87abbcc412a99b292658: "{{unknown}}"
+  _oembed_ef5a003412ef436b0046864cbe6153c3: "{{unknown}}"
+  _oembed_51708203b402d1b57f0014e1e9799773: "{{unknown}}"
+  _oembed_15d76b736dc4bf19cf00bdc87e61d935: "{{unknown}}"
+  _oembed_59d31aba51aa0cd050a47f7eca81ac88: "{{unknown}}"
+  _oembed_a0d3ca37347612cd63f6d50607e5609c: "{{unknown}}"
+  _oembed_08f030059f1c8e78f6c0327b38b116f1: "{{unknown}}"
+  _oembed_61127350ff09d681d1cb9664342617aa: "{{unknown}}"
+  _oembed_1b33acf30ef2b272b450c139ce16f1da: "{{unknown}}"
+  _oembed_1de4a600cf28b678fe8b6b21f2bf3541: "{{unknown}}"
+  _oembed_d7a1bb8630ce02906f5ae5b812cd8637: "{{unknown}}"
+  _oembed_facb83cb7685e2813ef106ba30d7d85f: "{{unknown}}"
+  _oembed_2dea1fa54970d9724bea83be875fc4b6: "{{unknown}}"
+  _oembed_e286f62f16c1f9074a8c371382581301: "{{unknown}}"
+  _oembed_4bc60ffa6cbf4b00991fa93fed39a051: "{{unknown}}"
+  _oembed_722fc49310c903adad1b3234563eaff1: "{{unknown}}"
+  _oembed_b7ce4c44b7ebcb92c12b9908d2d030df: "{{unknown}}"
+  _oembed_cfc56225d24a72d4a5622e60428cb501: "{{unknown}}"
+  _oembed_ba9a8c33fc144086082f5a713fa774cb: "{{unknown}}"
+author:
+  login: geaaal
+  email: geo.couprie@gmail.com
+  display_name: Géal
+  first_name: ''
+  last_name: ''
+---
+<p>Every week, I hear about a new secure software designed to protect your privacy, thwart the NSA/GCHQ and save kittens. Most of the time, though, they're started by people that are very enthusiastic yet unskilled.</p>
+<p>They tend to concentrate directly on choosing algorithms and writing code, instead of stepping back and thinking a bit about what they want to develop.</p>
+<p>Sure, they probably spent some time saying things like:</p>
+<ul>
+<li>that piece of data should absolutely be encrypted</li>
+<li>users will all have key pairs to authenticate themselves</li>
+<li>we should use AES, that's the safest choice (what are theses "modes" you're talking about?)</li>
+</ul>
+<p>That is not how you design a protocol. That is not how you design a software using encryption. And that is not how you will design the next secure distributed social network.</p>
+<p>To design your system, you need three things:</p>
+<ul>
+<li>a good threat model</li>
+<li>theoretical tools addressing the threats</li>
+<li>algorithms implementing these theoretical tools</li>
+</ul>
+<p>As you see, most of the projects only have the third item, and that's insufficient to design a correct system. <em>If you don't have a good threat model, you don't have a good mental model</em> of your users and attackers, their means and their objectives. If you don't have the theoretical tools, you will try to shoehorn your favorite algorithm on the problem without knowing if it really fits (example: using hash algorithms to store passwords :p).</p>
+<p>So, in this post, I'll provide those (simplified) theoretical definitions. You will probably recognize some of them.</p>
+<h2>High level view</h2>
+<p>First, you need to forget notions like "privacy", use any of these terms to describe the properties you want to achieve:</p>
+<ul>
+<li><strong>authentication</strong>: you can recognize which entity you are communicating with</li>
+<li><strong>authorization</strong>: the entity cannot get access to data it has no permission on (note that it is different from authentication)</li>
+<li><strong>confidentiality</strong>: the data should not be readable by an entity that has no permission on it (it can be protected by crypto, but also by policies in the code)</li>
+<li><strong>integrity</strong>: unauthorized modification of the data can be detected and marked as invalid</li>
+<li><strong>non repudiation</strong>: an entity cannot deny it has executed an action</li>
+<li><strong>deniability</strong>: an entity _can_ deny it has executed an action</li>
+</ul>
+<p>Ok, now that we have some basic properties, let's apply them: think for a long time about the actors of the system (users, malicious users, admins, sysadmins, random attacker on the network, etc), what authorizations they have, what they should not get access to, what data moves on the network and between whom.</p>
+<p>You should now have a very basic threat model and a rough overview of your system or protocol: you know what part of the network communications should be confidential, you know where you would need to authenticate.</p>
+<p>You will now need some ideas about the type of attacks that could happen to your system, because you probably did not think of everything. Separate your systems in logical parts (like "client", and "server", etc), observe them, and observe how they communicate.</p>
+<h2>Common attacks</h2>
+<h3>Security properties</h3>
+<p>Here are some security properties that will be useful when you will try to choose algorithms later:</p>
+<ul>
+<li><strong>Random oracle</strong>: a system that answers deterministically every question with a random answer from its answer space. You cannot predict what it will answer, but if you send the same question twice, it will answer the same both times.</li>
+<li><strong>Perfect secrecy</strong>: for any two plaintext messages of same size, an attacker cannot distinguish which plaintext maps to which ciphertext. Basically, the adversary learns nothing from the ciphertext only.</li>
+<li><strong>Semantic security</strong>: same thing as perfect secrecy, except what the adversary learns on the plaintext is negligible. example: One Time Pad</li>
+</ul>
+<h3>Security tests</h3>
+<p>those properties can be tested by creating a "game", where the attacker tries to guess information on the data:</p>
+<ul>
+<li><strong>IND-CPA</strong> (indistinguishability under the chosen plaintext attack) test: the adversary can generate as many ciphertexts as he wants. Then, he chooses two messages m0 and m1 of same length, those messages are encrypted, and one of the ciphertexts is sent back to him. The adversary should not be able to guess which message was used to generate that ciphertext (note that this is just one way of testing for CPA, there are many other schemes, some with stronger properties)</li>
+<li><strong>IND-CCA</strong> (indistinguishability under the chosen ciphertext attack): the attacker can get the decryption of arbitrary ciphertexts, but should not, from this, be able to decrypt any other ciphertext.</li>
+</ul>
+<h3>Attack patterns</h3>
+<p>Here are some common attack types that can be applied to crypto protocols. The list is not exhaustive, and covers only crypto attacks: there are many more ways to attack a system.</p>
+<ul>
+<li><strong>Replay attacks</strong>: the attacker has observed some valid (encrypted or not) data going on the wire, and tries to send it again. Obviously, it should not be accepted</li>
+<li><strong>MITM</strong> (Man In The Middle): the attacker can observe and modify live data running between two actors of the system. In the worst case, the attacker should not be able to forge valid data, decrypt data, or impersonate one of the users. In the best case, it should be detectable.</li>
+<li><strong>Oracle attack</strong>: when an algorithm or protocol has a part that can act as an oracle (can be asked something and give answer, like a server), an attacker could exploit flaws in the algorithm to get useful information on the data (then the oracle is not a random oracle). Timing attacks are part of this type of attack. See also padding oracle attacks, or the recent BREACH attack on TLS.</li>
+<li><strong>Offline attack</strong>: the attacker got access to some encrypted data (on the wire, or by accessing a disk somewhere), stored it, and tries to decrypt it for an amount of time</li>
+</ul>
+<p>You should now have a better view of the system: what are the parts of the system that need protection, what attacks they must resist, and what properties they should have.</p>
+<p>That means we can go to the next part: choosing the tools to implement the solution.</p>
+<h2>General cryptographic functions</h2>
+<p>No, we will not choose algorithms right now. That would be too easy :D</p>
+<p>We will choose from a list of cryptographic constructions that implement some of the security properties of the system, and combine them to meet all the needed properties:</p>
+<ul>
+<li><strong>Secure Pseudo Random Function</strong>: function from spaces K (keys) and X (message) to Y (other message space). The basic definition is that if you choose randomly one of these functions (like choosing randomly a k from K), its output will appear totally random (testable with IND-CPA).</li>
+<li><strong>Pseudo Random Permutation</strong>: this is a PRF where X and Y are the same space. It is bijective (every y from Y maps to exactly one x from X, and every y is an output of the function), and there exists an efficient inversion function for it (from Y to X). Example: AES (in ECB, which is unsafe for common use)</li>
+<li><strong>Message Authentication Code</strong>: defines a pair of algorithms. One of them takes a key k and a message m and outputs a code c. The other algorithm takes k, m, c and outputs True or False. An attacker should not be able to forge a valid c without knowing k. A PRF could be used to construct a MAC system. A hash function too. Example: HMAC</li>
+<li><strong>Authenticated encryption</strong>: an encryption function (with semantic security under the CPA) where the attacker cannot forge new ciphertexts that decrypt correctly. Example: AES-GCM.</li>
+<li><strong>Hash function</strong>: collision resistance (cannot find different messages m1, m2 so that H(m1) == H(m2), with different collision levels). Not easily invertible. Usually, they are fast. Example: SHA2.</li>
+<li><strong>Trapdoor function</strong>: a function that is easy to compute, for which finding its inverse is hard, unless you have specific information. (secure under IND-CCA). examples: RSA, DSA.</li>
+<li><strong>Zero knowledge proof</strong>: a way to prove something to the other party in a communication, without giving her any info, except the proof.</li>
+</ul>
+<p>There are a lot of other constructions, depending on your needs, from low level algorithms like the Diffie Hellman key exchange to higher level protocols like OTR. Again, the constructions will depend on the security properties.</p>
+<h2>Choosing the algorithms</h2>
+<p>Can we do it now? YES! But there are rules. You must not choose an algorithm because it's hype or because someone said so in an old book. Basically, you choose algorithms that implement the properties you need (like authenticated encryption), and you choose the parameters of the algorithm (key size, exponent, elliptic curve) depending on the strength you need. Basically, a key size can define how much time encrypted data should remain impossible to decrypt. Those parameters also define the performance of the algorithm. Don't choose them without consulting experts, or you will face problems similar to those encountered by the projects that used low RSA exponents (it looks good from a performance standpoint, but it introduces very bad security).</p>
+<h2>Am I done now?</h2>
+<p>Nope. We have only define some very high level parts. Creating a protocol implies a lot of thoughts on:</p>
+<ul>
+<li>how you establish the communications</li>
+<li>protocol negotiation (version, algorithms, etc)</li>
+<li>key exchange</li>
+<li>authentication</li>
+<li>nonce usage</li>
+<li>storing sessions</li>
+<li>handling lost connections</li>
+<li>renegotiation</li>
+<li>closing the connection</li>
+<li>etc.</li>
+</ul>
+<p>As you can see, designing a protocol involves a lot more than choosing a few algorithms. Note that this was only a very rough overview of what you would need to create a safe system. And we did not even start coding!</p>
+<p>So, if you want to build the next privacy protecting system, please talk to experts. They don't necessarily want to make you feel bad. They just have a lot of formal tools and the experience needed to see what will not work.</p>

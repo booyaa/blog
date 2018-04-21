@@ -1,0 +1,147 @@
+---
+layout: post
+title: 'Rails and oauth-plugin part 2: the consumer'
+date: 2011-06-28 08:00:19.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Development
+- Ruby
+- Security
+tags:
+- oauth
+- rails
+- ruby
+- security
+- Web
+meta:
+  _edit_last: '3997956'
+  tagazine-media: a:7:{s:7:"primary";s:0:"";s:6:"images";a:0:{}s:6:"videos";a:0:{}s:11:"image_count";s:1:"0";s:6:"author";s:7:"3997956";s:7:"blog_id";s:8:"11260360";s:9:"mod_stamp";s:19:"2011-06-28
+    07:18:25";}
+  reddit: a:2:{s:5:"count";i:0;s:4:"time";i:1422550456;}
+  _wpas_skip_linkedin: '1'
+  _oembed_4015aafc34b0f4158f5a8483bba56b31: "{{unknown}}"
+  _oembed_575d117b23a931700e8bc4260972e89e: "{{unknown}}"
+  _oembed_86a551a9d5c3aab744f26e56012bb608: "{{unknown}}"
+  _oembed_faa3a967dd4121dd4348e64836c5c674: "{{unknown}}"
+  _oembed_9d4f2a9d47c77346919db42e84821f84: "{{unknown}}"
+  _oembed_75eb094aec83d854a1b60093f07e9689: "{{unknown}}"
+  _oembed_b1480dab7db702576ced02954105173b: "{{unknown}}"
+  _oembed_bd73d24c1d5a625807e4391987ea399e: "{{unknown}}"
+  _oembed_508a2ce95ab02fe3d5957644309c1aa6: "{{unknown}}"
+  _oembed_685e0629912f9c6f001c4f6bf887c32a: "{{unknown}}"
+  _oembed_959196b354872253b24ad1d9e522cc47: "{{unknown}}"
+  _oembed_9e159417cae40e5a67da199113e38c60: "{{unknown}}"
+  _oembed_eb184afaec52304c81a3ca3f8bbb217d: "{{unknown}}"
+author:
+  login: geaaal
+  email: geo.couprie@gmail.com
+  display_name: Géal
+  first_name: ''
+  last_name: ''
+---
+<p>In the previous post, I showed how you could build a provider with oauth-plugin and Rails. Now, I will demonstrate how to build a consumer (it's a lot easier).</p>
+<p>I will assume that your provider is already running on localhost:3000. The consumer will run on localhost:4000 (run it with "rails server -p 4000").</p>
+<h2>Here we go!</h2>
+<p>[sourcecode language="bash"]<br />
+rails new consumer<br />
+cd consumer<br />
+[/sourcecode]</p>
+<p>Put this in your Gemfile:</p>
+<p>[sourcecode language="ruby"]<br />
+source 'http://rubygems.org'<br />
+gem 'rails', '3.0.7'<br />
+gem 'sqlite3'<br />
+gem 'devise'<br />
+gem &quot;oauth-plugin&quot;, &quot;&gt;= 0.4.0.pre1&quot;<br />
+[/sourcecode]</p>
+<p>And run these commands:</p>
+<p>[sourcecode language="bash"]<br />
+bundle install<br />
+rails generate devise:install<br />
+rails generate devise User<br />
+rake db:migrate<br />
+rails generate controller welcome index<br />
+rm public/index.html<br />
+[/sourcecode]</p>
+<p>And here is your routes.rb:</p>
+<p>[sourcecode language="ruby"]<br />
+Provider::Application.routes.draw do<br />
+devise_for :users<br />
+root :to =&gt; &quot;welcome#index&quot;<br />
+end<br />
+[/sourcecode]</p>
+<h2>Create the consumer</h2>
+<p>[sourcecode language="bash"]<br />
+rails generate oauth_consumer user<br />
+rake db:migrate<br />
+[/sourcecode]</p>
+<p>in app/controllers/oauth_consumers_controller.rb, replace:</p>
+<p>[sourcecode language="ruby"]<br />
+before_filter :login_required, :only=&gt;:index<br />
+[/sourcecode]</p>
+<p>by</p>
+<p>[sourcecode language="ruby"]<br />
+before_filter :authenticate_user!, :only=&gt;:index<br />
+[/sourcecode]</p>
+<p>Uncomment the methods for devise (go_back, logged_in? currentuser=, deny_access!) in app/controllers/oauth_consumers_controller.rb.</p>
+<p>Add to app/models/user.rb:</p>
+<p>[sourcecode language="ruby"]<br />
+ has_one  :test, :class_name=&gt;&quot;TestToken&quot;, :dependent=&gt;:destroy<br />
+[/sourcecode]</p>
+<p>Now go to http://localhost:3000/oauth_clients/ to register your first application with these parameters:</p>
+<blockquote><p>Name:                 Test consumer<br />
+Main Application URL: http://localhost:4000/<br />
+Callback URL:         http://localhost:4000/oauth_consumers/test/callback</p></blockquote>
+<p>You're redirected to http://localhost:3000/oauth_clients/1. It shows:</p>
+<blockquote><p>Consumer Key:      CRcIJ15MwSqlDTxsH8MpO3En4wjaOxkqeofLioH4</p>
+<p>Consumer Secret:   C7uci8xkyMShCf4SNXWPclKbBo3ml1Zf2W2XWu4W</p>
+<p>Request Token URL: http://localhost:3000/oauth/request_token</p>
+<p>Access Token URL:  http://localhost:3000/oauth/access_token</p>
+<p>Authorize URL:     http://localhost:3000/oauth/authorize</p></blockquote>
+<p>Now, you need to put the key and secret in config/initializers/oauth_consumers.rb:</p>
+<p>[sourcecode language="ruby"]<br />
+ OAUTH_CREDENTIALS={<br />
+:test =&gt;{<br />
+:key =&gt; &quot;CRcIJ15MwSqlDTxsH8MpO3En4wjaOxkqeofLioH4&quot;,<br />
+     :secret =&gt; &quot;C7uci8xkyMShCf4SNXWPclKbBo3ml1Zf2W2XWu4W&quot;,<br />
+     :expose =&gt; true<br />
+   }<br />
+ }<br />
+[/sourcecode]</p>
+<p>Create app/models/test_token.rb. This model will store the token for your provider. If you want to provide helpful methods, take inspiration from lib/oauth/models/consumers/services/.</p>
+<p>[sourcecode language="ruby"]<br />
+class TestToken &lt; ConsumerToken<br />
+TEST_SETTINGS={<br />
+:site =&gt; &quot;http://localhost:3000&quot;,<br />
+:request_token_path =&gt; &quot;/oauth/request_token&quot;,<br />
+:access_token_path =&gt; &quot;/oauth/access_token&quot;,<br />
+:authorize_path =&gt; &quot;/oauth/authorize&quot;<br />
+}</p>
+<p>def self.consumer(options={})<br />
+@consumer ||= OAuth::Consumer.new(credentials[:key], credentials[:secret], TEST_SETTINGS.merge(options))<br />
+end</p>
+<p>end<br />
+[/sourcecode]</p>
+<p>You should now be able to use the URLs "/oauth_consumers/test/client/", "/oauth_consumers/test/callback", "/oauth_consumers/test/callback2"," /oauth_consumers/test/edit",<br />
+and "/oauth_consumers/test".</p>
+<p>Modify the welcome controller t get the provider data:</p>
+<p>[sourcecode language="ruby"]<br />
+ class WelcomeController &lt; ApplicationController<br />
+ def index<br />
+ # cf http://oauth.rubyforge.org/rdoc/classes/OAuth/AccessToken.html<br />
+ @consumer_tokens=TestToken.all :conditions=&gt;{:user_id=&gt;current_user.id}<br />
+ @token = @consumer_tokens.first.client<br />
+ logger.info &quot;private data: &quot;+@token.get(&quot;/data/index&quot;).body<br />
+ end</p>
+<p>end<br />
+[/sourcecode]</p>
+<p>To connect a user to an external service link or redirect them to:</p>
+<p>/oauth_consumers/[SERVICE_NAME]</p>
+<p>Where SERVICE_NAME is the name you set in the OAUTH_CREDENTIALS hash. This will request the request token and redirect the user to the services authorization screen. When the user accepts the get redirected back to:</p>
+<p>/oauth_consumers/[SERVICE_NAME]/callback</p>
+<h2>That's it</h2>
+<p>This tutorial is really short, and could be explained a bit more, but I'll leave that for another post. You have enough to start tinkering with OAuth. Have fun!</p>

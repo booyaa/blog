@@ -1,0 +1,81 @@
+---
+layout: post
+title: Group messaging crypto and the CAP theorem
+date: 2013-07-09 14:03:45.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Crypto
+tags:
+- authentication
+- confidentiality
+- crypto
+- distributed systems
+- OTR
+- security
+meta:
+  _edit_last: '3997956'
+  _wpas_done_77741: '1'
+  _publicize_done_external: a:1:{s:8:"linkedin";a:1:{s:10:"SRxrIwgSA1";b:1;}}
+  reddit: a:2:{s:5:"count";i:0;s:4:"time";i:1485589685;}
+  _wpas_skip_77741: '1'
+  _oembed_5e0eb87c646be252ea7c68a470ed3abe: "{{unknown}}"
+  geo_public: '0'
+author:
+  login: geaaal
+  email: geo.couprie@gmail.com
+  display_name: Géal
+  first_name: ''
+  last_name: ''
+---
+<p>I often play with group messaging ideas, and recently, an interesting perspective came to me, about the relation between these messaging systems and the constraints of the CAP theorem.</p>
+<h2>What is the CAP theorem?</h2>
+<p><em>Small theoretical background here, feel free to skip if you already know what it is about</em></p>
+<p>Otherwise known as Brewer's theorem, indicates that three properties are important in distributed systems:</p>
+<ul>
+<li>Consistency (all nodes see the same data)</li>
+<li>Availability (every request receives a response)</li>
+<li>Partition tolerance (the system still works through network splits or node failure)</li>
+</ul>
+<p>The CAP theorem tells us that a distributed cannot have the three properties at the same time. It is not really a "two out of three" like most people tend to say, but more of a compromise you have to make. Some examples:</p>
+<ul>
+<li>in traditional databases systems (with a master-slave model), consistency and availability are high (all nodes can answer with th same data), but partition tolerance is weak because the master is a SPOF.</li>
+<li>in a fully distributed database (no master model), availability is high (all the nodes can answer), partition tolerance is high (a subset of the cluster could act as the whole database), but consistency is weak (data must be replicated to all the relevant nodes, and that can take time, so the nodes may not see the same data at the same time)</li>
+<li>in Bitcoin, the consistency is good (all nodes must agree to the same block chain) and partition tolerance is good (for downloading the block chain), but availability is weak for writing, because a new transaction must first propagates to a large enough set of nodes, then a block must be calculated for the transaction to be stored</li>
+</ul>
+<p>As you can see, you can shape those properties depending on how you want your system to behave. Maybe you want fast reads, or fast writes, or very strong replication, etc.</p>
+<h2>Group messaging constraints</h2>
+<p>This has always been a challenge. Traditionally, chat systems follow a client-server model, where the server redistributes all the messages. As we saw previously, that is bad against partition problems. The usual solution is to have multiple servers talking with each other, as we can see in IRC or XMPP.</p>
+<p>For a fully distributed messaging system (if we forget for a moment all the nasty NAT problems),  communication becomes a routing problem: making sure the nodes get all the messages fast enough and in the right order. If you're building a distributed Twitter, it's not really a problem, but for an interactive chat system, this becomes really hard. You can try to send your messages directly to all the users in the chat room, but as more people join, sending and receiving all the messages takes more and more time, and so, you sacrifice availability and a bit of consistency (you will not necessarily receive all the messages).</p>
+<h2>Group messaging crypto</h2>
+<p>The group messaging problems seemed hairy? Let's add crypto in the mix, just for fun! What security properties would we want to add to a messaging system?</p>
+<ul>
+<li>Authentication: every user knows with whom he is talking</li>
+<li>Confidentiality: an external observer cannot see the content of a message</li>
+<li>Tampering proof: users can detect when a message has been modified and reject them</li>
+<li>Perfect forward secrecy: compromising one key does not compromise the whole conversation or past conversations</li>
+</ul>
+<p>There are others that we could want, but let's just concentrate on these ones for now. We can separate the messaging in two phases: the discovery, and the transport. The discovery is when nodes begin talking to each other, authenticating each other, establishing session keys, managing key rotation, etc. Note that discovery can happen at any time, as a new node can appear after a long time. The transport is about sending messages safely and verifying messages.</p>
+<p>I think we can assume that, once all the nodes have authenticated themselves and agreed on session keys, the transport is the easy part. Whatever the underlying transport system (broadcast, XMPP, SMTP, etc), once you can send, receive and verify messages, everything is easy.</p>
+<p>The interesting part is the discovery. That is where the similarity with a distributed system is evident. You want a lot of nodes to start communicating with each other, you want to propagate information to all the nodes (like session keys), you must handle nodes that go up or down, and clusters splitting.</p>
+<p>That's where the CAP theorem is useful to understand the constraints of the system.</p>
+<p>Group authentication is an availability and partition problem: if you cannot start the communication until all the nodes have authenticated each other, you are vulnerable to slow or failing nodes.</p>
+<p>Tampering proof is a consistency problem: all the nodes must know the same signature keys to agree on whether a message is correct or not.</p>
+<p>Confidentiality is a consistency and partition problem: if you must reach consensus on a group-wide session key, you have to wait for all the nodes to get the new key (consistency). That happens a lot if you want perfect forward secrecy, where you must change keys regularly. Moreover, in case of partition, the different groups will agree to different keys, and a conflict will appear once the split is over.</p>
+<p>As you can see, a security model can help you choose which tools (cryptographic or not) you will use to ensure the safety of the system, but with the distributed system theory, you will be able to predict and recognize the behaviour of the system.</p>
+<h2>Some examples</h2>
+<p>Let's see how some more or less known system handle that:</p>
+<h3>GPG and email</h3>
+<p>GPG+email is, at its heart, a secure group messaging system. If we analyze its properties, wen can see that it is very good against partition: SMTP handles splits quite well, it can resend messages if they did not pass, or store them for a few days until the next server is up.</p>
+<p>For availability, it doesn't fare very well at high loads if you want to encrypt messages, because you need to encrypt for every host. You cannot take advantage of SMTP's architecture to reduce the load.</p>
+<p>It also has very bad consistency. If you want every node to agree on the keys of each user, you have to do one to one offline meetings between each of the participants. In practice, users make a tradeoff here, so the security assumption is not completely true.</p>
+<h2>Multi party off the record messaging</h2>
+<p>There is a paper you can read about <a title="Multy Party OTR" href="http://www.cypherpunks.ca/~iang/pubs/mpotr.pdf" target="_blank">MP OTR</a>, which builds on the previous OTR algorithm to provide secure multi party communication. That protocol relies on a heavy setup phase where all the nodes authenticate each other and generate a group encryption key.</p>
+<p>This model will fare quite well once consensus has been reached: all the nodes know the ephemeral signature keys and the group encryption key.</p>
+<p>Unfortunately, in case of a user joining or leaving the chatroom, the whole shutdown and setup process must happen, making the chatroom unavailable in the meantime.</p>
+<h2>What about yours?</h2>
+<p>I see a lot of new projects appearing lately, with the intention to "fix" chat systems or social networks by building a "secure" distributed system. Unfortunately, most of them do not have a serious background in security or distributed systems. The subject of this article, the CAP theorem, is a very small part of the way we think about distributed systems: people have been researching on the subject for years. Similarly, cryptography and protocols have improved a lot lately.</p>
+<p>So, if you are building one of these, take your time, forget the hype, read up a bit about the theory, and think about your model before you make your technological choices. Please don't repeat the worst mistakes.</p>

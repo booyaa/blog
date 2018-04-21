@@ -1,0 +1,60 @@
+---
+layout: post
+title: Manage your libraries with symlinks on Windows
+date: 2011-08-16 16:22:55.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Development
+- Reinventing the wheel
+tags:
+- DLL hell
+- GCC
+- Visual Studio
+- windows
+meta:
+  _edit_last: '3997956'
+  reddit: a:2:{s:5:"count";s:1:"0";s:4:"time";s:10:"1340335905";}
+  _wpas_done_linkedin: '1'
+author:
+  login: geaaal
+  email: geo.couprie@gmail.com
+  display_name: Géal
+  first_name: ''
+  last_name: ''
+---
+<p>My Windows development environment is a bit complex. I work on multiple projects, at multiple versions, with different compiler environments, and with dependencies on different libraries and versions of these libraries.</p>
+<p>Now, how do I specify where the compiler must search the libraries, and which version to use? Most of the time, I will add it directly in the project configuration. Easy at first, but quickly,I find myself writing by hand the path to each library (and header) in each project and each configuration of this project. And then, writing by hand the different names of the libraries (mylibrary.lib, mylibraryd.lib, mylibrary-static.lib, mylibrary-MTD.lib, etc).</p>
+<p>And when I want to update to a new version of the library? If I'm lucky, I just have to change the library and header paths (in every project using the library). If not, I also have to change the name, because of the library developer's convention.</p>
+<p>The first solution to these problems was to use a batch file to launch Visual Studio and MSYS, and set some environment variables in this file. I quickly ended up with one big file containing two environment variables (include path and lib path) per library, possibly more if there were some big changes in the library names. My Visual Studio configuration was cluttered with $(MYLIBRARY_LIBPATH), $(MYLIBRARY_INCLUDEPATH), $(MYLIBRARY_NAME). It is unreadable, and again, impossible to maintain.</p>
+<p>My solution comes from the Unix world, where you have a correct organization for your development files:</p>
+<ul>
+<li>one folder containing the subfolders include, bin and lib</li>
+<li>library names including version, and a symlink (without the version number) to the latest version of the lib</li>
+</ul>
+<p>Can I do that on Windows? YES \o/</p>
+<p><strong>Here is the trick</strong>: normal links on Windows won't work, but the <em>mklink </em>tool can create symlinks. And Visual Studio will recognize those as files and folders while looking for libraries.</p>
+<p>Now, how would I organize my development environment? I chose to use (and abuse) symlinks, to create include, lib and bin folders for each project and configuration, and use generic names for the libraries.</p>
+<ul>
+<li>I create a folder containing include, lib and bin</li>
+<li>in the  include/ folder, I put symlinks to the header file or the subfolder for each library I will use in that project</li>
+<li>in the lib directory, I create symlinks to the library version I want, one symlink per static/dynamic, MT/MD, Debug/Release version. But I could create one lib folder per static/dynamic, etc. A bit complex, but feasible (most of the time, I use only debug and release version, so it's still manageable).</li>
+</ul>
+<p>With this setup, I only set the INCLUDE and LIB environment variables, and I use directly the library names I need.</p>
+<p>Here is an example script I use to create different library folders for x86 and x64 libs:</p>
+<p>[sourcecode language="text"]<br />
+echo &quot;Building include and library directories for Windows %PLATFORM%&quot;</p>
+<p>@mkdir %PLATFORM%<br />
+@mkdir %PLATFORM%\include<br />
+@mkdir %PLATFORM%\lib</p>
+<p>@mklink /D %PLATFORM%\include\boost %BOOST%\boost<br />
+@for %%i in (%BOOST%\lib\*.lib) do (mklink %PLATFORM%\lib\%%~ni.lib %%~fi)</p>
+<p>@mklink /D %PLATFORM%\include\cpptest %CPPTEST%\include\cpptest<br />
+@for %%i in (%CPPTEST%\lib\*.lib) do (mklink %PLATFORM%\lib\%%~ni.lib %%~fi)</p>
+<p>[/sourcecode]</p>
+<p>I set up the BOOST and CPPTEST environment variables in another file. Then, I launch Visual Studio from another script which includes it.</p>
+<p>There may be better ways, and that system will evolve in the future, but I'm pretty comfortable with it right now :)</p>
+<p>Depending on my needs, I may grab from the bottom of my disk the package manager I wrote back in school, and make a big solution to download, build and link libs and personal projects. But later, I have some procrastination planned right now.</p>

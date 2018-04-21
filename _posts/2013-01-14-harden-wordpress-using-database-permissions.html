@@ -1,0 +1,86 @@
+---
+layout: post
+title: Harden Wordpress using database permissions
+date: 2013-01-14 22:56:03.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- General
+- Security
+tags:
+- security
+- SQL injection
+- vulnerabilities
+- Web
+meta:
+  _edit_last: '3997956'
+  _wpas_done_77741: '1'
+  _publicize_done_external: a:1:{s:8:"linkedin";a:1:{s:10:"SRxrIwgSA1";b:1;}}
+  tagazine-media: a:7:{s:7:"primary";s:0:"";s:6:"images";a:0:{}s:6:"videos";a:0:{}s:11:"image_count";i:0;s:6:"author";s:7:"3997956";s:7:"blog_id";s:8:"11260360";s:9:"mod_stamp";s:19:"2013-01-15
+    17:43:45";}
+  _wpas_skip_77741: '1'
+  reddit: a:2:{s:5:"count";i:0;s:4:"time";i:1410713438;}
+  _oembed_11e3f2a1e6ae5488e9307ab666207479: "{{unknown}}"
+  _oembed_f85e3a88e19a7f21b4a9059e971bdb76: "{{unknown}}"
+  _oembed_73175b4f4ac375d39ee4b7303e4a4530: "{{unknown}}"
+  _oembed_d0eebe2bc4bed15f633d37e643c06ae7: "{{unknown}}"
+  _oembed_77de6e6c54486f61511c854aed040062: "{{unknown}}"
+  _oembed_28f2e955ba473f5745651b17777411f4: "{{unknown}}"
+  _oembed_b884c744d7723eb661a0ba63d3e65905: "{{unknown}}"
+  _oembed_17aabfb5a31da4427c99204eac95f2d8: "{{unknown}}"
+  _oembed_a0bb9d1603213fe0db6a4e657684584c: "{{unknown}}"
+  _oembed_f19238365c01dad060869e8c4301dc64: "{{unknown}}"
+  _oembed_cd29d48d65ec76bb087ebbc5cbeea64c: "{{unknown}}"
+  _oembed_e868745e9976ff176a718608599f228d: "{{unknown}}"
+  _oembed_823b7c1f3b9b510d5a56a150f3319d11: "{{unknown}}"
+  _oembed_dba47b387498f888bbb036fc03efffa4: "{{unknown}}"
+  _oembed_dbe230cea575d725a966a19efe67958f: "{{unknown}}"
+  _oembed_e9f411fcd2d09d4bda2e6729f2f17abe: "{{unknown}}"
+  _oembed_0e706bf7d3fb7bdf73eec91eef39739e: "{{unknown}}"
+author:
+  login: geaaal
+  email: geo.couprie@gmail.com
+  display_name: Géal
+  first_name: ''
+  last_name: ''
+---
+<p>Here is a small idea that I would like to throw into the world: most web applications use only one database user for most operations (installation, administration, common usage). Couldn't we harness the database to protect a bit your data?</p>
+<h2>How to</h2>
+<p>This is how you could do it:</p>
+<ul>
+<li>Create one user (called 'user') with full privileges on the database</li>
+<li>Create another user with no privileges (let's call him 'read')</li>
+<li>Create a copy of wp-config.php that you will name wp-config-admin.php</li>
+<li>Write the 'read' credentials in the wp-config.php and the normal credentials in wp-config-admin.php (don't forget to use different auth, secure auth, logged in and nonce keys)</li>
+<li>Create a copy of wp-load.php that you will name wp-load-admin.php</li>
+<li>Replace in wp-load-admin.php the reference to wp-config.php by wp-config-admin.php</li>
+<li>Replace in wp-login.php and wp-admin/* the references to wp-load.php by wp-load-admin.php</li>
+<li>Now, you can use the admin interface, create posts, etc.</li>
+<li>Grant some permissions to the 'read' database user: GRANT SELECT ON `db`.* TO 'read'; GRANT INSERT, UPDATE ON `db`.`wp_comments` TO 'read';</li>
+</ul>
+<p>That was a bit of work, but not that hard! So, what did we do here? We created a user for the admin interface with full privileges on the database (create/update posts, change the taxonomy, approve the comments, etc) and another one for the front end interface, with only read privileges on all tables (that bothers me too, but read on).</p>
+<p>This means that SQL injections, either in plugins or in Wordpress code (out of the admin panel) will be much harder to implement with this setup. Beware of the custom tables for some plugins. Those will require specific permissions. Depending on the plugin, some could be read only for common usage.</p>
+<h2>Going further</h2>
+<p>That's nice, but not enough in my opinion. As I said, the full select permission for the 'read' user bothers me. Couldn't we restrict a bit the permissions on wp_users? Some of <a title="WordPress database diagram" href="http://codex.wordpress.org/images/9/9e/WP3.0-ERD.png">the columns</a> are needed, but do we need to access the user_pass column? Also, the "ALL PRIVILEGES" for 'user' is a bit too much. Do we really use the "FILE" privilege (out of SQL injections :D)?</p>
+<p>Without further ado, here are the SQL commands you should use:</p>
+<blockquote><p>GRANT SELECT, INSERT, UPDATE ON `db`.`wp_comments` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_commentmeta` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_links` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_options` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_term_taxonomy` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_usermeta` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_terms` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_term_relationships` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_postmeta` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_posts` TO 'read';</p>
+<p>GRANT SELECT (user_activation_key, id, user_login, user_nicename, user_status, user_url, display_name, user_email, user_registered) ON `db`.`wp_users` TO 'read';</p>
+<p>REVOKE ALL PRIVILEGES ON `db`.* from 'user';</p>
+<p>GRANT SELECT, INSERT, DELETE, UPDATE, CREATE, DROP, ALTER, INDEX <em>ON `db`.* TO 'user';<br />
+</em></p></blockquote>
+<p>With these commands, 'user' can only manipulate tables. If you're an evil DBA, you can even revoke the "CREATE, DROP, ALTER" permission after install, and reactivate them only for upgrades or plugin installation. The 'read' user has the same permissions as before on wp_comments, has "SELECT" on all tables except the wp_users. For wp_users, we grant "SELECT" on all columns except the user_pass one.</p>
+<p><strong>Thanks to this configuration, even a SQL injection in a plugin will not reach the password hashes!</strong> We also removed dangerous permissions like "FILE". I'd like to prevent timing attacks like "SELECT BENCHMARK(5000000,ENCODE('MSG','by 5 seconds'));" but i did not figure out what is the right syntax for this (I tried variations around: "revoke execute on function benchmark from read", without result).</p>
+<p>Thankfully, WordPress mostly works with this configuration, and I think that a lot of other applications could be protected like this. Imagine: you could grant insert but not select on the credit card table in an e-commerce application, and process transactions with a background task with the right permissions.</p>
+<p>Database privileges are indeed a powerful tool to protect your code from SQL injections. They might require some architectural changes, but the profits can be huge for your security.</p>

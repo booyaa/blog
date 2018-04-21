@@ -1,0 +1,53 @@
+---
+layout: post
+title: Web vulnerabilities in an HTML 5 application
+date: 2010-06-13 13:39:15.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Security
+tags:
+- HTML5
+- Javascript
+- vulnerabilities
+- Web
+meta:
+  _edit_last: '3997956'
+  _wp_old_slug: ''
+  reddit: a:2:{s:5:"count";i:0;s:4:"time";i:1404683160;}
+  _oembed_33e982150762f92f48c914393416d759: "{{unknown}}"
+  _oembed_239c98392bb0d31db483865a1f2922e5: "{{unknown}}"
+  _oembed_ba9a8c33fc144086082f5a713fa774cb: "{{unknown}}"
+  _oembed_f1df9cf79c9292c38d343a3c427fe031: "{{unknown}}"
+author:
+  login: geaaal
+  email: geo.couprie@gmail.com
+  display_name: Géal
+  first_name: ''
+  last_name: ''
+---
+<p>For the past few days, I have been messing with some of the features of HTML 5:</p>
+<ul>
+<li>local storage</li>
+<li>Offline web applications</li>
+</ul>
+<p>These features enable the development of real applications, running in the browser. It has a lot of advantages: easily updating the application, reduce the workload on the server, etc.</p>
+<p>But it changes the way you write your code. You have to adapt the usual protection mechanisms to these changes.</p>
+<p>Here are some thoughts about the common web application vulnerabilities.</p>
+<p>Warning: I consider here a web application with practically no  server-side code: everything executes in the browser. And I'll use the  point of view of someone attacking the application running in the  browser. And I'll be optimist enough to trust the browser...</p>
+<h2>SQL injections</h2>
+<p>SQL injections in servers let you access the user's data, and access the server itself (file uploads, starting external programs, etc). With local storage and WebSQL, you won't be able to access the host, only the data (unless there's a browser vulnerability about that). And you can use some sort of prepared statement syntax to prevent injection. There may be a risk with key/value stores if you let the user input control the key.</p>
+<h2>Cross site scripting</h2>
+<p>This is in my opinion the biggest risk. If all the logic of your application is on the client's side, unwanted code executing in the browser has access to everything. This one can be mitigated by filtering what will be displayed on your webpage.</p>
+<h2>Cross site request forgery</h2>
+<p>This one is not critical, unless you use locally URL parameters (don't laugh, it has often been done and exploited in Flash applications). Be aware that an attackant could get data in local storage that way.</p>
+<h2>Persistency</h2>
+<p>It really worries me that so much data can stay a long time in the user's browser. With a database hosted on your server, if unwanted data(persistent XSS, malwares...) is stored, you can erase it, patch your website's code, and your users will be safe.</p>
+<p>With HTML 5, you'll have to clean every user's data. You can't be sure that you have  protected all your users (someone could wait 6 months before coming back to your website). And because you can't be sure, your code has to check for each known bad data. It needs a lot of code, time and tests.</p>
+<h2>Trust issues</h2>
+<p>It has been said a lot of times already: don't trust the data coming from your client. And in our case, don't trust it, even if it's data that your website put in local storage. It applies to data that will come back to your server, but also to data that will be displayed with a bit of Javascript/DOM code. Yes, XSS attacks could come from local storage. So, you need to escape everything that wil go into the webpage.</p>
+<h2>Are we screwed?</h2>
+<p>These were only quick thoughts about the vulnerabilities you could encounter with client side web applications. It is not really hard to protect the application, but you have to be very careful about what data you will trust. The good thing is, these vulnerabilities are not new: you can see them in lots of Flash applications. So, the mitigation mechanisms are well known, and easy to apply.</p>

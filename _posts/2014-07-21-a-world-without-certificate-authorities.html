@@ -1,0 +1,49 @@
+---
+layout: post
+title: A world without certificate authorities
+date: 2014-07-21 16:43:33.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- General
+- Security
+tags:
+- cryptography
+- story
+meta:
+  _edit_last: '3997956'
+  reddit: a:2:{s:5:"count";i:0;s:4:"time";i:1515362419;}
+  publicize_linkedin_url: http://www.linkedin.com/updates?discuss=&scope=14335834&stype=M&topic=5897012826542718976&type=U&a=uyfQ
+  geo_public: '0'
+  _wpas_done_77741: '1'
+  _publicize_done_external: a:1:{s:8:"linkedin";a:1:{s:10:"SRxrIwgSA1";b:1;}}
+  _wpas_skip_77741: '1'
+  _oembed_3a996fac8db6ba19d29f098326e4b703: "{{unknown}}"
+  _oembed_3668161312b47c47e7bfe32734e8ad76: "{{unknown}}"
+  _oembed_df90dfbfe4f972faa662b417bc82e991: "{{unknown}}"
+  _oembed_aae8a62c348cabffe9e021829d42e96e: "{{unknown}}"
+  _oembed_ebb049ac59409091fe26f0c3443ec872: "{{unknown}}"
+author:
+  login: geaaal
+  email: geo.couprie@gmail.com
+  display_name: Géal
+  first_name: ''
+  last_name: ''
+---
+<p><img class="aligncenter size-full wp-image-779" src="/assets/14156305171_d2c0a5e9bc_b.jpg" alt="love locks" width="525" height="525" /><br />
+When networks began to expand and people saw the need for secure communication, they designed complex systems based on public key cryptography, that worked more or less. Problem: how do you trust that the key a server sent you is the right one? How can you make sure that it is not somebody else trying to impersonate that website?</p>
+<p>Multiple solutions were proposed, and the most promising was a public directory of domain names and associated public keys, maintained by a peer to peer network named KeyCoin. It looked better than so called Web Of Trust solutions, because everybody could agree on what was the correct key for a given domain. As long as nobody hold 51% of the network, no change could happen without being validated by a lot of different peers. The network was maintained by 10000 enthusiast system administrators who took their task very seriously (after all, the security of the whole system depended on their honesty), and nobody had enough computing power to take over the network.</p>
+<p>After a while, people began using the system, since it was directly integrated in their browsers, but they did not want to run a node on the network themselves. It was too bothersome, and they could trust the administrators. Also, they had to ask one of them to make a change everytime. The whole process was a bit artisanal.</p>
+<p>In the meantime, some people demonstrated the 51% attack on networks of reduced size, and that worried people. They wanted a safe system, one that was not only relying on those sysadmins that could do anything. Who were they anyway? Running that system was still too complex for non technical too run it themselves anyway, so they did not worry enough. But some governments found that rewriting the truth of name/key matching was interesting. Maybe to catch pedophiles, terrorists, criminals. Or maybe to censor websites, I do not know, they told me it was for my own good.</p>
+<p>Some smart person found a good solution: if controlling the whole system necessitated owning 51% of the system, the easiest way was to have a lot of machines, enough to counteract the sysadmins. That did not seem risky when people designed the system. Nobody could have enough computing power to take over the whole network, and there would be even more nodes every day.</p>
+<p>Yet, that person got enough funding to install tens of thousands of machines and make them join the network. They even provided a nice enough interface for people and businesses to input their domain name and public key, as long as they paid some fees. The sysadmins welcomed him at first, since money coming in the system validated their ideas. Atfer a while, they started worrying, since none of them could keep up with the computing power, but that company asssured them it would never attain 51% of the network.</p>
+<p>Other companies jumped on the bandwagon and started to profit from that new business opportunity. Governments started their own server farms to participate too. Problem: now that everybody (except the sysadmins) had a lot of computing power, nobody had enough to control the network entirely.</p>
+<p>So they started making alliances. If a few major players work as a team, they can do whatever they want on the network. If one of them decided to try and replace a key on the ledger, others could help it. Of course, once they begun doing that, others wanted to participate. So they created a few rules to join their club. First, you needed to have enough machines. That was a good rule, because that made a big barrier to entry. You could not start as a small player. The other rules? You had to submit to an audit, performed by the other players. Yet another barrier to entry. And once they deemed you acceptable, you had to follow the requests of governments, which were arbitrarily refusing candidates.</p>
+<p>Even with the big barriers to entry, a few hundred players came up, often backed by governments. Of course, all ended up in the same team, doing whatever they wanted, as long as nobody was complaining, because anytime one of them had something shady to do, all of them followed automatically.</p>
+<p>Since building those big companies required money, they made their clients pay more and more, and to make it easier to accept, provided "premium" options where they show they trust you more, since they took the time to phone your company and ask a few questions.</p>
+<p>Some found that big system too centralized, too obedient to states, and decided to fork it. There are separate public ledgers, but they do not come directly embedded in browsers, you need to integrate them yourself, and that's bothersome. Also, most of those networks have a few hundred nodes at best.</p>
+<p>From a nice, decentralized, home made system, we ended up with a centralized system controlled by corporations and governments.</p>
+<p>Now let me tell you about that system I designed. It is based on a concept named certificate, a cryptographically signed file that links the public key to a domain name. Now here's the catch: a certificate represents a key, and is signed by another key, which is represented by another certificate, and so on and so forth until a certificate that signs itself. That system is good, because you just have to embed the root certificate that your friends gives you, and you'll be able to verify the key of his websites, even if those keys change. And this, without even asking the public ledger, so that is a truly decentralized and more anonymous system! Nothing could go wrong with that, right?</p>

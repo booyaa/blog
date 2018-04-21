@@ -1,0 +1,55 @@
+---
+layout: post
+title: Testing Android push without a server
+date: 2012-12-07 13:35:06.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Development
+- General
+tags:
+- android
+- java
+- push
+meta:
+  _edit_last: '3997956'
+  tagazine-media: a:7:{s:7:"primary";s:0:"";s:6:"images";a:0:{}s:6:"videos";a:0:{}s:11:"image_count";i:0;s:6:"author";s:7:"3997956";s:7:"blog_id";s:8:"11260360";s:9:"mod_stamp";s:19:"2012-12-07
+    12:36:07";}
+  _wpas_done_77741: '1'
+  _publicize_done_external: a:1:{s:8:"linkedin";a:1:{s:10:"SRxrIwgSA1";b:1;}}
+  reddit: a:2:{s:5:"count";i:0;s:4:"time";i:1410713437;}
+  geo_public: '0'
+  _wpas_skip_77741: '1'
+author:
+  login: geaaal
+  email: geo.couprie@gmail.com
+  display_name: Géal
+  first_name: ''
+  last_name: ''
+---
+<p>Adding push support to an Android app is quite easy, but it can be cumbersome to test it if the server part is not ready yet.</p>
+<p>For this, you only need your API key, and the registration ID for your device (you can get it from a call to <em>GCMRegistrar.getRegistrationId</em>). Also, you should have already called <em>GCMRegistrar.register</em> from your app, with your sender id.</p>
+<p>Then, to send a push message to your application, use this code:</p>
+<blockquote><p>import java.io.IOException;</p>
+<p>import com.google.android.gcm.server.*;</p>
+<p>public class Main {</p>
+<p>/**<br />
+* @param args<br />
+*/<br />
+public static void main(String[] args) {</p>
+<p>String apiKey = "...";</p>
+<p>String deviceId = "...";<br />
+Sender sender = new Sender(apiKey);<br />
+Message message = new Message.Builder().addData("data1", "hello").build();</p>
+<p>try {<br />
+Result result = sender.send(message, deviceId, 2);<br />
+System.out.println("got result: "+result.toString());<br />
+} catch (IOException e) {<br />
+// TODO Auto-generated catch block<br />
+e.printStackTrace();<br />
+}<br />
+}</p>
+<p>}</p></blockquote>

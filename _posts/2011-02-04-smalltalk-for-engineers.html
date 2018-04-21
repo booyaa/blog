@@ -1,0 +1,58 @@
+---
+layout: post
+title: Smalltalk for engineers
+date: 2011-02-04 16:14:58.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Smalltalk
+tags:
+- object
+- smalltalk
+- Web
+- windows
+meta:
+  _edit_last: '3997956'
+  reddit: a:2:{s:5:"count";s:1:"0";s:4:"time";s:10:"1340338250";}
+  _oembed_8ea1f15e29402b9128e0b57b4b514f8c: "{{unknown}}"
+  _oembed_a9c5928e55c34fa902441cb022a20748: "{{unknown}}"
+  _oembed_90ef1f9475dd81b1ff633210553c5276: "{{unknown}}"
+  _oembed_4d30d8f94965455ca27afb6bf29bd99c: "{{unknown}}"
+  _oembed_aa7623ce4559518ee4679ef2c7571f4b: "{{unknown}}"
+author:
+  login: geaaal
+  email: geo.couprie@gmail.com
+  display_name: Géal
+  first_name: ''
+  last_name: ''
+---
+<p>For more than a year, I have been playing with Smalltalk, and more specifically the <a title="Pharo, an open source Smalltalk" href="http://pharo-project.org" target="_blank">Pharo project</a>, and I had a lot of fun! Now, I'd like to share this experience. I saw a lot of introductions to Smalltalk, but they were all about its amazing features from a CS point of vue. I'm a software engineer, so I'll give you a more pragmatic look, with a few useful tips.</p>
+<p>When you hear about Smalltalk, you imagine old bearded guys, clinging to their outdated language. In reality, this is what I saw: a small yet growing community full of nice and motivated people, enjoying development and innovating everyday. Even if the language is old, they're keeping it up to date with today's standards: JIT compiling, web development, iPhone port... I strongly encourage you to take a look and, maybe, participate!</p>
+<h2>First look: the interface</h2>
+<p>The first impression is the most shocking: you don't understand what you can/should do with that empty window. It is not the code editor you would expect. It is an entire world, full of living objects. The behaviour of these objects is described by code, but they're not programs with a beginning and an end. For a good impression of that, try closing the environment (don't forget to save) and starting it again: your windows are still open, exactly in the same place! Even selected text is still there! Your object's life doesn't end when you close the environment: they're serialized in the image file.</p>
+<p><img class="aligncenter size-medium wp-image-164" title="pharo-firstscreen" src="/assets/pharo-firstscreen.jpg?w=300" alt="" width="300" height="205" /></p>
+<p>The environment is composed of a virtual machine executing the code, an image file containing the objects, and a source file, storing a part of the source code. And that's all. No files.</p>
+<p><strong>UPDATE: </strong>the <a href="http://smalltalk.gnu.org/" target="_blank">GNU Smalltalk</a> environment uses files to store source code.</p>
+<p>In the previous picture, you will see the code browser, used for everyday development. It doesn't display files, but (from left to right) categories, classes, method categories, methods, and under that, the actual code for the method. The code editor is organized around the actual structure of the code, not some arbitrary folder tree. It can be confusing at first, but it's actually quite elegant. There's a drawback though: you can't use your favorite code editor to write Smalltalk code. Another nice side effect of the image: I store my environment on a USB key, and can use it to work seamlessly on Windows, Mac and Linux (using the <a title="Download the one click pharo image" href="http://gforge.inria.fr/frs/download.php/28015/Pharo-1.1.1-OneClick.zip">one click pharo image</a>).</p>
+<h2>Second look: the language</h2>
+<p>The language itself is another surprise: what are those ifTrue and whileTrue? You can't think that Smalltalk has a syntax used for control flow.  In Smalltalk, everything is an object. And the primary way of interacting with an object is sending it a message. The whole syntax of Smalltalk revolves around messages:</p>
+<ul>
+<li>"1+2/3" is not equal to 5/3, but to 1, because you send to 1 the message "+" with argument 2, which gives you 3, and you send this result the message "/" with argument 3.</li>
+<li>ifTrue is a message sent to a boolean, with a "block" as argument (a block is a piece of code). The block will be executed if the boolean is an instance of True.</li>
+<li>you can't access directly the members of an object: you need to create messages to read and modify these members.</li>
+</ul>
+<p>The methods are separated between the class side and the instance side. The classes are objects, so they have their own methods (think of it as static methods). They're used for a lot of things, like generating common instances (String crlf, Color blue, etc), or starting servers.</p>
+<p>If you take a good look at a class like string, you will spot apparently redundant methods like displayOn:, displayOn:at:, displayAt:, displayOn:at:textColor:. They're not redundant: displayOn calls displayOn:at:, which calls displayOn:at:textColor:. This is actually very elegant, because it keeps methods small and readable.</p>
+<p>Keep that in mind when you're developing in Smalltalk: readability is more important that speed, because the time you gain now will be wasted the next time you try to read your code.</p>
+<h2>Next: the tools</h2>
+<p>You saw the code browser, but there are other nice tools designed to help you every day.</p>
+<p>Monticello is a distributed versioning system integrated in the environment. Nothing special here: it tracks your changes, create revisions, and supports local (folders) and remote (HTTP, FTP) repositories.</p>
+<p>There is a test runner that displays all the tests loaded in your environment. You will see that there is a very good coverage, but it is not enough! Contribute a test or two if you have time.</p>
+<p>Last but not least: the refactoring browser. It is an amazing piece of code which analyzes your classes, points out design mistakes, and in some cases, can correct them in your place.</p>
+<h2>OK, now, what can I develop?</h2>
+<p>You can do about anything in Smalltalk, like other languages: desktop applications, web applications, use databases, network protocols, REST APIs... It is particularly suited for big applications with complex object models.</p>
+<p>For desktop applications, you will easily have cross platform code and UI, but you won't be able to use native windows (at least, not with Squeak or Pharo). For web applications, you can choose between these frameworks: <a href="http://www.seaside.st">Seaside</a>, <a href="http://www.iliadproject.org">Iliad</a> and <a href="http://www.aidaweb.si/">Aida</a>. Each one has a different philosophy, and different strengths, so try them all out!</p>
+<p>Developing in Smalltalk has been an amazing experience: I learned a lot, and the concepts and habits I took are easily applied to other languages. now, I just need a way to work in Smalltalk for my day job :)</p>

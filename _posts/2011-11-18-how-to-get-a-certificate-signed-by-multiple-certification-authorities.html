@@ -1,0 +1,62 @@
+---
+layout: post
+title: How to get a certificate signed by multiple certification authorities
+date: 2011-11-18 16:12:33.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- General
+- Reinventing the wheel
+- Security
+- Web
+tags:
+- certificate
+- security
+- ssl
+- tls
+- x509
+meta:
+  _edit_last: '3997956'
+  tagazine-media: a:7:{s:7:"primary";s:0:"";s:6:"images";a:0:{}s:6:"videos";a:0:{}s:11:"image_count";s:1:"0";s:6:"author";s:7:"3997956";s:7:"blog_id";s:8:"11260360";s:9:"mod_stamp";s:19:"2011-11-18
+    15:16:53";}
+  _wpas_done_linkedin: '1'
+  reddit: a:2:{s:5:"count";i:0;s:4:"time";i:1355564074;}
+  _oembed_1708575b511791108666552f07d8c614: "{{unknown}}"
+  _oembed_6e6dbc84d4ea93230480d292ec8c8945: "{{unknown}}"
+  _oembed_dd2568c446733c87bbdf820267e27cab: "{{unknown}}"
+  _oembed_33e982150762f92f48c914393416d759: "{{unknown}}"
+  _oembed_6424a40713a217c184ef8de7dfc7c1be: "{{unknown}}"
+  _oembed_1f23108b6535ff0c62675c9da74a8fee: "{{unknown}}"
+author:
+  login: geaaal
+  email: geo.couprie@gmail.com
+  display_name: Géal
+  first_name: ''
+  last_name: ''
+---
+<p>Sort of. Here is a way to do it, but I don't a practical use for this hack right now. But it is fun anyway :)</p>
+<h2>Here we go!</h2>
+<p>I was thinking about ways to distribute trust, and played a bit with CA generation and OpenSSL, when it occured to me: it depends more on a key pair than on a certificate! If I consider that I trust a key instead of a certificate, I begin to see a way (certificates are only restrictions on the trust between keys).</p>
+<p>It is really easy to get multiple certification authorities to sign a certificate for the same key (even for the same subject name in some cases). You send the certificate signing request to two certificate authorities, and you get two certificates, for the same keys and same subject names. But the issuer, dates, serial and signature are different. That's why a certificate has only one certification chain.</p>
+<p>But what will happen if I delegates the certification to another key? Here is the idea:</p>
+<ul>
+<li>create a first key pair</li>
+<li>create a CSR for this key pair, and add the certification authority extension</li>
+<li>ask the certification authorities to sign this CSR</li>
+<li>you now have multiple certificates, for one key pair, all of them with the same subject name, and with certification authority powers</li>
+<li>create a second key pair</li>
+<li>create a CSR for this key pair, with a subject name for your email/domain name/organisation/whatever</li>
+<li>sign this CSR with the first key pair, and any of the CA certificates you obtained before</li>
+</ul>
+<p>You are now the proud owner of a valid certificate for your domain name, with multiple certification chains going up to each of the root CAs. Why? The issuer's subject name and public key is the same for all of the generated CAs, and they're included in the end certificate. Any generated CA certificate can be used to verify that signature, and all the certification paths will work. Cool, huh?</p>
+<h2>Okay, but...</h2>
+<ul>
+<li>Creating a sub CA is very expensive (if you want it to be recognized by all the browsers)</li>
+<li>good luck with creating multiple sub CA and getting away with it</li>
+<li>Assuming that certification authorities accept it, the sub CA private key could be thrown away after signing the certificate. But who will create and delete the subCA key? you, one of the CAs?</li>
+<li>In the case of TLS, serving all the certification chains will have no impact: the browsers take the first matching sub CA in the list for the verification, they will not retry with another sub CA if they don't find a root (but if you serve one certification chain at a time, it will work).</li>
+</ul>
+<p>See, I said "no practical use" :)</p>

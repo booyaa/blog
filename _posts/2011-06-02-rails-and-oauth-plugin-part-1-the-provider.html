@@ -1,0 +1,127 @@
+---
+layout: post
+title: 'Rails and oauth-plugin part 1: the provider'
+date: 2011-06-02 20:58:14.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Development
+- Ruby
+- Security
+tags:
+- oauth
+- rails
+- ruby
+- security
+- Web
+meta:
+  _edit_last: '3997956'
+  tagazine-media: a:7:{s:7:"primary";s:0:"";s:6:"images";a:0:{}s:6:"videos";a:0:{}s:11:"image_count";s:1:"0";s:6:"author";s:7:"3997956";s:7:"blog_id";s:8:"11260360";s:9:"mod_stamp";s:19:"2011-06-02
+    20:03:44";}
+  reddit: a:2:{s:5:"count";s:1:"0";s:4:"time";s:10:"1340338221";}
+  _wpas_skip_linkedin: '1'
+author:
+  login: geaaal
+  email: geo.couprie@gmail.com
+  display_name: Géal
+  first_name: ''
+  last_name: ''
+---
+<p>These days, I have been playing a lot with Oauth and its RoR implementation, <a title="Oauth-plugin" href="http://code.google.com/p/oauth-plugin/">oauth-plugin</a>. Its documentation is a bit short, so here is a tutorial to show how to use it, both in provider and consumer mode. And we will even make them communicate with each other.</p>
+<p>We will now build an Oauth provider using oauth-plugin for authorization and Devise for authentication. And we will add a controller protected by Oauth.</p>
+<h2>Starting up</h2>
+<p>A few instructions to create the application. You won't need an explanation for this:</p>
+<p>[sourcecode language="bash"]<br />
+rails new provider<br />
+cd provider<br />
+[/sourcecode]</p>
+<p>Put this in your Gemfile:</p>
+<p>[sourcecode language="ruby"]<br />
+source 'http://rubygems.org'<br />
+gem 'rails', '3.0.7'<br />
+gem 'sqlite3'<br />
+gem 'devise'<br />
+gem &quot;oauth-plugin&quot;, &quot;&gt;= 0.4.0.pre1&quot;<br />
+[/sourcecode]</p>
+<p>And a few more commands:</p>
+<p>[sourcecode language="bash"]<br />
+bundle install<br />
+rails generate devise:install<br />
+rails generate devise User<br />
+rake db:migrate<br />
+rails generate controller welcome index<br />
+rm public/index.html<br />
+[/sourcecode]</p>
+<p>And don't forget 'root :to =&gt; "welcome#index"' in config/routes.rb.</p>
+<h2>Create the provider</h2>
+<p>[sourcecode language="bash"]<br />
+rails generate oauth_provider oauth</p>
+<p>rake db:migrate<br />
+[/sourcecode]</p>
+<p>You could put something else than "oauth" as parameter, but for the moment, the generator has some bugs (it always generate the class OauthController, but with a different name). I'll check more recent versions of the code.</p>
+<p>Now, modify config/application.rb and add:</p>
+<p>[sourcecode language="ruby"]<br />
+require 'oauth/rack/oauth_filter'<br />
+config.middleware.use OAuth::Rack::OAuthFilter<br />
+[/sourcecode]</p>
+<p>Put in app/models/user.rb:</p>
+<p>[sourcecode language="ruby"]</p>
+<p>has_many :client_applications</p>
+<p>has_many :tokens, :class_name=&gt;&quot;OauthToken&quot;,:order=&gt;&quot;authorized_at desc&quot;,:include=&gt;[:client_application]</p>
+<p>[/sourcecode]</p>
+<p>Put in app/controllers/oauth_controller.rb:</p>
+<p>[sourcecode language="ruby"]</p>
+<p>alias :logged_in? :user_signed_in?</p>
+<p>alias :login_required :authenticate_user!</p>
+<p>[/sourcecode]</p>
+<p>and uncomment authenticate_user.</p>
+<p>Put in app/controllers/oauth_clients_controller.rb:</p>
+<p>[sourcecode language="ruby"]<br />
+alias :login_required :authenticate_user!<br />
+[/sourcecode]</p>
+<h2>And now some data</h2>
+<p>Create a new controller:</p>
+<p>[sourcecode language="bash"]</p>
+<p>rails generate controller data index</p>
+<p>[/sourcecode]</p>
+<p>And now, edit your controller:</p>
+<p>[sourcecode language="ruby"]<br />
+class DataController &lt; ApplicationController<br />
+  before_filter :oauth_required</p>
+<p>  def index<br />
+    @data = { &quot;coincoin&quot; =&gt; &quot;o&lt; o&lt;&quot; }</p>
+<p>    respond_to do |format|<br />
+      format.json { render :json =&gt; @data }<br />
+    end</p>
+<p>  end<br />
+end<br />
+[/sourcecode]</p>
+<h3>UPDATE</h3>
+<p>I discovered a few bugs in this tutorial, so here are the fixes.</p>
+<p>oauth-plugin needs the function current_user=, so add this to your ApplicationController:</p>
+<p>[sourcecode language="ruby"]<br />
+def current_user=(user)<br />
+  current_user = user<br />
+end<br />
+[/sourcecode]</p>
+<p>Next, to handle revocation, you need to add this to config/routes.rb:</p>
+<p>[sourcecode language="ruby"]<br />
+post 'oauth/revoke'<br />
+[/sourcecode]</p>
+<p>And at last, you need to fix the rack filter. The current code doesn't verify the token validity, and lets revoked tokens access your data.<br />
+You have to modify lib/oauth/rack/oauth_filter.rb in the oauth-plugin gem folder.<br />
+Replace the line 46:</p>
+<p>[sourcecode language="ruby"]<br />
+oauth_token = client_application.tokens.first(:conditions=&gt;{:token =&gt; request_proxy.token})<br />
+[/sourcecode]</p>
+<p>by</p>
+<p>[sourcecode language="ruby"]<br />
+oauth_token = ClientApplication.find_token(request_proxy.token)<br />
+[/sourcecode]</p>
+<h2>And that's it!</h2>
+<p>You now have a working provider. OauthController handles all the communication with the consumers. OauthClientsController manages the registration of new consumers. They both have customizable views: oauth for the authorization part (for users) and oauth clients for the consumers. And you just need the oauth_required filter to manage access to your data.</p>
+<p>And now, you can go to /users/sign_up, then /users/sign_in, then /oauth_clients to register a new client application. You just need to give a name for your application, your URL, and a callback URL.</p>
+<p>In the next post, we will build a consumer, and this consumer will access the provider's data.</p>

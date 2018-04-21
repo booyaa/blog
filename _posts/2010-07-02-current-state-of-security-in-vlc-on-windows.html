@@ -1,0 +1,48 @@
+---
+layout: post
+title: Current state of security in VLC on Windows
+date: 2010-07-02 13:34:07.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Security
+- VideoLAN
+tags:
+- ASLR
+- DEP
+- vlc
+meta:
+  _edit_last: '3997956'
+  _wp_old_slug: ''
+  reddit: a:2:{s:5:"count";i:0;s:4:"time";i:1360346200;}
+  _oembed_fb22a23cc2c52eca9c0380b49e42320c: "{{unknown}}"
+  _oembed_5ccb0ff516779447ded3bef4309726dc: "{{unknown}}"
+  _oembed_59c6679cf701475a2efab0af778f30f5: "{{unknown}}"
+  _oembed_ea8023626d77c540f8f4004a3fcaf27c: "{{unknown}}"
+  _oembed_c9c9bbf2cf0bedd26c4674caada03668: "{{unknown}}"
+  _oembed_920af763f5f56b0b33f05b4b92c9348c: "{{unknown}}"
+  _oembed_396fe96190678ec7ae37bc232923957f: "{{unknown}}"
+  _oembed_30c26303c9031ce98b8c57d2a45e5ade: "{{unknown}}"
+  _oembed_5806b0dab4cc9ad2301006e0b59a2615: "{{unknown}}"
+  _oembed_94b04f0bdc8fe6e31757620e6197d292: "{{unknown}}"
+  _oembed_542895b0b2bcd0806c887960a73b5393: "{{unknown}}"
+author:
+  login: geaaal
+  email: geo.couprie@gmail.com
+  display_name: Géal
+  first_name: ''
+  last_name: ''
+---
+<p>A recent report from <a href="http://secunia.com/blog/105">Secunia</a> states that popular Windows applications don't use the DEP and ASLR protections. It is true for VLC up to 1.0: the latest version at the moment, 1.1, supports permanent DEP mode, and ASLR on all of its DLLs.</p>
+<p>One thing the report could have shown is the difference between applicatins built with MSVC or GCC. Adding DEP and ASLR in Visual Studio means adding /NXCompat and DynamicBase to the compilation options. With MinGW, there is a <a href="http://eleves.ec-lille.fr/~couprieg/post/Enable-DEP-and-ASLR-on-your-applications-built-with-MinGW">different trick</a>. This article on my old blog is slightly outdated: ld in binutils 2.20 supports the --nxcompat and --dynamicbase options. So, now, the developers using GCC have no more excuse!</p>
+<p>Let's sum up the state of the security of VLC:</p>
+<ul>
+<li>1.0.5 is NOT SAFE on Windows. 1.0.6 brings a lot of <a href="http://www.videolan.org/security/sa1003.html">security fixes</a>, but this version was not released on Windows. And security features are not used.</li>
+<li>1.1.0 supports permanent DEP and ASLR (with DllCharacteristics flag, only on Vista/7) and termination on heap corruption</li>
+<li>1.1.1 supports the same as 1.1.0, and adds DEP on XP SP3 with SetProcessDEPPolicy</li>
+<li>SafeSEH and stack cookies are not yet used</li>
+</ul>
+<p>The developers using LibVLC should check their software: DEP won't be activated if their executable doesn't support it.</p>

@@ -1,0 +1,59 @@
+---
+layout: post
+title: 'PilotSSH: manage your server in a few touches'
+date: 2013-01-16 13:13:24.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- General
+- Mobile
+tags: []
+meta:
+  _edit_last: '3997956'
+  _wpas_done_77741: '1'
+  _publicize_done_external: a:1:{s:8:"linkedin";a:1:{s:10:"SRxrIwgSA1";b:1;}}
+  reddit: a:2:{s:5:"count";i:0;s:4:"time";i:1453158279;}
+  twitter_cards_summary_img_size: a:6:{i:0;i:320;i:1;i:480;i:2;i:3;i:3;s:24:"width="320"
+    height="480"";s:4:"bits";i:8;s:4:"mime";s:9:"image/png";}
+  _oembed_e3a99be4209b8cb754c8226b5f092d15: "{{unknown}}"
+  _oembed_f73b2aa44840146641fbd05b85f4d3b8: "{{unknown}}"
+  _oembed_e03eab90f0086136799af6380a61452c: "{{unknown}}"
+  _oembed_fd5b916348064eed18abe296cf907020: "{{unknown}}"
+  _oembed_a2cd34a4912975e1e5083b8647a0fe2f: "{{unknown}}"
+  _oembed_3c98b66effe0eb9e4f7b4a9cd5a41620: "{{unknown}}"
+  _oembed_6cd6e2297d7042d55a0905c05a763e16: "{{unknown}}"
+  _oembed_75064857d45cd5a52a1060834c190914: "{{unknown}}"
+  _oembed_7ff6be576df65a698a63b0270a33fd0f: "{{unknown}}"
+  _oembed_ebbe0f7ee98fb365951b7efc8eec2413: "{{unknown}}"
+author:
+  login: geaaal
+  email: geo.couprie@gmail.com
+  display_name: Géal
+  first_name: ''
+  last_name: ''
+---
+<p>I just released <a title="Pilot SSH" href="http://pilotssh.com/?utm_source=link1&amp;utm_medium=unhandledexpression&amp;utm_campaign=announce" target="_blank">Pilot SSH</a>, a server administration application for iPhone. So, why another SSH application? Aren't there dozens of these already?</p>
+<p>I tried a lot of those shell applications, and they felt clunky on a phone. They are fine with a tablet (even more if you use a bluetooth keyboard), but writing commands on a phone's keyboard is not really intuitive. Moreover, the small screen of a phone is not really usable to display the command results.</p>
+<p>But I reaaaaally wanted to manage my servers from my phone. Because I am not always in front of my computer. Because I am too lazy to get the laptop from the bag, open it, plug the 3G key or find WiFi, connect over SSH and type a command to restart a crashed web server. Because it would be awesome to be in a bar and say "hold on, I have update my server", open my phone and do it in 3 touches.</p>
+<p>So, here it is, Pilot SSH, in all its glory, can out of the box:</p>
+<ul>
+<li>display running processes, the memory they use, and kill them</li>
+<li>show which websites are enabled or disabled in Apache</li>
+<li>display the uptime, halt or reboot the server</li>
+<li>show Apache logs</li>
+</ul>
+<p><img class="size-medium wp-image-544" alt="Pilot SSH process list" src="/assets/process_list.png?w=200" width="200" height="300" /> Pilot SSH process list</p>
+<p>But there is more! The application is completely extensible, because it uses scripts stored on the server side, in your home, in <strong>~/.pilotssh</strong>. You can totally replace the current scripts, download more from <a title="Pilot SSH scripts" href="https://github.com/Geal/PilotSSH-scripts" target="_blank">the Github repository</a>, and make your own! The scripts can be written in any language, as long as they return a JSON string conforming to the API.</p>
+<p>I already got a contribution soon after the launch, with a script to flush the caches. And I have a lot of ideas for new scripts:</p>
+<ul>
+<li>upgrade a Wordpress website</li>
+<li>display the status of processes managed by Monit</li>
+<li>create/remove users</li>
+<li>Support nginx too</li>
+<li>Display more logs</li>
+</ul>
+<p>This is just the beginning, and I expect a lot of impressive ideas from the users of Pilot SSH. I can't wait to see them!</p>
+<p>Do you want to try Pilot SSH? Everything you need is on <a title="Pilot SSH" href="http://pilotssh.com/?utm_source=link2&amp;utm_medium=unhandledexpression&amp;utm_campaign=announce" target="_blank">its website</a>!</p>

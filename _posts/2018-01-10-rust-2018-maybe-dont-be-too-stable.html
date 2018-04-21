@@ -1,0 +1,65 @@
+---
+layout: post
+title: 'Rust 2018: maybe don''t be too stable'
+date: 2018-01-10 19:25:14.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Rust
+tags: []
+meta:
+  _wpcom_is_markdown: '1'
+  _edit_last: '3997956'
+  geo_public: '0'
+  draftfeedback_requests: a:6:{s:13:"5a55f7ea280c4";a:3:{s:3:"key";s:13:"5a55f7ea280c4";s:4:"time";s:10:"1515583466";s:7:"user_id";s:7:"3997956";}s:13:"5a55f82956a00";a:3:{s:3:"key";s:13:"5a55f82956a00";s:4:"time";s:10:"1515583529";s:7:"user_id";s:7:"3997956";}s:13:"5a5600bb0fc92";a:3:{s:3:"key";s:13:"5a5600bb0fc92";s:4:"time";s:10:"1515585723";s:7:"user_id";s:7:"3997956";}s:13:"5a5612b9a343a";a:3:{s:3:"key";s:13:"5a5612b9a343a";s:4:"time";s:10:"1515590329";s:7:"user_id";s:7:"3997956";}s:13:"5a562ca0f3fac";a:3:{s:3:"key";s:13:"5a562ca0f3fac";s:4:"time";s:10:"1515596960";s:7:"user_id";s:7:"3997956";}s:13:"5a562d7d96fb3";a:3:{s:3:"key";s:13:"5a562d7d96fb3";s:4:"time";s:10:"1515597181";s:7:"user_id";s:7:"3997956";}}
+  draft_feedback: |-
+    a:1:{s:13:"5a5600bb0fc92";a:1:{i:0;a:2:{s:4:"time";s:10:"1515589867";s:7:"content";s:790:"Great post!
+
+    s/mostly all of them/almost all of them
+    s/crates should/Crates should
+    s/cristallize/crystallize
+
+    > What we don’t need is the attitude that wants everything to cristallize.
+
+    YES! Very well put. I should add that to my post as well :)
+
+    The failure crate is a good example of "suddenly, a contender for error-chain appears" IMO.
+
+    s/How many times I have seen/How many times have I seen
+    s/don’t know fully/don’t fully know
+
+    > Let people experiment and lose focus. Keep hacking on cool stuff.
+
+    +1
+
+    I don't think this is in contrast to getting shit ~~done~~ stable, though. It's maybe even a different type of _person_ required: Some people love to experiment and hack on stuff that will never see the light of ~~day~~ 1.0, others love to fix bugs and strive for perfectionism.";}}}
+  reddit: a:2:{s:5:"count";i:0;s:4:"time";i:1515635373;}
+  _wpas_skip_77741: '1'
+  _publicize_job_id: '13441412776'
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=14335834&stype=M&topic=6356923712863895552&type=U&a=S4Tx
+  _publicize_done_97921: '1'
+  _wpas_done_77741: '1'
+author:
+  login: geaaal
+  email: geo.couprie@gmail.com
+  display_name: Géal
+  first_name: ''
+  last_name: ''
+---
+<p>I initially did not want to write a post with what I want and foresee for <a href="https://blog.rust-lang.org/2018/01/03/new-years-rust-a-call-for-community-blogposts.html" rel="noopener" target="_blank">Rust in 2018</a>, because I'm already very happy with it! I have spent more than 4 years tinkering with the language, experimenting, and I love the freedom I get when playing with low level stuff. In those 4 years, I discovered a wonderful, welcoming community and made some awesome friends. So, yes, I'm happy with Rust as it is :)</p>
+<p>But some of the recent #Rust2018 posts made me react a bit. I'm interested in learning what other people see in Rust, so I read almost all of them, and there's an easy trend to follow. Rust should be stabilized. Rust should be boring and safe. Crates should be stabilized. We should have definitive crates for some purposes like HTTP clients or async programming.<br />
+This is not surprising, since there's already been a lot of focus on stability in 2017, with the <a href="https://blog.rust-lang.org/2017/09/18/impl-future-for-rust.html" rel="noopener" target="_blank">impl period</a>, the merge of the <a href="https://github.com/rust-lang/rfcs/blob/master/text/2052-epochs.md" rel="noopener" target="_blank">Rust epochs RFC</a>, and the fact that more and more companies start relying on Rust.<br />
+We want Rust to be appealing to (big(ger)) companies, and to that end we need good compatibility between Rust versions, a high quality ecosystem of crates that work on stable Rust versions. We want newcomers to have a well prepared toolbox for their first projects.</p>
+<p>Before that stabilization goal appeared, Rust looked a bit chaotic, with new features coming every 6 weeks, new crates popping up here and there, people hacking something quickly and publishing it the next minute. And this is something I love about this language.<br />
+People try stuff, cargo lets them publish it easily, Rust makes sure it's running smoothly. Sure, there's a lot of redundant crates, most of them are far from the big "1.0 stable" target, but it's fine.<br />
+This language and its community are full of that unabashed optimism that makes newcomers go "hey, should I really try to write my own kernel? OF COURSE I SHOULD". Should I try to make cool stuff with Web Assembly while it barely landed in nightly? YESSSSSS<br />
+I have seen over and over shitposting on twitter that ends up with people hacking on a cool new project. I have seen people publish a crate competing with another well known one, that will then send a PR for their idea to the bigger crate the next day.<br />
+I am overly enthusiastic about this, to the point that opening <a href="http://reddit.com/r/rust/" rel="noopener" target="_blank">/r/rust</a>  often feels like Christmas: what new toys will we get today?</p>
+<p>So, to be clear, I am all for getting more stuff stable. We need a stable, asynchronous hyper. We need futures to work. We need impl trait and various other Rust features that will appear in the following months or years. What we do not need is the attitude that wants everything to crystallize.<br />
+How many times have I seen people criticising the "yet another" asynchronous IO/command line argument system/web framework/parser, with the usual arguments that this is lost focus, redundant, that why didn't they try to do that in $BIG_PROJECT. This is fine.<br />
+Go on, make other parser libraries to compete with nom, keep me on my toes. Try other approaches than tokio. Test different approaches to writing web applications.</p>
+<p>The underlying idea for me is that Rust is still incredibly young, extremely enthusiastic, and we still don't fully know how to write Rust. So, yes, we need some parts of Rust to stabilize, but we must balance that with its movement. What is stable and "the way we do things" now might not be the way to go in a year or so.</p>
+<p>Let people experiment and lose focus. Keep hacking on cool stuff.</p>

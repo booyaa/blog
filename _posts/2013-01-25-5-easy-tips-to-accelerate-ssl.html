@@ -1,0 +1,220 @@
+---
+layout: post
+title: 5 easy tips to accelerate SSL
+date: 2013-01-25 15:45:03.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Development
+- General
+- Security
+tags:
+- apache
+- performance
+- security
+- ssl
+- tls
+- tuning
+- web development
+- web server
+meta:
+  _edit_last: '3997956'
+  tagazine-media: a:7:{s:7:"primary";s:80:"http://unhandledexpression.files.wordpress.com/2013/01/2678539087_afdb3ec75a.jpg";s:6:"images";a:1:{s:80:"http://unhandledexpression.files.wordpress.com/2013/01/2678539087_afdb3ec75a.jpg";a:6:{s:8:"file_url";s:80:"http://unhandledexpression.files.wordpress.com/2013/01/2678539087_afdb3ec75a.jpg";s:5:"width";i:500;s:6:"height";i:333;s:4:"type";s:5:"image";s:4:"area";i:166500;s:9:"file_path";b:0;}}s:6:"videos";a:0:{}s:11:"image_count";i:1;s:6:"author";s:7:"3997956";s:7:"blog_id";s:8:"11260360";s:9:"mod_stamp";s:19:"2013-01-25
+    16:36:36";}
+  _wpas_done_77741: '1'
+  _publicize_done_external: a:1:{s:8:"linkedin";a:1:{s:10:"SRxrIwgSA1";b:1;}}
+  _wp_old_slug: '548'
+  _wpas_skip_77741: '1'
+  reddit: a:2:{s:5:"count";i:0;s:4:"time";i:1453158279;}
+  twitter_cards_summary_img_size: a:7:{i:0;i:500;i:1;i:333;i:2;i:2;i:3;s:24:"width="500"
+    height="333"";s:4:"bits";i:8;s:8:"channels";i:3;s:4:"mime";s:10:"image/jpeg";}
+  _oembed_32d150de0aeb6e821147faafe77b907d: "{{unknown}}"
+  _oembed_a81542245ca3d3a43a8a918005848676: "{{unknown}}"
+  _oembed_4b7e01b8e419ee955c2b7a06676a65b1: "{{unknown}}"
+  _oembed_75e6af6256141a94fceee0d49ee8841f: "{{unknown}}"
+  _oembed_c73e7311f94cc8f7015046a19feef040: "{{unknown}}"
+  _oembed_5687af7ace8946955fecd0fa76c30d16: "{{unknown}}"
+  _oembed_a94b38e0ad6813f901d4faeadfb6cc0b: "{{unknown}}"
+  _oembed_61f36b319e03c2ce08149218cf00b058: "{{unknown}}"
+  _oembed_789de632a100879f7b1611839d5620ef: "{{unknown}}"
+  _oembed_706f09f7e0128e75fa250b271acc484c: "{{unknown}}"
+  _oembed_aecc25cf87b08acb279d2ab15ca4126a: "{{unknown}}"
+  _oembed_28255627dae50c3a6b5fb9a0cc0e2c38: "{{unknown}}"
+author:
+  login: geaaal
+  email: geo.couprie@gmail.com
+  display_name: Géal
+  first_name: ''
+  last_name: ''
+---
+<p style="text-align:center;"><img class=" wp-image-558 aligncenter" title="Photo credit: TheKenChan - http://www.flickr.com/photos/67936989@N00/2678539087/" alt="Photo credit: TheKenChan - http://www.flickr.com/photos/67936989@N00/2678539087/" src="/assets/2678539087_afdb3ec75a.jpg" width="500" height="333" /></p>
+<p><strong>Update</strong>: following popular demand, the article now includes nginx commands :)</p>
+<p><strong>Update 2</strong>: thanks to jackalope from Hacker News, I added a missing Apache directive for the cipher suites.</p>
+<p><strong>Update 3</strong>: recent attacks on RC4 have definitely made it a bad choice, and ECDHE cipher suites got improvements.</p>
+<p>SSL is slow. These cryptographic algorithms eat the CPU, there is too much traffic, it is too hard to deploy correctly. SSL is slow. Isn't it?</p>
+<p>HELL NO!</p>
+<p>SSL looks slow, because you did not even try to optimize it! For that matter, I could say that HTTP is too verbose, XML web services are verbose too, and all this traffic makes the website slow. But, SSL can be optimized, as well as everything!</p>
+<h2>Slow cryptographic algorithms</h2>
+<p>The cryptographic algorithms used in SSL are not all created equal: some provide better security, some are faster. So, you should choose carefully which algorithm suite you will use.</p>
+<p>The default one for Apache 2's <a href="http://httpd.apache.org/docs/2.2/mod/mod_ssl.html#sslciphersuite" target="_blank">SSLCipherSuite directive</a> is: ALL: !ADH:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP</p>
+<p>You can translate that to a readable list of algorithms with this command: <strong>openssl ciphers -v 'ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP'</strong></p>
+<p>Here is the result:</p>
+<pre>DHE-RSA-AES256-SHA      SSLv3 Kx=DH       Au=RSA  Enc=AES(256)  Mac=SHA1
+DHE-DSS-AES256-SHA      SSLv3 Kx=DH       Au=DSS  Enc=AES(256)  Mac=SHA1
+AES256-SHA              SSLv3 Kx=RSA      Au=RSA  Enc=AES(256)  Mac=SHA1
+DHE-RSA-AES128-SHA      SSLv3 Kx=DH       Au=RSA  Enc=AES(128)  Mac=SHA1
+DHE-DSS-AES128-SHA      SSLv3 Kx=DH       Au=DSS  Enc=AES(128)  Mac=SHA1
+AES128-SHA              SSLv3 Kx=RSA      Au=RSA  Enc=AES(128)  Mac=SHA1
+EDH-RSA-DES-CBC3-SHA    SSLv3 Kx=DH       Au=RSA  Enc=3DES(168) Mac=SHA1
+EDH-DSS-DES-CBC3-SHA    SSLv3 Kx=DH       Au=DSS  Enc=3DES(168) Mac=SHA1
+DES-CBC3-SHA            SSLv3 Kx=RSA      Au=RSA  Enc=3DES(168) Mac=SHA1
+DHE-RSA-SEED-SHA        SSLv3 Kx=DH       Au=RSA  Enc=SEED(128) Mac=SHA1
+DHE-DSS-SEED-SHA        SSLv3 Kx=DH       Au=DSS  Enc=SEED(128) Mac=SHA1
+SEED-SHA                SSLv3 Kx=RSA      Au=RSA  Enc=SEED(128) Mac=SHA1
+RC4-SHA                 SSLv3 Kx=RSA      Au=RSA  Enc=RC4(128)  Mac=SHA1
+RC4-MD5                 SSLv3 Kx=RSA      Au=RSA  Enc=RC4(128)  Mac=MD5 
+EDH-RSA-DES-CBC-SHA     SSLv3 Kx=DH       Au=RSA  Enc=DES(56)   Mac=SHA1
+EDH-DSS-DES-CBC-SHA     SSLv3 Kx=DH       Au=DSS  Enc=DES(56)   Mac=SHA1
+DES-CBC-SHA             SSLv3 Kx=RSA      Au=RSA  Enc=DES(56)   Mac=SHA1
+DES-CBC3-MD5            SSLv2 Kx=RSA      Au=RSA  Enc=3DES(168) Mac=MD5 
+RC2-CBC-MD5             SSLv2 Kx=RSA      Au=RSA  Enc=RC2(128)  Mac=MD5 
+RC4-MD5                 SSLv2 Kx=RSA      Au=RSA  Enc=RC4(128)  Mac=MD5 
+DES-CBC-MD5             SSLv2 Kx=RSA      Au=RSA  Enc=DES(56)   Mac=MD5 
+EXP-EDH-RSA-DES-CBC-SHA SSLv3 Kx=DH(512)  Au=RSA  Enc=DES(40)   Mac=SHA1 export
+EXP-EDH-DSS-DES-CBC-SHA SSLv3 Kx=DH(512)  Au=DSS  Enc=DES(40)   Mac=SHA1 export
+EXP-DES-CBC-SHA         SSLv3 Kx=RSA(512) Au=RSA  Enc=DES(40)   Mac=SHA1 export
+EXP-RC2-CBC-MD5         SSLv3 Kx=RSA(512) Au=RSA  Enc=RC2(40)   Mac=MD5  export
+EXP-RC4-MD5             SSLv3 Kx=RSA(512) Au=RSA  Enc=RC4(40)   Mac=MD5  export
+EXP-RC2-CBC-MD5         SSLv2 Kx=RSA(512) Au=RSA  Enc=RC2(40)   Mac=MD5  export
+EXP-RC4-MD5             SSLv2 Kx=RSA(512) Au=RSA  Enc=RC4(40)   Mac=MD5  export</pre>
+<p>28 cipher suites, that's a lot! Let's see if we can remove the unsafe ones first! You can see at the end of the of the list 7 ones marked as "export". That means that they comply with the US cryptographic algorithm exportation policy. Those algorithms are utterly unsafe, and the US abandoned this restriction years ago, so let's remove them:<br />
+'ALL:!ADH:!EXP:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2'.</p>
+<p>Now, let's remove the algorithms using plain DES (not 3DES) and RC2: 'ALL:!ADH:!EXP:!LOW:!RC2:RC4+RSA:+HIGH:+MEDIUM'. That leaves us with 16 algorithms.</p>
+<p>It is time to remove the slow algorithms! To decide, let's use the <strong>openssl speed</strong> command. Use it on your server, ecause depending on your hardware, you might get different results. Here is the benchmark on my computer:</p>
+<pre>OpenSSL 0.9.8r 8 Feb 2011
+built on: Jun 22 2012
+options:bn(64,64) md2(int) rc4(ptr,char) des(idx,cisc,16,int) aes(partial) blowfish(ptr2) 
+compiler: -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks
+  -O3 -D_REENTRANT -DDSO_DLFCN -DHAVE_DLFCN_H -DL_ENDIAN -DMD32_REG_T=int -DOPENSSL_NO_IDEA
+  -DOPENSSL_PIC -DOPENSSL_THREADS -DZLIB -mmacosx-version-min=10.6
+available timing options: TIMEB USE_TOD HZ=100 [sysconf value]
+timing function used: getrusage
+The 'numbers' are in 1000s of bytes per second processed.
+type             16 bytes     64 bytes    256 bytes   1024 bytes   8192 bytes
+md2               2385.73k     4960.60k     6784.54k     7479.39k     7709.04k
+mdc2              8978.56k    10020.07k    10327.11k    10363.30k    10382.92k
+md4              32786.07k   106466.60k   284815.49k   485957.41k   614100.76k
+md5              26936.00k    84091.54k   210543.56k   337615.92k   411102.49k
+hmac(md5)        30481.77k    90920.53k   220409.04k   343875.41k   412797.88k
+sha1             26321.00k    78241.24k   183521.48k   274885.43k   322359.86k
+rmd160           23556.35k    66067.36k   143513.89k   203517.79k   231921.09k
+rc4             253076.74k   278841.16k   286491.29k   287414.31k   288675.67k
+des cbc          48198.17k    49862.61k    50248.52k    50521.69k    50241.28k
+des ede3         18895.61k    19383.95k    19472.94k    19470.03k    19414.27k
+idea cbc             0.00         0.00         0.00         0.00         0.00 
+seed cbc         45698.00k    46178.57k    46041.10k    47332.45k    50548.99k
+rc2 cbc          22812.67k    24010.85k    24559.82k    21768.43k    23347.22k
+rc5-32/12 cbc   116089.40k   138989.89k   134793.49k   136996.33k   133077.51k
+blowfish cbc     65057.64k    68305.24k    72978.75k    70045.37k    71121.64k
+cast cbc         48152.49k    51153.19k    51271.61k    51292.70k    47460.88k
+aes-128 cbc      99379.58k   103025.53k   103889.18k   104316.39k    97687.94k
+aes-192 cbc      82578.60k    85445.04k    85346.23k    84017.31k    87399.06k
+aes-256 cbc      70284.17k    72738.06k    73792.20k    74727.31k    75279.22k
+camellia-128 cbc        0.00         0.00         0.00         0.00         0.00 
+camellia-192 cbc        0.00         0.00         0.00         0.00         0.00 
+camellia-256 cbc        0.00         0.00         0.00         0.00         0.00 
+sha256           17666.16k    42231.88k    76349.86k    96032.53k   103676.18k
+sha512           13047.28k    51985.74k    91311.50k   135024.42k   158613.53k
+aes-128 ige      93058.08k    98123.91k    96833.55k    99210.74k   100863.22k
+aes-192 ige      76895.61k    84041.67k    78274.36k    79460.06k    77789.76k
+aes-256 ige      68410.22k    71244.81k    69274.51k    67296.59k    68206.06k
+                  sign    verify    sign/s verify/s
+rsa  512 bits 0.000480s 0.000040s   2081.2  24877.7
+rsa 1024 bits 0.002322s 0.000111s    430.6   9013.4
+rsa 2048 bits 0.014092s 0.000372s     71.0   2686.6
+rsa 4096 bits 0.089189s 0.001297s     11.2    771.2
+                  sign    verify    sign/s verify/s
+dsa  512 bits 0.000432s 0.000458s   2314.5   2181.2
+dsa 1024 bits 0.001153s 0.001390s    867.6    719.4
+dsa 2048 bits 0.003700s 0.004568s    270.3    218.9</pre>
+<p>We can remove the SEED and 3DES suite because they are slower than the other. DES was meant to be fast in hardware implementations, but slow in software, so 3DES (which runs DES three times) is slower. On the contrary, AES can be very fast in software implementations, and even more if your CPU provides specific instructions for AES. You can see that with a bigger key (and so, better theoretical security), AES gets slower. Depending on the level of security, you may choose different key sizes. According to the <a title="Key length comparison" href="http://www.keylength.com" target="_blank">key length comparison</a>, 128 might be enough for now. RC4 is a lot faster than other algorithms. <del>AES is considered safer, but <a href="http://crypto.stackexchange.com/questions/853/google-is-using-rc4-but-isnt-rc4-considered-unsafe" target="_blank">the implementation in SSL takes into account the attacks on RC4</a>. So, we will propose this one in priority.</del> Following recent researches, it appears that RC4 is not safe enough anymore. And ECDHE got a performance boost with recent versions of OpenSSL. So, let's forbid RC4 right now!</p>
+<p>So, here is the new cipher suite: 'ALL:!ADH:!EXP:!LOW:!RC2:!3DES:!SEED:!RC4:+HIGH:+MEDIUM'</p>
+<p>And the list of ciphers we will use:</p>
+<pre>DHE-RSA-AES256-SHA      SSLv3 Kx=DH       Au=RSA  Enc=AES(256)  Mac=SHA1
+DHE-DSS-AES256-SHA      SSLv3 Kx=DH       Au=DSS  Enc=AES(256)  Mac=SHA1
+AES256-SHA              SSLv3 Kx=RSA      Au=RSA  Enc=AES(256)  Mac=SHA1
+DHE-RSA-AES128-SHA      SSLv3 Kx=DH       Au=RSA  Enc=AES(128)  Mac=SHA1
+DHE-DSS-AES128-SHA      SSLv3 Kx=DH       Au=DSS  Enc=AES(128)  Mac=SHA1
+AES128-SHA              SSLv3 Kx=RSA      Au=RSA  Enc=AES(128)  Mac=SHA1
+RC4-SHA                 SSLv3 Kx=RSA      Au=RSA  Enc=RC4(128)  Mac=SHA1
+RC4-MD5                 SSLv3 Kx=RSA      Au=RSA  Enc=RC4(128)  Mac=MD5 
+RC4-MD5                 SSLv2 Kx=RSA      Au=RSA  Enc=RC4(128)  Mac=MD5</pre>
+<p>9 ciphers, that's much more manageable. We could reduce the list further, but it is already in a good shape for security and speed. <strong>Configure it in Apache with this directive</strong>:</p>
+<pre><strong></strong><code>SSLHonorCipherOrder On</code><strong></strong>
+SSLCipherSuite ALL:!ADH:!EXP:!LOW:!RC2:!3DES:!SEED:!RC4:+HIGH:+MEDIUM</pre>
+<p><strong>Configure it in Nginx with this directive:</strong></p>
+<pre>ssl_ciphers ALL:!ADH:!EXP:!LOW:!RC2:!3DES:!SEED:!RC4:+HIGH:+MEDIUM</pre>
+<p>You can also see that the performance of RSA gets worse with key size. With the current security requirements (as of now, January 2013, if you are reading this from the future). <strong>You should choose a RSA key of 2048 bits for your certificate</strong>, because 1024 is not enough anymore, but 4096 is a bit overkill.</p>
+<p>Remember, the benchmark depends on the version of OpenSSL, the compilation options and your CPU, so don't forget to test on your server before implementing my recommandations.</p>
+<h2>Take care of the handshake</h2>
+<p>The SSL protocol is in fact two protocols (well, three, but the first is not interesting for us): the handshake protocol, where the client and the server will verify each other's identity, and the record protocol where data is exchanged.</p>
+<p>Here is a representation of the handshake protocol, taken from the <a title="RFC 2246 for TLS 1.0" href="http://tools.ietf.org/html/rfc2246" target="_blank">TLS 1.0 RFC</a>:</p>
+<pre>      Client                                               Server
+
+      ClientHello                  --------&gt;
+                                                      ServerHello
+                                                     Certificate*
+                                               ServerKeyExchange*
+                                              CertificateRequest*
+                                   &lt;--------      ServerHelloDone
+      Certificate*
+      ClientKeyExchange
+      CertificateVerify*
+      [ChangeCipherSpec]
+      Finished                     --------&gt;
+                                               [ChangeCipherSpec]
+                                   &lt;--------             Finished
+      Application Data             &lt;-------&gt;     Application Data</pre>
+<p>You can see that there are 4 messages exchanged before any real data is sent. If a TCP packet takes 100ms to travel between the browser and your server, the handshake is eating 400ms before the server has sent any data!</p>
+<p>And what happens if you make multiple connections to the same server? You do the handshake every time. So, <strong>you should activate Keep-Alive</strong>. The benefits are even bigger than for plain unencrypted HTTP.</p>
+<p>Use <a title="KeepAlive" href="http://httpd.apache.org/docs/2.2/mod/core.html#keepalive" target="_blank">this Apache directive</a> to activate Keep-Alive:</p>
+<pre>KeepAlive On</pre>
+<p>Use <a href="http://wiki.nginx.org/HttpCoreModule#keepalive_timeout" target="_blank">this nginx directive</a> to activate keep-alive:</p>
+<pre><b>keepalive_timeout</b> 100</pre>
+<h2>Present all the intermediate certification authorities in the handshake</h2>
+<p>During the handshake, the client will verify that the web server's certificate is signed by a trusted certification authority. Most of the time, there is one or more intermediate certification authority between the web server and the trusted CA. If the browser doesn't know the intermediate CA, it must look for it and download it. The download URL for the intermediate CA is usually stored in the "Authority information" extension of the certificate, so the browser will find it even if the web server doesn't present the intermediate CA.</p>
+<p>This means that if the server doesn't present the intermediate CA certificates, the browser will block the handshake until it has downloaded them and verified that they are valid.</p>
+<p>So, if you have intermediate CAs for your server's certificate, configure your webserver to present the full certification chain. With Apache, you just need to concatenate the CA certificates, and indicate them in the configuration with <a href="http://httpd.apache.org/docs/2.2/mod/mod_ssl.html#sslcertificatechainfile" target="_blank">this directive</a>:</p>
+<pre>SSLCertificateChainFile /path/to/certification/chain.pem</pre>
+<p>For nginx, concatenate the CA certificate to the web server certificate and use <a href="http://wiki.nginx.org/HttpSslModule#ssl_certificate" target="_blank">this directive</a>:</p>
+<pre>ssl_certificate /path/to/certification/chain.pem</pre>
+<h2>Activate caching for static assets</h2>
+<p>By default, the browsers will not cache content served over SSL, for security. That means that your static assets (Javascript, CSS, pictures) will be reloaded on every call. Here is a big performance failure!</p>
+<p>The fix for that: <strong>set the HTTP header "Cache-Control: public" for the static assets</strong>. That way, the browser will cache them. But don't activate it for the sensitive content, beacuase it should not be cached on the disk by your browser.</p>
+<p><strong>You can use this directive to enable Cache-Control</strong>:</p>
+<pre>&lt;filesMatch ".(js|css|png|jpeg|jpg|gif|ico|swf|flv|pdf|zip)$"&gt;
+Header set Cache-Control "max-age=31536000, public"
+&lt;/filesMatch&gt;</pre>
+<p>The files will be cached for a year with the max-age option.</p>
+<p>For nginx, use this:</p>
+<pre>location ~ \.(js|css|png|jpeg|jpg|gif|ico|swf|flv|pdf|zip)$ {
+    expires 24h;
+    <a href="http://wiki.nginx.org/NginxHttpHeadersModule#add_header">add_header</a> Cache-Control public;
+}</pre>
+<p><strong>Update:</strong> it looks like Firefox ignores the Cache-Control and caches everything from SSL connections, <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=531801" target="_blank">unless you use the "no-store" option</a>.</p>
+<h2>Beware of CDN with multiple domains</h2>
+<p>If you followed a bit the usual performance tips, you already offloaded your static assets (Javascript, CSS, pictures) to a content delivery network. That is a good idea for a SSL deployment too, BUT, there are caveats:</p>
+<ul>
+<li>your CDN must have servers accessible over SSL, otherwise you will see the "mixed content" warning</li>
+<li>it must have "Keep-Alive" and "Cache-control: public" activated</li>
+<li><strong>it should serve all your assets from only one domain!</strong></li>
+</ul>
+<p>Why the last one? Well, even if multiple domains point to the same IP, the browser will do a new handshake for every domain. So, here, we must go against the common wisdom of separating your assets on multiple domains to profit from the parallelized request in the browser. If all the assets are served from the same domain, there will only be one handshake. It could be fixed to allow multiple domains, but this is beyond the scope of this article.</p>
+<h2>More?</h2>
+<p>I could talk for hours about how you could tweak your web server performance with SSL. There is alot more to it than these easy tips, but I hope those will be of useful for you!</p>
+<p>If you want to know more,<strong> I am currently writing <a title="SSL: what you need to know" href="http://leanpub.com/SSL" target="_blank">an ebook about SSL tuning</a></strong>, and I would love to hear your comments about it!</p>
+<p><strong>If you need help with your SSL configuration,<a title="Geoffroy Couprie, freelance in software development and security" href="http://geoffroycouprie.com/" target="_blank"> I am available for consulting</a></strong>, and always happy to work on interesting architectures.</p>
+<p>By the way, if you want to have a good laugh with SSL, read <a title="How to get a certificate signed by multiple certification authorities" href="http://unhandledexpression.com/2011/11/18/how-to-get-a-certificate-signed-by-multiple-certification-authorities/" target="_blank">"How to get a certificate signed by multiple certification authorities"</a> :)</p>

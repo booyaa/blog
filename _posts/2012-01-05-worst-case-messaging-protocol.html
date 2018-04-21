@@ -1,0 +1,119 @@
+---
+layout: post
+title: Worst Case Messaging Protocol
+date: 2012-01-05 12:48:30.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Development
+- Security
+tags:
+- anonymity
+- authentication
+- cryptography
+- privacy
+- security
+meta:
+  _edit_last: '3997956'
+  reddit: a:2:{s:5:"count";i:0;s:4:"time";i:1352108342;}
+  _wpas_done_linkedin: '1'
+  _post_restored_from: a:3:{s:20:"restored_revision_id";i:421;s:16:"restored_by_user";i:3997956;s:13:"restored_time";i:1373628235;}
+  geo_public: '0'
+  _wpas_skip_77741: '1'
+author:
+  login: geaaal
+  email: geo.couprie@gmail.com
+  display_name: Géal
+  first_name: ''
+  last_name: ''
+---
+<p>We already have lots of tools to communicate safely, and in some cases, anonymously. These tools work well for their purpose, but spying and law enforcement tools have also improved.</p>
+<p>People are forced to decrypt their hard drives in airports. Rootkits are developed by police forces. DPI systems are installed on a country level. Using the graph of who communicates with whom, it is possible to map the whole hierarchy of an organisation, even if all communications are encrypted. How can we defend against that?</p>
+<p>I believe that the analysis of organisations is one of the biggest threats right now. The ability to recognize an organization is the ability to destroy it by seizing a few members. That may be useful against terrorists, but these tools are too powerful, and they may be used by the wrong hands. Terrorists already know how to defend against such systems, but what of common people? Any company, association or union could be broken anytime.</p>
+<p>I think we need tools to mount resilient organizations. A compromised node shouldn't bring down the whole system. Intercepted messages shouldn't give too much information on the different parties. People can still find ways to send their messages safely (PGP, dead drops, giving USB keys hand to hand), but we need a framework to build decentralized human systems.</p>
+<p>Here is the solution I propose: a messaging protocol designed to protect identities and route around interception. This protocol is designed to work in the worst case (hence its name), when any communication could be intercepted, and even when we can only use offline communication.</p>
+<p>Every message is encrypted, signed and nearly anonymized (if you already know the emitter or receiver, you can recognize their presence, but this can be mitigated). To introduce redundant routes in the network, a simple broadcast is used (the protocol is not designed for IP networks, but for human networks, with limited P2P communication). Any node can be used to transmit all the messages. The fundamental idea is that if you're compromised, the whole organization can still work safely without you.</p>
+<h2>Prerequisites</h2>
+<h3>Assumptions</h3>
+<ul>
+<li>Every communication can be intercepted</li>
+<li>if a node is compromised, every message it can read or write is compromised</li>
+<li>People can still create a P2P (IRL) network to communicate (aka giving an USB key to someone else)</li>
+</ul>
+<h3>Goals</h3>
+<ul>
+<li>Confidentiality</li>
+<li>Anonymity</li>
+<li>Authentication</li>
+<li>Deniability? (I am just a messenger)</li>
+<li>Untraceability</li>
+<li>Can work offline (worst case)</li>
+</ul>
+<p>For this protocol, we need a RNG, a HMAC function, a symmetric cipher and an asymmetric cipher. I have not yet decided what algorithms must be used. They could be specified in the message format, to permit future changes in algorithms.</p>
+<h2>Message format</h2>
+<ul>
+<li>nonce1</li>
+<li>HMAC( sender's public key, nonce1 )</li>
+<li>expiration date</li>
+<li>symcrypt( symmetric key, message )</li>
+<li>nonce2</li>
+<li>For each receiver:
+<ul>
+<li>asymcrypt( receiver1's public key, symmetric key )</li>
+<li>HMAC( receiver1's public key, nonce2 )</li>
+<li>asymcrypt( receiver2's public key, symmetric key )</li>
+<li>HMAC( receiver2's public key, nonce2 )</li>
+</ul>
+</li>
+<li>asymsign( sender's private key, whole message )</li>
+</ul>
+<p>Here is how it works:<br />
+An identity is represented by one or more public keys (you can have a different public key for each of your contacts, it makes messages difficult to link to one person). They are not publicly linked to a name or email address, but the software layer could handle the complexity with a good enough UI. I do not cover key exchange: users must design their own way to meet or establish communications.</p>
+<p>Every user is a hub: all messages are broadcasted by all users. To prevent data explosion, expiration dates are used. Users recognize the message they receive and the identity of the emitter, using the HMAC of the public keys. All communication are encrypted, but I use the convergent encryption ideas to have multirecipient messages.</p>
+<h2>Handling the messages</h2>
+<h3>Parsing</h3>
+<ul>
+<li>verify if one of my public keys is in the receivers by calculating the HMAC with nonce2</li>
+<li>validate the signature (if I already know the emitter's public key)</li>
+<li>decrypt the symmetric key that was encrypted with my public key</li>
+<li>decrypt the message</li>
+</ul>
+<h3>Creating messages</h3>
+<ul>
+<li>write the message</li>
+<li>choose the emitter's identity and public key</li>
+<li>choose the receivers and the public keys used</li>
+<li>choose an expiration date</li>
+<li>generate two random nonces</li>
+<li>generate a symmetric key</li>
+<li>insert nonce 1 and the HMAC of nonce 1 and my key</li>
+<li>insert the expiration date</li>
+<li>encrypt the message with the symmetric key and insert it</li>
+<li>insert nonce 2</li>
+<li>for each receiver:
+<ul>
+<li>encrypt the symmetric key with the receiver's public key and insert the result</li>
+<li>insert the HMAC of nonce 2 and the receiver's public key</li>
+</ul>
+</li>
+<li>sign the whole message with my private key and append the signature</li>
+</ul>
+<h3>Sending messages</h3>
+<ul>
+<li>Take all the messages you received</li>
+<li>filter them according to some rules:
+<ul>
+<li>remove expired messages</li>
+<li>remove messages too large?</li>
+<li>etc</li>
+</ul>
+</li>
+<li>add your messages to the list</li>
+<li>give the message list to the next node in the network</li>
+</ul>
+<p>This protocol is voluntarily simple and extensible. New techniques can be devised based on this protocol, like dummy receivers in a message or dummy messages to complicate analysis. It is independent of the type of data transmitted, so any type of client could use this protocol (it is at the same level as IP). Most of the logic will be in the client and the contact manager, to present an interface easy to use.</p>
+<p>I truly hope we will never need this to communicate, but recent events have convinced me that I need to release it, just in case.</p>
+<p>I am open to any critique or suggestion about this protocol. I will soon open a repository to host some code implementing it, and it will of course be open to contributions :)</p>

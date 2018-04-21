@@ -1,0 +1,140 @@
+---
+layout: post
+title: 'Jtalk on Rails: editing Javascript in my browser'
+date: 2011-08-31 21:24:58.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Reinventing the wheel
+- Ruby
+- Smalltalk
+tags:
+- Javascript
+- object
+- rails
+- smalltalk
+- Web
+meta:
+  _edit_last: '3997956'
+  reddit: a:2:{s:5:"count";s:1:"0";s:4:"time";s:10:"1340335901";}
+  _wpas_done_linkedin: '1'
+author:
+  login: geaaal
+  email: geo.couprie@gmail.com
+  display_name: Géal
+  first_name: ''
+  last_name: ''
+---
+<p>If you don't know JTalk yet, you're missing something. It's an awesome piece of work: a Smalltalk to Javascript compiler and a Smalltalk editor running in Javascript, <strong>IN YOUR BROWSER</strong>! <a title="JTalk project page" href="http://jtalk-project.org/" target="_blank">Go check it out, now!</a></p>
+<p>Now that you've played a bit with JTalk, let's get started.</p>
+<p>If you're like me, you're a bit annoyed by WebDAV, the proposed solution to save changes to disk. And if you're like me, you would like to use Jtalk with Rails, and because you're a lazy ass like me, you use WEBrick instead of Apache for your development.</p>
+<p>Let's hack something up to replace WebDAV!</p>
+<h2>Create a Rails application</h2>
+<p>[sourcecode language="bash"]<br />
+rails new jtalkonrails<br />
+cd jtalkonrails<br />
+bundle install<br />
+rm public/index.html<br />
+rails generate controller home index<br />
+printf &quot;Jtalkonrails::Application.routes.draw do\n  root :to =&gt; \&quot;home#index\&quot;\nend\n&quot; &gt; config/routes.rb<br />
+[/sourcecode]</p>
+<p>(I should really make a script out of all my rails initialization commands, one of these days...)</p>
+<h2>Add Jtalk to your application</h2>
+<p>[sourcecode language="bash"]<br />
+cd public/<br />
+wget http://github.com/NicolasPetton/jtalk/tarball/master --no-check-certificate<br />
+tar zxvf master<br />
+cp -R NicolasPetton-jtalk-20cd63e/st .<br />
+cp -R NicolasPetton-jtalk-20cd63e/js .<br />
+cp -R NicolasPetton-jtalk-20cd63e/css .<br />
+cp -R NicolasPetton-jtalk-20cd63e/ide .<br />
+rm -rf NicolasPetton-jtalk-20cd63e<br />
+[/sourcecode]</p>
+<p>JTalk stores source code in three forms: Smalltalk code, Javascript code and smaller Javascript code ("*.deploy.js").</p>
+<h2>Jtalk hello world: the Counter example</h2>
+<p>now, edit app/views/layouts/application.html.erb so that it looks like this:</p>
+<p>[sourcecode language="html"]<br />
+&lt;!DOCTYPE html&gt;<br />
+&lt;html&gt;<br />
+&lt;head&gt;<br />
+  &lt;title&gt;Jtalk On Rails&lt;/title&gt;<br />
+  &lt;%= stylesheet_link_tag :all %&gt;<br />
+  &lt;%= javascript_include_tag :defaults %&gt;<br />
+  &lt;%= csrf_meta_tag %&gt;<br />
+  &lt;script src=&quot;js/jtalk.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;<br />
+  &lt;script type=&quot;text/javascript&quot;&gt; loadJtalk()&lt;/script&gt;<br />
+&lt;/head&gt;<br />
+&lt;body&gt;<br />
+&lt;button onclick=&quot;smalltalk.Browser._open()&quot;&gt;Class browser&lt;/button&gt;</p>
+<p>&lt;div id=&quot;counters&quot;&gt;&lt;/div&gt;</p>
+<p>&lt;script type=&quot;text/javascript&quot;&gt;<br />
+  jQuery(document).ready(function() {'#counters'._asJQuery()._append_(smalltalk.Counter._new())});<br />
+&lt;/script&gt;<br />
+&lt;%= yield %&gt;</p>
+<p>&lt;/body&gt;<br />
+&lt;/html&gt;<br />
+[/sourcecode]</p>
+<p>Here, we included a button to open the code browser, and added a Counter in a div. Oh, I forgot to tell you: Jtalk works seamlessly with JQuery :)<br />
+Now, go check it out, and you will seee the counter and be able to increase and decrease the value displayed (yes, that's a counter).</p>
+<h2>Editing the code</h2>
+<p>Click on the "Class browser" button to start the IDE. Select the "Examples" category, the "Counter" class, the "actions" method category, and the "increase method". You will see in the text box below the source code of the increase method:</p>
+<p>[sourcecode language="smalltalk"]<br />
+increase<br />
+    count := count + 1.<br />
+    header contents: [:html | html with: count asString]<br />
+[/sourcecode]</p>
+<p>Edit that method to increase by steps of 2 instead of 1, and hit "Save". Now, the counter on your page will increase by steps of 2.<br />
+Unfortunately, on the next page refresh, you will lose these changes. That's why the "Commit category" button is there.<br />
+It will take the updated files (here, Examples.st, Examples.js and Examples.deploy.js) and make a PUT request to their original URL.</p>
+<p>A PUT, you said? Well, I can work something out with a PUT.</p>
+<h2>Saving the code</h2>
+<p>Let's create a new controller, called Uploader:</p>
+<p>[sourcecode language="bash"]<br />
+rails generate controller uploader jtalk<br />
+[/sourcecode]</p>
+<p>And edit config/routes.rb as follows:</p>
+<p>[sourcecode language="ruby"]<br />
+Jtalkonrails::Application.routes.draw do<br />
+  root :to =&gt; &quot;home#index&quot;<br />
+  if Rails.env == 'development'<br />
+    put 'st/:id' =&gt; 'uploader#jtalk'<br />
+    put 'js/:id' =&gt; 'uploader#jtalk'<br />
+    put 'js/:id.:deploy' =&gt; 'uploader#jtalk'<br />
+  end<br />
+end<br />
+[/sourcecode]</p>
+<p>Now the PUT requests are redirected to our controller, but only in the development environment. You do not want to make your JS editable from the browser in a production app. DO NOT WANT!</p>
+<p>The only thing left is the controller itself:</p>
+<p>[sourcecode language="ruby"]<br />
+class UploaderController &lt; ApplicationController</p>
+<p>  def jtalk<br />
+    path = Rails.root.join('public')<br />
+    if(params[:format] == &quot;js&quot;)<br />
+      path = path.join(&quot;js&quot;)<br />
+    elsif(params[:format] == &quot;st&quot;)<br />
+      path = path.join(&quot;st&quot;)<br />
+    end</p>
+<p>    if(params[:deploy])<br />
+      path = path.join(params[:id]+&quot;.deploy.&quot;+params[:format])<br />
+    else<br />
+      path = path.join(params[:id]+&quot;.&quot;+params[:format])<br />
+    end</p>
+<p>    File.open(path, &quot;w&quot;) do |f|<br />
+      f.write(request.body.read())<br />
+    end</p>
+<p>    head 200<br />
+  end</p>
+<p>end<br />
+[/sourcecode]</p>
+<p>Here, we build the file path from the parameters. I use <em>request.body.read()</em> to get the file content because Rails seems to truncate the beginning of the file.</p>
+<h2>Profit</h2>
+<p>Now, go back to the web page, click on "Commit category", and refresh the page. Your changes were saved! You can enjoy editing your frontend directly from the webpage itself, in the code browser, and more importantly, write your whole frontend in Smalltalk! It's still missing the workflow "edit-try-debug-edit-continue", but it already feels just like a "normal" Smalltalk environment. <strong>It feels like home</strong> :)</p>
+<h3>Post Scriptum</h3>
+<p>If you want to add a new category, it's easy: create a file <em>Mycategory.js</em> and put it in <em>public/js</em>, with this content:</p>
+<p>[sourcecode language="javascript"]<br />
+smalltalk.addClass('Myclass', smalltalk.Object, [], 'Mycategory');</p>
+<p>[/sourcecode]</p>
+<p>and change your initialization from <em>loadJtalk()</em> to <em>loadJtalk(new Array("Mycategory.js")).</em> The new category will now appear in the code browser, and clicking on "Commit category" will create the deployment file and Smalltalk source file.</p>

@@ -1,0 +1,41 @@
+---
+layout: post
+title: The network is the computer, the cluster is the RAM
+date: 2014-05-31 01:45:29.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Architecture
+tags:
+- cluster
+- distributed system
+- language
+- security
+meta:
+  _edit_last: '3997956'
+  reddit: a:2:{s:5:"count";i:0;s:4:"time";i:1515147206;}
+  publicize_linkedin_url: http://www.linkedin.com/updates?discuss=&scope=14335834&stype=M&topic=5878305027675688960&type=U&a=Dz5K
+  geo_public: '0'
+  _wpas_done_77741: '1'
+  _publicize_done_external: a:1:{s:8:"linkedin";a:1:{s:10:"SRxrIwgSA1";b:1;}}
+author:
+  login: geaaal
+  email: geo.couprie@gmail.com
+  display_name: Géal
+  first_name: ''
+  last_name: ''
+---
+<p>There is a very weird part of web applications, where all the nice abstractions and syntax reasoning go wrong, at the interface between the code and a database. At best, there is a leaky abstraction of the database with an ORM, and you have to think about what methods to apply to get the underlying SQL query you need, at worse, you write queries and deserialize manually.</p>
+<p>This happens because at one point, applications needed to manipulate more data than their host's memory could handle. This required a good abstraction over storage, efficient data walking algorithms and fine tuned caching. This also required thousands of hours of engineering, to get a database that is at least bearable to use. Since so much work was put in those databases, you might as well implement as many features as possible, to reuse all this fine engineering.</p>
+<p>To work efficiently with these data warehouses and offload a part of the selection work from the application, query languages inspired from logic programming were invented. Basically, they make it easy to work with relations: entity/attribute/value triplets like RDF, or tabled data. Those query language are voluntarily not Turing complete: they do not include loops, negation or unbounded recursion. This helps a lot in optimizing the queries.</p>
+<p>Unfortunately, this query language is the barrier between an application and its data. Instead of reasoning about what is in memory, the code must be transformed to load data from the database through a query, deserialize it, compute, reserialize data and put it in the database. Even worse, for efficiency's sake, some developers push more and more logic to the database, with even more complex queries, views and stored procedures.</p>
+<p><strong>What if we could reason directly on a cluster of data as if it was already in the memory?</strong> I do not want to create a structure from a deserialized row, change a value then put that row "where id = $myId". I want to access a structure that is already there in memory, and change the value directly (or clone it and change my index, but that talk is for another blog post).</p>
+<p>"No, you cannot access directly data that is not already in your memory". Sure I can. We already have powerful tools for that. L1 and L2 caches are using that principle, to load data from the RAM and make it available faster to the CPU. Memory mapped file can be lazily loaded page by page in the virtual memory. Imagine loading data lazily from the network, in your address space... Nowadays, <strong>we can index data on 64 bits, enough to address the whole world!</strong></p>
+<p>"But this totally breaks your security model". No, it does not. First, most database clusters already assume they're running on a trusted network. Second, since I see the cluster as a part of my hardware, I think adding a MMU to the lot would work quite well.</p>
+<p>"It does not work, because of concurrent accesses". This already happens in databases, and this is where their powerful query language gets things wrong: if you have a powerful way to access multiple rows at the same time, you have to lock huge parts of the database at once in a transaction to run your mutating query. For virtual memory, we have a lot of interesting tools. Memory pages can be read-write or read-only. Locking through mutexes or Software Transactional Memory could also be implemented at a cluster's scale. But concurrency is a hard problem, that is often better solved through good data architecture. Immutable data, colocating related data, append-only datastructures, all work as well in memory as on a networked cluster.</p>
+<p>This is of course a very big gap to jump, from our traditional databases to a total abstraction in memory, but I think it is an interesting alternative to consider.</p>
+<p>There is another model to consider here, one that is currently adopted by large distributed databases: since an application cannot do all the work by just loading data in its memory space, let's push code onto the data, and run a Turing complete query language on the cluster. This is actually the same kind of model, with worker threads running on your data while you wait for a "work done" message, but you still need to interface your app with the query language. Maybe someday I'll be able to send a compiled function to run on a cluster.</p>
+<p>All in all, the big tools that people built to fight the inefficiencies of yesterday's technology have to be questioned today. By removing the complex abstractions and their obsolete limitations, we could obtain powerful and simple model to write our future code.</p>

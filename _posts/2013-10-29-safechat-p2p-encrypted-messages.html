@@ -1,0 +1,84 @@
+---
+layout: post
+title: SafeChat, P2P encrypted messages?
+date: 2013-10-29 15:28:26.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Crypto
+- General
+- Security
+tags:
+- cryptography
+- decentralized
+- kickstarter
+- security
+meta:
+  publicize_linkedin_url: http://www.linkedin.com/updates?discuss=&scope=14335834&stype=M&topic=5800961122651611136&type=U&a=G-VS
+  _wpas_done_77741: '1'
+  _publicize_done_external: a:1:{s:8:"linkedin";a:1:{s:10:"SRxrIwgSA1";b:1;}}
+  _edit_last: '3997956'
+  reddit: a:2:{s:5:"count";i:0;s:4:"time";i:1510999935;}
+  _wpas_skip_77741: '1'
+  _oembed_38e9dc0dea6c72a73929b8ab856ca5b0: "{{unknown}}"
+author:
+  login: geaaal
+  email: geo.couprie@gmail.com
+  display_name: Géal
+  first_name: ''
+  last_name: ''
+---
+<p>For the first article in the new post serie about "let's pick apart the new kickstarted secure decentralized software of the week", I chose <a title="SafeChat's KickStarter" href="http://www.kickstarter.com/projects/davidcrawford/safechat" target="_blank">SafeChat</a>, which started just two days ago. Yes, I like to hunt young preys :p</p>
+<p>A note, before we begin: this analysis is based on publicly available information at the time of writing. If the authors of the project give more information, I can update the article to match it. The goal is to assert, with what little we know about the project, if it is a good idea to give money to this project. I will only concentrate on the technical parts, not on the team itself (even if, for some of those projects, I think they're idiots running with scissors in hand).</p>
+<h2>What is SafeChat?</h2>
+<blockquote><p>Open source encryption based instant messaging software</p>
+<p><b>SafeChat </b>is a brilliantly simple deeply secure instant messaging system for mobile phones and computers</p>
+</blockquote>
+<p>SafeChat is an instant messaging software designed by <a title="Commercial Free (lol)" href="http://cfme.co" target="_blank">Commercial Free</a>. There is no real indication about who really works there, and where the company is based, except for David Crawford, who created the Kickstarter project and is based in Montreal in Canada.</p>
+<p>Note that SafeChat is only a small part of the services they want to provide. Commercial Free will also have plans including an email encryption service (no info about that one) and cloud storage.</p>
+<h2>Available technical information</h2>
+<p>There is not much to see. They say they are almost done with the core code, but the only thing they present is some videos of what the interaction with the app could be.</p>
+<p>Apparently, it is an instant messaging application with Android and iOS applications and some server components.  Session keys are generated for the communication between users. They will manage the server component, and the service will be available with a yearly subscription.</p>
+<p>It seems they don't want to release much information about the cryptographic components they use. They talk about "peer to peer encryption" (lol) which is open source and standard. If anyone understands what algorithm or protocol they refer to, please enlighten me. They also say they will mix in some proprietary code (so much for open source).</p>
+<p>I especially like the part about NIST. They mock NIST, telling that they have thrown "all standard encryption commonly used today out the window". I am still wondering what "open source and standard peer to peer encryption" means.</p>
+<h2>Network protocol</h2>
+<p>The iOS and Android applications will apparently provide direct communication between users. I guess that from their emphasis on P2P, but also from the price they claim: $10 per user per year would be a bit small to pay for server costs if they had to route all the messages.</p>
+<p>P2P communication between phones is technically feasible. They would probably need to implement some TCP hole punching in their solution, but it is doable.</p>
+<p>Looking athe the video, it seems there is a key agreement before communication. I do not really like the interaction they chose to represent key agreement (with the colors and the smileys). There are too many different states, while  people only need to know "are we safe now?"</p>
+<p>I am not sure if there is a presence protocol. The video does not really show it. If there is no presence system, are messages stored until the person is online? Stored on the server or on the client? Does the server notify the client when the person becomes available?</p>
+<h2>Cryptography</h2>
+<blockquote><p>By bringing together existing theories of cryptography and some proprietary code to bind them together, we are making a deeply encrypted private chatting system that continues to evolve as the field of cryptography does.</p>
+</blockquote>
+<p>Yup, I really feel safe now.</p>
+<p>Joke aside, here is what we can guess:</p>
+<ul>
+<li>session keys for the communication between users. I don't know if it is a Diffie-Hellman based protocol</li>
+<li>no rekeying, ie no perfect forward secrecy</li>
+<li>no info on message authentication or integrity verification</li>
+<li>I am not sure if the app generates some asymmetric keys for authentication, if there is trust on first use, or whatever else</li>
+<li>the server might not be very safe, because they really, really want to rely on German laws to protect it. If the crypto was fully managed client side, they would not care about servers taken down, they could just pop another somewhere.</li>
+</ul>
+<p>There could be a PKI managed by Commercial Free. That would be consistent with the subscription model (short lived certificates is an easy way of limiting the usage of a service).</p>
+<h2>Threat model</h2>
+<p>Now, we can draw the rough threat model they are using:</p>
+<blockquote><p>What we want to do is make it impractical for an organization to snoop your communications as it would become very hard to find them and then harder still to decrypt them.</p>
+</blockquote>
+<p>Pro tip: a system with a central server does not make it hard to find communications.</p>
+<p>Attacker types:</p>
+<ul>
+<li><strong>phone thief:</strong> I don't think they use client side encryption for credentials and logs. Phone thiefs and forensics engineers won't have a real problem there</li>
+<li><strong>network operator:</strong> they can disrupt the communication, but will probably not be able to decrypt or do MITM (I really think the server is managing the authentication part, along with setting up the communication)</li>
+<li><strong>law enforcement:</strong> they want to rely on German laws to protect their system. At the same time, they do not say they will move out to Germany to operate the system. If they stay in Canada, that changes the legal part. If they use a certificate authority, protecting the server will be useless, because they can just ask the key at the company.</li>
+<li><strong>server attacker:</strong> the server will probably be Windows based (see the core developer's skills). Since that design is really server centric, taking down the server might take down the whole service. And attacking it will reveal lots of interesting metadata, and probably offer MITM capabilities</li>
+<li><strong>nation state:</strong> please, stop joking...</li>
+</ul>
+<p>So...</p>
+<p><strong>Really, nothing interesting here. I do not see any reason to give money to this project</strong>: there is nothing new, it does not solve big problems like anonymous messaging, or staying reliable if one server is down. Worse, it is probably possible to perform a MITM attack if you manage the server. Nowadays, if you create a cryptographic protocol with client side encryption, you must make sure that your security is based on the client, not the server.</p>
+<p>Alternatives to this service:</p>
+<ul>
+<li>Apple iMessage: closed source, only for iOS, encrypted message, MITM is permitted for Apple by the protocol, but "we have not architected the server for this". Already available.</li>
+<li><a title="Open Whisper Systems" href="https://whispersystems.org/" target="_blank">Text Secure by OpenWhisperSystems</a>: open source, available for iOS and Android, uses SMS as a transport protocol, uses OTR (Off the Record protocol) to protect the communication, no server component. <strong>Choose Text Secure!</strong> It is really easy to use, and OTR is well integrated in the interface.</li>
+</ul>

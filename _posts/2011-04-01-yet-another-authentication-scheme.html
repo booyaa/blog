@@ -1,0 +1,66 @@
+---
+layout: post
+title: Yet another authentication scheme
+date: 2011-04-01 18:05:53.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Development
+- Reinventing the wheel
+- Security
+- Web
+tags:
+- authentication
+- cryptography
+- oauth
+- security
+meta:
+  _edit_last: '3997956'
+  reddit: a:2:{s:5:"count";s:1:"0";s:4:"time";s:10:"1340338230";}
+  tagazine-media: a:7:{s:7:"primary";s:0:"";s:6:"images";a:0:{}s:6:"videos";a:0:{}s:11:"image_count";s:1:"0";s:6:"author";s:7:"3997956";s:7:"blog_id";s:8:"11260360";s:9:"mod_stamp";s:19:"2011-04-02
+    08:36:20";}
+author:
+  login: geaaal
+  email: geo.couprie@gmail.com
+  display_name: Géal
+  first_name: ''
+  last_name: ''
+---
+<p>Recently, I was asked to design a new authentication protocol for a web service. I know that I shouldn't do reinvent the wheel, so I immediatly proposed OAUTH.  It turns out that it can't be used in this situation. Here are the constraints:</p>
+<p>-calls to the webservice must be authenticated: I can keep the tokens and signature from OAUTH here. The problem is: how do I get that token?</p>
+<p>-calls are made from devices or applications without access to a webbrowser (embedded devices, phones, etc.). The redirection dance of OAUTH is not acceptable here</p>
+<p>-communications are done over an untrusted network, without SSL.</p>
+<p>-I can't use application keys and secrets to encrypt and sign the authentication process: clients include open source software and smartphone applications. You can't hide a secret key in these.</p>
+<p>-the protocol has to be simple to implement, on a lot of languages</p>
+<p>-the server must not store the password in cleartext (I shouldn't have to precise this...), the client must not store the password</p>
+<p>Summing it up: no preshared keys, no browser, no SSL, untrusted networks, no passwords stored, and an OAUTH-like environment once the client is authenticated (tokens, authorizations, revoking, etc)</p>
+<p>Apparently, I should just give up. But I like to play, so I'll try!</p>
+<p>First, I must say that I am not an expert in security nor cryptography. But I'm really enthusiastic about these subjects, and my day job is at a company providing strong authentication solutions (no, this protocol is not related to my day job). So, I know a bit about the subject, and I know that I should ask for reviews, hence this post.</p>
+<h2>Rough ideas</h2>
+<p>We need a safe communication over an untrusted network. TLS immediatly comes to mind, but the targeted applications might not have access to a TLS implementation. I'd like to use SRP, but I don't think I'm able to implement it correctly (and it has to be SIMPLE). Using Diffie-Hellman to establish a shared key is another idea, but it is not safe against MITM.</p>
+<p>Here's my idea: we don't need to generate a shared secret, we already have it. It's the password!</p>
+<p>But how can I use the password if the server doesn't store it in cleartext?</p>
+<h2>The trick: key derivation functions</h2>
+<p>Decveoplers are finally understanding that they should not use MD5 nor SHA1 to store their passwords, even with a salt, because computing power is so cheap these days that anyone could crack easily a lot of passwords.</p>
+<p>It is now recommended to use other functrions tro store passwords. The key derivation functions are a class of functions that create a key from a password. Basically, they do it by interating a lot of times. That makes them very slow, which is an interesting property if you want to stpre passwords: it is too expensive to "crack" the password. PBKDF2, bcrypt and scrypt are well known  key derivation functions. They're simple to use and available in a lot of languages.</p>
+<p>With these functions, I can safely store the passwords, and generate a key shared with the client.</p>
+<p>In short: if I store kdf(password, N) with N the number of iterations, I can send any M &gt; N to the client and ask him to compute the key, without compromising what I store.</p>
+<h2>Designing the protocol</h2>
+<p>Now that we have a way to use a shared key, we can look at what will go over the wire to establish it. If I use directly kdf(pass, M), anybody getting access to the client storage will be able to obtain the key for any L &gt; M. So, the key establishment has to use a nonce. That way, the client will only use the password once and forget it, and store the derivated key.</p>
+<p>I would rather use a truly random key that has no relation with the password. It could be given to the client, encrypted with the derivated key. The derivated key could then be thrown away. But I still do not know if it is really necesary.</p>
+<p>The server still needs to authenticate the client. The client will make a second call to the web service, signing it with HMAC and the key.</p>
+<p>That's it! It is really simple, so if there are flaws I did not see, you will surely catch them.</p>
+<h2>TL; DR</h2>
+<p>The protocol is based on key derivation functions, like PBKDF or bcrypt.</p>
+<ul>
+<li>The server stores login and H = kdf(pass, N), with N integer</li>
+<li>The client wants to authenticate and makes a call to the server with the login as argument</li>
+<li>The server replies with M &gt; N and i nonce</li>
+<li>The client calculates k1 = kdf(kdf(pass, M)+i, 1)</li>
+<li>The server calculates k2 = kdf(kdf(H, M-N)+i, 1)</li>
+<li>The client calls the server with args "user=login&amp;sign=".HMAC("user=login", k2)</li>
+<li>If k1=k2. The signature matches and the client is authenticated.</li>
+</ul>

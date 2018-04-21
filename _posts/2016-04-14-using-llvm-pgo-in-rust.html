@@ -1,0 +1,82 @@
+---
+layout: post
+title: 'PoC: using LLVM''s profile guided optimization in Rust'
+date: 2016-04-14 14:58:31.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Development
+- General
+- Rust
+tags: []
+meta:
+  _thumbnail_id: '917'
+  _edit_last: '3997956'
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '21780669829'
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=14335834&stype=M&topic=6126377909973250051&type=U&a=q5Z_
+  _publicize_done_97921: '1'
+  _wpas_done_77741: '1'
+  reddit: a:2:{s:5:"count";i:0;s:4:"time";i:1515362413;}
+  geo_public: '0'
+  _wpas_skip_77741: '1'
+author:
+  login: geaaal
+  email: geo.couprie@gmail.com
+  display_name: Géal
+  first_name: ''
+  last_name: ''
+---
+<h2><img class="aligncenter size-full wp-image-917" src="/assets/screen-shot-2016-04-14-at-15-50-01.png" alt="call graph" width="525" height="408" /></h2>
+<h2>What does profile-guided optimization mean?</h2>
+<p>Some languages have a JIT (Just In Time) compiler available at runtime, that can optimize the executed code depending on current execution patterns. This is, in large part, the cause of the performance of Lua and the JVM. They can start a bit slow, but by accumulating information on actual running code, they make it faster and faster for the current load. <a href="https://wingolog.org/pub/fosdem-2015-pflua-slides.pdf" target="_blank">PfLua</a> is a great example: the firewall rules are optimized again and again, until the current network traffic is handled as quickly as possible.</p>
+<p>When you use other languages, such as C, you usually cannot optimize the application once it is compiled. Except when you use an optimization technique known as <em>Profile-Guided Optimization</em>. From <a href="https://en.wikipedia.org/wiki/Profile-guided_optimization" target="_blank">Wikipedia</a> :</p>
+<blockquote><p>Profile-guided optimization (PGO, sometimes pronounced as pogo), also known as profile-directed feedback (PDF), is a compiler optimization technique in computer programming that uses profiling to improve program runtime performance.</p></blockquote>
+<p>It relies on profiling the compiled application, while it runs with the expected, real world load (web traffic, calculations, etc), and feed this profiling information to the compiler. On the next build, the compiler will have more information on which parts of the program are less used, which branches are taken more often, the expected values in a range, etc. Instead of guessing how the program would behave to choose optimizations, the compiler has true information, and can optimize more precisely. There's one issue with the process: you need two compilations and a profiling run to generate the final executable. But it gets easier when you automate it, as we can see in the <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Build_Instructions/Building_with_Profile-Guided_Optimization" target="_blank">Firefox build process</a>.</p>
+<h2>PGO in LLVM</h2>
+<p>While it has been available in other systems for a long time (Visual Studio 2005, the Intel compiler ICC for Itanium), <a href="http://llvm.org/devmtg/2013-11/slides/Carruth-PGO.pdf" target="_blank">it appeared recently in LLVM</a>.  It has since then been applied successfully to <a href="https://developer.apple.com/library/ios/documentation/DeveloperTools/Conceptual/xcode_profile_guided_optimization/pgo-using/pgo-using.html" target="_blank">XCode (Objective C, Swift)</a> and <a href="https://wiki.dlang.org/LDC_LLVM_profiling_instrumentation" target="_blank">LDC, the D compiler</a>.</p>
+<p>LLVM has a great feature: it uses an Intermediate Representation code (IR), which is a kind of high level assembly language. It applies its optimizations and machine code generation to that representation. If you make a compiler for a new language, targeting the LLVM IR will give you these features (nearly) for free.</p>
+<p>In practice, compiler frontends choose which features they use, so you may not access everything LLVM has to offer. In particular, the Rust compiler, as of now (April 2016), provides a <em>llvm-args</em> option, but that option filters what you can send to LLVM, so we cannot use PGO here.</p>
+<h2>PGO in Rust</h2>
+<p>Still, with <em>rustc</em>, you can generate directly the IR, or its binary encoding, named bitcode:</p>
+<blockquote><p>rustc --emit llvm-bc main.rs<br />
+# or, with cargo:<br />
+cargo rustc -- --emit llvm-bc</p></blockquote>
+<p>The approach I tried here is to take that bitcode, and manually apply LLVM's transformations until I get a compiled executable. This is not really usable for now, especially because I chose an example with very few dependencies. With more dependencies, the compilation and linking will get more complex and unmanageable manually.</p>
+<p>LLVM comes with a few commands that you can use to build code manually. The first one is <em>opt</em>, and it applies optimizations and instrumentation on the bitcode file (here, the file <em>target/release/pgo.bc</em>):</p>
+<blockquote><p>opt-3.8 -O2 -pgo-instr-gen -instrprof target/release/pgo.bc -o pgo.bc</p></blockquote>
+<p>The new bitcode file contains code to profile the end application (mainly by counting how often we use each code path). We can now convert that bitcode file to an object file, and link it using clang:</p>
+<blockquote><p>llc-3.8 -O2 -filetype=obj pgo.bc<br />
+clang-3.8 -O2 -flto -fprofile-instr-generate pgo.o -L/usr/local/lib/rustlib/x86_64-apple-darwin/lib -lstd-ca1c970e -o pgo</p></blockquote>
+<p><strong>Note:</strong> I built my own rustc from source, so your <em>libstd</em> file may not have the same hash. Since Rust (as of April 2016) uses LLVM 3.7, we can use LLVM 3.8's PGO features, since the bitcode format is apparently backward compatible. I use OS X, and Homebrew's LLVM 3.8 has compilation issues, so I needed to build the compiler runtime from source. It's a proof of concept, not production code ;)</p>
+<p>We will now run the program we just built, preferably with production data and traffic. It will automatically generate a <em>default.profraw</em> file, containing the profiling information. This file must be transformed to a format that <em>opt</em> will understand with <em>llvm-profdata</em>:</p>
+<blockquote><p>llvm-profdata-3.8 merge -output=pgo.profdata default.profraw</p></blockquote>
+<p>This <em>.profdata</em> file will now be used in the compilation steps:</p>
+<blockquote><p>opt-3.8 -O2 -pgo-instr-use -pgo-test-profile-file=pgo.profdata target/release/pgo.bc -o pgo-opt.bc<br />
+llc-3.8 -O2 -filetype=obj pgo-opt.bc<br />
+clang-3.8 -O2 -flto -fprofile-instr-use=pgo.profdata pgo-opt.o -L/usr/local/lib/rustlib/x86_64-apple-darwin/lib -lstd-ca1c970e -o pgo-opt</p></blockquote>
+<p>We now have an executable compiled using profiling information. Is it fast?</p>
+<h2>The benchmarks</h2>
+<p>The <a href="https://benchmarksgame.alioth.debian.org/u64q/program.php?test=nbody&amp;lang=rust&amp;id=2" target="_blank">program</a> I tested is a <a href="https://benchmarksgame.alioth.debian.org/u64q/nbody-description.html#nbody" target="_blank">n-body simulation</a>. It was a great test target since libstd is the only dependency, and the load factor depends on a number given as command line argument. Here is a test with time (I know it's not the most precise benchmarking tool, but for a tenth of second precision, it works alright):</p>
+<blockquote><p>$ time ./target/release/pgo 1000000000<br />
+-0.169075164<br />
+-0.169051540</p>
+<p>real    1m22.528s<br />
+user    1m22.214s<br />
+sys     0m0.173s</p>
+<p>$ time ./pgo-opt 1000000000<br />
+-0.169075164<br />
+-0.169051540</p>
+<p>real    1m9.810s<br />
+user    1m9.687s<br />
+sys     0m0.070s</p></blockquote>
+<p>As it turns out, we gain nearly 15% in running time on this program. Other examples could have less impact, but this is encouraging! So, what happened inside our program?</p>
+<h2>The generated code</h2>
+<p>I provide assembly dumps of <a href="https://raw.githubusercontent.com/Geal/pgo-rust/master/assembly/pgo.s" target="_blank">the normal program, generated with <em>cargo --release</em></a>, and <a href="https://raw.githubusercontent.com/Geal/pgo-rust/master/assembly/pgo-opt.s" target="_blank">the one optimized with PGO</a>. Mostly, the code has been reordered, probably to fit better in cache lines. You can also consult PDF files with call graphs: <a href="http://dev.unhandledexpression.com/pgo.pdf" target="_blank">normal</a>, <a href="http://dev.unhandledexpression.com/pgo-opt.pdf" target="_blank">PGO optimized</a>.</p>
+<p>The whole code for this article is <a href="https://github.com/Geal/pgo-rust" target="_blank">available here</a> if you want to reproduce the results or tinker with optimizations yourself.</p>
+<p>This is a proof of concept, demonstrating that profile guided optimization could work in Rust. It is probably worthy of integration into <em>rustc</em>, but there's a lot of work before it could be usable. Still, there's <a href="https://github.com/rust-lang/rfcs/issues/1220" target="_blank">a github issue</a> where you can weigh in, if you would like this optimization in your applications.</p>
+<p>&nbsp;</p>
