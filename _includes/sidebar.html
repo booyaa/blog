@@ -1,5 +1,6 @@
 <div id="sidebar">
   <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
     <{% if page.layout == "index" %}h1{% else %}div{% endif %} class="site-title">
       <a href="{{ site.baseurl }}/">
         {% unless page.url == "/" %}
@@ -11,10 +12,6 @@
     <p class="lead">{{ site.description }}</p>
   </header>
   {% include sidebar-nav-links.html %}
-
-  {% if site.version %}
-    <span class="site-version">Currently v{{ site.version }}</span>
-  {% endif %}
 
   {% include sidebar-icon-links.html %}
   {% include copyright.html %}
