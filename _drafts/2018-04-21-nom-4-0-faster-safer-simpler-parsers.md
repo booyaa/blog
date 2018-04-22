@@ -11,8 +11,10 @@ tags:
 I'm delighted to announce that [nom](https://github.com/geal/nom), the extremely
 fast Rust parser combinators library, has reached major version 4.
 
-**TL;DR: the new nom version is very nice, you can find a summary of what changed
-in [the upgrade documentation](https://github.com/Geal/nom/blob/master/doc/upgrading_to_nom_4.md)**
+**TL;DR: the new nom version is simpler, faster, has a better documentation, you can
+find a summary of what changed input
+[the upgrade documentation](https://github.com/Geal/nom/blob/master/doc/upgrading_to_nom_4.md)**
+
 **side note: how fast is nom? it can reach [2GB/s when parsing HTTP requests](https://github.com/Geal/parser_benchmarks/tree/master/http)**
 
 It took nearly 6 months of development and the library went through nearly 5
@@ -31,19 +33,19 @@ This was a long standing request. nom used a three-legged enum as return type fo
 fn parser(input: I) -> IResult<I,O> { ... }
 
 pub enum IResult<I,O,E=u32> {
-/// remaining input, result value
-Done(I,O),
-/// indicates the parser encountered an error. E is a custom error type you can redefine
-Error(Err),
-/// Incomplete contains a Needed, an enum than can represent a known quantity of input data, or unknown
-Incomplete(Needed)
+  /// remaining input, result value
+  Done(I,O),
+  /// indicates the parser encountered an error. E is a custom error type you can redefine
+  Error(Err),
+  /// Incomplete contains a Needed, an enum than can represent a known quantity of input data, or unknown
+  Incomplete(Needed)
 }
 
 pub enum Needed {
-/// needs more data, but we do not know how much
-Unknown,
-/// contains the required total data size
-Size(usize)
+  /// needs more data, but we do not know how much
+  Unknown,
+  /// contains the required total data size
+  Size(usize)
 }
 
 // if the "verbose-errors" feature is not active
@@ -51,14 +53,14 @@ pub type Err<E=u32> = ErrorKind;
 
 // if the "verbose-errors" feature is active
 pub enum Err<P,E=u32> {
-/// An error code, represented by an ErrorKind, which can contain a custom error code represented by E
-Code(ErrorKind),
-/// An error code, and the next error
-Node(ErrorKind, Vec<Err<P,E>>),
-/// An error code, and the input position
-Position(ErrorKind, P),
-/// An error code, the input position and the next error
-NodePosition(ErrorKind, P, Vec<Err<P,E>>)
+  /// An error code, represented by an ErrorKind, which can contain a custom error code represented by E
+  Code(ErrorKind),
+  /// An error code, and the next error
+  Node(ErrorKind, Vec<Err<P,E>>),
+  /// An error code, and the input position
+  Position(ErrorKind, P),
+  /// An error code, the input position and the next error
+  NodePosition(ErrorKind, P, Vec<Err<P,E>>)
 }
 ```
 
@@ -70,35 +72,36 @@ appeared multiple times in dependency trees.
 
 So I replaced it with a new, `Result` based design:
 
-<code>
-pub type IResult&lt;I, O, E = u32&gt; = Result&lt;(I, O), Err&lt;I, E&gt;&gt;;
+```rust
+pub type IResult<I, O, E = u32> = Result<(I, O), Err<I, E>>;
 
-pub enum Err&lt;I, E = u32&gt; {
-/// There was not enough data
-Incomplete(Needed),
-/// The parser had an error (recoverable)
-Error(Context&lt;I, E&gt;),
-/// The parser had an unrecoverable error
-Failure(Context&lt;I, E&gt;),
+pub enum Err<I, E = u32> {
+  /// There was not enough data
+  Incomplete(Needed),
+  /// The parser had an error (recoverable)
+  Error(Context<I, E>),
+  /// The parser had an unrecoverable error
+  Failure(Context<I, E>),
 }
 
 pub enum Needed {
-/// needs more data, but we do not know how much
-Unknown,
-/// contains the required additional data size
-Size(usize)
+  /// needs more data, but we do not know how much
+  Unknown,
+  /// contains the required additional data size
+  Size(usize)
 }
 
 // if the "verbose-errors" feature is inactive
-pub enum Context&lt;I, E = u32&gt; {
-Code(I, ErrorKind),
+pub enum Context<I, E = u32> {
+  Code(I, ErrorKind),
 }
 
 // if the "verbose-errors" feature is active
-pub enum Context&lt;I, E = u32&gt; {
-Code(I, ErrorKind),
-List(Vec&lt;(I, ErrorKind)&gt;),
-}</code>
+pub enum Context<I, E = u32> {
+  Code(I, ErrorKind),
+  List(Vec<(I, ErrorKind)>),
+}
+```
 
 
 Aside from being more compatible with, like, the whole Rust ecosystem, this new design
@@ -140,40 +143,35 @@ that transforms `Incomplete` in `Error`.
 
 nom 4 is much stricter about the behaviour with partial data, but provides better tools to deal with it.
 Thanks to the new `AtEof` trait for input types, nom now provides the `CompleteByteSlice(&amp;[u8])` and
-`CompleteStr(&amp;str)` input types, for which the `at_eof()` method always returns true.
+`CompleteStr(str)` input types, for which the `at_eof()` method always returns true.
 With these types, no need to put a `complete!()` combinator everywhere, you can juste apply those types
 like this:
 
-<code>named!(parser, ... );
+```rust
+named!(parser<&[u8], O>, ... );
 
 // becomes
 
-named!(parser, ... );
-</code>
+named!(parser<CompleteByteSlice, O>, ... );
+```
 
-<code>named!(parser, ... );
-
-// becomes
-
-named!(parser, ... );
-</code>
-
-<code>named!(parser, ... );
+```rust
+named!(parser<&str, O>, ... );
 
 // becomes
 
-named!(parser, ... );
-</code>
+named!(parser<CompleteStr, O>, ... );
+```
 
 And as an example, for a unit test:
 
-<code>
+```rust
 assert_eq!(parser("abcd123"), Ok(("123", "abcd"));
 
 // becomes
 
 assert_eq!(parser(CompleteStr("abcd123")), Ok((CompleteStr("123"), CompleteStr("abcd")));
-</code>
+```
 
 These types allow you to correctly handle cases like text formats for which there might be a last
 empty line or not, as seen in [one of the examples](https://github.com/Geal/nom/blob/87d837006467aebcdb0c37621da874a56c8562b5/tests/multiline.rs).
@@ -181,12 +179,13 @@ empty line or not, as seen in [one of the examples](https://github.com/Geal/nom/
 If those types feel a bit long to write everywhere in the parsers, it's possible
 to alias them like this:
 
-<code>
+```rust
 type Input = CompleteByteSlice;
-pub fn Input(input:&amp;'a[u8]) -&gt; Input {
-CompleteByteSlice(input)
-}</code>
 
+pub fn Input(input:&'a[u8]) -> Input {
+  CompleteByteSlice(input)
+}
+```
 
 ## Better documentation
 
