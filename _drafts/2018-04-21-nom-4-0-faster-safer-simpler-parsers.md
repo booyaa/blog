@@ -215,6 +215,39 @@ will not need anything more than `core`, and a few basic combinators like
 Some parsers sometimes ended up in the middle of UTF-8 characters, now those
 streams are handled correctly.
 
+## Performance
+
+Here is a comparison of nom's internal benchmarks, between 3.2.1 and 4.0.0, in default mode:
+
+```
+$ cargo benchcmp 3.2.1.bench 4.0.0.bench
+ name             3.2.1.bench ns/iter  4.0.0.bench ns/iter  diff ns/iter   diff % 
+ arithmetic       759                  469                          -290  -38.21% 
+ ini              998 (109 MB/s)       897 (122 MB/s)               -101  -10.12% 
+ ini_key_value    45 (400 MB/s)        47 (382 MB/s)                   2    4.44% 
+ ini_keys_values  91 (483 MB/s)        85 (529 MB/s)                  -6   -6.59% 
+ ini_str          1,399 (77 MB/s)      1,396 (78 MB/s)                -3   -0.21% 
+ json_bench       2,149                1,694                        -455  -21.17% 
+ http_test        700                  659                           -41   -5.86% 
+```
+
+And here is the difference for verbose errors:
+
+```
+$ cargo benchcmp 3.2.1.bench 4.0.0.bench 
+ name             3.2.1.bench ns/iter  4.0.0.bench ns/iter  diff ns/iter   diff % 
+ arithmetic       1,731                1,523                        -208  -12.02% 
+ ini              1,199 (90 MB/s)      1,061 (103 MB/s)             -138  -11.51% 
+ ini_key_value    70 (257 MB/s)        60 (300 MB/s)                 -10  -14.29% 
+ ini_keys_values  133 (330 MB/s)       111 (405 MB/s)                -22  -16.54% 
+ ini_str          1,525 (71 MB/s)      1,621 (67 MB/s)                96    6.30% 
+ json_bench       2,905                2,193                        -712  -24.51% 
+ http_test        854                  941                            87   10.19% 
+```
+
+nom 4 is not faster everywhere, ther are still some small regressions that will be fixed
+soon, but overall we see great improvements.
+
 ## the future for nom
 
 [nom 4](https://github.com/geal/nom) is a huge release, and the new design
