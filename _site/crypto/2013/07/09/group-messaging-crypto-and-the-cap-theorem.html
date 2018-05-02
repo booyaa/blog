@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      Group messaging crypto and the CAP theorem &middot; Unhandled Expression
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="post">
+
+    <div id="sidebar">
+  <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
+    <div class="site-title">
+      <a href="/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Unhandled Expression
+      </a>
+    </div>
+    <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/about.html">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/architecture.html">Architecture</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/crypto.html">Crypto</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/development.html">Development</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/rust.html">Rust</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/security.html">Security</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/videolan.html">VideoLAN</a>
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  <nav id="sidebar-icon-links">
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/tags.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/search.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+  <p>
+  &copy; 2018.
+  <a href="/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+
+    <main class="container">
+      <header>
+  <h1 class="post-title">Group messaging crypto and the CAP theorem</h1>
+</header>
+<div class="content">
+  <div class="post-meta">
+  <span class="post-date">09 Jul 2013</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/crypto.html">
+          Crypto
+        </a>
+      
+    
+  </span>
+</div>
+
+  <div class="post-body">
+    <p>I often play with group messaging ideas, and recently, an interesting perspective came to me, about the relation between these messaging systems and the constraints of the CAP theorem.</p>
+<h2>What is the CAP theorem?</h2>
+<p><em>Small theoretical background here, feel free to skip if you already know what it is about</em></p>
+<p>Otherwise known as Brewer's theorem, indicates that three properties are important in distributed systems:</p>
+<ul>
+<li>Consistency (all nodes see the same data)</li>
+<li>Availability (every request receives a response)</li>
+<li>Partition tolerance (the system still works through network splits or node failure)</li>
+</ul>
+<p>The CAP theorem tells us that a distributed cannot have the three properties at the same time. It is not really a "two out of three" like most people tend to say, but more of a compromise you have to make. Some examples:</p>
+<ul>
+<li>in traditional databases systems (with a master-slave model), consistency and availability are high (all nodes can answer with th same data), but partition tolerance is weak because the master is a SPOF.</li>
+<li>in a fully distributed database (no master model), availability is high (all the nodes can answer), partition tolerance is high (a subset of the cluster could act as the whole database), but consistency is weak (data must be replicated to all the relevant nodes, and that can take time, so the nodes may not see the same data at the same time)</li>
+<li>in Bitcoin, the consistency is good (all nodes must agree to the same block chain) and partition tolerance is good (for downloading the block chain), but availability is weak for writing, because a new transaction must first propagates to a large enough set of nodes, then a block must be calculated for the transaction to be stored</li>
+</ul>
+<p>As you can see, you can shape those properties depending on how you want your system to behave. Maybe you want fast reads, or fast writes, or very strong replication, etc.</p>
+<h2>Group messaging constraints</h2>
+<p>This has always been a challenge. Traditionally, chat systems follow a client-server model, where the server redistributes all the messages. As we saw previously, that is bad against partition problems. The usual solution is to have multiple servers talking with each other, as we can see in IRC or XMPP.</p>
+<p>For a fully distributed messaging system (if we forget for a moment all the nasty NAT problems),  communication becomes a routing problem: making sure the nodes get all the messages fast enough and in the right order. If you're building a distributed Twitter, it's not really a problem, but for an interactive chat system, this becomes really hard. You can try to send your messages directly to all the users in the chat room, but as more people join, sending and receiving all the messages takes more and more time, and so, you sacrifice availability and a bit of consistency (you will not necessarily receive all the messages).</p>
+<h2>Group messaging crypto</h2>
+<p>The group messaging problems seemed hairy? Let's add crypto in the mix, just for fun! What security properties would we want to add to a messaging system?</p>
+<ul>
+<li>Authentication: every user knows with whom he is talking</li>
+<li>Confidentiality: an external observer cannot see the content of a message</li>
+<li>Tampering proof: users can detect when a message has been modified and reject them</li>
+<li>Perfect forward secrecy: compromising one key does not compromise the whole conversation or past conversations</li>
+</ul>
+<p>There are others that we could want, but let's just concentrate on these ones for now. We can separate the messaging in two phases: the discovery, and the transport. The discovery is when nodes begin talking to each other, authenticating each other, establishing session keys, managing key rotation, etc. Note that discovery can happen at any time, as a new node can appear after a long time. The transport is about sending messages safely and verifying messages.</p>
+<p>I think we can assume that, once all the nodes have authenticated themselves and agreed on session keys, the transport is the easy part. Whatever the underlying transport system (broadcast, XMPP, SMTP, etc), once you can send, receive and verify messages, everything is easy.</p>
+<p>The interesting part is the discovery. That is where the similarity with a distributed system is evident. You want a lot of nodes to start communicating with each other, you want to propagate information to all the nodes (like session keys), you must handle nodes that go up or down, and clusters splitting.</p>
+<p>That's where the CAP theorem is useful to understand the constraints of the system.</p>
+<p>Group authentication is an availability and partition problem: if you cannot start the communication until all the nodes have authenticated each other, you are vulnerable to slow or failing nodes.</p>
+<p>Tampering proof is a consistency problem: all the nodes must know the same signature keys to agree on whether a message is correct or not.</p>
+<p>Confidentiality is a consistency and partition problem: if you must reach consensus on a group-wide session key, you have to wait for all the nodes to get the new key (consistency). That happens a lot if you want perfect forward secrecy, where you must change keys regularly. Moreover, in case of partition, the different groups will agree to different keys, and a conflict will appear once the split is over.</p>
+<p>As you can see, a security model can help you choose which tools (cryptographic or not) you will use to ensure the safety of the system, but with the distributed system theory, you will be able to predict and recognize the behaviour of the system.</p>
+<h2>Some examples</h2>
+<p>Let's see how some more or less known system handle that:</p>
+<h3>GPG and email</h3>
+<p>GPG+email is, at its heart, a secure group messaging system. If we analyze its properties, wen can see that it is very good against partition: SMTP handles splits quite well, it can resend messages if they did not pass, or store them for a few days until the next server is up.</p>
+<p>For availability, it doesn't fare very well at high loads if you want to encrypt messages, because you need to encrypt for every host. You cannot take advantage of SMTP's architecture to reduce the load.</p>
+<p>It also has very bad consistency. If you want every node to agree on the keys of each user, you have to do one to one offline meetings between each of the participants. In practice, users make a tradeoff here, so the security assumption is not completely true.</p>
+<h2>Multi party off the record messaging</h2>
+<p>There is a paper you can read about <a title="Multy Party OTR" href="http://www.cypherpunks.ca/~iang/pubs/mpotr.pdf" target="_blank">MP OTR</a>, which builds on the previous OTR algorithm to provide secure multi party communication. That protocol relies on a heavy setup phase where all the nodes authenticate each other and generate a group encryption key.</p>
+<p>This model will fare quite well once consensus has been reached: all the nodes know the ephemeral signature keys and the group encryption key.</p>
+<p>Unfortunately, in case of a user joining or leaving the chatroom, the whole shutdown and setup process must happen, making the chatroom unavailable in the meantime.</p>
+<h2>What about yours?</h2>
+<p>I see a lot of new projects appearing lately, with the intention to "fix" chat systems or social networks by building a "secure" distributed system. Unfortunately, most of them do not have a serious background in security or distributed systems. The subject of this article, the CAP theorem, is a very small part of the way we think about distributed systems: people have been researching on the subject for years. Similarly, cryptography and protocols have improved a lot lately.</p>
+<p>So, if you are building one of these, take your time, forget the hype, read up a bit about the theory, and think about your model before you make your technological choices. Please don't repeat the worst mistakes.</p>
+
+    
+
+
+
+<div class="post-tags">
+  
+    
+    <a href="/tags.html#authentication">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">authentication</span>
+    </a>
+  
+    
+    <a href="/tags.html#confidentiality">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">confidentiality</span>
+    </a>
+  
+    
+    <a href="/tags.html#crypto">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">crypto</span>
+    </a>
+  
+    
+    <a href="/tags.html#distributed-systems">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">distributed systems</span>
+    </a>
+  
+    
+    <a href="/tags.html#otr">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">OTR</span>
+    </a>
+  
+    
+    <a href="/tags.html#security">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">security</span>
+    </a>
+  
+</div>
+  </div>
+
+  
+<!--  <section class="comments">
+    <h2>Comments</h2>
+  </section>
+-->
+
+
+  <section class="related">
+  <h2>Related Posts</h2>
+  <ul class="posts-list">
+    
+      <li>
+        <h3>
+          <a href="/general/rust/2018/02/02/poc-compiling-to-ebpf-from-rust.html">
+            PoC: compiling to eBPF from Rust
+            <small>02 Feb 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/rust/2018/01/10/rust-2018-maybe-dont-be-too-stable.html">
+            Rust 2018: maybe don't be too stable
+            <small>10 Jan 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/general/2017/08/23/adventures-in-logging.html">
+            Adventures in logging
+            <small>23 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</section>
+
+</div>
+
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>

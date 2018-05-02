@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      PoC: compiling to eBPF from Rust &middot; Unhandled Expression
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="post">
+
+    <div id="sidebar">
+  <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
+    <div class="site-title">
+      <a href="/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Unhandled Expression
+      </a>
+    </div>
+    <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/about.html">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/architecture.html">Architecture</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/crypto.html">Crypto</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/development.html">Development</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/rust.html">Rust</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/security.html">Security</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/videolan.html">VideoLAN</a>
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  <nav id="sidebar-icon-links">
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/tags.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/search.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+  <p>
+  &copy; 2018.
+  <a href="/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+
+    <main class="container">
+      <header>
+  <h1 class="post-title">PoC: compiling to eBPF from Rust</h1>
+</header>
+<div class="content">
+  <div class="post-meta">
+  <span class="post-date">02 Feb 2018</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        General
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/rust.html">
+          Rust
+        </a>
+      
+    
+  </span>
+</div>
+
+  <div class="post-body">
+    <p>https://twitter.com/gcouprie/status/957332988462882819</p>
+<p>I have been playing with <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/networking/filter.txt" rel="noopener" target="_blank">eBPF (extended Berkeley Packet Filters)</a>, a neat feature present in recent Linux versions (it evolved from the much older BPF filters). It is a virtual machine running in the kernel, to which you can send code from userland, and that code can be used to filter packets or trace parts of the kernel code.</p>
+<p>What makes eBPF really nice is how the kernel handles it. You send a program in bytecode format to the kernel, it then checks it, verifying, for example, that there are no loops, thus guaranteeing that the program will terminate, and it will then apply JIT compilation, making the resulting code quite fast. Even better, that code can be loaded and unloaded at any time through a syscall, and you can set up shared data structures between the eBPF program and your own, to efficiently gather data.</p>
+<p>As an example, you can use eBPF (and the <a href="https://www.iovisor.org/technology/xdp" rel="noopener" target="_blank">XDP - eXpress Data Path -</a> feature) to write very efficient firewalls, or employ <a href="http://www.brendangregg.com/ebpf.html" rel="noopener" target="_blank">BCC (BPF Compiler Collection)</a> to trace a process's IO events.</p>
+<p>I'm looking at how we could use that to trace applications on our infrastructure at <a href="https://www.clever-cloud.com/" rel="noopener" target="_blank">Clever Cloud</a>. There are a few things we should know about the tooling first.</p>
+<p>At the beginning, people wrote their program <a href="https://github.com/systemd/systemd/blob/master/src/core/bpf-firewall.c#L89-L129" rel="noopener" target="_blank">using the bytecode directly</a>:</p>
+<p><code><br />
+/* Compare IPv4 with one word instruction (32bit) <em>/<br />
+struct bpf_insn insn[] = {<br />
+  /</em> If skb-&gt;protocol != ETH_P_IP, skip this whole block. The offset will be set later. */<br />
+  BPF_JMP_IMM(BPF_JNE, BPF_REG_7, htobe16(protocol), 0),</p>
+<p>/*<br />
+   * Call into BPF_FUNC_skb_load_bytes to load the dst/src IP address<br />
+   *<br />
+   * R1: Pointer to the skb<br />
+   * R2: Data offset<br />
+   * R3: Destination buffer on the stack (r10 - 4)<br />
+   * R4: Number of bytes to read (4)<br />
+   */</p>
+<p>BPF_MOV64_REG(BPF_REG_1, BPF_REG_6),<br />
+  BPF_MOV32_IMM(BPF_REG_2, addr_offset),</p>
+<p>BPF_MOV64_REG(BPF_REG_3, BPF_REG_10),<br />
+  BPF_ALU64_IMM(BPF_ADD, BPF_REG_3, -addr_size),</p>
+<p>BPF_MOV32_IMM(BPF_REG_4, addr_size),<br />
+  BPF_RAW_INSN(BPF_JMP | BPF_CALL, 0, 0, 0, BPF_FUNC_skb_load_bytes),</p>
+<p>/*<br />
+   * Call into BPF_FUNC_map_lookup_elem to see if the address matches any entry in the<br />
+   * LPM trie map. For this to work, the prefixlen field of 'struct bpf_lpm_trie_key'<br />
+   * has to be set to the maximum possible value.<br />
+   *<br />
+   * On success, the looked up value is stored in R0. For this application, the actual<br />
+   * value doesn't matter, however; we just set the bit in @verdict in R8 if we found any<br />
+   * matching value.<br />
+   */</p>
+<p>BPF_LD_MAP_FD(BPF_REG_1, map_fd),<br />
+  BPF_MOV64_REG(BPF_REG_2, BPF_REG_10),<br />
+  BPF_ALU64_IMM(BPF_ADD, BPF_REG_2, -addr_size - sizeof(uint32_t)),<br />
+  BPF_ST_MEM(BPF_W, BPF_REG_2, 0, addr_size * 8),</p>
+<p>BPF_RAW_INSN(BPF_JMP | BPF_CALL, 0, 0, 0, BPF_FUNC_map_lookup_elem),<br />
+  BPF_JMP_IMM(BPF_JEQ, BPF_REG_0, 0, 1),<br />
+  BPF_ALU32_IMM(BPF_OR, BPF_REG_8, verdict),<br />
+};<br />
+</code></p>
+<p>This is a bit raw, and somewhat complex to write, so people worked on C to eBPF compilers, and the feature landed in LLVM: we can use clang to write eBPF programs! It will generate the bytecode, that can then be loaded through the <a href="http://man7.org/linux/man-pages/man2/bpf.2.html" rel="noopener" target="_blank">bpf() syscall</a>.</p>
+<p>This is still a bit complex, since the eBPF program might need access to some internal data structures of the kernel, and those change depending on kernel versions and configuration options. And we still need to set up the shared data structures with the userland program that will gather data.</p>
+<p>That's why the <a href="https://github.com/iovisor/bcc" rel="noopener" target="_blank">BCC project</a> provides an easy to use interface to compile and load eBPF programs. They made it so simple that you can write a python script to compile, load and interact with your program:</p>
+<p><code><br />
+from bcc import BPF</p>
+<p>BPF(text='int kprobe__sys_clone(void *ctx) { bpf_trace_printk("Hello, World!&#092;n"); return 0; }').trace_print()<br />
+</code></p>
+<p>They provide a lot of <a href="https://github.com/iovisor/bcc/tree/master/examples" rel="noopener" target="_blank">useful examples</a> and <a href="https://github.com/iovisor/bcc/blob/master/docs/tutorial_bcc_python_developer.md" rel="noopener" target="_blank">a nice tutorial</a> to get started writing eBPF tracers.</p>
+<p>Unfortunately, those tools make a tradeoff that's slightly annoying for me: they require installing BCC, which requires Python, LLVM and the complete Linux sources, on the target machines. It might be possible to precompile the programs though, but it does not look like it's a common use case with BCC.</p>
+<p>So, maybe there's a nice way to precompile those programs, store them as bytecode, then load them with a small agent that does not need LLVM and the kernel sources to work? It turns out it is possible, thanks to the <a href="https://github.com/iovisor/gobpf/" rel="noopener" target="_blank">gobpf project</a>, who <a href="https://github.com/iovisor/gobpf/pull/6/commits/869e637f483f499254d57d443e7aaadad50dce24" rel="noopener" target="_blank">split their ELF loading code</a> from the BCC part a year ago.</p>
+<p>And, now, you'll see where I am going with this. Being one of those annoying Rust developers who want to rewrite everything in their favorite language, I thought "hey, maybe I can Rust that thing too!"</p>
+<p>Since it is possible to compile to eBPF bytecode from C, it is possible to compile LLVM IR (the kind of bytecode LLVM generates from the code before compiling it to the target CPU's assembly) to eBPF. Look for "LLVM IR debugging" in <a href="https://cilium.readthedocs.io/en/latest/bpf/#llvm" rel="noopener" target="_blank">this link</a> for an example. And I know I can compile Rust to that LLVM IR, and everything should work out, as long as Rust's LLVM version is the same as the system's version.</p>
+<p>So I created a small Rust project, and wrote the following build script:</p>
+<p><code><br />
+#!/bin/sh<br />
+cargo rustc --release -- --emit=llvm-ir<br />
+cp target/release/deps/hello-&#042;.ll hello.ll<br />
+cargo rustc --release -- --emit=llvm-bc<br />
+cp target/release/deps/hello-&#042;.bc hello.bc</p>
+<p>llc-4.0 hello.bc -march=bpf -filetype=obj -o hello.o<br />
+</code></p>
+<p>(I generated the ll file to take a look at the IR in text form)</p>
+<p>And now, the code!</p>
+<p>I used the example program from <a href="https://kinvolk.io/blog/2017/09/an-update-on-gobpf---elf-loading-uprobes-more-program-types/" rel="noopener" target="_blank">this blog post</a> as inspiration, and came up with this:</p>
+<p><code><br />
+use std::mem::transmute;<br />
+use std::ffi::CStr;</p>
+<p>#[no_mangle]<br />
+#[link_section = "license"]<br />
+pub static _license: [u8; 4] = [71u8, 80, 76, 0]; //b"GPL\0"<br />
+#[no_mangle]<br />
+#[link_section = "version"]<br />
+pub static _version: u32 = 0xFFFFFFFE;</p>
+<p>#[no_mangle]<br />
+#[link_section = "kprobe/SyS_clone"]<br />
+pub extern "C" fn kprobe__sys_clone(ctx: *mut u8) -&gt; i32 {<br />
+  let BPF_FUNC_trace_printk = unsafe {<br />
+    transmute:: i32&gt;(6)<br />
+  };</p>
+<p>let msg: [u8; 17] = [104u8, 101, 108, 108, 111, 32, 102, 114, 111, 109, 32, 114, 117, 115, 116, 10, 0]; //b"hello from Rust\0"<br />
+  BPF_FUNC_trace_printk((&amp;msg).as_ptr(), 17);</p>
+<p>return 0;<br />
+}<br />
+</code></p>
+<p>Firs, the constants are in their own ELF section, this is expected by gobpf's elf loader. Apparently, I cannot write <code>pub static _license: &amp;amp;'static [u8] = b"GPL\0"</code>, because the <code>_license</code> symbol would then be a relocation of the actual string.</p>
+<p><code><br />
+#[no_mangle]<br />
+#[link_section = "license"]<br />
+pub static _license: [u8; 4] = [71u8, 80, 76, 0];//b"GPL\0";<br />
+#[no_mangle]<br />
+#[link_section = "version"]<br />
+pub static _version: u32 = 0xFFFFFFFE;<br />
+</code></p>
+<p>Now, the function: gobpf expects a section with the name of the function we will try to hook later.</p>
+<p><code><br />
+#[no_mangle]<br />
+#[link_section = "kprobe/SyS_clone"]<br />
+pub extern "C" fn kprobe__sys_clone(ctx: *mut u8) -&gt; i32 {<br />
+</code></p>
+<p>Now we might need to import functions. They are <a href="http://elixir.free-electrons.com/linux/v4.7/source/include/uapi/linux/bpf.h#L153" rel="noopener" target="_blank">defined in a C enum</a>, but interpreted as function pointers. So calling the printk function from there amounts writing the instruction <code>call 6</code>.<br />
+So we transmute the number <code>6</code> into a function. I know, ewww, but it works :D</p>
+<p><code><br />
+let BPF_FUNC_trace_printk = unsafe {<br />
+  transmute:: i32&gt;(6)<br />
+};<br />
+</code></p>
+<p>And now, the last part, actually printing something. To avoid the previous issue of a constant string appearing as a relocated symbol on which gobpf will throw an error, I defined it as a local constant, then called <code>BPF_FUNC_trace_printk</code> on it. That should be harmless, right?</p>
+<p><code><br />
+let msg: [u8; 17] = [104u8, 101, 108, 108, 111, 32, 102, 114, 111, 109, 32, 114, 117, 115, 116, 10, 0]; //b"hello from Rust\0"<br />
+BPF_FUNC_trace_printk((&amp;msg).as_ptr(), 17);<br />
+</code></p>
+<p>So now, let's take a look at the generated LLVM IR (the ll file):</p>
+<p><code><br />
+; ModuleID = 'hello0-b4990b5a434d0f01306c6e79c17f427.rs'<br />
+source_filename = "hello0-b4990b5a434d0f01306c6e79c17f427.rs"<br />
+target datalayout = "e-m:e-i64:64-f80:128-n8:16:32:64-S128"<br />
+target triple = "x86_64-unknown-linux-gnu"</p>
+<p>@_license = local_unnamed_addr constant [4 x i8] c"GPL\00", section "license", align 1<br />
+@_version = local_unnamed_addr constant i32 -2, section "version", align 4</p>
+<p>; Function Attrs: nounwind uwtable<br />
+define i32 @kprobe__sys_clone(i8* nocapture readnone %ctx) unnamed_addr #0 section "kprobe/SyS_clone" {<br />
+start:<br />
+  %msg = alloca [17 x i8], align 16<br />
+  %0 = getelementptr inbounds [17 x i8], [17 x i8]* %msg, i64 0, i64 0<br />
+  call void @llvm.lifetime.start(i64 17, i8* nonnull %0)<br />
+  %1 = bitcast [17 x i8]* %msg to *<br />
+  store  , * %1, align 16<br />
+  %2 = getelementptr inbounds [17 x i8], [17 x i8]* %msg, i64 0, i64 16<br />
+  store i8 0, i8* %2, align 16<br />
+  %3 = call i32 (i8*, i64, ...) inttoptr (i64 6 to i32 (i8*, i64, ...)<em>)(i8</em> nonnull %0, i64 17) #2<br />
+  call void @llvm.lifetime.end(i64 17, i8* nonnull %0)<br />
+  ret i32 0<br />
+}</p>
+<p>; Function Attrs: argmemonly nounwind<br />
+declare void @llvm.lifetime.start(i64, i8* nocapture) #1</p>
+<p>; Function Attrs: argmemonly nounwind<br />
+declare void @llvm.lifetime.end(i64, i8* nocapture) #1</p>
+<p>attributes #0 = { nounwind uwtable "probe-stack"="__rust_probestack" }<br />
+attributes #1 = { argmemonly nounwind }<br />
+attributes #2 = { nounwind }<br />
+</code></p>
+<p>So, it generates the correct symbols and sections for <code>_license</code> and <code>_version</code>. It apparently generates a big store instruction for the string we'll print. And the function call looks like this <code>call i32 (i8*, i64, ...) inttoptr (i64 6 to i32 (i8*, i64, ...)*)(i8* nonnull %0, i64 17)</code> where we cast 6 to a function pointer: <code>inttoptr (i64 6 to i32 (i8*, i64, ...)*)</code>.</p>
+<p>So that should generate correct BPF bytecode, right? Let's check that with the command <code>llvm-objdump-4.0 -S hello.o</code>:</p>
+<p><code><br />
+hello.o:    file format ELF64-BPF</p>
+<p>Disassembly of section kprobe/SyS_clone:<br />
+kprobe__sys_clone:<br />
+       0:   b7 01 00 00 0a 00 00 00     r1 = 10<br />
+       1:   73 1a ef ff 00 00 00 00     *(u8 *)(r10 - 17) = r1<br />
+       2:   b7 01 00 00 74 00 00 00     r1 = 116<br />
+       3:   73 1a ee ff 00 00 00 00     *(u8 *)(r10 - 18) = r1<br />
+       4:   b7 01 00 00 73 00 00 00     r1 = 115<br />
+       5:   73 1a ed ff 00 00 00 00     *(u8 *)(r10 - 19) = r1<br />
+       6:   b7 01 00 00 75 00 00 00     r1 = 117<br />
+       7:   73 1a ec ff 00 00 00 00     *(u8 *)(r10 - 20) = r1<br />
+       8:   b7 01 00 00 6d 00 00 00     r1 = 109<br />
+       9:   73 1a e9 ff 00 00 00 00     *(u8 *)(r10 - 23) = r1<br />
+      10:   b7 01 00 00 72 00 00 00     r1 = 114<br />
+      11:   73 1a eb ff 00 00 00 00     *(u8 *)(r10 - 21) = r1<br />
+      12:   73 1a e7 ff 00 00 00 00     *(u8 *)(r10 - 25) = r1<br />
+      13:   b7 01 00 00 66 00 00 00     r1 = 102<br />
+      14:   73 1a e6 ff 00 00 00 00     *(u8 *)(r10 - 26) = r1<br />
+      15:   b7 01 00 00 20 00 00 00     r1 = 32<br />
+      16:   73 1a ea ff 00 00 00 00     *(u8 *)(r10 - 22) = r1<br />
+      17:   73 1a e5 ff 00 00 00 00     *(u8 *)(r10 - 27) = r1<br />
+      18:   b7 01 00 00 6f 00 00 00     r1 = 111<br />
+      19:   73 1a e8 ff 00 00 00 00     *(u8 *)(r10 - 24) = r1<br />
+      20:   73 1a e4 ff 00 00 00 00     *(u8 *)(r10 - 28) = r1<br />
+      21:   b7 01 00 00 6c 00 00 00     r1 = 108<br />
+      22:   73 1a e3 ff 00 00 00 00     *(u8 *)(r10 - 29) = r1<br />
+      23:   73 1a e2 ff 00 00 00 00     *(u8 *)(r10 - 30) = r1<br />
+      24:   b7 01 00 00 65 00 00 00     r1 = 101<br />
+      25:   73 1a e1 ff 00 00 00 00     *(u8 *)(r10 - 31) = r1<br />
+      26:   b7 01 00 00 68 00 00 00     r1 = 104<br />
+      27:   73 1a e0 ff 00 00 00 00     *(u8 *)(r10 - 32) = r1<br />
+      28:   b7 01 00 00 00 00 00 00     r1 = 0<br />
+      29:   73 1a f0 ff 00 00 00 00     *(u8 *)(r10 - 16) = r1<br />
+      30:   bf a1 00 00 00 00 00 00     r1 = r10<br />
+      31:   07 01 00 00 e0 ff ff ff     r1 += -32<br />
+      32:   b7 02 00 00 11 00 00 00     r2 = 17<br />
+      33:   85 00 00 00 06 00 00 00     call 6<br />
+      34:   b7 00 00 00 00 00 00 00     r0 = 0<br />
+      35:   95 00 00 00 00 00 00 00     exit<br />
+</code></p>
+<p>So, the lines 0 to 29 are there to load our string (instead of pointing to a constant somewhere). The expected <code>call 6</code> instruction is on line 33!</p>
+<p>To load that program, we can now use <a href="https://kinvolk.io/blog/2017/09/an-update-on-gobpf---elf-loading-uprobes-more-program-types/" rel="noopener" target="_blank">the example Go program from the blog post</a> (slightly modified to accept a program name as argument): <code>sudo ./bpf-load hello.o</code>. The eBPF program will the hook the <code>sys_clone</code> function and print a hello every time it is called. You can see the trace with the command <code>sudo cat /sys/kernel/debug/tracing/trace_pipe</code>.</p>
+<p>And now you can be a happy Rust developer like me because again, you put some Rust where you were not supposed to!</p>
+<p>https://twitter.com/gcouprie/status/951526092279607297</p>
+<p>Now, this is a small hack. To make it more useful, here is what we would need:</p>
+<ul>
+<li>a small library to import BPF functions instead of transmuting the number every time</li>
+<li>that small library should also have a nice way to interact with BPF maps to transmit data to userland</li>
+<li>a userland library (in Rust, of course) that can set up maps and load eBPF programs. I should mention here that Julia Evans is currently working on a port of gobpf's BCC part in Rust <a href="https://github.com/jvns/ruby-mem-watcher-demo/blob/master/src/bin/bpf.rs" rel="noopener" target="_blank">for a Ruby profiling tool</a>! The ELF part might not be too far :)</li>
+</ul>
+<p>That's all, I'll post more once I get more useful code working!</p>
+<p>PS/ if you want to learn more about BPF, <a href="https://qmonnet.github.io/whirl-offload/2016/09/01/dive-into-bpf/" rel="noopener" target="_blank">read this great list</a>!</p>
+
+    
+
+
+
+<div class="post-tags">
+  
+</div>
+  </div>
+
+  
+<!--  <section class="comments">
+    <h2>Comments</h2>
+  </section>
+-->
+
+
+  <section class="related">
+  <h2>Related Posts</h2>
+  <ul class="posts-list">
+    
+      <li>
+        <h3>
+          <a href="/rust/2018/01/10/rust-2018-maybe-dont-be-too-stable.html">
+            Rust 2018: maybe don't be too stable
+            <small>10 Jan 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/general/2017/08/23/adventures-in-logging.html">
+            Adventures in logging
+            <small>23 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/general/rust/2017/07/12/how-to-rewrite-you-project-in-rust.html">
+            How to rewrite your project in Rust
+            <small>12 Jul 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</section>
+
+</div>
+
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>

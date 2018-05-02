@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      Handling IO failure &middot; Unhandled Expression
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="post">
+
+    <div id="sidebar">
+  <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
+    <div class="site-title">
+      <a href="/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Unhandled Expression
+      </a>
+    </div>
+    <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/about.html">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/architecture.html">Architecture</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/crypto.html">Crypto</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/development.html">Development</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/rust.html">Rust</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/security.html">Security</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/videolan.html">VideoLAN</a>
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  <nav id="sidebar-icon-links">
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/tags.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/search.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+  <p>
+  &copy; 2018.
+  <a href="/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+
+    <main class="container">
+      <header>
+  <h1 class="post-title">Handling IO failure</h1>
+</header>
+<div class="content">
+  <div class="post-meta">
+  <span class="post-date">18 Nov 2013</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/development.html">
+          Development
+        </a>
+      
+    
+  </span>
+</div>
+
+  <div class="post-body">
+    <p>Let's talk a bit about IO programming. Filesystem, network, GUI... You cannot write useful code without doing IO these days. So why is it so damn hard to do in "safe" languages like Haskell?</p>
+<p>Well, in Haskell, you isolate the unsafe parts to be able to reason safely on the rest of the code. What does "unsafe" mean in that context? Mostly, unsafe code is unpredictable, non deterministic and will fail for a number of reasons independent from your program's code.</p>
+<p>Surely, you might think "come on, it cannot be that hard, I'm doing HTTP requests everywhere in my code, and there is no problem". Well, let's see how a simple HTTPS request could fail:</p>
+<ul>
+<li>you are disconnected from the network (you have no IP)</li>
+<li>you are connected to the network, but it is not connected to anything</li>
+<li>your network is connected to Internet, but routers are dropping packets</li>
+<li>your network is connected to Internet, but very slow</li>
+<li>your DNS server is unreachable</li>
+<li>your DNS server drops your packets</li>
+<li>your DNS server cannot parse your request</li>
+<li>your DNS server cannot contact other server to get your answer</li>
+<li>your DNS server sends back an invalid response</li>
+<li>your DNS server sends back an outdated response</li>
+<li>you cannot reach the web server's IP from your network</li>
+<li>the web server drops your packets silently before connecting</li>
+<li>the web server connects, then drops the connection silently</li>
+<li>the web server rejects your connection</li>
+<li>the web server cannot parse your packets, and so, rejects them</li>
+<li>the web server timeouts</li>
+<li>the server's certificate is expired</li>
+<li>the server's certificate is not for the right subject name</li>
+<li>the server's certification chain has parts missing</li>
+<li>the server's certification chain has an unknown root</li>
+<li>the server's certificate was revoked</li>
+<li>the packet's signatures are invalid</li>
+<li>your user agent and the server do not support the same versions of TLS</li>
+<li>your user agent and the server do not have common cipher suites</li>
+<li>the web server closes the connection without warning</li>
+<li>the web server timeouts</li>
+<li>the web server crashes</li>
+<li>the web server cannot parse your HTTP request and rejects it</li>
+<li>your request is too large</li>
+<li>the web server parses your HTTP request correctly, but your cookie or OAuth token is invalid</li>
+<li>the data you requested does not exist</li>
+<li>the data you requested is elsewhere</li>
+<li>your user agent does not support the mime type of the data</li>
+<li>the data requested is too large for a simple response</li>
+<li>the server only sends a part of the data, then drops the connection</li>
+<li>your user agent cannot parse the response</li>
+<li>your user agent can parse the data, but some way or another, it is invalid</li>
+</ul>
+<p>If you have worked for some time with networks, all of those have probably happened to you at some point (and the list is not nearly exhaustive). What did you do in your code? Did you handle all these exceptions? Did you catch all the exceptions (see what I did there)? Do you check for all the error codes? Do you retry the requests where you need to?</p>
+<p>Let's face it: most of the network handling code out there is made of big chunks of procedural code, without much error handling, in blocking mode. In most cases, it is ok. But that is sloppy programming.</p>
+<p>Safe languages do not allow you to write sloppy code like that. So, we are stuck between correct but overly complex code, and simple but failing code. Choose your weapons.</p>
+<p>Personally, I prefer isolating unsafe code in asynchronous systems like futures or actors. I know failure will happen, I know threads will crash, I know I will make errors in my code. That is ok, it happens. So, let's write robust code to handle failure.</p>
+<p>For network errors, I just want to know if the server is unreachable. It is ok, I will try later. If my request's authentication is rejected, I want to know, and must handle that failure. Some errors should be handled seriously, others must be put in the "ok, it failed, whatever" bin.</p>
+<p>Even if languages like Haskell make it harder to perform IO safely, they are still good tools, because they let you isolate unsafe parts, to let you reason on safe, deterministic parts of the program.</p>
+<p><strong>P.S.</strong>: ok, the network case was maybe a bit too much. Surely, filesystem usage will be easier? Just for the fun, let's list some possible failures when you want to open a file for reading and writing:</p>
+<ul>
+<li>invalid path</li>
+<li>correct path, but you do not have the permission</li>
+<li>correct path, you have the permission, but the file does not exists</li>
+<li>you do not have the permission to create the file</li>
+<li>you check that the file does not exists, then you try to create it, but someone already created it in the meantime (fun security bug, that one)</li>
+<li>the file exists, but someone is already writing on it, no concurrent access</li>
+<li>you have the handle you want on the file, but someone just deleted it</li>
+<li>not enough file descriptors available (oh, please, no)</li>
+<li>someone is writing to the file at the same time</li>
+<li>there are so many page faults that your program is slowed down</li>
+<li>the disk is slow, blocking on a large operation</li>
+<li>the disk is full</li>
+<li>you checked that you have enough room, but someone is filling the disk at the same time</li>
+<li>the file is on a networked file system, and it is slow</li>
+<li>the file is on a remote disk, and the network just failed</li>
+<li>hardware failure in the disk</li>
+<li>hardware failure in the RAID array (and for some reason, redundancy was not enough, you lost the data)</li>
+<li>the file is on a USB card that someone just unplugged</li>
+</ul>
+<p>Basically, IO is a nightmare. Please wake me up now.</p>
+
+    
+
+
+
+<div class="post-tags">
+  
+</div>
+  </div>
+
+  
+<!--  <section class="comments">
+    <h2>Comments</h2>
+  </section>
+-->
+
+
+  <section class="related">
+  <h2>Related Posts</h2>
+  <ul class="posts-list">
+    
+      <li>
+        <h3>
+          <a href="/general/rust/2018/02/02/poc-compiling-to-ebpf-from-rust.html">
+            PoC: compiling to eBPF from Rust
+            <small>02 Feb 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/rust/2018/01/10/rust-2018-maybe-dont-be-too-stable.html">
+            Rust 2018: maybe don't be too stable
+            <small>10 Jan 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/general/2017/08/23/adventures-in-logging.html">
+            Adventures in logging
+            <small>23 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</section>
+
+</div>
+
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>

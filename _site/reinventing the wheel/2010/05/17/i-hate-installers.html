@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      I hate installers &middot; Unhandled Expression
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="post">
+
+    <div id="sidebar">
+  <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
+    <div class="site-title">
+      <a href="/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Unhandled Expression
+      </a>
+    </div>
+    <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/about.html">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/architecture.html">Architecture</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/crypto.html">Crypto</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/development.html">Development</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/rust.html">Rust</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/security.html">Security</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/videolan.html">VideoLAN</a>
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  <nav id="sidebar-icon-links">
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/tags.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/search.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+  <p>
+  &copy; 2018.
+  <a href="/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+
+    <main class="container">
+      <header>
+  <h1 class="post-title">I hate installers</h1>
+</header>
+<div class="content">
+  <div class="post-meta">
+  <span class="post-date">17 May 2010</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        Reinventing the wheel
+      
+    
+  </span>
+</div>
+
+  <div class="post-body">
+    <p>And I'm pretty sure a lot of people will agree with me. They're an usability nightmare. They still look the same since Windows 95 (I think it's even older than that, but thankfully, I'm too young to have known previous versions). The *click next* *click next* *click next* *click Finish* ugly grey thing is driving me crazy.</p>
+<p>So, how can we improve user experience on installation? First, let's recall the classic installation process.</p>
+<h1>The (ugly) state of the art</h1>
+<p>Someone tells you about this amazing new software that you just have to try. Or you just know you need it to get your work done. So, you google it a little (for the ones that are still stuck in the 20th century, you buy a pack of CDs in a shop), you quickly find the editor's website. It's a shiny website full of marketing tricks to persuade you that you want to download it. Or it's Sourceforge. Whatever, you find a way to download it.</p>
+<p>That was the easy part. You're already bored and looking at pictures of kittens, because the download took a long time. But you really want to install the software, so you start the installer. And the nightmare begins.</p>
+<ol>
+<li>First, the UAC prompt (for those of us that use Vista/2008/7). It tells me that the installer needs admin rights, and that this piece of software has no verified publisher. Whatever, let's just click ok.</li>
+<li>Before launching the real installer, the file I just downloaded uncompresses and starts another installer.</li>
+<li> First window, asking me which language I want to use. Click next.</li>
+<li>A window asking me to agree to a reaaaaaaaally long piece of US <span style="text-decoration:line-through;">piece of sh</span>legal text. Click next.</li>
+<li>A window asking me if I want a simple, advanced or custom installation. Click simple then next.</li>
+<li>A window asking me (it really asks a lot, can't it figure it out without my help?) where I want to put my software.</li>
+<li>Now, if I'm lucky, the "next" button has been replaced by "install". Or there's yet another window to sum up my installation settings. Click install.</li>
+<li>Yay, it's the revival of DOS for Windows users. I see a lot of file names scroll on the window, too fast for me to read their names (I don't really care anyway).</li>
+<li>Is it done yet? No, now it asks me if I want to put the a shortcut in the quicklaunch bar, or on the desktop. Sometimes, it will even ask me if I want to launch this application on startup. Click next.</li>
+<li>If I'm really lucky, I go to the next step directly. If I'm not, it wants me to update my DirectX version, or to install the new wonderful browser bar that I really need (go back to step 3).</li>
+<li>\o/ the last screen. Asking me to choose yet another thing: do I want to read the README.txt file? Do I want to go to your website? Do I want to launch the program right away?</li>
+<li>Well, in fact, I didn't go up to this step. I died of boredom long ago.</li>
+</ol>
+<p>And this is what I have seen for the past 15 years (well, I didn't include all the weird installation errors that I have seen). So much for innovating and improving the life of the users. The first interaction people have with software done by your company is the installer. For me, that means a lot. If they're too lazy to get this right, I'm probably to lazy to try their software.</p>
+<p>Now, let's go back to the interesting question: <strong>how can we improve the user experience of installers?</strong></p>
+<h1><strong>The (easy) critics<br />
+</strong></h1>
+<p>I would like to say "install a Linux, use a package manager and let's roll" (yes, I KNOW you thought of it), but since <a href="http://coapp.org/">the CoApp  project</a> isn't ready yet, we will have to find another way to please Windows users.</p>
+<p>Let's go point by point:</p>
+<ol>
+<li>About the UAC, I can't force you to buy a code signing certificate. But if you can afford it (between $90 and $300 a year), it can make your software look a lot more professionnal. And you can use your WinQual account, which is really nice.</li>
+<li>Why would you uncompress a lot of files right now? Is your installer a Java ERP? No? Then, only uncompress the files when I ask you to install them.</li>
+<li>For this one, I have mixed feelings. The default setting shouldn't be English, but the detected language of the OS (come on, it's not that hard to do). One thing you have to get right: if you ask for a language, it's not only the language used in the installer, but it will be the language used in the installed software. I shouldn't have to choose the language two times.</li>
+<li>For the EULA, I don't really know what I can do, as I am not a lawyer. But I'm not really sure that a legal agreement written in english and referring to US law complies to my country's laws.</li>
+<li>This one is obvious. How many of your users will need the advanced settings? yes, the whining 0,1%. The other 99,9% will just use simple anyway, so why would you ask them to choose? And what options could be so important that you need to treat them as advanced?</li>
+<li>OK, this one is easy. Most people will not even choose another installation folder. One thing that I would really love (but there, it's a matter of taste): don't use a path like c:\Program Files\MyCompany\MySoftware, but c:\Program Files\MySoftware. People install a software, not an advertisement for your company. And not finding your installation folder later because you've hidden it deep under a meaningless folder name is definitely not nice.</li>
+<li>Oh, my installation settings. Think about it. If I'm a dumb user just wanting to install quickly, I don't care about these. And if I care about my installation settings, I know exactly what I chose. So this one is useless.</li>
+<li>OK, the scrolling list of files. I know it's useful if you're debugging your installer. It's useless for me. Just put a pretty progress bar. If you really want to display things, instead of writing "uncompressing pouet1.png, copying pouet1.png, uncompressing pouet2.png, copying pouet2.png", write "installing shiny new themes".</li>
+<li>I have mixed feelings about this one. I would say: let the user choose for the desktop shortcut, don't ask for a quicklaunch icon (the user will know how to drag and drop the desktop shortcut on the bar), and definitely don't ask to launch at startup. Be a responsible developer, don't waste CPU cycles, and save the planet.</li>
+<li> For DirectX, do whatever you want. I would prefer that you warn me about the update before I get to step 8. For the adware bar, just stop it. If you want to make money with your software, just sell it. But if you really don't care about user experience, go ahead and install spyware on your user's computers. I'm sure they will love that.</li>
+<li>Do you really think people will read some quickly written presentation of your software in Notepad? No. Do I want to go to your website? Seriously, that's where I downloaded the installer. While I'm at it, I'm trying to find some documentation on your website, but there's nothing useful there. Do I want to launch your application? This one makes me laugh. What will happen if I click yes? In 90% of the installers, it will launch the application. With Administrator's rights. Seriously, isn't that obvious? So, two possible fixes: learn to drop the rights of a Windows app, or don't even launch the application at install time.</li>
+</ol>
+<h1>The (really easy) fix</h1>
+<p>Well, that doesn't look so hard to do, right?  I'll sum up my ideal installer's behaviour:</p>
+<ol>
+<li>Sign your installer with a code signing certificate recognized by Windows (you can leave that part if you have no money).</li>
+<li>Start immediatly with a good looking screen, showing the logo or a good picture of your software, and in small in a corner, the logo of your company. And a well written presentation of your application. If the installer will install other applications, warn the user there. You should have detected the language of the user befor launching. Provide a droplist to change the language on this screen, but put it out of the way (like, in the bottom left of the window).</li>
+<li>Next, the EULA. If you find a way to get rid of it (maybe put the agreement on the website, wher it's easier to read), or to simplify it, do it.</li>
+<li>Put all the installation options on the next screen. Only show the ones the user really needs to look at. Add an "advanced settings" button, and again, put it out of the way. You have the permission to use a good looking effect to switch from simple to advanced view and vice versa. By installation options, I mean the install folder, the desktop shortcut, the eventual plugins, etc. Don't forget to show the disk space needed for installation. The next button should now be an install button.</li>
+<li>Use a good looking progress bar, and meaningful log messages. Maybe provide an error logfile somewhere if something went wrong. You can show some good marketing messages and pictures there. I don't guarantee that people will look at them, but if they're waiting, try to prevent the boredom from showing up.</li>
+<li>The last screen, yes! If you really don't want to listen to my advice, at least remember to drop the admin rights before launching the application. Instead of asking if the user wants to see the README, provide links to the documentation (on the disk, or on your website), tutorials, screencasts.</li>
+</ol>
+<p>And now, that's an installer I would like to see: 5 screens, 5 clicks in the best case, no useless clicks in the worst case. Quick and easy. Don't hesitate to add some eye candy. Anything can look better than those grey installers we're used to.</p>
+<p>Oh, and a last thing, which will content a totally different sort of users: please, please, provide a silent installation, with all the options accessible from command line. the system administrators will love you.</p>
+
+    
+
+
+
+<div class="post-tags">
+  
+    
+    <a href="/tags.html#installer">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">installer</span>
+    </a>
+  
+    
+    <a href="/tags.html#rant">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">rant</span>
+    </a>
+  
+    
+    <a href="/tags.html#windows">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">windows</span>
+    </a>
+  
+</div>
+  </div>
+
+  
+<!--  <section class="comments">
+    <h2>Comments</h2>
+  </section>
+-->
+
+
+  <section class="related">
+  <h2>Related Posts</h2>
+  <ul class="posts-list">
+    
+      <li>
+        <h3>
+          <a href="/general/rust/2018/02/02/poc-compiling-to-ebpf-from-rust.html">
+            PoC: compiling to eBPF from Rust
+            <small>02 Feb 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/rust/2018/01/10/rust-2018-maybe-dont-be-too-stable.html">
+            Rust 2018: maybe don't be too stable
+            <small>10 Jan 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/general/2017/08/23/adventures-in-logging.html">
+            Adventures in logging
+            <small>23 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</section>
+
+</div>
+
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>

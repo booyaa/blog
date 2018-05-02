@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      A world without certificate authorities &middot; Unhandled Expression
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="post">
+
+    <div id="sidebar">
+  <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
+    <div class="site-title">
+      <a href="/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Unhandled Expression
+      </a>
+    </div>
+    <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/about.html">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/architecture.html">Architecture</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/crypto.html">Crypto</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/development.html">Development</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/rust.html">Rust</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/security.html">Security</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/videolan.html">VideoLAN</a>
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  <nav id="sidebar-icon-links">
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/tags.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/search.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+  <p>
+  &copy; 2018.
+  <a href="/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+
+    <main class="container">
+      <header>
+  <h1 class="post-title">A world without certificate authorities</h1>
+</header>
+<div class="content">
+  <div class="post-meta">
+  <span class="post-date">21 Jul 2014</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        General
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+  <div class="post-body">
+    <p><img class="aligncenter size-full wp-image-779" src="/assets/14156305171_d2c0a5e9bc_b.jpg" alt="love locks" width="525" height="525" /><br />
+When networks began to expand and people saw the need for secure communication, they designed complex systems based on public key cryptography, that worked more or less. Problem: how do you trust that the key a server sent you is the right one? How can you make sure that it is not somebody else trying to impersonate that website?</p>
+<p>Multiple solutions were proposed, and the most promising was a public directory of domain names and associated public keys, maintained by a peer to peer network named KeyCoin. It looked better than so called Web Of Trust solutions, because everybody could agree on what was the correct key for a given domain. As long as nobody hold 51% of the network, no change could happen without being validated by a lot of different peers. The network was maintained by 10000 enthusiast system administrators who took their task very seriously (after all, the security of the whole system depended on their honesty), and nobody had enough computing power to take over the network.</p>
+<p>After a while, people began using the system, since it was directly integrated in their browsers, but they did not want to run a node on the network themselves. It was too bothersome, and they could trust the administrators. Also, they had to ask one of them to make a change everytime. The whole process was a bit artisanal.</p>
+<p>In the meantime, some people demonstrated the 51% attack on networks of reduced size, and that worried people. They wanted a safe system, one that was not only relying on those sysadmins that could do anything. Who were they anyway? Running that system was still too complex for non technical too run it themselves anyway, so they did not worry enough. But some governments found that rewriting the truth of name/key matching was interesting. Maybe to catch pedophiles, terrorists, criminals. Or maybe to censor websites, I do not know, they told me it was for my own good.</p>
+<p>Some smart person found a good solution: if controlling the whole system necessitated owning 51% of the system, the easiest way was to have a lot of machines, enough to counteract the sysadmins. That did not seem risky when people designed the system. Nobody could have enough computing power to take over the whole network, and there would be even more nodes every day.</p>
+<p>Yet, that person got enough funding to install tens of thousands of machines and make them join the network. They even provided a nice enough interface for people and businesses to input their domain name and public key, as long as they paid some fees. The sysadmins welcomed him at first, since money coming in the system validated their ideas. Atfer a while, they started worrying, since none of them could keep up with the computing power, but that company asssured them it would never attain 51% of the network.</p>
+<p>Other companies jumped on the bandwagon and started to profit from that new business opportunity. Governments started their own server farms to participate too. Problem: now that everybody (except the sysadmins) had a lot of computing power, nobody had enough to control the network entirely.</p>
+<p>So they started making alliances. If a few major players work as a team, they can do whatever they want on the network. If one of them decided to try and replace a key on the ledger, others could help it. Of course, once they begun doing that, others wanted to participate. So they created a few rules to join their club. First, you needed to have enough machines. That was a good rule, because that made a big barrier to entry. You could not start as a small player. The other rules? You had to submit to an audit, performed by the other players. Yet another barrier to entry. And once they deemed you acceptable, you had to follow the requests of governments, which were arbitrarily refusing candidates.</p>
+<p>Even with the big barriers to entry, a few hundred players came up, often backed by governments. Of course, all ended up in the same team, doing whatever they wanted, as long as nobody was complaining, because anytime one of them had something shady to do, all of them followed automatically.</p>
+<p>Since building those big companies required money, they made their clients pay more and more, and to make it easier to accept, provided "premium" options where they show they trust you more, since they took the time to phone your company and ask a few questions.</p>
+<p>Some found that big system too centralized, too obedient to states, and decided to fork it. There are separate public ledgers, but they do not come directly embedded in browsers, you need to integrate them yourself, and that's bothersome. Also, most of those networks have a few hundred nodes at best.</p>
+<p>From a nice, decentralized, home made system, we ended up with a centralized system controlled by corporations and governments.</p>
+<p>Now let me tell you about that system I designed. It is based on a concept named certificate, a cryptographically signed file that links the public key to a domain name. Now here's the catch: a certificate represents a key, and is signed by another key, which is represented by another certificate, and so on and so forth until a certificate that signs itself. That system is good, because you just have to embed the root certificate that your friends gives you, and you'll be able to verify the key of his websites, even if those keys change. And this, without even asking the public ledger, so that is a truly decentralized and more anonymous system! Nothing could go wrong with that, right?</p>
+
+    
+
+
+
+<div class="post-tags">
+  
+    
+    <a href="/tags.html#cryptography">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">cryptography</span>
+    </a>
+  
+    
+    <a href="/tags.html#story">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">story</span>
+    </a>
+  
+</div>
+  </div>
+
+  
+<!--  <section class="comments">
+    <h2>Comments</h2>
+  </section>
+-->
+
+
+  <section class="related">
+  <h2>Related Posts</h2>
+  <ul class="posts-list">
+    
+      <li>
+        <h3>
+          <a href="/general/rust/2018/02/02/poc-compiling-to-ebpf-from-rust.html">
+            PoC: compiling to eBPF from Rust
+            <small>02 Feb 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/rust/2018/01/10/rust-2018-maybe-dont-be-too-stable.html">
+            Rust 2018: maybe don't be too stable
+            <small>10 Jan 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/general/2017/08/23/adventures-in-logging.html">
+            Adventures in logging
+            <small>23 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</section>
+
+</div>
+
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      Manage your libraries with symlinks on Windows &middot; Unhandled Expression
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="post">
+
+    <div id="sidebar">
+  <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
+    <div class="site-title">
+      <a href="/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Unhandled Expression
+      </a>
+    </div>
+    <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/about.html">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/architecture.html">Architecture</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/crypto.html">Crypto</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/development.html">Development</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/rust.html">Rust</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/security.html">Security</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/videolan.html">VideoLAN</a>
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  <nav id="sidebar-icon-links">
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/tags.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/search.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+  <p>
+  &copy; 2018.
+  <a href="/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+
+    <main class="container">
+      <header>
+  <h1 class="post-title">Manage your libraries with symlinks on Windows</h1>
+</header>
+<div class="content">
+  <div class="post-meta">
+  <span class="post-date">16 Aug 2011</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/development.html">
+          Development
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        Reinventing the wheel
+      
+    
+  </span>
+</div>
+
+  <div class="post-body">
+    <p>My Windows development environment is a bit complex. I work on multiple projects, at multiple versions, with different compiler environments, and with dependencies on different libraries and versions of these libraries.</p>
+<p>Now, how do I specify where the compiler must search the libraries, and which version to use? Most of the time, I will add it directly in the project configuration. Easy at first, but quickly,I find myself writing by hand the path to each library (and header) in each project and each configuration of this project. And then, writing by hand the different names of the libraries (mylibrary.lib, mylibraryd.lib, mylibrary-static.lib, mylibrary-MTD.lib, etc).</p>
+<p>And when I want to update to a new version of the library? If I'm lucky, I just have to change the library and header paths (in every project using the library). If not, I also have to change the name, because of the library developer's convention.</p>
+<p>The first solution to these problems was to use a batch file to launch Visual Studio and MSYS, and set some environment variables in this file. I quickly ended up with one big file containing two environment variables (include path and lib path) per library, possibly more if there were some big changes in the library names. My Visual Studio configuration was cluttered with $(MYLIBRARY_LIBPATH), $(MYLIBRARY_INCLUDEPATH), $(MYLIBRARY_NAME). It is unreadable, and again, impossible to maintain.</p>
+<p>My solution comes from the Unix world, where you have a correct organization for your development files:</p>
+<ul>
+<li>one folder containing the subfolders include, bin and lib</li>
+<li>library names including version, and a symlink (without the version number) to the latest version of the lib</li>
+</ul>
+<p>Can I do that on Windows? YES \o/</p>
+<p><strong>Here is the trick</strong>: normal links on Windows won't work, but the <em>mklink </em>tool can create symlinks. And Visual Studio will recognize those as files and folders while looking for libraries.</p>
+<p>Now, how would I organize my development environment? I chose to use (and abuse) symlinks, to create include, lib and bin folders for each project and configuration, and use generic names for the libraries.</p>
+<ul>
+<li>I create a folder containing include, lib and bin</li>
+<li>in the  include/ folder, I put symlinks to the header file or the subfolder for each library I will use in that project</li>
+<li>in the lib directory, I create symlinks to the library version I want, one symlink per static/dynamic, MT/MD, Debug/Release version. But I could create one lib folder per static/dynamic, etc. A bit complex, but feasible (most of the time, I use only debug and release version, so it's still manageable).</li>
+</ul>
+<p>With this setup, I only set the INCLUDE and LIB environment variables, and I use directly the library names I need.</p>
+<p>Here is an example script I use to create different library folders for x86 and x64 libs:</p>
+<p>[sourcecode language="text"]<br />
+echo &quot;Building include and library directories for Windows %PLATFORM%&quot;</p>
+<p>@mkdir %PLATFORM%<br />
+@mkdir %PLATFORM%\include<br />
+@mkdir %PLATFORM%\lib</p>
+<p>@mklink /D %PLATFORM%\include\boost %BOOST%\boost<br />
+@for %%i in (%BOOST%\lib\*.lib) do (mklink %PLATFORM%\lib\%%~ni.lib %%~fi)</p>
+<p>@mklink /D %PLATFORM%\include\cpptest %CPPTEST%\include\cpptest<br />
+@for %%i in (%CPPTEST%\lib\*.lib) do (mklink %PLATFORM%\lib\%%~ni.lib %%~fi)</p>
+<p>[/sourcecode]</p>
+<p>I set up the BOOST and CPPTEST environment variables in another file. Then, I launch Visual Studio from another script which includes it.</p>
+<p>There may be better ways, and that system will evolve in the future, but I'm pretty comfortable with it right now :)</p>
+<p>Depending on my needs, I may grab from the bottom of my disk the package manager I wrote back in school, and make a big solution to download, build and link libs and personal projects. But later, I have some procrastination planned right now.</p>
+
+    
+
+
+
+<div class="post-tags">
+  
+    
+    <a href="/tags.html#dll-hell">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">DLL hell</span>
+    </a>
+  
+    
+    <a href="/tags.html#gcc">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">GCC</span>
+    </a>
+  
+    
+    <a href="/tags.html#visual-studio">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">Visual Studio</span>
+    </a>
+  
+    
+    <a href="/tags.html#windows">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">windows</span>
+    </a>
+  
+</div>
+  </div>
+
+  
+<!--  <section class="comments">
+    <h2>Comments</h2>
+  </section>
+-->
+
+
+  <section class="related">
+  <h2>Related Posts</h2>
+  <ul class="posts-list">
+    
+      <li>
+        <h3>
+          <a href="/general/rust/2018/02/02/poc-compiling-to-ebpf-from-rust.html">
+            PoC: compiling to eBPF from Rust
+            <small>02 Feb 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/rust/2018/01/10/rust-2018-maybe-dont-be-too-stable.html">
+            Rust 2018: maybe don't be too stable
+            <small>10 Jan 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/general/2017/08/23/adventures-in-logging.html">
+            Adventures in logging
+            <small>23 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</section>
+
+</div>
+
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>

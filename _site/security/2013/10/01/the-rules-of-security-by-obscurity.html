@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      The rules of security by obscurity &middot; Unhandled Expression
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="post">
+
+    <div id="sidebar">
+  <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
+    <div class="site-title">
+      <a href="/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Unhandled Expression
+      </a>
+    </div>
+    <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/about.html">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/architecture.html">Architecture</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/crypto.html">Crypto</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/development.html">Development</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/rust.html">Rust</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/security.html">Security</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/videolan.html">VideoLAN</a>
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  <nav id="sidebar-icon-links">
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/tags.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/search.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+  <p>
+  &copy; 2018.
+  <a href="/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+
+    <main class="container">
+      <header>
+  <h1 class="post-title">The rules of security by obscurity</h1>
+</header>
+<div class="content">
+  <div class="post-meta">
+  <span class="post-date">01 Oct 2013</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+  <div class="post-body">
+    <h2>The first rule of security by obscurity is: DON'T</h2>
+<p>There, I said it. Now you can stop reading. Or you can continue. But watch where you step.</p>
+<p>Security by obscurity is generally frowned upon, because people have relied on it as their only layer of defense. When you think that nobody will be able to reverse engineer your clever code, or find that specific file holding all the secrets, you have already lost. People got quite efficient at reverse engineering and finding secrets.</p>
+<p>That's why it is recommended to rely on safer algorithms and techniques to protect your system. They have been tested, and were created especially for that purpose. That can be encryption algorithms, authorization systems, etc.</p>
+<h2>The second rule of security by obscurity is: you should not need it</h2>
+<p>Defense is hard because of information asymmetry: the attacker often has more information than you to approach the system. That could be 0-day vulnerabilities, or the knowledge that you misconfigured one of your servers. The attacker has basically more time and more money than what you can spend on security.</p>
+<p>The tools you have at hand? Patching the code, controlling authorizations, verifying your logs... You get a system that should not be easy to attack even if the attacker is familiar with the underlying software.</p>
+<p>Except that the attacker might be well informed on the problems of deploying that particular CMS. Or there's a specific vulnerability you don't know about that is exploited automatically by botnets...</p>
+<h2>The third rule of security by obscurity is: DON'T, but...</h2>
+<p>The goal of your defense layers is to drive up the cost of an attack. A really motivated attacker will always find a way (with enough ressources, they could break in your office to steal data directly). So, what you want is to make an attack costly, to drive off attackers with less ressources.</p>
+<p>And what will security through obscurity provide you? Time! They will provide you with time to defend, and waste the attacker's time. It is in no way enough to protect you, but it can give you a lot of benefits:</p>
+<ul>
+<li>confuse automated tools: moving some specific files or pages of your CMS out of their default location will prevent most automated attacks. That will not stop human attackers, but they might need to modify their scripts, and we all know that's annoying :p</li>
+<li>slow down information gathering: removing the server headers is a pretty standard practice.  Some more sophisticated tools might be able to guess server version and/or framework type in other ways, but basic tools will not.</li>
+<li>lie to the attackers to send them through a honeypot. Then, you can observe them, learn about their process and prepare for other attacks.</li>
+<li>detect suspect behaviour, like bruteforce queries, and send bogus data instead of rejecting them. That means more data to analyze manually for the adversary.</li>
+<li>Are you trying to send encrypted data? Do you really need a public handshake protocol, displaying the whole algorithm negotiation? Sometimes, communicating directly with a pre shared key and pre negotiated algorithms will work just fine, and only show garbage to the attacker.</li>
+</ul>
+<p>See the pattern there? We already know ressourceful attackers will get past those false defenses. But the point is to make them waste time in basically three ways:</p>
+<ul>
+<li>forbid automated attacks, they should ressort to manual ways</li>
+<li>make them work to get useful information</li>
+<li>mess with their heads</li>
+</ul>
+<p>Security by obscurity is basically the fun side of defense, because you're always looking for ways to annoy the adversary ;)</p>
+<h2>The fourth rule of security by obscurity is: you are not the attacker</h2>
+<p>While those defense techniques can be useful, be aware that they can significantly hamper your day to day work. They should not prevent you from managing your system correctly. Every "WTF" moment for an attacker might be a "WTF" moment for one of your developers, system administrators, or even worse, one of your users.</p>
+<p>Worse, sometimes, it might annoy you, but will be bypassed easily by the adversary (do not underestimate their ability to write clever automated tools).</p>
+<p>So, be careful with security by obscurity, do not rely only on it, and have fun annoying the attackers :)</p>
+
+    
+
+
+
+<div class="post-tags">
+  
+</div>
+  </div>
+
+  
+<!--  <section class="comments">
+    <h2>Comments</h2>
+  </section>
+-->
+
+
+  <section class="related">
+  <h2>Related Posts</h2>
+  <ul class="posts-list">
+    
+      <li>
+        <h3>
+          <a href="/general/rust/2018/02/02/poc-compiling-to-ebpf-from-rust.html">
+            PoC: compiling to eBPF from Rust
+            <small>02 Feb 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/rust/2018/01/10/rust-2018-maybe-dont-be-too-stable.html">
+            Rust 2018: maybe don't be too stable
+            <small>10 Jan 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/general/2017/08/23/adventures-in-logging.html">
+            Adventures in logging
+            <small>23 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</section>
+
+</div>
+
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>

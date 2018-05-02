@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      Unhandled Expression &middot; Geoffroy Couprie – software security and architecture consultant
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="index">
+
+    <div id="sidebar">
+  <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
+    <h1 class="site-title">
+      <a href="/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Unhandled Expression
+      </a>
+    </h1>
+    <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/about.html">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/architecture.html">Architecture</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/crypto.html">Crypto</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/development.html">Development</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/rust.html">Rust</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/security.html">Security</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/videolan.html">VideoLAN</a>
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  <nav id="sidebar-icon-links">
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/tags.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/search.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+  <p>
+  &copy; 2018.
+  <a href="/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+
+    <main class="container">
+      <div class="content">
+  
+<div class="pagination">
+  <a class="pagination-item newer"
+     href="/page5">
+    Newer
+  </a>
+</div>
+
+
+
+  
+
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/development/general/security/2013/01/25/5-easy-tips-to-accelerate-ssl.html">
+        5 easy tips to accelerate SSL
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">25 Jan 2013</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/development.html">
+          Development
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        General
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+    
+      <p style="text-align:center;"><img class=" wp-image-558 aligncenter" title="Photo credit: TheKenChan - http://www.flickr.com/photos/67936989@N00/2678539087/" alt="Photo credit: TheKenChan - http://www.flickr.com/photos/67936989@N00/2678539087/" src="/assets/2678539087_afdb3ec75a.jpg" width="500" height="333" /></p>
+<p><strong>Update</strong>: following popular demand, the article now includes nginx commands :)</p>
+<p><strong>Update 2</strong>: thanks to jackalope from Hacker News, I added a missing Apache directive for the cipher suites.</p>
+<p><strong>Update 3</strong>: recent attacks on RC4 have definitely made it a bad choice, and ECDHE cipher suites got improvements.</p>
+<p>SSL is slow. These cryptographic algorithms eat the CPU, there is too much traffic, it is too hard to deploy correctly. SSL is slow. Isn't it?</p>
+<p>HELL NO!</p>
+<p>SSL looks slow, because you did not even try to optimize it! For that matter, I could say that HTTP is too verbose, XML web services are verbose too, and all this traffic makes the website slow. But, SSL can be optimized, as well as everything!</p>
+<h2>Slow cryptographic algorithms</h2>
+<p>The cryptographic algorithms used in SSL are not all created equal: some provide better security, some are faster. So, you should choose carefully which algorithm suite you will use.</p>
+<p>The default one for Apache 2's <a href="http://httpd.apache.org/docs/2.2/mod/mod_ssl.html#sslciphersuite" target="_blank">SSLCipherSuite directive</a> is: ALL: !ADH:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP</p>
+<p>You can translate that to a readable list of algorithms with this command: <strong>openssl ciphers -v 'ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP'</strong></p>
+<p>Here is the result:</p>
+<pre>DHE-RSA-AES256-SHA      SSLv3 Kx=DH       Au=RSA  Enc=AES(256)  Mac=SHA1
+DHE-DSS-AES256-SHA      SSLv3 Kx=DH       Au=DSS  Enc=AES(256)  Mac=SHA1
+AES256-SHA              SSLv3 Kx=RSA      Au=RSA  Enc=AES(256)  Mac=SHA1
+DHE-RSA-AES128-SHA      SSLv3 Kx=DH       Au=RSA  Enc=AES(128)  Mac=SHA1
+DHE-DSS-AES128-SHA      SSLv3 Kx=DH       Au=DSS  Enc=AES(128)  Mac=SHA1
+AES128-SHA              SSLv3 Kx=RSA      Au=RSA  Enc=AES(128)  Mac=SHA1
+EDH-RSA-DES-CBC3-SHA    SSLv3 Kx=DH       Au=RSA  Enc=3DES(168) Mac=SHA1
+EDH-DSS-DES-CBC3-SHA    SSLv3 Kx=DH       Au=DSS  Enc=3DES(168) Mac=SHA1
+DES-CBC3-SHA            SSLv3 Kx=RSA      Au=RSA  Enc=3DES(168) Mac=SHA1
+DHE-RSA-SEED-SHA        SSLv3 Kx=DH       Au=RSA  Enc=SEED(128) Mac=SHA1
+DHE-DSS-SEED-SHA        SSLv3 Kx=DH       Au=DSS  Enc=SEED(128) Mac=SHA1
+SEED-SHA                SSLv3 Kx=RSA      Au=RSA  Enc=SEED(128) Mac=SHA1
+RC4-SHA                 SSLv3 Kx=RSA      Au=RSA  Enc=RC4(128)  Mac=SHA1
+RC4-MD5                 SSLv3 Kx=RSA      Au=RSA  Enc=RC4(128)  Mac=MD5 
+EDH-RSA-DES-CBC-SHA     SSLv3 Kx=DH       Au=RSA  Enc=DES(56)   Mac=SHA1
+EDH-DSS-DES-CBC-SHA     SSLv3 Kx=DH       Au=DSS  Enc=DES(56)   Mac=SHA1
+DES-CBC-SHA             SSLv3 Kx=RSA      Au=RSA  Enc=DES(56)   Mac=SHA1
+DES-CBC3-MD5            SSLv2 Kx=RSA      Au=RSA  Enc=3DES(168) Mac=MD5 
+RC2-CBC-MD5             SSLv2 Kx=RSA      Au=RSA  Enc=RC2(128)  Mac=MD5 
+RC4-MD5                 SSLv2 Kx=RSA      Au=RSA  Enc=RC4(128)  Mac=MD5 
+DES-CBC-MD5             SSLv2 Kx=RSA      Au=RSA  Enc=DES(56)   Mac=MD5 
+EXP-EDH-RSA-DES-CBC-SHA SSLv3 Kx=DH(512)  Au=RSA  Enc=DES(40)   Mac=SHA1 export
+EXP-EDH-DSS-DES-CBC-SHA SSLv3 Kx=DH(512)  Au=DSS  Enc=DES(40)   Mac=SHA1 export
+EXP-DES-CBC-SHA         SSLv3 Kx=RSA(512) Au=RSA  Enc=DES(40)   Mac=SHA1 export
+EXP-RC2-CBC-MD5         SSLv3 Kx=RSA(512) Au=RSA  Enc=RC2(40)   Mac=MD5  export
+EXP-RC4-MD5             SSLv3 Kx=RSA(512) Au=RSA  Enc=RC4(40)   Mac=MD5  export
+EXP-RC2-CBC-MD5         SSLv2 Kx=RSA(512) Au=RSA  Enc=RC2(40)   Mac=MD5  export
+EXP-RC4-MD5             SSLv2 Kx=RSA(512) Au=RSA  Enc=RC4(40)   Mac=MD5  export</pre>
+<p>28 cipher suites, that's a lot! Let's see if we can remove the unsafe ones first! You can see at the end of the of the list 7 ones marked as "export". That means that they comply with the US cryptographic algorithm exportation policy. Those algorithms are utterly unsafe, and the US abandoned this restriction years ago, so let's remove them:<br />
+'ALL:!ADH:!EXP:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2'.</p>
+<p>Now, let's remove the algorithms using plain DES (not 3DES) and RC2: 'ALL:!ADH:!EXP:!LOW:!RC2:RC4+RSA:+HIGH:+MEDIUM'. That leaves us with 16 algorithms.</p>
+<p>It is time to remove the slow algorithms! To decide, let's use the <strong>openssl speed</strong> command. Use it on your server, ecause depending on your hardware, you might get different results. Here is the benchmark on my computer:</p>
+<pre>OpenSSL 0.9.8r 8 Feb 2011
+built on: Jun 22 2012
+options:bn(64,64) md2(int) rc4(ptr,char) des(idx,cisc,16,int) aes(partial) blowfish(ptr2) 
+compiler: -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks
+  -O3 -D_REENTRANT -DDSO_DLFCN -DHAVE_DLFCN_H -DL_ENDIAN -DMD32_REG_T=int -DOPENSSL_NO_IDEA
+  -DOPENSSL_PIC -DOPENSSL_THREADS -DZLIB -mmacosx-version-min=10.6
+available timing options: TIMEB USE_TOD HZ=100 [sysconf value]
+timing function used: getrusage
+The 'numbers' are in 1000s of bytes per second processed.
+type             16 bytes     64 bytes    256 bytes   1024 bytes   8192 bytes
+md2               2385.73k     4960.60k     6784.54k     7479.39k     7709.04k
+mdc2              8978.56k    10020.07k    10327.11k    10363.30k    10382.92k
+md4              32786.07k   106466.60k   284815.49k   485957.41k   614100.76k
+md5              26936.00k    84091.54k   210543.56k   337615.92k   411102.49k
+hmac(md5)        30481.77k    90920.53k   220409.04k   343875.41k   412797.88k
+sha1             26321.00k    78241.24k   183521.48k   274885.43k   322359.86k
+rmd160           23556.35k    66067.36k   143513.89k   203517.79k   231921.09k
+rc4             253076.74k   278841.16k   286491.29k   287414.31k   288675.67k
+des cbc          48198.17k    49862.61k    50248.52k    50521.69k    50241.28k
+des ede3         18895.61k    19383.95k    19472.94k    19470.03k    19414.27k
+idea cbc             0.00         0.00         0.00         0.00         0.00 
+seed cbc         45698.00k    46178.57k    46041.10k    47332.45k    50548.99k
+rc2 cbc          22812.67k    24010.85k    24559.82k    21768.43k    23347.22k
+rc5-32/12 cbc   116089.40k   138989.89k   134793.49k   136996.33k   133077.51k
+blowfish cbc     65057.64k    68305.24k    72978.75k    70045.37k    71121.64k
+cast cbc         48152.49k    51153.19k    51271.61k    51292.70k    47460.88k
+aes-128 cbc      99379.58k   103025.53k   103889.18k   104316.39k    97687.94k
+aes-192 cbc      82578.60k    85445.04k    85346.23k    84017.31k    87399.06k
+aes-256 cbc      70284.17k    72738.06k    73792.20k    74727.31k    75279.22k
+camellia-128 cbc        0.00         0.00         0.00         0.00         0.00 
+camellia-192 cbc        0.00         0.00         0.00         0.00         0.00 
+camellia-256 cbc        0.00         0.00         0.00         0.00         0.00 
+sha256           17666.16k    42231.88k    76349.86k    96032.53k   103676.18k
+sha512           13047.28k    51985.74k    91311.50k   135024.42k   158613.53k
+aes-128 ige      93058.08k    98123.91k    96833.55k    99210.74k   100863.22k
+aes-192 ige      76895.61k    84041.67k    78274.36k    79460.06k    77789.76k
+aes-256 ige      68410.22k    71244.81k    69274.51k    67296.59k    68206.06k
+                  sign    verify    sign/s verify/s
+rsa  512 bits 0.000480s 0.000040s   2081.2  24877.7
+rsa 1024 bits 0.002322s 0.000111s    430.6   9013.4
+rsa 2048 bits 0.014092s 0.000372s     71.0   2686.6
+rsa 4096 bits 0.089189s 0.001297s     11.2    771.2
+                  sign    verify    sign/s verify/s
+dsa  512 bits 0.000432s 0.000458s   2314.5   2181.2
+dsa 1024 bits 0.001153s 0.001390s    867.6    719.4
+dsa 2048 bits 0.003700s 0.004568s    270.3    218.9</pre>
+<p>We can remove the SEED and 3DES suite because they are slower than the other. DES was meant to be fast in hardware implementations, but slow in software, so 3DES (which runs DES three times) is slower. On the contrary, AES can be very fast in software implementations, and even more if your CPU provides specific instructions for AES. You can see that with a bigger key (and so, better theoretical security), AES gets slower. Depending on the level of security, you may choose different key sizes. According to the <a title="Key length comparison" href="http://www.keylength.com" target="_blank">key length comparison</a>, 128 might be enough for now. RC4 is a lot faster than other algorithms. <del>AES is considered safer, but <a href="http://crypto.stackexchange.com/questions/853/google-is-using-rc4-but-isnt-rc4-considered-unsafe" target="_blank">the implementation in SSL takes into account the attacks on RC4</a>. So, we will propose this one in priority.</del> Following recent researches, it appears that RC4 is not safe enough anymore. And ECDHE got a performance boost with recent versions of OpenSSL. So, let's forbid RC4 right now!</p>
+<p>So, here is the new cipher suite: 'ALL:!ADH:!EXP:!LOW:!RC2:!3DES:!SEED:!RC4:+HIGH:+MEDIUM'</p>
+<p>And the list of ciphers we will use:</p>
+<pre>DHE-RSA-AES256-SHA      SSLv3 Kx=DH       Au=RSA  Enc=AES(256)  Mac=SHA1
+DHE-DSS-AES256-SHA      SSLv3 Kx=DH       Au=DSS  Enc=AES(256)  Mac=SHA1
+AES256-SHA              SSLv3 Kx=RSA      Au=RSA  Enc=AES(256)  Mac=SHA1
+DHE-RSA-AES128-SHA      SSLv3 Kx=DH       Au=RSA  Enc=AES(128)  Mac=SHA1
+DHE-DSS-AES128-SHA      SSLv3 Kx=DH       Au=DSS  Enc=AES(128)  Mac=SHA1
+AES128-SHA              SSLv3 Kx=RSA      Au=RSA  Enc=AES(128)  Mac=SHA1
+RC4-SHA                 SSLv3 Kx=RSA      Au=RSA  Enc=RC4(128)  Mac=SHA1
+RC4-MD5                 SSLv3 Kx=RSA      Au=RSA  Enc=RC4(128)  Mac=MD5 
+RC4-MD5                 SSLv2 Kx=RSA      Au=RSA  Enc=RC4(128)  Mac=MD5</pre>
+<p>9 ciphers, that's much more manageable. We could reduce the list further, but it is already in a good shape for security and speed. <strong>Configure it in Apache with this directive</strong>:</p>
+<pre><strong></strong><code>SSLHonorCipherOrder On</code><strong></strong>
+SSLCipherSuite ALL:!ADH:!EXP:!LOW:!RC2:!3DES:!SEED:!RC4:+HIGH:+MEDIUM</pre>
+<p><strong>Configure it in Nginx with this directive:</strong></p>
+<pre>ssl_ciphers ALL:!ADH:!EXP:!LOW:!RC2:!3DES:!SEED:!RC4:+HIGH:+MEDIUM</pre>
+<p>You can also see that the performance of RSA gets worse with key size. With the current security requirements (as of now, January 2013, if you are reading this from the future). <strong>You should choose a RSA key of 2048 bits for your certificate</strong>, because 1024 is not enough anymore, but 4096 is a bit overkill.</p>
+<p>Remember, the benchmark depends on the version of OpenSSL, the compilation options and your CPU, so don't forget to test on your server before implementing my recommandations.</p>
+<h2>Take care of the handshake</h2>
+<p>The SSL protocol is in fact two protocols (well, three, but the first is not interesting for us): the handshake protocol, where the client and the server will verify each other's identity, and the record protocol where data is exchanged.</p>
+<p>Here is a representation of the handshake protocol, taken from the <a title="RFC 2246 for TLS 1.0" href="http://tools.ietf.org/html/rfc2246" target="_blank">TLS 1.0 RFC</a>:</p>
+<pre>      Client                                               Server
+
+      ClientHello                  --------&gt;
+                                                      ServerHello
+                                                     Certificate*
+                                               ServerKeyExchange*
+                                              CertificateRequest*
+                                   &lt;--------      ServerHelloDone
+      Certificate*
+      ClientKeyExchange
+      CertificateVerify*
+      [ChangeCipherSpec]
+      Finished                     --------&gt;
+                                               [ChangeCipherSpec]
+                                   &lt;--------             Finished
+      Application Data             &lt;-------&gt;     Application Data</pre>
+<p>You can see that there are 4 messages exchanged before any real data is sent. If a TCP packet takes 100ms to travel between the browser and your server, the handshake is eating 400ms before the server has sent any data!</p>
+<p>And what happens if you make multiple connections to the same server? You do the handshake every time. So, <strong>you should activate Keep-Alive</strong>. The benefits are even bigger than for plain unencrypted HTTP.</p>
+<p>Use <a title="KeepAlive" href="http://httpd.apache.org/docs/2.2/mod/core.html#keepalive" target="_blank">this Apache directive</a> to activate Keep-Alive:</p>
+<pre>KeepAlive On</pre>
+<p>Use <a href="http://wiki.nginx.org/HttpCoreModule#keepalive_timeout" target="_blank">this nginx directive</a> to activate keep-alive:</p>
+<pre><b>keepalive_timeout</b> 100</pre>
+<h2>Present all the intermediate certification authorities in the handshake</h2>
+<p>During the handshake, the client will verify that the web server's certificate is signed by a trusted certification authority. Most of the time, there is one or more intermediate certification authority between the web server and the trusted CA. If the browser doesn't know the intermediate CA, it must look for it and download it. The download URL for the intermediate CA is usually stored in the "Authority information" extension of the certificate, so the browser will find it even if the web server doesn't present the intermediate CA.</p>
+<p>This means that if the server doesn't present the intermediate CA certificates, the browser will block the handshake until it has downloaded them and verified that they are valid.</p>
+<p>So, if you have intermediate CAs for your server's certificate, configure your webserver to present the full certification chain. With Apache, you just need to concatenate the CA certificates, and indicate them in the configuration with <a href="http://httpd.apache.org/docs/2.2/mod/mod_ssl.html#sslcertificatechainfile" target="_blank">this directive</a>:</p>
+<pre>SSLCertificateChainFile /path/to/certification/chain.pem</pre>
+<p>For nginx, concatenate the CA certificate to the web server certificate and use <a href="http://wiki.nginx.org/HttpSslModule#ssl_certificate" target="_blank">this directive</a>:</p>
+<pre>ssl_certificate /path/to/certification/chain.pem</pre>
+<h2>Activate caching for static assets</h2>
+<p>By default, the browsers will not cache content served over SSL, for security. That means that your static assets (Javascript, CSS, pictures) will be reloaded on every call. Here is a big performance failure!</p>
+<p>The fix for that: <strong>set the HTTP header "Cache-Control: public" for the static assets</strong>. That way, the browser will cache them. But don't activate it for the sensitive content, beacuase it should not be cached on the disk by your browser.</p>
+<p><strong>You can use this directive to enable Cache-Control</strong>:</p>
+<pre>&lt;filesMatch ".(js|css|png|jpeg|jpg|gif|ico|swf|flv|pdf|zip)$"&gt;
+Header set Cache-Control "max-age=31536000, public"
+&lt;/filesMatch&gt;</pre>
+<p>The files will be cached for a year with the max-age option.</p>
+<p>For nginx, use this:</p>
+<pre>location ~ \.(js|css|png|jpeg|jpg|gif|ico|swf|flv|pdf|zip)$ {
+    expires 24h;
+    <a href="http://wiki.nginx.org/NginxHttpHeadersModule#add_header">add_header</a> Cache-Control public;
+}</pre>
+<p><strong>Update:</strong> it looks like Firefox ignores the Cache-Control and caches everything from SSL connections, <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=531801" target="_blank">unless you use the "no-store" option</a>.</p>
+<h2>Beware of CDN with multiple domains</h2>
+<p>If you followed a bit the usual performance tips, you already offloaded your static assets (Javascript, CSS, pictures) to a content delivery network. That is a good idea for a SSL deployment too, BUT, there are caveats:</p>
+<ul>
+<li>your CDN must have servers accessible over SSL, otherwise you will see the "mixed content" warning</li>
+<li>it must have "Keep-Alive" and "Cache-control: public" activated</li>
+<li><strong>it should serve all your assets from only one domain!</strong></li>
+</ul>
+<p>Why the last one? Well, even if multiple domains point to the same IP, the browser will do a new handshake for every domain. So, here, we must go against the common wisdom of separating your assets on multiple domains to profit from the parallelized request in the browser. If all the assets are served from the same domain, there will only be one handshake. It could be fixed to allow multiple domains, but this is beyond the scope of this article.</p>
+<h2>More?</h2>
+<p>I could talk for hours about how you could tweak your web server performance with SSL. There is alot more to it than these easy tips, but I hope those will be of useful for you!</p>
+<p>If you want to know more,<strong> I am currently writing <a title="SSL: what you need to know" href="http://leanpub.com/SSL" target="_blank">an ebook about SSL tuning</a></strong>, and I would love to hear your comments about it!</p>
+<p><strong>If you need help with your SSL configuration,<a title="Geoffroy Couprie, freelance in software development and security" href="http://geoffroycouprie.com/" target="_blank"> I am available for consulting</a></strong>, and always happy to work on interesting architectures.</p>
+<p>By the way, if you want to have a good laugh with SSL, read <a title="How to get a certificate signed by multiple certification authorities" href="http://unhandledexpression.com/2011/11/18/how-to-get-a-certificate-signed-by-multiple-certification-authorities/" target="_blank">"How to get a certificate signed by multiple certification authorities"</a> :)</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/general/mobile/2013/01/16/pilotssh-manage-your-server-in-a-few-touches.html">
+        PilotSSH: manage your server in a few touches
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">16 Jan 2013</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        General
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        Mobile
+      
+    
+  </span>
+</div>
+
+    
+      <p>I just released <a title="Pilot SSH" href="http://pilotssh.com/?utm_source=link1&amp;utm_medium=unhandledexpression&amp;utm_campaign=announce" target="_blank">Pilot SSH</a>, a server administration application for iPhone. So, why another SSH application? Aren't there dozens of these already?</p>
+<p>I tried a lot of those shell applications, and they felt clunky on a phone. They are fine with a tablet (even more if you use a bluetooth keyboard), but writing commands on a phone's keyboard is not really intuitive. Moreover, the small screen of a phone is not really usable to display the command results.</p>
+<p>But I reaaaaally wanted to manage my servers from my phone. Because I am not always in front of my computer. Because I am too lazy to get the laptop from the bag, open it, plug the 3G key or find WiFi, connect over SSH and type a command to restart a crashed web server. Because it would be awesome to be in a bar and say "hold on, I have update my server", open my phone and do it in 3 touches.</p>
+<p>So, here it is, Pilot SSH, in all its glory, can out of the box:</p>
+<ul>
+<li>display running processes, the memory they use, and kill them</li>
+<li>show which websites are enabled or disabled in Apache</li>
+<li>display the uptime, halt or reboot the server</li>
+<li>show Apache logs</li>
+</ul>
+<p><img class="size-medium wp-image-544" alt="Pilot SSH process list" src="/assets/process_list.png?w=200" width="200" height="300" /> Pilot SSH process list</p>
+<p>But there is more! The application is completely extensible, because it uses scripts stored on the server side, in your home, in <strong>~/.pilotssh</strong>. You can totally replace the current scripts, download more from <a title="Pilot SSH scripts" href="https://github.com/Geal/PilotSSH-scripts" target="_blank">the Github repository</a>, and make your own! The scripts can be written in any language, as long as they return a JSON string conforming to the API.</p>
+<p>I already got a contribution soon after the launch, with a script to flush the caches. And I have a lot of ideas for new scripts:</p>
+<ul>
+<li>upgrade a Wordpress website</li>
+<li>display the status of processes managed by Monit</li>
+<li>create/remove users</li>
+<li>Support nginx too</li>
+<li>Display more logs</li>
+</ul>
+<p>This is just the beginning, and I expect a lot of impressive ideas from the users of Pilot SSH. I can't wait to see them!</p>
+<p>Do you want to try Pilot SSH? Everything you need is on <a title="Pilot SSH" href="http://pilotssh.com/?utm_source=link2&amp;utm_medium=unhandledexpression&amp;utm_campaign=announce" target="_blank">its website</a>!</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/general/security/2013/01/14/harden-wordpress-using-database-permissions.html">
+        Harden Wordpress using database permissions
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">14 Jan 2013</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        General
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+    
+      <p>Here is a small idea that I would like to throw into the world: most web applications use only one database user for most operations (installation, administration, common usage). Couldn't we harness the database to protect a bit your data?</p>
+<h2>How to</h2>
+<p>This is how you could do it:</p>
+<ul>
+<li>Create one user (called 'user') with full privileges on the database</li>
+<li>Create another user with no privileges (let's call him 'read')</li>
+<li>Create a copy of wp-config.php that you will name wp-config-admin.php</li>
+<li>Write the 'read' credentials in the wp-config.php and the normal credentials in wp-config-admin.php (don't forget to use different auth, secure auth, logged in and nonce keys)</li>
+<li>Create a copy of wp-load.php that you will name wp-load-admin.php</li>
+<li>Replace in wp-load-admin.php the reference to wp-config.php by wp-config-admin.php</li>
+<li>Replace in wp-login.php and wp-admin/* the references to wp-load.php by wp-load-admin.php</li>
+<li>Now, you can use the admin interface, create posts, etc.</li>
+<li>Grant some permissions to the 'read' database user: GRANT SELECT ON `db`.* TO 'read'; GRANT INSERT, UPDATE ON `db`.`wp_comments` TO 'read';</li>
+</ul>
+<p>That was a bit of work, but not that hard! So, what did we do here? We created a user for the admin interface with full privileges on the database (create/update posts, change the taxonomy, approve the comments, etc) and another one for the front end interface, with only read privileges on all tables (that bothers me too, but read on).</p>
+<p>This means that SQL injections, either in plugins or in Wordpress code (out of the admin panel) will be much harder to implement with this setup. Beware of the custom tables for some plugins. Those will require specific permissions. Depending on the plugin, some could be read only for common usage.</p>
+<h2>Going further</h2>
+<p>That's nice, but not enough in my opinion. As I said, the full select permission for the 'read' user bothers me. Couldn't we restrict a bit the permissions on wp_users? Some of <a title="WordPress database diagram" href="http://codex.wordpress.org/images/9/9e/WP3.0-ERD.png">the columns</a> are needed, but do we need to access the user_pass column? Also, the "ALL PRIVILEGES" for 'user' is a bit too much. Do we really use the "FILE" privilege (out of SQL injections :D)?</p>
+<p>Without further ado, here are the SQL commands you should use:</p>
+<blockquote><p>GRANT SELECT, INSERT, UPDATE ON `db`.`wp_comments` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_commentmeta` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_links` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_options` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_term_taxonomy` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_usermeta` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_terms` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_term_relationships` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_postmeta` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_posts` TO 'read';</p>
+<p>GRANT SELECT (user_activation_key, id, user_login, user_nicename, user_status, user_url, display_name, user_email, user_registered) ON `db`.`wp_users` TO 'read';</p>
+<p>REVOKE ALL PRIVILEGES ON `db`.* from 'user';</p>
+<p>GRANT SELECT, INSERT, DELETE, UPDATE, CREATE, DROP, ALTER, INDEX <em>ON `db`.* TO 'user';<br />
+</em></p></blockquote>
+<p>With these commands, 'user' can only manipulate tables. If you're an evil DBA, you can even revoke the "CREATE, DROP, ALTER" permission after install, and reactivate them only for upgrades or plugin installation. The 'read' user has the same permissions as before on wp_comments, has "SELECT" on all tables except the wp_users. For wp_users, we grant "SELECT" on all columns except the user_pass one.</p>
+<p><strong>Thanks to this configuration, even a SQL injection in a plugin will not reach the password hashes!</strong> We also removed dangerous permissions like "FILE". I'd like to prevent timing attacks like "SELECT BENCHMARK(5000000,ENCODE('MSG','by 5 seconds'));" but i did not figure out what is the right syntax for this (I tried variations around: "revoke execute on function benchmark from read", without result).</p>
+<p>Thankfully, WordPress mostly works with this configuration, and I think that a lot of other applications could be protected like this. Imagine: you could grant insert but not select on the credit card table in an e-commerce application, and process transactions with a background task with the right permissions.</p>
+<p>Database privileges are indeed a powerful tool to protect your code from SQL injections. They might require some architectural changes, but the profits can be huge for your security.</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/videolan/2012/12/20/vlc-for-win8-building-the-new-compatibility-layer.html">
+        VLC For Win8: building the new compatibility layer
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">20 Dec 2012</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/videolan.html">
+          VideoLAN
+        </a>
+      
+    
+  </span>
+</div>
+
+    
+      <p>As you can see, <strong>we are doing a <a title="VLC Kickstarter" href="https://bitly.com/U4mfxS" target="_blank">KickStarter for the Windows 8 (WinRT) port of VLC media player</a></strong>. The goal is to take our existing code, which already works on Windows 8's "desktop mode", and make it run on WinRT, the "Metro" interface.</p>
+<p>Porting code to WinRT offers significant challenges, mainly caused by the changes in the APIs. A lot of functions we were using, like LoadLibrary, are not available anymore, and replaced by slightly different functions (like <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh447159%28v=vs.85%29.aspx" target="_blank">LoadPackagedLibrary</a>). Those might not be too hard to integrate into our current code base.</p>
+<p>Other APIs, like sockets, were replaced by their COM interfaces counterpart (for instance Windows.Networking.Sockets). They are used to provide asynchronous interfaces for code running under WinRT. They got inspiration from mobile applications and the "always responsive" goal: a WinRT application should not use blocking code, and should go to sleep or wake up quickly if needed. With COM interfaces, the code polling the socket is executed in another process, and the data is provided through a callback. This changes a bit the usual networking code (connect-&gt;select-&gt;read-&gt;select&gt;...) and we need to write a large layer of compatibility code.</p>
+<p>After all of that, we still have to solve the issue of packaging. We already experimented a bit with side loading, which offers an easy way to distribute applications, but the real goal is to push VLC media player to the Windows Store.</p>
+<p>So, <a title="Why we need a KickStarter for Metro" href="http://www.jbkempf.com/blog/post/2012/Why-we-need-a-KickStarter-for-Metro" target="_blank">why are we doing this</a>? Windows 8 is happening, it is now preinstalled on most of the new computers.</p>
+<p>Why am I excited to work on this port? This KickStarter will give us the opportunity to work full time on WinRT for a few months, and solve all these challenges for us, but also for other open source projects. We already know how to create a <a title="VLC's compatibility library" href="http://git.videolan.org/?p=vlc.git;a=tree;f=compat;h=324f1cea3fda392582397d36898615a493b5e3a9;hb=HEAD" target="_blank">compatibility layer</a> for different operating systems, so we will be able to build one for WinRT. We could also come up with guidelines on using free software toolchains to build WinRT applications.</p>
+<p>Basically, we're paving the way to WinRT for opensource libraries and applications, with the nice side effect on running VLC on Windows 8.</p>
+<p><strong>Help us make this project a reality! Please contribute to our <a title="VLC for Windows 8 Kickstarter" href="https://bitly.com/U4mfxS" target="_blank">Kickstarter for Windows 8</a>!</strong></p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/development/general/2012/12/07/testing-android-push-without-a-server.html">
+        Testing Android push without a server
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">07 Dec 2012</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/development.html">
+          Development
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        General
+      
+    
+  </span>
+</div>
+
+    
+      <p>Adding push support to an Android app is quite easy, but it can be cumbersome to test it if the server part is not ready yet.</p>
+<p>For this, you only need your API key, and the registration ID for your device (you can get it from a call to <em>GCMRegistrar.getRegistrationId</em>). Also, you should have already called <em>GCMRegistrar.register</em> from your app, with your sender id.</p>
+<p>Then, to send a push message to your application, use this code:</p>
+<blockquote><p>import java.io.IOException;</p>
+<p>import com.google.android.gcm.server.*;</p>
+<p>public class Main {</p>
+<p>/**<br />
+* @param args<br />
+*/<br />
+public static void main(String[] args) {</p>
+<p>String apiKey = "...";</p>
+<p>String deviceId = "...";<br />
+Sender sender = new Sender(apiKey);<br />
+Message message = new Message.Builder().addData("data1", "hello").build();</p>
+<p>try {<br />
+Result result = sender.send(message, deviceId, 2);<br />
+System.out.println("got result: "+result.toString());<br />
+} catch (IOException e) {<br />
+// TODO Auto-generated catch block<br />
+e.printStackTrace();<br />
+}<br />
+}</p>
+<p>}</p></blockquote>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+
+  
+<div class="pagination">
+  <a class="pagination-item older"
+     href="/page7">
+    Older
+  </a>
+</div>
+
+
+</div>
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>

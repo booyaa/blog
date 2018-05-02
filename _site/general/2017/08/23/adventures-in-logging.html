@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      Adventures in logging &middot; Unhandled Expression
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="post">
+
+    <div id="sidebar">
+  <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
+    <div class="site-title">
+      <a href="/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Unhandled Expression
+      </a>
+    </div>
+    <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/about.html">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/architecture.html">Architecture</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/crypto.html">Crypto</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/development.html">Development</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/rust.html">Rust</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/security.html">Security</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/videolan.html">VideoLAN</a>
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  <nav id="sidebar-icon-links">
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/tags.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/search.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+  <p>
+  &copy; 2018.
+  <a href="/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+
+    <main class="container">
+      <header>
+  <h1 class="post-title">Adventures in logging</h1>
+</header>
+<div class="content">
+  <div class="post-meta">
+  <span class="post-date">23 Aug 2017</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        General
+      
+    
+  </span>
+</div>
+
+  <div class="post-body">
+    <p><img src="/assets/truck_loaded_with_logs_on_logging_road_bc_1936.jpg" alt="" width="525" height="279" class="aligncenter size-full wp-image-1000" /></p>
+<p>After working on the <a href="https://github.com/sozu-proxy/sozu">Sōzu HTTP reverse proxy</a> for a while, I came up with <a href="https://github.com/sozu-proxy/sozu/blob/57f99560a85b707c867de6206635b1f8f166e078/lib/src/logging.rs">an interesting approach to logging</a>. Now why would I come up with my own logger, when there are existing solutions in Rust? Mainly, <a href="https://crates.io/crates/log">log</a> and <a href="https://crates.io/crates/slog">slog</a>. That logging library grew up from testing things out with <code>log</code>, and changing requirements along the way.</p>
+<h1>Beginning with log and env_logger</h1>
+<p>Like a lot of other Rust developers, I started out with <code>log</code> and <code>env_logger</code>:</p>
+<p><br />
+#[macro_use]<br />
+extern crate log;<br />
+extern crate env_logger;</p>
+<p>fn main() {<br />
+  env_logger::init().unwrap();</p>
+<p>  info!(&quot;starting up&quot;);<br />
+}<br />
+</p>
+<p>It's nice and easy: every library that depends on <code>log</code> will use that same set of logging macros (error, info, warn, debug, trace) that will use whatever global logger was defined. Here we use <code>env_logger</code> to define one.</p>
+<p><code>env_logger</code> is useful because it can apply a filter to the log, from an<br />
+environment variable:</p>
+<p>[code lang=text]<br />
+# will show the logs above info level<br />
+RUST_LOG=info ./main</p>
+<p># will show the logs above info level, but also logs above debug level<br />
+# for the dependency &#039;dep1&#039;<br />
+RUST_LOG=info,dep1=debug ./main<br />
+[/code]</p>
+<p>You can also define the filter <a href="http://rust-lang-nursery.github.io/log/env_logger/#enabling-logging">by module</a> or <a href="http://rust-lang-nursery.github.io/log/env_logger/#filtering-results">apply a regular expression</a>.</p>
+<h1>Custom formatter</h1>
+<p><code>env_logger</code> allows you to <a href="https://docs.rs/env_logger/0.4.2/env_logger/struct.LogBuilder.html">build your own log formatter</a>. This feature is especially important for me, as I like to <a href="https://www.clever-cloud.com/blog/engineering/2016/05/23/let-your-logs-help-you/">add metadata to my logs</a>.</p>
+<p>Defining a custom formatter with <code>env_logger</code> is quite straightforward:</p>
+<p>[code lang=text]<br />
+let format = |record: &amp;LogRecord| {<br />
+  format!(&quot;{} - {}&quot;, record.level(), record.args())<br />
+};</p>
+<p>let mut builder = LogBuilder::new();<br />
+builder.format(format).filter(None, LogLevelFilter::Info);</p>
+<p>if env::var(&quot;RUST_LOG&quot;).is_ok() {<br />
+  builder.parse(&amp;env::var(&quot;RUST_LOG&quot;).unwrap());<br />
+}</p>
+<p>builder.init().unwrap();<br />
+[/code]</p>
+<p>It is easily combined with the filtering and usage of the <code>RUST_LOG</code> environment variable.</p>
+<h1>Where things get annoying: reducing allocations</h1>
+<p>If you take a look at <code>env_logger</code>, you'll realize that it will allocate a <code>String</code> for every log line that will be written, using a <a href="https://docs.rs/env_logger/0.4.2/env_logger/struct.LogBuilder.html#method.format">formatting closure</a>.</p>
+<p>Let's get one thing out of the way first: I completely agree with the idea you should not try to optimize stuff too much. But I'm in the case of a networking component that will handle a lot of traffic. I had debugging sessions where I generated tens of gigabytes of logs in a few seconds, and needed almost all of them, to debug async IO issues. In those cases, the time spent allocating and deallocating log lines becomes relevant.</p>
+<p>So, how would I get a custom log formatter that does not allocate much? As it turns out, when you tell <code>log</code> to use your logger with <a href="https://docs.rs/log/0.3.8/log/fn.set_logger.html"><code>log::set_logger</code></a>, it requires something that implements <a href="https://docs.rs/log/0.3.8/log/trait.Log.html">Log</a>. The logger's <code>log</code> method receives a <a href="https://docs.rs/log/0.3.8/log/struct.LogRecord.html">LogRecord</a>, a structure that's created on the fly from <a href="https://docs.rs/log/0.3.8/log/struct.LogLocation.html">LogLocation</a>, <a href="https://docs.rs/log/0.3.8/log/struct.LogMetadata.html">LogMetadata</a> and <a href="https://doc.rust-lang.org/nightly/core/fmt/struct.Arguments.html">Arguments</a>.<br />
+The first two are internal to <code>log</code>, I can't create them myself. The last one is interesting.</p>
+<p><code>Arguments</code> can be created from the <a href="https://doc.rust-lang.org/nightly/std/macro.format_args.html">format_args macro</a>. That structure will roughly contain the format string split in the various substrings that appear between arguments. if you do <code>println!("hello {}!", name)</code>, you would get a structure that contains <code>"hello "</code>, the content of <code>name</code> and <code>"!"</code>. <code>println!</code> and other macros use this.</p>
+<p>You can then use that <code>Arguments</code> with <a href="https://doc.rust-lang.org/nightly/std/io/trait.Write.html#method.write_fmt"><code>io::Write::write_fmt</code></a> to write it directly to, say, a file or a socket. And it is implemented so that <a href="https://doc.rust-lang.org/nightly/src/core/fmt/mod.rs.html#948-986">the individual parts are written one after another instead of allocating one big string</a>.</p>
+<p>So, how do I use that?</p>
+<p>Well, it turns out that, basically, I can't. If I implement <a href="https://docs.rs/log/0.3.8/log/trait.Log.html">Log</a>, I can get a <a href="https://docs.rs/log/0.3.8/log/struct.LogRecord.html">Logrecord</a> which gives me a <code>&amp;amp;Arguments</code>, while <a href="https://doc.rust-lang.org/nightly/std/fmt/fn.write.html">write</a> requires a <code>Arguments</code>. So now I have to clone it, which defeats a bit the purpose.</p>
+<h1>So let's write our own then</h1>
+<p>There was another reason for the custom logging library: <a href="https://github.com/rust-lang-nursery/log/commit/a16173429dab789407328b682c3db30d84c5a03c">using a custom logging backend</a>. Having the option between stdout and stderr is fine, but I might want to send them to a file or a socket.</p>
+<p>So I started writing a specific logging library for sozu. First, <a href="https://github.com/sozu-proxy/sozu/blob/57f99560a85b707c867de6206635b1f8f166e078/lib/src/logging.rs#L95-L343">copying the log filtering from env_logger</a>. That part is mostly straightforward, but that's still a lot of code to copy around.</p>
+<p>The <a href="https://github.com/sozu-proxy/sozu/blob/57f99560a85b707c867de6206635b1f8f166e078/lib/src/logging.rs#L387-L445">logging macros</a> specify a logging level then they all call the same common macro.</p>
+<p>[code lang=text]<br />
+#[macro_export]<br />
+macro_rules! error {<br />
+    ($format:expr, $($arg:tt)*) =&gt; {<br />
+        log!($crate::logging::LogLevel::Error, $format, &quot;ERROR&quot;, $($arg)*);<br />
+    };<br />
+    ($format:expr) =&gt; {<br />
+        log!($crate::logging::LogLevel::Error, $format, &quot;ERROR&quot;);<br />
+    };<br />
+}<br />
+[/code]</p>
+<p>The <a href="https://github.com/sozu-proxy/sozu/blob/57f99560a85b707c867de6206635b1f8f166e078/lib/src/logging.rs#L348-L365">main logging macro</a> has two interesting parts. First, we define some static metadata (that's coming from the log crate):</p>
+<p>[code lang=text]<br />
+static _META: $crate::logging::LogMetadata = $crate::logging::LogMetadata {<br />
+  level:  $lvl,<br />
+  target: module_path!(),<br />
+};<br />
+[/code]</p>
+<p>That object will not be allocated over and over, all the data in there will be defined at compile time.</p>
+<p>Then we call the logger itself (ignore the line with <code>try_lock</code> for now):</p>
+<p>[code lang=text]<br />
+if let Ok(mut logger) = LOGGER.try_lock() {<br />
+  logger.log(<br />
+    &amp;_META,<br />
+    format_args!(<br />
+      concat!(&quot;{}\t{}\t{}\t{}\t{}\t&quot;, $format, &#039;\n&#039;),<br />
+        ::time::now_utc().rfc3339(), ::time::precise_time_ns(), *$crate::logging::PID,<br />
+        $level_tag, *$crate::logging::TAG));<br />
+}<br />
+[/code]</p>
+<p>So we give this metadata structure to our logger, then we make an <code>Arguments</code> structure with <code>format_args!</code>. The <a href="https://doc.rust-lang.org/std/macro.concat.html">concat!</a> macro is there to concatenate the formatting string with the custom prefix. That way, I could write <code>debug!("hello {}", name)</code> and have the resulting format string be <code>"{}\t{}\t{}\t{}\t{}\thello {}\n"</code>, generated at compile time and transformed through the <code>format_args</code> call.</p>
+<p>I added the date in ISO format, along with a monotonic timestamp (that becomes handy when multiple workers might write logs concurrently), the process identifier, the log level and a process wide logging tag (to better identify workers).</p>
+<p>So this starts looking good, right? Now how do we write this to configurable backends? Some backends already implement <code>io::Write</code>, <a href="https://github.com/sozu-proxy/sozu/blob/57f99560a85b707c867de6206635b1f8f166e078/lib/src/logging.rs#L49-L68">others will need an intermediary buffer</a>:</p>
+<p>[code lang=text]<br />
+pub fn log&lt;&#039;a&gt;(&amp;mut self, meta: &amp;LogMetadata, args: Arguments) {<br />
+    if self.enabled(meta) {<br />
+        match self.backend {<br />
+            LoggerBackend::Stdout(ref mut stdout) =&gt; {<br />
+                stdout.write_fmt(args);<br />
+            },<br />
+            LoggerBackend::Unix(ref mut socket) =&gt; {<br />
+                socket.send(format(args).as_bytes());<br />
+            },<br />
+            LoggerBackend::Udp(ref mut socket, ref address) =&gt; {<br />
+                socket.send_to(format(args).as_bytes(), address);<br />
+            }<br />
+            LoggerBackend::Tcp(ref mut socket) =&gt; {<br />
+                socket.write_fmt(args);<br />
+            },<br />
+        }<br />
+    }<br />
+}<br />
+[/code]</p>
+<p>For Unix sockets and UDP, instead of allocating on the fly, it should probably use a buffer (hey, anyone wants to implement that?). Stdout and a TcpStream can be written to directly. Adding buffers might still be a good idea here, depending on what you want, because that write could fail. Would you like a logger that will send a partial log if it can't write on the socket, or one using a buffer that can be filled up?</p>
+<p>So, now, what's next? Originally, sozu worked as one process with multiple threads, but evolved as a bunch of single threaded processes. But that raises an interesting question. How do you write logs concurrently?</p>
+<h1>Highly concurrent logs</h1>
+<p>It turns out that problem is not really easy. Most solutions end up in this list:</p>
+<ul>
+<li>every thread or process writes to stdout or a file at the same time</li>
+<li>synchronized access to the logging output</li>
+<li>one common logger everybody sends to</li>
+<li>every thread or process has its own connection to syslog (or even its own file to write to)</li>
+</ul>
+<p>The first solution is easy, but has a few issues. First, writing to stdout is slow, and it can quickly overwhelm your terminal (yes, I know you can redirect to a file). Second, it's not really synchronized, so you might end up with incoherently interleaved log lines.</p>
+<p>So we often move to the second solution, where access to the logging stream is protected by a mutex. Now you get multiple threads or processes that might spend their time waiting on each other for serializing and writing logs. Having all threads sharing one lock can quickly affect your performance. It's generally a better idea to have every thread or process running independently from the others (it's one of the principles in sozu's architecture, you can learn more about it <a href="https://www.youtube.com/watch?v=Cl_fqWZTYUA">in this french talk</a>).</p>
+<p>Alright then, moving on to the third solution: let's have one of the threads or processes handle the logging, and send the logs to it via cross thread channels or IPC. That will surely be easier than having everybody share a lock, right? This is also intersting because you can offload serialization and filtering to the logging thread. Unfortunately, that means one thread will handle <em>all</em> the logs, and it can be overwhelming. That also means a lot of data moving between workers (if using processes).</p>
+<p>The last solution relies on external services: use the syslog daemon on your system, or a log aggregator somewhere on another machine, that every worker will send the logs to. Let that service interleave logs, and maybe scale up if necessary. Since in a large architecture, you might have such an aggregator, talking to it directly might be a good idea (oh hey BTW I wrote <a href="https://github.com/geal/rust-syslog">a syslog crate</a> if you need).</p>
+<p>With sozu, I ended up with a mixed solution. You can send the logs to various backends. If you choose stdout, then all workers will write to it directly without synchronization which will be mostly fine if you don't have a large traffic. But if you want, each worker can open its own connection to the logging service.</p>
+<p>Now that concurrency is taken care of, there's a last issue that has annoyed me for months: how to use the logger from everywhere in the code, when it's obviously one big global mutable object?</p>
+<h1>the dreaded logging singleton</h1>
+<p>One thing I like about the macros from the log crate: you can use them anywhere in your code, and it will work. The other approach, used in languages like Haskell, or proposed by <a href="https://crates.io/crates/slog">slog</a>, is to carry your logger around, in function arguments or structure members. I can understand the idea, but I don't like it much, because I'll often need to add a debug call anywhere in the code, and when it's deep in a serie of five method calls, with those methods coming from traits implemented here and there, updating the types quickly gets annoying.</p>
+<p>So, even if the idea of that global mutable logger singleton usually looks like a bad pattern, it can still be useful. In log, the <a href="https://github.com/rust-lang-nursery/log/blob/master/src/macros.rs#L41-L57">log macro</a> calls the <code>log::Log::log</code> method, getting the logger instance from the <a href="https://github.com/rust-lang-nursery/log/blob/master/src/lib.rs#L1217-L1226">logger method</a>. That method gets the logger instance from <a href="https://github.com/rust-lang-nursery/log/blob/master/src/lib.rs#L292-L297">a global pointer to the logger</a>, with an atomic integer used to indicate if the logger was initialized:</p>
+<p>[code lang=text]<br />
+static mut LOGGER: *const Log = &amp;NopLogger;<br />
+static STATE: AtomicUsize = ATOMIC_USIZE_INIT;</p>
+<p>const UNINITIALIZED: usize = 0;<br />
+const INITIALIZING: usize = 1;<br />
+const INITIALIZED: usize = 2;</p>
+<p>[...]</p>
+<p>pub fn logger() -&gt; &amp;&#039;static Log {<br />
+    unsafe {<br />
+        if STATE.load(Ordering::SeqCst) != INITIALIZED {<br />
+            static NOP: NopLogger = NopLogger;<br />
+            &amp;NOP<br />
+        } else {<br />
+            &amp;*LOGGER<br />
+        }<br />
+    }<br />
+}<br />
+[/code]</p>
+<p>So how can that global mutable pointer be used from any thread? That's because <a href="https://github.com/rust-lang-nursery/log/blob/c4faf3dbb003d004699f378ee395c81ea03f9619/src/lib.rs#L921">the Log trait requires Send and Sync</a>. As a <a href="https://doc.rust-lang.org/beta/nomicon/send-and-sync.html">reminder</a>, <code>Send</code> means it can be sent to another thread, <code>Sync</code> means it can be shared between threads.</p>
+<p>That's a cool trick, but usually we employ <a href="https://github.com/sozu-proxy/sozu/blob/57f99560a85b707c867de6206635b1f8f166e078/lib/src/logging.rs#L13-L17">another pattern</a>:</p>
+<p>[code lang=text]<br />
+lazy_static! {<br />
+  pub static ref LOGGER: Mutex&lt;Logger&gt; = Mutex::new(Logger::new());<br />
+  pub static ref PID:    i32           = unsafe { libc::getpid() };<br />
+  pub static ref TAG:    String        = LOGGER.lock().unwrap().tag.clone();<br />
+}<br />
+[/code]</p>
+<p><a href="https://crates.io/crates/lazy_static">lazy_static</a> allows you to define static variables that will be initialized at runtime, at first access (using the same pattern as log with <a href="https://doc.rust-lang.org/std/sync/struct.Once.html">std::sync::Once</a>. Since our logger's <a href="https://github.com/sozu-proxy/sozu/blob/57f99560a85b707c867de6206635b1f8f166e078/lib/src/logging.rs#L49">log method</a> needs an <code>&amp;amp;mut</code>, it's wrapped in a Mutex. That's where the <a href="https://github.com/sozu-proxy/sozu/blob/57f99560a85b707c867de6206635b1f8f166e078/lib/src/logging.rs#L356">call to try_lock</a> comes from.</p>
+<p>We might think the mutex is costly compared to log's solution, but remember that the logger instance has to be <code>Sync</code>, so depending on your implementation, there might be some synchronization somewhere. Except that for sozu, it's not the case! Each worker is single threaded, and has its own instance of the logger (possibly with each of them a connection to the logging service). Can't we have a logging system that does not require that mutex used everywhere?</p>
+<h1>Removing the last Mutex</h1>
+<p>This is a problem that annoyed me for months. It's not that I really mind the cost of that mutex (since no other thread ever touches it). It's just that I'd feel better not using one when I don't need it :)</p>
+<p>And the solution to that problem got quite interesting. To mess around a bit, here's a playground of the logging solution based on <a href="http://play.integer32.com/?gist=4e9a8f30cdaae10b096e445f1e2ec8bd">lazy_static</a>. You'll see why the code in <code>Foo::modify</code> is important.</p>
+<p>There's a feature you can use to have a global variable available anywhere in a thread: <a href="https://doc.rust-lang.org/std/thread/struct.LocalKey.html">thread_local</a>. It uses thread local storage with an <a href="https://doc.rust-lang.org/std/cell/struct.UnsafeCell.html">UnsafeCell</a> to initialize and provide a variable specific to each thread:</p>
+<p>[code lang=text]<br />
+thread_local!(static FOO: RefCell&lt;u32&gt; = RefCell::new(1));</p>
+<p>FOO.with(|f| {<br />
+    assert_eq!(*f.borrow(), 1);<br />
+    *f.borrow_mut() = 2;<br />
+});<br />
+[/code]</p>
+<p>So I tried to use this with my logger, but encountered an interesting bug, as you can see in <a href="http://play.integer32.com/?gist=fa4995e189ea3394a6f1115b17ba8ee7">another playground</a>. I replaced my logging macro with this:</p>
+<p>[code lang=text]<br />
+#[macro_export]<br />
+macro_rules! log {<br />
+    ($format:expr, $($arg:tt)+) =&gt; ({<br />
+        {<br />
+            LOGGER.with(|l| {<br />
+                l.borrow_mut().log(<br />
+                    format_args!(<br />
+                        concat!(&quot;\t{}\t&quot;, $format, &#039;\n&#039;),<br />
+                        &quot;a&quot;, $($arg)+));<br />
+            });<br />
+        }<br />
+    });<br />
+}<br />
+[/code]</p>
+<p>And got this error:</p>
+<p>[code lang=text]<br />
+error[E0502]: cannot borrow `self` as immutable because `self.opt.0` is also borrowed as mutable<br />
+  --&gt; src/main.rs:36:21<br />
+   |<br />
+36 |         LOGGER.with(|l| {<br />
+   |                     ^^^ immutable borrow occurs here<br />
+...<br />
+54 |         if let Some(ref mut s) = self.opt {<br />
+   |                     --------- mutable borrow occurs here<br />
+55 |             log!(&quot;changing {} to {}&quot;, self.bar, new);<br />
+   |             -----------------------------------------<br />
+   |             |                         |<br />
+   |             |                         borrow occurs due to use of `self` in closure<br />
+   |             in this macro invocation<br />
+56 |         }<br />
+   |         - mutable borrow ends here<br />
+[/code]</p>
+<p>When implementing this inside sozu's source, I got about 330 errors like this one... So what happened? That <a href="https://doc.rust-lang.org/std/thread/struct.LocalKey.html#method.with">with method</a> requires a closure. Since we use a macro, if we use <code>self.bar</code> as argument, it will appear inside the closure. That becomes an issue with anything that has been already mutably borrowed somewhere.</p>
+<p>I tried a few things, like calling <code>format_args</code> outside the closure, but I get the error <code>error[E0597]: borrowed value does not live long enough</code>. This is apparently <a href="https://github.com/rust-lang/rust/issues/42253">a common problem with format_args</a>.</p>
+<p>But the real solution came from <a href="https://twitter.com/tomaka17">tomaka</a>, with some macro trickery, as seen in <a href="http://play.integer32.com/?gist=ea040e83ea680678c75113a73ad9ef82">one last playground</a>:</p>
+<p>[code lang=text]<br />
+#[macro_export]<br />
+macro_rules! log {<br />
+    ($format:expr $(, $args:expr)*) =&gt; ({<br />
+        log!(__inner__ $format, [], [a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v]<br />
+             $(, $args)*)<br />
+    });</p>
+<p>    (__inner__ $format:expr, [$($transformed_args:ident),*], [$first_ident:ident $(, $other_idents:ident)*], $first_arg:expr $(, $other_args:expr)*) =&gt; ({<br />
+        let $first_ident = &amp;$first_arg;<br />
+        log!(__inner__ $format, [$($transformed_args,)* $first_ident], [$($other_idents),*] $(, $other_args)*);<br />
+    });</p>
+<p>    (__inner__ $format:expr, [$($final_args:ident),*], [$($idents:ident),*]) =&gt; ({<br />
+        LOGGER.with(move |l| {<br />
+          //let mut logger = *l.borrow_mut();<br />
+          l.borrow_mut().log(<br />
+            format_args!(<br />
+              concat!(&quot;\t{}\t&quot;, $format, &#039;\n&#039;),<br />
+              &quot;a&quot; $(, $final_args)*));<br />
+        });<br />
+    });<br />
+}<br />
+[/code]</p>
+<p>The basic idea is that we could avoid the borrowing issue by doing an additional borrow. But since some of the arguments might by expressions (like <code>1+1</code> or <code>self.size</code>), we will store the reference to it in a local variable, with <code>let $first_ident = &amp;amp;$first_arg;</code>.</p>
+<p>We cannot create variable or function names in macros out of thin air (sadly, because that would be extremely useful), so we instead do recursive macros calls, consuming arguments one after another.<br />
+In <code>[$($transformed_args:ident),*], [$first_ident:ident $(, $other_idents:ident)*], $first_arg:expr $(, $other_args:expr)*</code>,<br />
+<code>transformed_args</code> accumulates the idents (variable names) in which we stored the data.</p>
+<p><code>[$first_ident:ident $(, $other_idents:ident)*]</code> is matching on the list that started as <code>[a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v]</code>, to get the first one in that list (storing it in <code>$first_ident</code>), and using it as variable names. As you might have guessed, that means I won't be able to use a log line with more than 21 arguments. That's a limitation I can live with.</p>
+<p>The <code>$first_arg:expr $(, $other_args:expr)*</code> part matches on the log call's arguments, and gets the first in the list as <code>$first_arg</code>. We then use those in the line <code>let $first_ident = &amp;amp;$first_arg;</code> and recursively call <code>log!</code>, adding the variable name <code>$first_ident</code> to the list of transformed arguments, and the rest of the variable names list and the log call's arguments:</p>
+<p>[code lang=text]<br />
+log!(__inner__ $format, [$($transformed_args,)* $first_ident], [$($other_idents),*] $(, $other_args)*);<br />
+[/code]</p>
+<p>Once all of the logger's arguments are consumed, we can call <code>format_args</code> on the list of <code>$transformed_args</code>:</p>
+<p>[code lang=text]<br />
+(__inner__ $format:expr, [$($transformed_args:ident),*], [$($idents:ident),*]) =&gt; ({<br />
+    LOGGER.with(move |l| {<br />
+            //let mut logger = *l.borrow_mut();<br />
+            l.borrow_mut().log(<br />
+                    format_args!(<br />
+                        concat!(&quot;\t{}\t&quot;, $format, &#039;\n&#039;),<br />
+                        &quot;a&quot; $(, $transformed_args)*));<br />
+            });<br />
+    });<br />
+});<br />
+[/code]</p>
+<p>and it works!</p>
+<p>So, that last part may not be completely relevant to your logger implementation, but I thought<br />
+it was quite cool :)</p>
+<p>Despite my issues with the log crate, it's quite useful and supported by a lot of libraries. It is currently getting a lot better as part of the <a href="https://internals.rust-lang.org/t/crate-evaluation-for-2017-05-16-log/5185">libz blitz</a>. I'd also encourage you to check out <a href="https://crates.io/crates/slog">slog</a>. I haven't felt the need to integrate it in sozu yet, but it can be interesting for new projects, as it comes with an ecosystem of composable libraries to extend it.</p>
+
+    
+
+
+
+<div class="post-tags">
+  
+    
+    <a href="/tags.html#rust">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">Rust</span>
+    </a>
+  
+</div>
+  </div>
+
+  
+<!--  <section class="comments">
+    <h2>Comments</h2>
+  </section>
+-->
+
+
+  <section class="related">
+  <h2>Related Posts</h2>
+  <ul class="posts-list">
+    
+      <li>
+        <h3>
+          <a href="/general/rust/2018/02/02/poc-compiling-to-ebpf-from-rust.html">
+            PoC: compiling to eBPF from Rust
+            <small>02 Feb 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/rust/2018/01/10/rust-2018-maybe-dont-be-too-stable.html">
+            Rust 2018: maybe don't be too stable
+            <small>10 Jan 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/general/rust/2017/07/12/how-to-rewrite-you-project-in-rust.html">
+            How to rewrite your project in Rust
+            <small>12 Jul 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</section>
+
+</div>
+
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>

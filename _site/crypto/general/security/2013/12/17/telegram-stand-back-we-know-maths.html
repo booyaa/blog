@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      Telegram, AKA "Stand back, we have Math PhDs!" &middot; Unhandled Expression
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="post">
+
+    <div id="sidebar">
+  <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
+    <div class="site-title">
+      <a href="/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Unhandled Expression
+      </a>
+    </div>
+    <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/about.html">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/architecture.html">Architecture</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/crypto.html">Crypto</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/development.html">Development</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/rust.html">Rust</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/security.html">Security</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/videolan.html">VideoLAN</a>
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  <nav id="sidebar-icon-links">
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/tags.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/search.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+  <p>
+  &copy; 2018.
+  <a href="/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+
+    <main class="container">
+      <header>
+  <h1 class="post-title">Telegram, AKA "Stand back, we have Math PhDs!"</h1>
+</header>
+<div class="content">
+  <div class="post-meta">
+  <span class="post-date">17 Dec 2013</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/crypto.html">
+          Crypto
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        General
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+  <div class="post-body">
+    <p><strong>Disclaimer: this post is now very old and may not reflect the current state of Telegram's protocol. There has been other research in the meantime, and this post should not be used for your choice of secure messaging app. That said, on a personal note, I still think Telegram's cryptosystem is weird, and its justifications are fallacious. If you want a recommendation on secure messaging apps: use a system based on the <a href="https://whispersystems.org/blog/signal-inside-and-out/" target="_blank">Axolotl/Signal</a> protocol. It is well designed and has been audited. <a href="https://whispersystems.org/" target="_blank">Signal</a> and <a href="https://www.whatsapp.com/security/" target="_blank">WhatsApp</a> are both using that protocol, and there are others.</strong></p>
+<p>Here is the second entry in our serie about weird encryption apps, about <a title="Telegram" href="http://telegram.org" target="_blank">Telegram</a>, which got some press recently.</p>
+<p>According to their website, Telegram is "cloud based and heavily encrypted". How secure is it?</p>
+<blockquote><p>Very secure. We are based on a new protocol, MTProto, built by our own specialists, employing time-tested security algorithms. At this moment, the biggest security threat to your Telegram messages is your mother reading over your shoulder. We took care of the rest.</p></blockquote>
+<p>(from their <a title="Telegram's FAQ" href="http://telegram.org/faq#security" target="_blank">FAQ</a>)</p>
+<p>Yup. Very secure, they said it.</p>
+<p>So, let's take a look around.</p>
+<h2>Available technical information</h2>
+<p>Their website details the protocol. They could have added some diagrams, instead of text-only, but that's still readable. There is also <a title="Open source Telegram protocol" href="https://github.com/ex3ndr/telegram-mt/" target="_blank">an open source Java implementation of their protocol</a>. That's a good point.</p>
+<p>About the team (yes, I know, I said I would not do ad hominem attacks, but they insist on that point):</p>
+<blockquote><p><span style="color:#000000;">The team behind Telegram, led by Nikolai Durov, consists of six ACM champions, half of them Ph.Ds in math. It took them about two years to roll out the current version of MTProto. Names and degrees may indeed not mean as much in some fields as they do in others, but this protocol is the result of thougtful and prolonged work of professionals</span></p></blockquote>
+<p>(Seen on <a title="Telegram on Hacker News" href="https://news.ycombinator.com/item?id=6916860" target="_blank">Hacker News</a>)</p>
+<p>They are not cryptographers, but they have some background in maths. Great!</p>
+<p>So, what is the system's architecture? <strong>Basically, a few servers everywhere in the world, routing messages between clients</strong>. Authentication is only done between the client and the server, not between clients communicating with each other. Encryption happens between the client and the server, but not using TLS (some home made protocol instead). Encryption can happen <a title="Telegram's secret chats" href="https://core.telegram.org/api/end-to-end" target="_blank">end to end</a> between clients, but there is no authentication, so <strong>the server can perform a MITM attack</strong>.</p>
+<p>Basically, their threat model is a simple "trust the server". What goes around the network may be safely encrypted, although we don't know anything about their server to server communication, nor about their data storage system. But whatever goes through the server is available in clear. By today's standards, that's boring, unsafe and careless. For equivalent systems, see Lavabit or iMessage. <strong>They will not protect your messages against law enforcement eavesdropping or server compromise. Worse: you cannot detect MITM between you and your peers</strong>.</p>
+<p>I could stop there, but that would not be fun. The juicy bits are in the crypto design. The ideas are not wrong per se, but the algorithm choices are weird and unsafe, and they take the most complicated route for everything.</p>
+<h2>Network protocol</h2>
+<p>The protocol has two phases: the key exchange and the communication.</p>
+<p>The key exchange registers a device to the server. They wrote a custom protocol for that, because TLS was too slow and complicated. That's true, TLS needs two roundtrips between the client and the server to exchange a key. It also needs x509 certificates, and a combination of a public key algorithm like RSA or DSA, and eventually a key exchange algorithm like Diffie-Hellman.</p>
+<p><a title="Telegram's key exchange" href="http://core.telegram.org/mtproto/auth_key" target="_blank">Telegram greatly simplified the exchange</a> by requiring three roundtrips, using RSA, AES-IGE (some weird mode that nobody uses), and Diffie-Hellman, along with a proof of work (the client has to factor a number, probably a DoS protection). Also, they employ some home made function to generate the AES key and IV from nonces generated by the server and the client (server_nonce appears in plaintext during the communication):</p>
+<ul>
+<li>key = SHA1(new_nonce + server_nonce) + substr (SHA1(server_nonce + new_nonce), 0, 12);</li>
+<li>IV = substr (SHA1(server_nonce + new_nonce), 12, 8) + SHA1(new_nonce + new_nonce) + substr (new_nonce, 0, 4);</li>
+</ul>
+<p>Note that AES-IGE is not an authenticated encryption mode. So they verify the integrity. By using plain SHA1 (nope, not a real MAC) on the plaintext. And encrypting the hash along with the plaintext (yup, pseudoMAC-Then-Encrypt).</p>
+<p>The final DH exchange creates the authorization key that will be stored (probably in plaintext) on the client and the server.</p>
+<p>I really don't understand why they needed such a complicated protocol. They could have made something like: the client generates a key pair, encrypts the public key with the server's public key, sends it to the server with a nonce, and the server sends back the nonce encrypted with the client's public key. Simple and easy. And this would have provided public keys for the clients, for end-to-end authentication.</p>
+<p>About the communication phase: they use some combination of server salt, message id and message sequence number to prevent replay attacks. Interestingly, they have a message key, made of the 128 lower order bits of the SHA1 of the message. That message key transits in plaintext, so if you know the message headers, there is probably some nice info leak there.</p>
+<p>The AES key (still in IGE mode) used for message encryption is generated like this:</p>
+<p>The algorithm for computing aes_key and aes_iv from auth_key and msg_key is as follows:</p>
+<ul>
+<li>sha1_a = SHA1 (msg_key + substr (auth_key, x, 32));</li>
+<li>sha1_b = SHA1 (substr (auth_key, 32+x, 16) + msg_key + substr (auth_key, 48+x, 16));</li>
+<li>sha1_с = SHA1 (substr (auth_key, 64+x, 32) + msg_key);</li>
+<li>sha1_d = SHA1 (msg_key + substr (auth_key, 96+x, 32));</li>
+<li>aes_key = substr (sha1_a, 0, 8) + substr (sha1_b, 8, 12) + substr (sha1_c, 4, 12);</li>
+<li>aes_iv = substr (sha1_a, 8, 12) + substr (sha1_b, 0, 8) + substr (sha1_c, 16, 4) + substr (sha1_d, 0, 8);</li>
+</ul>
+<p>where x = 0 for messages from client to server and x = 8 for those from server to client.</p>
+<p><del>Since the auth_key is permanent, and the message key only depends on the server salt (living 24h), the session (probably permanent, can be forgotten by the server) and the beginning of the message, the message key may be the same for a potentially large number of messages. Yes, <strong>a lot of messages will probably share the same AES key and IV</strong>.</del></p>
+<p><strong>Edit: Following Telegram's comment, the AES key and IV will be different for every message. Still, they depend on the content of the message, and that is a very bad design. Keys and initialization vectors should always be generated from a CSPRNG, independent from the encrypted content.</strong></p>
+<p><strong>Edit 2: the <a title="protocol diagram" href="https://core.telegram.org/img/mtproto_encryption.png" target="_blank">new protocol diagram</a> makes it clear that the key is generated by a weak KDF from the auth key and some data transmitted as plaintext. There should be some nice statistical analysis to do there.</strong></p>
+<p><del><strong>Edit 3: Well, if you send the same message twice (in a day, since the server salt lives 24h), the key and IV will be the same, and the ciphertext will be the same too. This is a real flaw, that is usually fixed by changing IVs regularly (even broken protocols like WEP do it) and changing keys regularly (cf Forward Secrecy in TLS or OTR)</strong></del>. The unencrypted message contains a (time-dependent) message ID and sequence number that are incremented, and the client won't accept replayed messages, or too old message IDs.</p>
+<p><strong>Edit 4: Someone <a href="http://habrahabr.ru/post/206900/" target="_blank">found a flaw</a> in the <a title="Web archive for Telegram" href="http://web.archive.org/web/20131220000537/https://core.telegram.org/api/end-to-end" target="_blank">end to end secret chat.</a> The key generated from the Diffie-Hellman exchange was combined with a server-provided nonce: <code>key = (pow(g_a, b) mod dh_prime) xor nonce</code>. With that, the server can perform a MITM on the connection and generate the same key for both peers by manipulating the nonce, thus defeating the key verification. Telegram has updated their protocol description and will fix the flaw. (That nonce was introduced to fix RNG issues on mobile devices).</strong></p>
+<p>Seriously, I have never seen anyone use the MAC to generate the encryption key. Even if I wanted to put a backdoor in a protocol, I would not make it so evident...</p>
+<p>To sum it up: <strong>avoid at all costs</strong>. There are no new ideas, and they add their flawed homegrown mix of RSA, AES-IGE, plain SHA1 integrity verification, MAC-Then-Encrypt, and a custom KDF. Instead of Telegram, you should use well known and audited protocols, like OTR (usable in IRC, Jabber) or the Axolotl key ratcheting of TextSecure.</p>
+
+    
+
+
+
+<div class="post-tags">
+  
+    
+    <a href="/tags.html#authentication">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">authentication</span>
+    </a>
+  
+    
+    <a href="/tags.html#cryptography">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">cryptography</span>
+    </a>
+  
+    
+    <a href="/tags.html#privacy">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">privacy</span>
+    </a>
+  
+    
+    <a href="/tags.html#security">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">security</span>
+    </a>
+  
+    
+    <a href="/tags.html#telegram">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">Telegram</span>
+    </a>
+  
+    
+    <a href="/tags.html#vulnerabilities">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">vulnerabilities</span>
+    </a>
+  
+</div>
+  </div>
+
+  
+<!--  <section class="comments">
+    <h2>Comments</h2>
+  </section>
+-->
+
+
+  <section class="related">
+  <h2>Related Posts</h2>
+  <ul class="posts-list">
+    
+      <li>
+        <h3>
+          <a href="/general/rust/2018/02/02/poc-compiling-to-ebpf-from-rust.html">
+            PoC: compiling to eBPF from Rust
+            <small>02 Feb 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/rust/2018/01/10/rust-2018-maybe-dont-be-too-stable.html">
+            Rust 2018: maybe don't be too stable
+            <small>10 Jan 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/general/2017/08/23/adventures-in-logging.html">
+            Adventures in logging
+            <small>23 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</section>
+
+</div>
+
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>

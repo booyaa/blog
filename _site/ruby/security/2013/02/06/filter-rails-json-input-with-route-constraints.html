@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      Filter Rails JSON input with route constraints &middot; Unhandled Expression
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="post">
+
+    <div id="sidebar">
+  <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
+    <div class="site-title">
+      <a href="/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Unhandled Expression
+      </a>
+    </div>
+    <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/about.html">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/architecture.html">Architecture</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/crypto.html">Crypto</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/development.html">Development</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/rust.html">Rust</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/security.html">Security</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/videolan.html">VideoLAN</a>
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  <nav id="sidebar-icon-links">
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/tags.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/search.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+  <p>
+  &copy; 2018.
+  <a href="/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+
+    <main class="container">
+      <header>
+  <h1 class="post-title">Filter Rails JSON input with route constraints</h1>
+</header>
+<div class="content">
+  <div class="post-meta">
+  <span class="post-date">06 Feb 2013</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        Ruby
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+  <div class="post-body">
+    <p>Following the recent <a title="Vulnerability in JSON Parser in Ruby on Rails 3.0 and 2.3" href="https://groups.google.com/forum/?fromgroups=#!topic/rubyonrails-security/1h2DR63ViGo" target="_blank">YAML parsing vulnerabilities in Rails</a>, I decided to act on an idea I had a few months ago: using route constraints to define strict API contracts in Rails.</p>
+<p>Sadly, it does not protect against the YAML parsing problem (and the probable similar vulnerabilities we will see in the following months), because the request is interpreted before going through the route constraints. But it can protect from the <a title="Rails security guide: mass assignment" href="http://guides.rubyonrails.org/security.html#mass-assignment" target="_blank">mass assignment vulnerability</a>., and probably some SQL injections.</p>
+<p>Here is the idea: Rails 3 introduced the route constraints, a way to execute fonctions on the request before it is passed to the controllers. By combining it with the json-schema gem, we can filter the JSON input quite easily.</p>
+<p>For the following example data:</p>
+<p>[sourcecode language="javascript"]<br />
+{&quot;echo&quot; : &quot;blah&quot;, &quot;nb&quot; : 1, &quot;data&quot;: [1, 2, 3]}<br />
+[/sourcecode]</p>
+<p>We can define the following schema:</p>
+<p>[sourcecode language="javascript"]<br />
+{<br />
+    &quot;type&quot;: &quot;object&quot;,<br />
+    &quot;$schema&quot;: &quot;http://json-schema.org/draft-03/schema&quot;,<br />
+    &quot;id&quot;: &quot;#&quot;,<br />
+    &quot;required&quot;: false,<br />
+    &quot;additionalProperties&quot;: false,<br />
+    &quot;properties&quot;: {<br />
+        &quot;data&quot;: {<br />
+            &quot;type&quot;: &quot;array&quot;,<br />
+            &quot;id&quot;: &quot;data&quot;,<br />
+            &quot;required&quot;: false,<br />
+            &quot;items&quot;: {<br />
+                &quot;type&quot;: &quot;number&quot;,<br />
+                &quot;id&quot;: &quot;0&quot;,<br />
+                &quot;required&quot;: false<br />
+            }<br />
+        },<br />
+        &quot;echo&quot;: {<br />
+            &quot;type&quot;: &quot;string&quot;,<br />
+            &quot;id&quot;: &quot;echo&quot;,<br />
+            &quot;required&quot;: false<br />
+        },<br />
+        &quot;nb&quot;: {<br />
+            &quot;type&quot;: &quot;number&quot;,<br />
+            &quot;id&quot;: &quot;nb&quot;,<br />
+            &quot;required&quot;: false<br />
+        }<br />
+    }<br />
+}<br />
+[/sourcecode]</p>
+<p>(Use the <a title="JSON schema generator" href="http://www.jsonschema.net/" target="_blank">JSON schema generator</a> to create your own)</p>
+<p>Save this schema to "data.schema" and add "json-schema" to your Gemfile. You will then be able to filter inputs with code like the following "config/routes.rb":</p>
+<p>[sourcecode language="ruby"]<br />
+require &quot;json-schema&quot;<br />
+class LolJSONConstraint<br />
+  def matches?(request)<br />
+    if(request.headers[&quot;CONTENT_TYPE&quot;] == &quot;application/json&quot;)<br />
+      JSON::Validator.validate(&quot;data.schema&quot;, request.headers[&quot;action_dispatch.request.request_parameters&quot;])<br />
+    end<br />
+  end<br />
+end</p>
+<p>Yamlvuln::Application.routes.draw do<br />
+  resources :posts, :constraints =&gt; LolJSONConstraint.new<br />
+end<br />
+[/sourcecode]</p>
+<p>The constraint will load the schema, and apply it to the incoming data, and return a 404 error if the JSON is invalid. The "additionalProperties" set to false in the schema is required to refuse the properties you didn't define and protect the application from mass assignment.</p>
+<p>If I tried, for example, to send the following JSON to the application, there would be an error:</p>
+<p>[sourcecode language="javascript"]<br />
+{&quot;echo&quot; : &quot;blah&quot;, &quot;nb&quot; : &quot;UNION ALL SELECT LOAD_FILE(CHAR(34,47,101,116,99,47,112,97,115,115,119,100,34))&quot;, &quot;data&quot;: [1, 2, 3]}<br />
+[/sourcecode]</p>
+<p>As I said before, it is not safe against the YAML parsing vulnerability. Also, I did not really test the performance of this. But it is still a nice and easy solution for API filtering.</p>
+
+    
+
+
+
+<div class="post-tags">
+  
+    
+    <a href="/tags.html#json">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">json</span>
+    </a>
+  
+    
+    <a href="/tags.html#rails">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">rails</span>
+    </a>
+  
+    
+    <a href="/tags.html#ruby">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">ruby</span>
+    </a>
+  
+    
+    <a href="/tags.html#security">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">security</span>
+    </a>
+  
+    
+    <a href="/tags.html#sql-injection">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">SQL injection</span>
+    </a>
+  
+</div>
+  </div>
+
+  
+<!--  <section class="comments">
+    <h2>Comments</h2>
+  </section>
+-->
+
+
+  <section class="related">
+  <h2>Related Posts</h2>
+  <ul class="posts-list">
+    
+      <li>
+        <h3>
+          <a href="/general/rust/2018/02/02/poc-compiling-to-ebpf-from-rust.html">
+            PoC: compiling to eBPF from Rust
+            <small>02 Feb 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/rust/2018/01/10/rust-2018-maybe-dont-be-too-stable.html">
+            Rust 2018: maybe don't be too stable
+            <small>10 Jan 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/general/2017/08/23/adventures-in-logging.html">
+            Adventures in logging
+            <small>23 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</section>
+
+</div>
+
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>

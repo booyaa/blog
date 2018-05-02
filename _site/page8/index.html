@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      Unhandled Expression &middot; Geoffroy Couprie – software security and architecture consultant
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="index">
+
+    <div id="sidebar">
+  <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
+    <h1 class="site-title">
+      <a href="/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Unhandled Expression
+      </a>
+    </h1>
+    <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/about.html">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/architecture.html">Architecture</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/crypto.html">Crypto</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/development.html">Development</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/rust.html">Rust</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/security.html">Security</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/videolan.html">VideoLAN</a>
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  <nav id="sidebar-icon-links">
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/tags.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/search.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+  <p>
+  &copy; 2018.
+  <a href="/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+
+    <main class="container">
+      <div class="content">
+  
+<div class="pagination">
+  <a class="pagination-item newer"
+     href="/page7">
+    Newer
+  </a>
+</div>
+
+
+
+  
+
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/development/security/2012/01/05/worst-case-messaging-protocol.html">
+        Worst Case Messaging Protocol
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">05 Jan 2012</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/development.html">
+          Development
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+    
+      <p>We already have lots of tools to communicate safely, and in some cases, anonymously. These tools work well for their purpose, but spying and law enforcement tools have also improved.</p>
+<p>People are forced to decrypt their hard drives in airports. Rootkits are developed by police forces. DPI systems are installed on a country level. Using the graph of who communicates with whom, it is possible to map the whole hierarchy of an organisation, even if all communications are encrypted. How can we defend against that?</p>
+<p>I believe that the analysis of organisations is one of the biggest threats right now. The ability to recognize an organization is the ability to destroy it by seizing a few members. That may be useful against terrorists, but these tools are too powerful, and they may be used by the wrong hands. Terrorists already know how to defend against such systems, but what of common people? Any company, association or union could be broken anytime.</p>
+<p>I think we need tools to mount resilient organizations. A compromised node shouldn't bring down the whole system. Intercepted messages shouldn't give too much information on the different parties. People can still find ways to send their messages safely (PGP, dead drops, giving USB keys hand to hand), but we need a framework to build decentralized human systems.</p>
+<p>Here is the solution I propose: a messaging protocol designed to protect identities and route around interception. This protocol is designed to work in the worst case (hence its name), when any communication could be intercepted, and even when we can only use offline communication.</p>
+<p>Every message is encrypted, signed and nearly anonymized (if you already know the emitter or receiver, you can recognize their presence, but this can be mitigated). To introduce redundant routes in the network, a simple broadcast is used (the protocol is not designed for IP networks, but for human networks, with limited P2P communication). Any node can be used to transmit all the messages. The fundamental idea is that if you're compromised, the whole organization can still work safely without you.</p>
+<h2>Prerequisites</h2>
+<h3>Assumptions</h3>
+<ul>
+<li>Every communication can be intercepted</li>
+<li>if a node is compromised, every message it can read or write is compromised</li>
+<li>People can still create a P2P (IRL) network to communicate (aka giving an USB key to someone else)</li>
+</ul>
+<h3>Goals</h3>
+<ul>
+<li>Confidentiality</li>
+<li>Anonymity</li>
+<li>Authentication</li>
+<li>Deniability? (I am just a messenger)</li>
+<li>Untraceability</li>
+<li>Can work offline (worst case)</li>
+</ul>
+<p>For this protocol, we need a RNG, a HMAC function, a symmetric cipher and an asymmetric cipher. I have not yet decided what algorithms must be used. They could be specified in the message format, to permit future changes in algorithms.</p>
+<h2>Message format</h2>
+<ul>
+<li>nonce1</li>
+<li>HMAC( sender's public key, nonce1 )</li>
+<li>expiration date</li>
+<li>symcrypt( symmetric key, message )</li>
+<li>nonce2</li>
+<li>For each receiver:
+<ul>
+<li>asymcrypt( receiver1's public key, symmetric key )</li>
+<li>HMAC( receiver1's public key, nonce2 )</li>
+<li>asymcrypt( receiver2's public key, symmetric key )</li>
+<li>HMAC( receiver2's public key, nonce2 )</li>
+</ul>
+</li>
+<li>asymsign( sender's private key, whole message )</li>
+</ul>
+<p>Here is how it works:<br />
+An identity is represented by one or more public keys (you can have a different public key for each of your contacts, it makes messages difficult to link to one person). They are not publicly linked to a name or email address, but the software layer could handle the complexity with a good enough UI. I do not cover key exchange: users must design their own way to meet or establish communications.</p>
+<p>Every user is a hub: all messages are broadcasted by all users. To prevent data explosion, expiration dates are used. Users recognize the message they receive and the identity of the emitter, using the HMAC of the public keys. All communication are encrypted, but I use the convergent encryption ideas to have multirecipient messages.</p>
+<h2>Handling the messages</h2>
+<h3>Parsing</h3>
+<ul>
+<li>verify if one of my public keys is in the receivers by calculating the HMAC with nonce2</li>
+<li>validate the signature (if I already know the emitter's public key)</li>
+<li>decrypt the symmetric key that was encrypted with my public key</li>
+<li>decrypt the message</li>
+</ul>
+<h3>Creating messages</h3>
+<ul>
+<li>write the message</li>
+<li>choose the emitter's identity and public key</li>
+<li>choose the receivers and the public keys used</li>
+<li>choose an expiration date</li>
+<li>generate two random nonces</li>
+<li>generate a symmetric key</li>
+<li>insert nonce 1 and the HMAC of nonce 1 and my key</li>
+<li>insert the expiration date</li>
+<li>encrypt the message with the symmetric key and insert it</li>
+<li>insert nonce 2</li>
+<li>for each receiver:
+<ul>
+<li>encrypt the symmetric key with the receiver's public key and insert the result</li>
+<li>insert the HMAC of nonce 2 and the receiver's public key</li>
+</ul>
+</li>
+<li>sign the whole message with my private key and append the signature</li>
+</ul>
+<h3>Sending messages</h3>
+<ul>
+<li>Take all the messages you received</li>
+<li>filter them according to some rules:
+<ul>
+<li>remove expired messages</li>
+<li>remove messages too large?</li>
+<li>etc</li>
+</ul>
+</li>
+<li>add your messages to the list</li>
+<li>give the message list to the next node in the network</li>
+</ul>
+<p>This protocol is voluntarily simple and extensible. New techniques can be devised based on this protocol, like dummy receivers in a message or dummy messages to complicate analysis. It is independent of the type of data transmitted, so any type of client could use this protocol (it is at the same level as IP). Most of the logic will be in the client and the contact manager, to present an interface easy to use.</p>
+<p>I truly hope we will never need this to communicate, but recent events have convinced me that I need to release it, just in case.</p>
+<p>I am open to any critique or suggestion about this protocol. I will soon open a repository to host some code implementing it, and it will of course be open to contributions :)</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/general/reinventing%20the%20wheel/security/web/2011/11/18/how-to-get-a-certificate-signed-by-multiple-certification-authorities.html">
+        How to get a certificate signed by multiple certification authorities
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">18 Nov 2011</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        General
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        Reinventing the wheel
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        Web
+      
+    
+  </span>
+</div>
+
+    
+      <p>Sort of. Here is a way to do it, but I don't a practical use for this hack right now. But it is fun anyway :)</p>
+<h2>Here we go!</h2>
+<p>I was thinking about ways to distribute trust, and played a bit with CA generation and OpenSSL, when it occured to me: it depends more on a key pair than on a certificate! If I consider that I trust a key instead of a certificate, I begin to see a way (certificates are only restrictions on the trust between keys).</p>
+<p>It is really easy to get multiple certification authorities to sign a certificate for the same key (even for the same subject name in some cases). You send the certificate signing request to two certificate authorities, and you get two certificates, for the same keys and same subject names. But the issuer, dates, serial and signature are different. That's why a certificate has only one certification chain.</p>
+<p>But what will happen if I delegates the certification to another key? Here is the idea:</p>
+<ul>
+<li>create a first key pair</li>
+<li>create a CSR for this key pair, and add the certification authority extension</li>
+<li>ask the certification authorities to sign this CSR</li>
+<li>you now have multiple certificates, for one key pair, all of them with the same subject name, and with certification authority powers</li>
+<li>create a second key pair</li>
+<li>create a CSR for this key pair, with a subject name for your email/domain name/organisation/whatever</li>
+<li>sign this CSR with the first key pair, and any of the CA certificates you obtained before</li>
+</ul>
+<p>You are now the proud owner of a valid certificate for your domain name, with multiple certification chains going up to each of the root CAs. Why? The issuer's subject name and public key is the same for all of the generated CAs, and they're included in the end certificate. Any generated CA certificate can be used to verify that signature, and all the certification paths will work. Cool, huh?</p>
+<h2>Okay, but...</h2>
+<ul>
+<li>Creating a sub CA is very expensive (if you want it to be recognized by all the browsers)</li>
+<li>good luck with creating multiple sub CA and getting away with it</li>
+<li>Assuming that certification authorities accept it, the sub CA private key could be thrown away after signing the certificate. But who will create and delete the subCA key? you, one of the CAs?</li>
+<li>In the case of TLS, serving all the certification chains will have no impact: the browsers take the first matching sub CA in the list for the verification, they will not retry with another sub CA if they don't find a root (but if you serve one certification chain at a time, it will work).</li>
+</ul>
+<p>See, I said "no practical use" :)</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/reinventing%20the%20wheel/ruby/smalltalk/2011/08/31/jtalk-on-rails-editing-javascript-in-my-browser.html">
+        Jtalk on Rails: editing Javascript in my browser
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">31 Aug 2011</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        Reinventing the wheel
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        Ruby
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        Smalltalk
+      
+    
+  </span>
+</div>
+
+    
+      <p>If you don't know JTalk yet, you're missing something. It's an awesome piece of work: a Smalltalk to Javascript compiler and a Smalltalk editor running in Javascript, <strong>IN YOUR BROWSER</strong>! <a title="JTalk project page" href="http://jtalk-project.org/" target="_blank">Go check it out, now!</a></p>
+<p>Now that you've played a bit with JTalk, let's get started.</p>
+<p>If you're like me, you're a bit annoyed by WebDAV, the proposed solution to save changes to disk. And if you're like me, you would like to use Jtalk with Rails, and because you're a lazy ass like me, you use WEBrick instead of Apache for your development.</p>
+<p>Let's hack something up to replace WebDAV!</p>
+<h2>Create a Rails application</h2>
+<p>[sourcecode language="bash"]<br />
+rails new jtalkonrails<br />
+cd jtalkonrails<br />
+bundle install<br />
+rm public/index.html<br />
+rails generate controller home index<br />
+printf &quot;Jtalkonrails::Application.routes.draw do\n  root :to =&gt; \&quot;home#index\&quot;\nend\n&quot; &gt; config/routes.rb<br />
+[/sourcecode]</p>
+<p>(I should really make a script out of all my rails initialization commands, one of these days...)</p>
+<h2>Add Jtalk to your application</h2>
+<p>[sourcecode language="bash"]<br />
+cd public/<br />
+wget http://github.com/NicolasPetton/jtalk/tarball/master --no-check-certificate<br />
+tar zxvf master<br />
+cp -R NicolasPetton-jtalk-20cd63e/st .<br />
+cp -R NicolasPetton-jtalk-20cd63e/js .<br />
+cp -R NicolasPetton-jtalk-20cd63e/css .<br />
+cp -R NicolasPetton-jtalk-20cd63e/ide .<br />
+rm -rf NicolasPetton-jtalk-20cd63e<br />
+[/sourcecode]</p>
+<p>JTalk stores source code in three forms: Smalltalk code, Javascript code and smaller Javascript code ("*.deploy.js").</p>
+<h2>Jtalk hello world: the Counter example</h2>
+<p>now, edit app/views/layouts/application.html.erb so that it looks like this:</p>
+<p>[sourcecode language="html"]<br />
+&lt;!DOCTYPE html&gt;<br />
+&lt;html&gt;<br />
+&lt;head&gt;<br />
+  &lt;title&gt;Jtalk On Rails&lt;/title&gt;<br />
+  &lt;%= stylesheet_link_tag :all %&gt;<br />
+  &lt;%= javascript_include_tag :defaults %&gt;<br />
+  &lt;%= csrf_meta_tag %&gt;<br />
+  &lt;script src=&quot;js/jtalk.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;<br />
+  &lt;script type=&quot;text/javascript&quot;&gt; loadJtalk()&lt;/script&gt;<br />
+&lt;/head&gt;<br />
+&lt;body&gt;<br />
+&lt;button onclick=&quot;smalltalk.Browser._open()&quot;&gt;Class browser&lt;/button&gt;</p>
+<p>&lt;div id=&quot;counters&quot;&gt;&lt;/div&gt;</p>
+<p>&lt;script type=&quot;text/javascript&quot;&gt;<br />
+  jQuery(document).ready(function() {'#counters'._asJQuery()._append_(smalltalk.Counter._new())});<br />
+&lt;/script&gt;<br />
+&lt;%= yield %&gt;</p>
+<p>&lt;/body&gt;<br />
+&lt;/html&gt;<br />
+[/sourcecode]</p>
+<p>Here, we included a button to open the code browser, and added a Counter in a div. Oh, I forgot to tell you: Jtalk works seamlessly with JQuery :)<br />
+Now, go check it out, and you will seee the counter and be able to increase and decrease the value displayed (yes, that's a counter).</p>
+<h2>Editing the code</h2>
+<p>Click on the "Class browser" button to start the IDE. Select the "Examples" category, the "Counter" class, the "actions" method category, and the "increase method". You will see in the text box below the source code of the increase method:</p>
+<p>[sourcecode language="smalltalk"]<br />
+increase<br />
+    count := count + 1.<br />
+    header contents: [:html | html with: count asString]<br />
+[/sourcecode]</p>
+<p>Edit that method to increase by steps of 2 instead of 1, and hit "Save". Now, the counter on your page will increase by steps of 2.<br />
+Unfortunately, on the next page refresh, you will lose these changes. That's why the "Commit category" button is there.<br />
+It will take the updated files (here, Examples.st, Examples.js and Examples.deploy.js) and make a PUT request to their original URL.</p>
+<p>A PUT, you said? Well, I can work something out with a PUT.</p>
+<h2>Saving the code</h2>
+<p>Let's create a new controller, called Uploader:</p>
+<p>[sourcecode language="bash"]<br />
+rails generate controller uploader jtalk<br />
+[/sourcecode]</p>
+<p>And edit config/routes.rb as follows:</p>
+<p>[sourcecode language="ruby"]<br />
+Jtalkonrails::Application.routes.draw do<br />
+  root :to =&gt; &quot;home#index&quot;<br />
+  if Rails.env == 'development'<br />
+    put 'st/:id' =&gt; 'uploader#jtalk'<br />
+    put 'js/:id' =&gt; 'uploader#jtalk'<br />
+    put 'js/:id.:deploy' =&gt; 'uploader#jtalk'<br />
+  end<br />
+end<br />
+[/sourcecode]</p>
+<p>Now the PUT requests are redirected to our controller, but only in the development environment. You do not want to make your JS editable from the browser in a production app. DO NOT WANT!</p>
+<p>The only thing left is the controller itself:</p>
+<p>[sourcecode language="ruby"]<br />
+class UploaderController &lt; ApplicationController</p>
+<p>  def jtalk<br />
+    path = Rails.root.join('public')<br />
+    if(params[:format] == &quot;js&quot;)<br />
+      path = path.join(&quot;js&quot;)<br />
+    elsif(params[:format] == &quot;st&quot;)<br />
+      path = path.join(&quot;st&quot;)<br />
+    end</p>
+<p>    if(params[:deploy])<br />
+      path = path.join(params[:id]+&quot;.deploy.&quot;+params[:format])<br />
+    else<br />
+      path = path.join(params[:id]+&quot;.&quot;+params[:format])<br />
+    end</p>
+<p>    File.open(path, &quot;w&quot;) do |f|<br />
+      f.write(request.body.read())<br />
+    end</p>
+<p>    head 200<br />
+  end</p>
+<p>end<br />
+[/sourcecode]</p>
+<p>Here, we build the file path from the parameters. I use <em>request.body.read()</em> to get the file content because Rails seems to truncate the beginning of the file.</p>
+<h2>Profit</h2>
+<p>Now, go back to the web page, click on "Commit category", and refresh the page. Your changes were saved! You can enjoy editing your frontend directly from the webpage itself, in the code browser, and more importantly, write your whole frontend in Smalltalk! It's still missing the workflow "edit-try-debug-edit-continue", but it already feels just like a "normal" Smalltalk environment. <strong>It feels like home</strong> :)</p>
+<h3>Post Scriptum</h3>
+<p>If you want to add a new category, it's easy: create a file <em>Mycategory.js</em> and put it in <em>public/js</em>, with this content:</p>
+<p>[sourcecode language="javascript"]<br />
+smalltalk.addClass('Myclass', smalltalk.Object, [], 'Mycategory');</p>
+<p>[/sourcecode]</p>
+<p>and change your initialization from <em>loadJtalk()</em> to <em>loadJtalk(new Array("Mycategory.js")).</em> The new category will now appear in the code browser, and clicking on "Commit category" will create the deployment file and Smalltalk source file.</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/development/reinventing%20the%20wheel/2011/08/16/manage-your-libraries-with-symlinks-on-windows.html">
+        Manage your libraries with symlinks on Windows
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">16 Aug 2011</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/development.html">
+          Development
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        Reinventing the wheel
+      
+    
+  </span>
+</div>
+
+    
+      <p>My Windows development environment is a bit complex. I work on multiple projects, at multiple versions, with different compiler environments, and with dependencies on different libraries and versions of these libraries.</p>
+<p>Now, how do I specify where the compiler must search the libraries, and which version to use? Most of the time, I will add it directly in the project configuration. Easy at first, but quickly,I find myself writing by hand the path to each library (and header) in each project and each configuration of this project. And then, writing by hand the different names of the libraries (mylibrary.lib, mylibraryd.lib, mylibrary-static.lib, mylibrary-MTD.lib, etc).</p>
+<p>And when I want to update to a new version of the library? If I'm lucky, I just have to change the library and header paths (in every project using the library). If not, I also have to change the name, because of the library developer's convention.</p>
+<p>The first solution to these problems was to use a batch file to launch Visual Studio and MSYS, and set some environment variables in this file. I quickly ended up with one big file containing two environment variables (include path and lib path) per library, possibly more if there were some big changes in the library names. My Visual Studio configuration was cluttered with $(MYLIBRARY_LIBPATH), $(MYLIBRARY_INCLUDEPATH), $(MYLIBRARY_NAME). It is unreadable, and again, impossible to maintain.</p>
+<p>My solution comes from the Unix world, where you have a correct organization for your development files:</p>
+<ul>
+<li>one folder containing the subfolders include, bin and lib</li>
+<li>library names including version, and a symlink (without the version number) to the latest version of the lib</li>
+</ul>
+<p>Can I do that on Windows? YES \o/</p>
+<p><strong>Here is the trick</strong>: normal links on Windows won't work, but the <em>mklink </em>tool can create symlinks. And Visual Studio will recognize those as files and folders while looking for libraries.</p>
+<p>Now, how would I organize my development environment? I chose to use (and abuse) symlinks, to create include, lib and bin folders for each project and configuration, and use generic names for the libraries.</p>
+<ul>
+<li>I create a folder containing include, lib and bin</li>
+<li>in the  include/ folder, I put symlinks to the header file or the subfolder for each library I will use in that project</li>
+<li>in the lib directory, I create symlinks to the library version I want, one symlink per static/dynamic, MT/MD, Debug/Release version. But I could create one lib folder per static/dynamic, etc. A bit complex, but feasible (most of the time, I use only debug and release version, so it's still manageable).</li>
+</ul>
+<p>With this setup, I only set the INCLUDE and LIB environment variables, and I use directly the library names I need.</p>
+<p>Here is an example script I use to create different library folders for x86 and x64 libs:</p>
+<p>[sourcecode language="text"]<br />
+echo &quot;Building include and library directories for Windows %PLATFORM%&quot;</p>
+<p>@mkdir %PLATFORM%<br />
+@mkdir %PLATFORM%\include<br />
+@mkdir %PLATFORM%\lib</p>
+<p>@mklink /D %PLATFORM%\include\boost %BOOST%\boost<br />
+@for %%i in (%BOOST%\lib\*.lib) do (mklink %PLATFORM%\lib\%%~ni.lib %%~fi)</p>
+<p>@mklink /D %PLATFORM%\include\cpptest %CPPTEST%\include\cpptest<br />
+@for %%i in (%CPPTEST%\lib\*.lib) do (mklink %PLATFORM%\lib\%%~ni.lib %%~fi)</p>
+<p>[/sourcecode]</p>
+<p>I set up the BOOST and CPPTEST environment variables in another file. Then, I launch Visual Studio from another script which includes it.</p>
+<p>There may be better ways, and that system will evolve in the future, but I'm pretty comfortable with it right now :)</p>
+<p>Depending on my needs, I may grab from the bottom of my disk the package manager I wrote back in school, and make a big solution to download, build and link libs and personal projects. But later, I have some procrastination planned right now.</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/development/ruby/security/2011/06/28/rails-and-oauth-plugin-part-2-the-consumer.html">
+        Rails and oauth-plugin part 2: the consumer
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">28 Jun 2011</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/development.html">
+          Development
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        Ruby
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+    
+      <p>In the previous post, I showed how you could build a provider with oauth-plugin and Rails. Now, I will demonstrate how to build a consumer (it's a lot easier).</p>
+<p>I will assume that your provider is already running on localhost:3000. The consumer will run on localhost:4000 (run it with "rails server -p 4000").</p>
+<h2>Here we go!</h2>
+<p>[sourcecode language="bash"]<br />
+rails new consumer<br />
+cd consumer<br />
+[/sourcecode]</p>
+<p>Put this in your Gemfile:</p>
+<p>[sourcecode language="ruby"]<br />
+source 'http://rubygems.org'<br />
+gem 'rails', '3.0.7'<br />
+gem 'sqlite3'<br />
+gem 'devise'<br />
+gem &quot;oauth-plugin&quot;, &quot;&gt;= 0.4.0.pre1&quot;<br />
+[/sourcecode]</p>
+<p>And run these commands:</p>
+<p>[sourcecode language="bash"]<br />
+bundle install<br />
+rails generate devise:install<br />
+rails generate devise User<br />
+rake db:migrate<br />
+rails generate controller welcome index<br />
+rm public/index.html<br />
+[/sourcecode]</p>
+<p>And here is your routes.rb:</p>
+<p>[sourcecode language="ruby"]<br />
+Provider::Application.routes.draw do<br />
+devise_for :users<br />
+root :to =&gt; &quot;welcome#index&quot;<br />
+end<br />
+[/sourcecode]</p>
+<h2>Create the consumer</h2>
+<p>[sourcecode language="bash"]<br />
+rails generate oauth_consumer user<br />
+rake db:migrate<br />
+[/sourcecode]</p>
+<p>in app/controllers/oauth_consumers_controller.rb, replace:</p>
+<p>[sourcecode language="ruby"]<br />
+before_filter :login_required, :only=&gt;:index<br />
+[/sourcecode]</p>
+<p>by</p>
+<p>[sourcecode language="ruby"]<br />
+before_filter :authenticate_user!, :only=&gt;:index<br />
+[/sourcecode]</p>
+<p>Uncomment the methods for devise (go_back, logged_in? currentuser=, deny_access!) in app/controllers/oauth_consumers_controller.rb.</p>
+<p>Add to app/models/user.rb:</p>
+<p>[sourcecode language="ruby"]<br />
+ has_one  :test, :class_name=&gt;&quot;TestToken&quot;, :dependent=&gt;:destroy<br />
+[/sourcecode]</p>
+<p>Now go to http://localhost:3000/oauth_clients/ to register your first application with these parameters:</p>
+<blockquote><p>Name:                 Test consumer<br />
+Main Application URL: http://localhost:4000/<br />
+Callback URL:         http://localhost:4000/oauth_consumers/test/callback</p></blockquote>
+<p>You're redirected to http://localhost:3000/oauth_clients/1. It shows:</p>
+<blockquote><p>Consumer Key:      CRcIJ15MwSqlDTxsH8MpO3En4wjaOxkqeofLioH4</p>
+<p>Consumer Secret:   C7uci8xkyMShCf4SNXWPclKbBo3ml1Zf2W2XWu4W</p>
+<p>Request Token URL: http://localhost:3000/oauth/request_token</p>
+<p>Access Token URL:  http://localhost:3000/oauth/access_token</p>
+<p>Authorize URL:     http://localhost:3000/oauth/authorize</p></blockquote>
+<p>Now, you need to put the key and secret in config/initializers/oauth_consumers.rb:</p>
+<p>[sourcecode language="ruby"]<br />
+ OAUTH_CREDENTIALS={<br />
+:test =&gt;{<br />
+:key =&gt; &quot;CRcIJ15MwSqlDTxsH8MpO3En4wjaOxkqeofLioH4&quot;,<br />
+     :secret =&gt; &quot;C7uci8xkyMShCf4SNXWPclKbBo3ml1Zf2W2XWu4W&quot;,<br />
+     :expose =&gt; true<br />
+   }<br />
+ }<br />
+[/sourcecode]</p>
+<p>Create app/models/test_token.rb. This model will store the token for your provider. If you want to provide helpful methods, take inspiration from lib/oauth/models/consumers/services/.</p>
+<p>[sourcecode language="ruby"]<br />
+class TestToken &lt; ConsumerToken<br />
+TEST_SETTINGS={<br />
+:site =&gt; &quot;http://localhost:3000&quot;,<br />
+:request_token_path =&gt; &quot;/oauth/request_token&quot;,<br />
+:access_token_path =&gt; &quot;/oauth/access_token&quot;,<br />
+:authorize_path =&gt; &quot;/oauth/authorize&quot;<br />
+}</p>
+<p>def self.consumer(options={})<br />
+@consumer ||= OAuth::Consumer.new(credentials[:key], credentials[:secret], TEST_SETTINGS.merge(options))<br />
+end</p>
+<p>end<br />
+[/sourcecode]</p>
+<p>You should now be able to use the URLs "/oauth_consumers/test/client/", "/oauth_consumers/test/callback", "/oauth_consumers/test/callback2"," /oauth_consumers/test/edit",<br />
+and "/oauth_consumers/test".</p>
+<p>Modify the welcome controller t get the provider data:</p>
+<p>[sourcecode language="ruby"]<br />
+ class WelcomeController &lt; ApplicationController<br />
+ def index<br />
+ # cf http://oauth.rubyforge.org/rdoc/classes/OAuth/AccessToken.html<br />
+ @consumer_tokens=TestToken.all :conditions=&gt;{:user_id=&gt;current_user.id}<br />
+ @token = @consumer_tokens.first.client<br />
+ logger.info &quot;private data: &quot;+@token.get(&quot;/data/index&quot;).body<br />
+ end</p>
+<p>end<br />
+[/sourcecode]</p>
+<p>To connect a user to an external service link or redirect them to:</p>
+<p>/oauth_consumers/[SERVICE_NAME]</p>
+<p>Where SERVICE_NAME is the name you set in the OAUTH_CREDENTIALS hash. This will request the request token and redirect the user to the services authorization screen. When the user accepts the get redirected back to:</p>
+<p>/oauth_consumers/[SERVICE_NAME]/callback</p>
+<h2>That's it</h2>
+<p>This tutorial is really short, and could be explained a bit more, but I'll leave that for another post. You have enough to start tinkering with OAuth. Have fun!</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+
+  
+<div class="pagination">
+  <a class="pagination-item older"
+     href="/page9">
+    Older
+  </a>
+</div>
+
+
+</div>
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>

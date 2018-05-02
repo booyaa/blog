@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      Unhandled Expression &middot; Geoffroy Couprie – software security and architecture consultant
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="index">
+
+    <div id="sidebar">
+  <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
+    <h1 class="site-title">
+      <a href="/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Unhandled Expression
+      </a>
+    </h1>
+    <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/about.html">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/architecture.html">Architecture</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/crypto.html">Crypto</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/development.html">Development</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/rust.html">Rust</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/security.html">Security</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/videolan.html">VideoLAN</a>
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  <nav id="sidebar-icon-links">
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/tags.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/search.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+  <p>
+  &copy; 2018.
+  <a href="/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+
+    <main class="container">
+      <div class="content">
+  
+<div class="pagination">
+  <a class="pagination-item newer"
+     href="/">
+    Newer
+  </a>
+</div>
+
+
+
+  
+
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/general/rust/security/2016/11/25/this-year-in-nom-2-0-is-here.html">
+        This year in nom: 2.0 is here!
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">25 Nov 2016</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        General
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/rust.html">
+          Rust
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+    
+      <p>Nearly one year ago, on November 15th 2015, I released the 1.0 version of <a href="https://github.com/Geal/nom">nom, the fast parser combinators library</a> I wrote in <a href="http://rust-lang.org/">Rust</a>. A lot happened around that project, and I have been really happy to interact with nom users around the world.</p>
+<p><!--more--></p>
+<p>TL;DR: it's new nom day! The 2.0 release is here! Read the <a href="https://github.com/Geal/nom/blob/master/CHANGELOG.md">changelog</a>. Follow the <a href="https://github.com/Geal/nom/blob/ca1398538b0050b4009f67151063405766e0c84f/doc/upgrading_to_nom_2.md">upgrade documentation</a> if it breaks stuff.</p>
+<p><img class="aligncenter size-full wp-image-954" src="/assets/celebrate.gif" alt="celebrate" width="499" height="285" /></p>
+<h2>Interesting usage</h2>
+<p>I wouldn't be able to list <a href="https://github.com/search?utf8=%E2%9C%93&amp;q=filename%3ACargo.toml+nom">all the projects using nom</a> on this page, even <a href="https://crates.io/crates/nom/reverse_dependencies">the subset present on crates.io</a>, but here are a few examples of what people built with nom:</p>
+<ul>
+<li><a href="https://crates.io/crates/semver">semver</a> briefly shipped with nom in February thanks to <a href="http://twitter.com/steveklabnik">Steve Klabnik</a>, until he replaced it with a regexp based solution (no hard feelings, I'd have done the same)</li>
+<li><a href="https://github.com/joelself/tomllib">tomllib</a>, a complete TOML implementation written by <a href="https://twitter.com/JoelSelf">Joel Self</a></li>
+<li>a <a href="https://github.com/maxmcc/rust-jvm">JVM</a>, because why not! Great work coming from a team of students at the University of Pennsylvania</li>
+<li><a href="https://github.com/tagua-vm/parser">Tagua VM</a>, a great PHP implementation in Rust by <a href="https://twitter.com/mnt_io">Ivan Enderlin</a></li>
+<li> <a href="https://github.com/dtolnay/syn">syn</a>, the Rust item parser written by <a href="https://github.com/dtolnay">David Tolnay</a> everybody uses with the <a href="https://github.com/rust-lang/rfcs/blob/master/text/1681-macros-1.1.md">macros 1.1 feature</a> to generate code from structures or enums, <a href="https://github.com/dtolnay/syn/blob/7184b1381ea1552cd02336775a6fbf47e4bc9dfc/src/nom.rs">actually ships with its own fork of nom</a>! It was forked to remove the incomplete data handling, and reduce compilation times</li>
+<li><a href="https://github.com/deech/shen-rust">shen-rust</a>, a complete implementation of the Shen language in Rust that was <a href="https://www.thestrangeloop.com/2016/rusty-runtimes-building-languages-in-rust.html">presented at Strangeloop 2016</a> by <a href="https://twitter.com/deech">Aditya Siram</a></li>
+<li><a href="https://github.com/rusticata">a series of parsers (DER, NTP, SNMP, IPSec, TLS)</a> were developed for its integration in the <a href="https://suricata-ids.org/">Suricata</a> network analysis tool. This work was presented at <a href="http://suricon.net/wp-content/uploads/2016/11/SuriCon2016_PierreChifflier.pdf">Suricon 2016</a> by <a href="https://twitter.com/pollux7">Pierre Chifflier</a></li>
+</ul>
+<p>And a lot of other projects. As a side note, people apparently like to build parsers for flac, bittorrent and bitcoin stuff, LISP and Scheme tokenizers and, oddly, ASN.1 libraries :D</p>
+<p>I have been really humbled by what people achieved with this little library, and I hope it will enable even more awesome projects!</p>
+<h2>Growth and stabilization</h2>
+<p>The goal before 1.0 was to get a usable parsing library, and after 1.0, to <a href="https://github.com/Geal/nom/blob/master/CHANGELOG.md">add features people were missing</a> and explore new ideas. A lot of code was contributed for bitstream and string parsing, and adding a lot of useful combinators like "peek!", "separated_list!" or "tuple!".</p>
+<p>Unfortunately, a few parts of nom got increasingly painful to maintain and support, so the 2.0 was a good opportunity to clean them up, and add more features while we're at it.</p>
+<p>The <a href="http://rust.unhandledexpression.com/nom/macro.chain!.html">"chain!" combinator</a>, which everybody uses to parse a sequence of things and accumulate the results in structs or tuple, is now deprecated, and will be replaced by <a href="http://rust.unhandledexpression.com/nom/macro.do_parse!.html">"do_parse!"</a>, a simpler alternative. There are also a lot of specific helpers to make your code nicer, like <a href="http://rust.unhandledexpression.com/nom/macro.pair!.html">"pair!"</a>, <a href="http://rust.unhandledexpression.com/nom/macro.preceded!.html">"preceded!"</a>, <a href="http://rust.unhandledexpression.com/nom/macro.delimited!.html">"delimited!"</a>, <a href="http://rust.unhandledexpression.com/nom/macro.separated_pair!.html">"separated_pair!"</a>, <a href="http://rust.unhandledexpression.com/nom/macro.separated_list!.html">"separated_list!"</a> and <a href="http://rust.unhandledexpression.com/nom/macro.delimited!.html">"delimited!"</a>. Yes, I went to great lengths to make sure you stop using chain :)</p>
+<p>The "length_value!" and other associated combinators were refactored, to have more sensible names and behaviours. "eof", eol" and the basic token parsers like "digit" or "alphanumeric" got the same treatment. Those can be a source of issues in the upgrade to 2.0, but if the new behaviour does not work in your project, replacing them is still easy with the "is_a!" combinator and others.</p>
+<p>At last, I changed the name of the "error!" macro that was conflicting with the one from the log crate. I hoped that by waiting long enough, the log people would change their macro, but it looks like I lost :p</p>
+<h2>New combinators</h2>
+<p>A few new simple combinators are here:</p>
+<ul>
+<li>the previously mentioned "do_parse!" makes nicer code than "chain!":</li>
+</ul>
+<p>The "chain!" version uses this weird closure-like syntax (while not actually using a closure) with a comma ending the parser list:</p>
+<pre>named!(filetype_parser&lt;&amp;[u8],FileType&gt;, 
+ chain!( 
+ m: brand_name ~ 
+ v: take!(4) ~ 
+ c: many0!(brand_name) , 
+ ||{ FileType{
+   major_brand: m,
+   major_brand_version:v,
+   compatible_brands: c
+ } } 
+));</pre>
+<p>The "do_parse!" version only uses "&gt;&gt;" as separating token, and returns a value as a tuple. If the tuple contains only value, (A) is conveniently equivalent to A.</p>
+<pre>named!(filetype_parser&lt;&amp;[u8],FileType&gt;, 
+ do_parse!( 
+   m: brand_name &gt;&gt; 
+   v: take!(4) &gt;&gt; 
+   c: many0!(brand_name) &gt;&gt; 
+   (FileType{
+     major_brand: m,
+     major_brand_version:v,
+     compatible_brands: c
+   }) 
+));</pre>
+<p>"chain!" had too many features, like a "?" indicating a parser was optional (which you can now do with "opt!"), and you could declare one of the values as mutable. All of those and the awkward syntax made it hard to maintain. Still, it was one of the first useful combinators in nom, and it can now happily retire</p>
+<ul>
+<li><a href="http://rust.unhandledexpression.com/nom/macro.permutation!.html">"permutation!"</a> applies its child parser in any order, as long as all of them succeed once</li>
+</ul>
+<pre>  fn permutation() {
+    named!(perm&lt;(&amp;[u8], &amp;[u8], &amp;[u8])&gt;,
+      permutation!(tag!("abcd"), tag!("efg"), tag!("hi"))
+    );
+
+    let expected = (&amp;b"abcd"[..], &amp;b"efg"[..], &amp;b"hi"[..]);
+
+    let a = &amp;b"abcdefghijk"[..];
+    assert_eq!(perm(a), Done(&amp;b"jk"[..], expected));
+    let b = &amp;b"efgabcdhijk"[..];
+    assert_eq!(perm(b), Done(&amp;b"jk"[..], expected));
+    let c = &amp;b"hiefgabcdjk"[..];
+    assert_eq!(perm(c), Done(&amp;b"jk"[..], expected)
+}</pre>
+<p>This one was very interesting to write :)</p>
+<ul>
+<li><a href="http://rust.unhandledexpression.com/nom/macro.tag_no_case!.html">"tag_no_case!"</a> works like <a href="http://rust.unhandledexpression.com/nom/macro.tag!.html">"tag!"</a>, but compares independently from the case. This works great for ASCII strings, since the comparison requires no allocation, but the UTF-8 case is trickier, and I'm still looking for a correct way to handle it</li>
+<li><a href="http://rust.unhandledexpression.com/nom/macro.named_attr!.html"><code>"</code>named_attr!"</a> creates functions like <a href="http://rust.unhandledexpression.com/nom/macro.named!.html">"named!"</a><code></code> but can add attributes like documentation. This was a big pain point, now nom parsers can have documentation generated by rustdoc</li>
+<li><code></code>"<a href="http://rust.unhandledexpression.com/nom/macro.many_till!.html">many_till!"</a> applies repeatedly its first child parser until the second succeeds</li>
+</ul>
+<h2>Whitespace separated formats</h2>
+<p>This is one of the biggest new additions, and a feature that people wanted for a long time. A lot of the other Rust parser libraries are designed with programming languages parsing in mind, while I started nom mainly to parse binary formats, like video containers. Those libraries usually handle whitespace parsing for you, and you only need to specify the different elements of your grammars. You essentially work on a list of already separated elements.</p>
+<p>Previously, with nom, you had to explicitely parse the spaces, tabs and end of lines, which made the parsers harder to maintain. What we want in the following example is to recognize a "(", an expression, then a ")", and return the expression, but we have to introduce a lot more code:</p>
+<pre>named!(parens&lt;i64&gt;, delimited!(
+    delimited!(opt!(multispace), tag!("("), opt!(multispace)),
+    expr,
+    delimited!(opt!(multispace), tag!(")"), opt!(multispace))
+  )
+);</pre>
+<p>This new release introduces <a href="http://rust.unhandledexpression.com/nom/macro.ws!.html">"ws!"</a>, a combinator that will automatically insert the separators everywhere:</p>
+<pre>named!(parens&lt;i64&gt;, ws!(delimited!( tag!("("), expr, tag!(")") )) );</pre>
+<p><img class="aligncenter size-full wp-image-953" src="/assets/magic.gif" alt="magic" width="350" height="196" />By default, it removes spaces, tabs, carriage returns and line feed, but you can easily specify your own separator parser and make your own version of "ws!".</p>
+<p>This makes whitespace separated formats very easy to write. See for example the <a href="https://github.com/Geal/nom/blob/ac8fe712b9f8b3da661828ffc5b97a825007b590/tests/json.rs">quickly put together, probably not spec compliant JSON parser</a> I added as test.</p>
+<p>If you're working on a language parsers, this should help you greatly.</p>
+<h2>Architecture changes</h2>
+<h3>Error management</h3>
+<p>The error management system that accumulated errors and input positions as it backtracks through the parser tree is great for some projects like language parsers, but others were not using it and got a penalty because of vectors allocation and deallocation.</p>
+<p>In the 2.0 release, this error management system is now activated by the "verbose-errors" feature. Projects that don't use it should build correctly right away, and their parsers could get 30% to 50% faster!</p>
+<h3>Input types</h3>
+<p>One of nom's original assumptions was that it should work on byte slices and strings instead of byte or char iterators, because the CPU likes contiguous data. As always, the reality is a bit more complex than that, but it worked well and made the code very simple: I only passed subslices from one parser to the next.</p>
+<p>But I wrongly assumed that because of that design, nom could only work on contiguous data. <a href="https://twitter.com/carllerche">Carl Lerche</a> made the interesting point that there are few points where nom actually needs to read a serie of bytes or chars and those could accomodate other data structures like ropes or a list of buffers.</p>
+<p>So I got to work on an abstraction for input types that would work for &amp;[u8] and &amp;str, but also for other types. In the process, I was able to factor most of the &amp;str specific combinators with the &amp;[u8] ones. This will make them easier to maintain in the future.</p>
+<p>The result of that work is <a href="https://github.com/Geal/nom/blob/2e2730cdb451a555f68ff8cc27f852d3d292df42/src/traits.rs">a list of traits</a> that any input type should implement to be usable with nom. I <a href="https://github.com/Geal/nom/blob/2e2730cdb451a555f68ff8cc27f852d3d292df42/tests/blockbuf-arithmetic.rs#L17-L187">experimented a bit with the BlockBuf type</a>, and this approach looks promising. I expect that people will find cool applications for this, like parsers returning references to not yet loaded data, or blocking a coroutine on a tag comparison until the data is available.</p>
+<h2>A smooth upgrade process</h2>
+<p>For the 1.0 release, I choose a few projects using nom, and tried to build them to test the new version and document the upgrade. This was so useful that I did it again for 2.0, so if you're lucky, you maintain one of the 30 crates I tested, and you received a pull request doing that upgrade for you. Otherwise, I wrote <a href="https://github.com/Geal/nom/blob/ca1398538b0050b4009f67151063405766e0c84f/doc/upgrading_to_nom_2.md">an upgrade documentation</a> that you can follow to fix the migration issues. You're still lucky, though, because most crates will build (or only require a one line fix in Cargo.toml).</p>
+<p><img class="aligncenter size-full wp-image-955" src="/assets/fixingstuff.gif" alt="fixingstuff" width="240" height="180" /></p>
+<p>I'll write soon about that process and the benefits you can get by applying it to your projects.</p>
+<h2>The future</h2>
+<p>I have a lot of ideas for the next version, also a lot of pull requests to merge and issues to fix. Not everything could make it into the 2.0, otherwise I would never have released it.</p>
+<p>In short, the plan:</p>
+<ul>
+<li>rewrite completely the producers and consumers system. It is not very usable right now. It could be replaced by an implementation based on futures</li>
+<li>improve the performance. I got a good enough library by choosing the most naive solutions, but there are lots of points I could improve (especially in helping LLVM generate faster code)</li>
+<li>implement a new serialization library. I believe there is some room for a serialization system that does not rely on automatic code generation, and it would go well with nom</li>
+<li>continue my work on writing <a href="https://github.com/Geal/rust-vlc-demux">nom demuxers for VLC media player</a>. I have a good proof of concept, now I need to make it production ready</li>
+<li>add new, interesting examples: indentation based programming languages, tokio integration, integration in high performance networking systems</li>
+<li>I'll release very soon a large networking tool that relies heavily on nom. Expect some big news :)</li>
+</ul>
+<p>That's it, now go and upgrade your code, you'll enjoy this new version!</p>
+<p>&nbsp;</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/development/general/rust/2016/04/14/using-llvm-pgo-in-rust.html">
+        PoC: using LLVM's profile guided optimization in Rust
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">14 Apr 2016</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/development.html">
+          Development
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        General
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/rust.html">
+          Rust
+        </a>
+      
+    
+  </span>
+</div>
+
+    
+      <h2><img class="aligncenter size-full wp-image-917" src="/assets/screen-shot-2016-04-14-at-15-50-01.png" alt="call graph" width="525" height="408" /></h2>
+<h2>What does profile-guided optimization mean?</h2>
+<p>Some languages have a JIT (Just In Time) compiler available at runtime, that can optimize the executed code depending on current execution patterns. This is, in large part, the cause of the performance of Lua and the JVM. They can start a bit slow, but by accumulating information on actual running code, they make it faster and faster for the current load. <a href="https://wingolog.org/pub/fosdem-2015-pflua-slides.pdf" target="_blank">PfLua</a> is a great example: the firewall rules are optimized again and again, until the current network traffic is handled as quickly as possible.</p>
+<p>When you use other languages, such as C, you usually cannot optimize the application once it is compiled. Except when you use an optimization technique known as <em>Profile-Guided Optimization</em>. From <a href="https://en.wikipedia.org/wiki/Profile-guided_optimization" target="_blank">Wikipedia</a> :</p>
+<blockquote><p>Profile-guided optimization (PGO, sometimes pronounced as pogo), also known as profile-directed feedback (PDF), is a compiler optimization technique in computer programming that uses profiling to improve program runtime performance.</p></blockquote>
+<p>It relies on profiling the compiled application, while it runs with the expected, real world load (web traffic, calculations, etc), and feed this profiling information to the compiler. On the next build, the compiler will have more information on which parts of the program are less used, which branches are taken more often, the expected values in a range, etc. Instead of guessing how the program would behave to choose optimizations, the compiler has true information, and can optimize more precisely. There's one issue with the process: you need two compilations and a profiling run to generate the final executable. But it gets easier when you automate it, as we can see in the <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Build_Instructions/Building_with_Profile-Guided_Optimization" target="_blank">Firefox build process</a>.</p>
+<h2>PGO in LLVM</h2>
+<p>While it has been available in other systems for a long time (Visual Studio 2005, the Intel compiler ICC for Itanium), <a href="http://llvm.org/devmtg/2013-11/slides/Carruth-PGO.pdf" target="_blank">it appeared recently in LLVM</a>.  It has since then been applied successfully to <a href="https://developer.apple.com/library/ios/documentation/DeveloperTools/Conceptual/xcode_profile_guided_optimization/pgo-using/pgo-using.html" target="_blank">XCode (Objective C, Swift)</a> and <a href="https://wiki.dlang.org/LDC_LLVM_profiling_instrumentation" target="_blank">LDC, the D compiler</a>.</p>
+<p>LLVM has a great feature: it uses an Intermediate Representation code (IR), which is a kind of high level assembly language. It applies its optimizations and machine code generation to that representation. If you make a compiler for a new language, targeting the LLVM IR will give you these features (nearly) for free.</p>
+<p>In practice, compiler frontends choose which features they use, so you may not access everything LLVM has to offer. In particular, the Rust compiler, as of now (April 2016), provides a <em>llvm-args</em> option, but that option filters what you can send to LLVM, so we cannot use PGO here.</p>
+<h2>PGO in Rust</h2>
+<p>Still, with <em>rustc</em>, you can generate directly the IR, or its binary encoding, named bitcode:</p>
+<blockquote><p>rustc --emit llvm-bc main.rs<br />
+# or, with cargo:<br />
+cargo rustc -- --emit llvm-bc</p></blockquote>
+<p>The approach I tried here is to take that bitcode, and manually apply LLVM's transformations until I get a compiled executable. This is not really usable for now, especially because I chose an example with very few dependencies. With more dependencies, the compilation and linking will get more complex and unmanageable manually.</p>
+<p>LLVM comes with a few commands that you can use to build code manually. The first one is <em>opt</em>, and it applies optimizations and instrumentation on the bitcode file (here, the file <em>target/release/pgo.bc</em>):</p>
+<blockquote><p>opt-3.8 -O2 -pgo-instr-gen -instrprof target/release/pgo.bc -o pgo.bc</p></blockquote>
+<p>The new bitcode file contains code to profile the end application (mainly by counting how often we use each code path). We can now convert that bitcode file to an object file, and link it using clang:</p>
+<blockquote><p>llc-3.8 -O2 -filetype=obj pgo.bc<br />
+clang-3.8 -O2 -flto -fprofile-instr-generate pgo.o -L/usr/local/lib/rustlib/x86_64-apple-darwin/lib -lstd-ca1c970e -o pgo</p></blockquote>
+<p><strong>Note:</strong> I built my own rustc from source, so your <em>libstd</em> file may not have the same hash. Since Rust (as of April 2016) uses LLVM 3.7, we can use LLVM 3.8's PGO features, since the bitcode format is apparently backward compatible. I use OS X, and Homebrew's LLVM 3.8 has compilation issues, so I needed to build the compiler runtime from source. It's a proof of concept, not production code ;)</p>
+<p>We will now run the program we just built, preferably with production data and traffic. It will automatically generate a <em>default.profraw</em> file, containing the profiling information. This file must be transformed to a format that <em>opt</em> will understand with <em>llvm-profdata</em>:</p>
+<blockquote><p>llvm-profdata-3.8 merge -output=pgo.profdata default.profraw</p></blockquote>
+<p>This <em>.profdata</em> file will now be used in the compilation steps:</p>
+<blockquote><p>opt-3.8 -O2 -pgo-instr-use -pgo-test-profile-file=pgo.profdata target/release/pgo.bc -o pgo-opt.bc<br />
+llc-3.8 -O2 -filetype=obj pgo-opt.bc<br />
+clang-3.8 -O2 -flto -fprofile-instr-use=pgo.profdata pgo-opt.o -L/usr/local/lib/rustlib/x86_64-apple-darwin/lib -lstd-ca1c970e -o pgo-opt</p></blockquote>
+<p>We now have an executable compiled using profiling information. Is it fast?</p>
+<h2>The benchmarks</h2>
+<p>The <a href="https://benchmarksgame.alioth.debian.org/u64q/program.php?test=nbody&amp;lang=rust&amp;id=2" target="_blank">program</a> I tested is a <a href="https://benchmarksgame.alioth.debian.org/u64q/nbody-description.html#nbody" target="_blank">n-body simulation</a>. It was a great test target since libstd is the only dependency, and the load factor depends on a number given as command line argument. Here is a test with time (I know it's not the most precise benchmarking tool, but for a tenth of second precision, it works alright):</p>
+<blockquote><p>$ time ./target/release/pgo 1000000000<br />
+-0.169075164<br />
+-0.169051540</p>
+<p>real    1m22.528s<br />
+user    1m22.214s<br />
+sys     0m0.173s</p>
+<p>$ time ./pgo-opt 1000000000<br />
+-0.169075164<br />
+-0.169051540</p>
+<p>real    1m9.810s<br />
+user    1m9.687s<br />
+sys     0m0.070s</p></blockquote>
+<p>As it turns out, we gain nearly 15% in running time on this program. Other examples could have less impact, but this is encouraging! So, what happened inside our program?</p>
+<h2>The generated code</h2>
+<p>I provide assembly dumps of <a href="https://raw.githubusercontent.com/Geal/pgo-rust/master/assembly/pgo.s" target="_blank">the normal program, generated with <em>cargo --release</em></a>, and <a href="https://raw.githubusercontent.com/Geal/pgo-rust/master/assembly/pgo-opt.s" target="_blank">the one optimized with PGO</a>. Mostly, the code has been reordered, probably to fit better in cache lines. You can also consult PDF files with call graphs: <a href="http://dev.unhandledexpression.com/pgo.pdf" target="_blank">normal</a>, <a href="http://dev.unhandledexpression.com/pgo-opt.pdf" target="_blank">PGO optimized</a>.</p>
+<p>The whole code for this article is <a href="https://github.com/Geal/pgo-rust" target="_blank">available here</a> if you want to reproduce the results or tinker with optimizations yourself.</p>
+<p>This is a proof of concept, demonstrating that profile guided optimization could work in Rust. It is probably worthy of integration into <em>rustc</em>, but there's a lot of work before it could be usable. Still, there's <a href="https://github.com/rust-lang/rfcs/issues/1220" target="_blank">a github issue</a> where you can weigh in, if you would like this optimization in your applications.</p>
+<p>&nbsp;</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/architecture/crypto/protocols/2015/10/01/crypto-problems-you-actually-need-to-solve.html">
+        Crypto problems you actually need to solve
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">01 Oct 2015</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/architecture.html">
+          Architecture
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/crypto.html">
+          Crypto
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        Protocols
+      
+    
+  </span>
+</div>
+
+    
+      <p>To follow up on the <a href="https://twitter.com/gcouprie/status/649166702278770688" target="_blank">small Twitter rant</a> that got people to explain GPG and OTR to me for a whole day, I'll explain the ideas behind this.</p>
+<p><img class="aligncenter size-full wp-image-791" src="/assets/screen-shot-2015-10-01-at-14-08-49.png" alt="tweet rant screenshot" width="525" height="438" />There is always a new project around self hosting email and PGP, or building a new encrypted chat app. Let's say it aloud right now: those projects are not trying to improve the situation, they just want to build their own. Otherwise, they would help one of the 150 already existing projects. Worse, a lot of those try to build a business out of it, and end up making a system where you need to completely trust their business (as a side note, building a business is fine, but just be honest about your goals).</p>
+<p>There are things that attract new projects, because the concept is easy to get, and this drives developers right into the "I'm smarter than everybody and can do better than existing projects" territory. But there's a reason they fail.</p>
+<p>Making an encrypted chat app is solving the same problem as making a chat app -moving people off their existing platform, onto a new one- and additionally writing a safe protocol. Building a whole new infrastructure is not an easy task.</p>
+<p>Making email and PGP easier to use is not only a UX issue. There is a complete mental model of how it works, what are the failure modes, and what are the trust levels. And you add above that the issues of email's metadata leaks, the lack of forward secrecy, the key management. Even with the simplest interface, it requires that the user builds that mental model, and that she understands other users may have different models. This is pervasive to the way PGP works. It has always been and will always be an expert's tool, and as such unfit to be deployed massively. You cannot solve infrastructure problems by teaching people.</p>
+<blockquote><p>You cannot solve infrastructure problems by teaching people</p></blockquote>
+<p>There is a pattern here: people want to build tools that will be the basis of safe communications for the years to come. Those are infrastructure problems, like electricity, running water or Internet access. They cannot be solved by teaching people how to use a tool. The tool has to work. They cannot be solved either by decentralization. At some point, someone has to pay for the infrastructure's maintenance. As much as I like the idea of decentralizing everything, this is not how people solve serious engineering problems. But the difference with other types of business is that infrastructure businesses are dumb pipes. They don't care what's running through them, and you can easily replace one with the other.</p>
+<p>There is a strong need for "private by default", authenticated, anonymous communication. This will only come if the basic building blocks are here:</p>
+<ul>
+<li>multiparty Off-The-Record(or other protocols like Axolotl): forward secret communication currently only works in two-party communication. Adding more members and making the protocols safe against partitions is a real challenge</li>
+<li>multidevice PGP (or alternate message encryption and authentication system): currently, to use PGP on multiple devices, either you synchronize all your private keys on all your devices, or you accept that some devices will not be able to decrypt messages. This will probably not work unless you have a live server somewhere, or at least some hardware device containing keys</li>
+<li>redundant key storage: systems where a single key holds everything are very seducing, but they're a nightmare for common operation. You will lose the key. And the backup. And the other backup. You will end up copying your master key everywhere, encrypted with a password used infrequently. Either it will be too simple and easily crackable, or too complex and you will forget it. How can a friend or family access the key in case of emergency?</li>
+<li>private information retrieval: PIR systems are databases that you can query for data, and the database will not know (in some margins) which piece of data you wanted. You do not need to go wild on homomorphic encryption to build something useful</li>
+<li>encrypted search: the tradeoffs in search on encrypted data are well known, but there are not enough implementations</li>
+<li>usable cryptography primitives: there is some work in that space, but people still rely on OpenSSL as their goto crypto library. Crypto primitives should not even let you make mistakes</li>
+</ul>
+<p>Those are worthwhile targets if you know a fair bit of cryptography and security, and know how to build a complete library or product.</p>
+<p>But for products, we need better models for infrastructure needs. A like <a href="https://www.tahoe-lafs.org/trac/tahoe-lafs">Tahoe-LAFS</a> is a good model: the user is in control of the data, the provider is oblivious to the content, the user can be the client of multiple providers, and switching from one to another is easy. This does not make for shiny businesses. Infrastructure companies compete mainly on cost, scale, availability, speed, support, since they all provide roughly the same features.</p>
+<p>Of course, infrastructure requires standards and interoperability, and this usually does not make good material for startup hype. But everyone wins from this in the end.</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/general/2015/08/29/frustrating-communication.html">
+        Frustrating communication
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">29 Aug 2015</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        General
+      
+    
+  </span>
+</div>
+
+    
+      <p>I'm getting less and less satisfied with Twitter to exchange thoughts. The 140 characters is not the obvious problem, since you can chain messages easily. The issue is that those thoughts are ephemeral. This medium does not optimize for smart discussion with relevant people, but for quick wit from currently available people, before being dumped under a stack of comments on the latest news. The retweeting does not help much, since the primary reason for retweeting are 1. it's funny 2. it is shocking 3. it's inspiring, and long last "maybe it's interesting". They don't create much discussion.</p>
+<p>Until now, I have primarily used this blog for long posts (thus explaining why I don't write much here). As my friends say "if it's more than 3 tweets, write a blog post".</p>
+<p>So in the following months, I'll try to post short, not well researched but spontaneous articles, instead of ranting in 140 characters.</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/general/security/2014/07/21/a-world-without-certificate-authorities.html">
+        A world without certificate authorities
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">21 Jul 2014</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        General
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+    
+      <p><img class="aligncenter size-full wp-image-779" src="/assets/14156305171_d2c0a5e9bc_b.jpg" alt="love locks" width="525" height="525" /><br />
+When networks began to expand and people saw the need for secure communication, they designed complex systems based on public key cryptography, that worked more or less. Problem: how do you trust that the key a server sent you is the right one? How can you make sure that it is not somebody else trying to impersonate that website?</p>
+<p>Multiple solutions were proposed, and the most promising was a public directory of domain names and associated public keys, maintained by a peer to peer network named KeyCoin. It looked better than so called Web Of Trust solutions, because everybody could agree on what was the correct key for a given domain. As long as nobody hold 51% of the network, no change could happen without being validated by a lot of different peers. The network was maintained by 10000 enthusiast system administrators who took their task very seriously (after all, the security of the whole system depended on their honesty), and nobody had enough computing power to take over the network.</p>
+<p>After a while, people began using the system, since it was directly integrated in their browsers, but they did not want to run a node on the network themselves. It was too bothersome, and they could trust the administrators. Also, they had to ask one of them to make a change everytime. The whole process was a bit artisanal.</p>
+<p>In the meantime, some people demonstrated the 51% attack on networks of reduced size, and that worried people. They wanted a safe system, one that was not only relying on those sysadmins that could do anything. Who were they anyway? Running that system was still too complex for non technical too run it themselves anyway, so they did not worry enough. But some governments found that rewriting the truth of name/key matching was interesting. Maybe to catch pedophiles, terrorists, criminals. Or maybe to censor websites, I do not know, they told me it was for my own good.</p>
+<p>Some smart person found a good solution: if controlling the whole system necessitated owning 51% of the system, the easiest way was to have a lot of machines, enough to counteract the sysadmins. That did not seem risky when people designed the system. Nobody could have enough computing power to take over the whole network, and there would be even more nodes every day.</p>
+<p>Yet, that person got enough funding to install tens of thousands of machines and make them join the network. They even provided a nice enough interface for people and businesses to input their domain name and public key, as long as they paid some fees. The sysadmins welcomed him at first, since money coming in the system validated their ideas. Atfer a while, they started worrying, since none of them could keep up with the computing power, but that company asssured them it would never attain 51% of the network.</p>
+<p>Other companies jumped on the bandwagon and started to profit from that new business opportunity. Governments started their own server farms to participate too. Problem: now that everybody (except the sysadmins) had a lot of computing power, nobody had enough to control the network entirely.</p>
+<p>So they started making alliances. If a few major players work as a team, they can do whatever they want on the network. If one of them decided to try and replace a key on the ledger, others could help it. Of course, once they begun doing that, others wanted to participate. So they created a few rules to join their club. First, you needed to have enough machines. That was a good rule, because that made a big barrier to entry. You could not start as a small player. The other rules? You had to submit to an audit, performed by the other players. Yet another barrier to entry. And once they deemed you acceptable, you had to follow the requests of governments, which were arbitrarily refusing candidates.</p>
+<p>Even with the big barriers to entry, a few hundred players came up, often backed by governments. Of course, all ended up in the same team, doing whatever they wanted, as long as nobody was complaining, because anytime one of them had something shady to do, all of them followed automatically.</p>
+<p>Since building those big companies required money, they made their clients pay more and more, and to make it easier to accept, provided "premium" options where they show they trust you more, since they took the time to phone your company and ask a few questions.</p>
+<p>Some found that big system too centralized, too obedient to states, and decided to fork it. There are separate public ledgers, but they do not come directly embedded in browsers, you need to integrate them yourself, and that's bothersome. Also, most of those networks have a few hundred nodes at best.</p>
+<p>From a nice, decentralized, home made system, we ended up with a centralized system controlled by corporations and governments.</p>
+<p>Now let me tell you about that system I designed. It is based on a concept named certificate, a cryptographically signed file that links the public key to a domain name. Now here's the catch: a certificate represents a key, and is signed by another key, which is represented by another certificate, and so on and so forth until a certificate that signs itself. That system is good, because you just have to embed the root certificate that your friends gives you, and you'll be able to verify the key of his websites, even if those keys change. And this, without even asking the public ledger, so that is a truly decentralized and more anonymous system! Nothing could go wrong with that, right?</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+
+  
+<div class="pagination">
+  <a class="pagination-item older"
+     href="/page3">
+    Older
+  </a>
+</div>
+
+
+</div>
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>

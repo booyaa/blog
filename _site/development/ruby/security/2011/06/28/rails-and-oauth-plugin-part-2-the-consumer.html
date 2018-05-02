@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      Rails and oauth-plugin part 2: the consumer &middot; Unhandled Expression
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="post">
+
+    <div id="sidebar">
+  <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
+    <div class="site-title">
+      <a href="/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Unhandled Expression
+      </a>
+    </div>
+    <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/about.html">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/architecture.html">Architecture</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/crypto.html">Crypto</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/development.html">Development</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/rust.html">Rust</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/security.html">Security</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/videolan.html">VideoLAN</a>
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  <nav id="sidebar-icon-links">
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/tags.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/search.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+  <p>
+  &copy; 2018.
+  <a href="/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+
+    <main class="container">
+      <header>
+  <h1 class="post-title">Rails and oauth-plugin part 2: the consumer</h1>
+</header>
+<div class="content">
+  <div class="post-meta">
+  <span class="post-date">28 Jun 2011</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/development.html">
+          Development
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        Ruby
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+  <div class="post-body">
+    <p>In the previous post, I showed how you could build a provider with oauth-plugin and Rails. Now, I will demonstrate how to build a consumer (it's a lot easier).</p>
+<p>I will assume that your provider is already running on localhost:3000. The consumer will run on localhost:4000 (run it with "rails server -p 4000").</p>
+<h2>Here we go!</h2>
+<p>[sourcecode language="bash"]<br />
+rails new consumer<br />
+cd consumer<br />
+[/sourcecode]</p>
+<p>Put this in your Gemfile:</p>
+<p>[sourcecode language="ruby"]<br />
+source 'http://rubygems.org'<br />
+gem 'rails', '3.0.7'<br />
+gem 'sqlite3'<br />
+gem 'devise'<br />
+gem &quot;oauth-plugin&quot;, &quot;&gt;= 0.4.0.pre1&quot;<br />
+[/sourcecode]</p>
+<p>And run these commands:</p>
+<p>[sourcecode language="bash"]<br />
+bundle install<br />
+rails generate devise:install<br />
+rails generate devise User<br />
+rake db:migrate<br />
+rails generate controller welcome index<br />
+rm public/index.html<br />
+[/sourcecode]</p>
+<p>And here is your routes.rb:</p>
+<p>[sourcecode language="ruby"]<br />
+Provider::Application.routes.draw do<br />
+devise_for :users<br />
+root :to =&gt; &quot;welcome#index&quot;<br />
+end<br />
+[/sourcecode]</p>
+<h2>Create the consumer</h2>
+<p>[sourcecode language="bash"]<br />
+rails generate oauth_consumer user<br />
+rake db:migrate<br />
+[/sourcecode]</p>
+<p>in app/controllers/oauth_consumers_controller.rb, replace:</p>
+<p>[sourcecode language="ruby"]<br />
+before_filter :login_required, :only=&gt;:index<br />
+[/sourcecode]</p>
+<p>by</p>
+<p>[sourcecode language="ruby"]<br />
+before_filter :authenticate_user!, :only=&gt;:index<br />
+[/sourcecode]</p>
+<p>Uncomment the methods for devise (go_back, logged_in? currentuser=, deny_access!) in app/controllers/oauth_consumers_controller.rb.</p>
+<p>Add to app/models/user.rb:</p>
+<p>[sourcecode language="ruby"]<br />
+ has_one  :test, :class_name=&gt;&quot;TestToken&quot;, :dependent=&gt;:destroy<br />
+[/sourcecode]</p>
+<p>Now go to http://localhost:3000/oauth_clients/ to register your first application with these parameters:</p>
+<blockquote><p>Name:                 Test consumer<br />
+Main Application URL: http://localhost:4000/<br />
+Callback URL:         http://localhost:4000/oauth_consumers/test/callback</p></blockquote>
+<p>You're redirected to http://localhost:3000/oauth_clients/1. It shows:</p>
+<blockquote><p>Consumer Key:      CRcIJ15MwSqlDTxsH8MpO3En4wjaOxkqeofLioH4</p>
+<p>Consumer Secret:   C7uci8xkyMShCf4SNXWPclKbBo3ml1Zf2W2XWu4W</p>
+<p>Request Token URL: http://localhost:3000/oauth/request_token</p>
+<p>Access Token URL:  http://localhost:3000/oauth/access_token</p>
+<p>Authorize URL:     http://localhost:3000/oauth/authorize</p></blockquote>
+<p>Now, you need to put the key and secret in config/initializers/oauth_consumers.rb:</p>
+<p>[sourcecode language="ruby"]<br />
+ OAUTH_CREDENTIALS={<br />
+:test =&gt;{<br />
+:key =&gt; &quot;CRcIJ15MwSqlDTxsH8MpO3En4wjaOxkqeofLioH4&quot;,<br />
+     :secret =&gt; &quot;C7uci8xkyMShCf4SNXWPclKbBo3ml1Zf2W2XWu4W&quot;,<br />
+     :expose =&gt; true<br />
+   }<br />
+ }<br />
+[/sourcecode]</p>
+<p>Create app/models/test_token.rb. This model will store the token for your provider. If you want to provide helpful methods, take inspiration from lib/oauth/models/consumers/services/.</p>
+<p>[sourcecode language="ruby"]<br />
+class TestToken &lt; ConsumerToken<br />
+TEST_SETTINGS={<br />
+:site =&gt; &quot;http://localhost:3000&quot;,<br />
+:request_token_path =&gt; &quot;/oauth/request_token&quot;,<br />
+:access_token_path =&gt; &quot;/oauth/access_token&quot;,<br />
+:authorize_path =&gt; &quot;/oauth/authorize&quot;<br />
+}</p>
+<p>def self.consumer(options={})<br />
+@consumer ||= OAuth::Consumer.new(credentials[:key], credentials[:secret], TEST_SETTINGS.merge(options))<br />
+end</p>
+<p>end<br />
+[/sourcecode]</p>
+<p>You should now be able to use the URLs "/oauth_consumers/test/client/", "/oauth_consumers/test/callback", "/oauth_consumers/test/callback2"," /oauth_consumers/test/edit",<br />
+and "/oauth_consumers/test".</p>
+<p>Modify the welcome controller t get the provider data:</p>
+<p>[sourcecode language="ruby"]<br />
+ class WelcomeController &lt; ApplicationController<br />
+ def index<br />
+ # cf http://oauth.rubyforge.org/rdoc/classes/OAuth/AccessToken.html<br />
+ @consumer_tokens=TestToken.all :conditions=&gt;{:user_id=&gt;current_user.id}<br />
+ @token = @consumer_tokens.first.client<br />
+ logger.info &quot;private data: &quot;+@token.get(&quot;/data/index&quot;).body<br />
+ end</p>
+<p>end<br />
+[/sourcecode]</p>
+<p>To connect a user to an external service link or redirect them to:</p>
+<p>/oauth_consumers/[SERVICE_NAME]</p>
+<p>Where SERVICE_NAME is the name you set in the OAUTH_CREDENTIALS hash. This will request the request token and redirect the user to the services authorization screen. When the user accepts the get redirected back to:</p>
+<p>/oauth_consumers/[SERVICE_NAME]/callback</p>
+<h2>That's it</h2>
+<p>This tutorial is really short, and could be explained a bit more, but I'll leave that for another post. You have enough to start tinkering with OAuth. Have fun!</p>
+
+    
+
+
+
+<div class="post-tags">
+  
+    
+    <a href="/tags.html#oauth">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">oauth</span>
+    </a>
+  
+    
+    <a href="/tags.html#rails">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">rails</span>
+    </a>
+  
+    
+    <a href="/tags.html#ruby">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">ruby</span>
+    </a>
+  
+    
+    <a href="/tags.html#security">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">security</span>
+    </a>
+  
+    
+    <a href="/tags.html#web">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">Web</span>
+    </a>
+  
+</div>
+  </div>
+
+  
+<!--  <section class="comments">
+    <h2>Comments</h2>
+  </section>
+-->
+
+
+  <section class="related">
+  <h2>Related Posts</h2>
+  <ul class="posts-list">
+    
+      <li>
+        <h3>
+          <a href="/general/rust/2018/02/02/poc-compiling-to-ebpf-from-rust.html">
+            PoC: compiling to eBPF from Rust
+            <small>02 Feb 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/rust/2018/01/10/rust-2018-maybe-dont-be-too-stable.html">
+            Rust 2018: maybe don't be too stable
+            <small>10 Jan 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/general/2017/08/23/adventures-in-logging.html">
+            Adventures in logging
+            <small>23 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</section>
+
+</div>
+
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>

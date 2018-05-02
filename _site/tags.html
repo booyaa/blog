@@ -1,0 +1,3249 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      Tags &middot; Unhandled Expression
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="tags">
+
+    <div id="sidebar">
+  <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
+    <div class="site-title">
+      <a href="/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Unhandled Expression
+      </a>
+    </div>
+    <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/about.html">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/architecture.html">Architecture</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/crypto.html">Crypto</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/development.html">Development</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/rust.html">Rust</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/security.html">Security</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/videolan.html">VideoLAN</a>
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  <nav id="sidebar-icon-links">
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/tags.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/search.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+  <p>
+  &copy; 2018.
+  <a href="/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+
+    <main class="container">
+      <header>
+  <h1 class="page-title">Tags</h1>
+</header>
+<div class="content">
+  <!-- See https://blog.lanyonm.org/articles/2013/11/21/alphabetize-jekyll-page-tags-pure-liquid.html -->
+<!-- With added pipe to handle lack of sort_natural -->
+
+<!-- site_tags: gdb|gdb,mingw|mingw,python|python,vlc|vlc,windows|windows,dxva|dxva,lua|lua,installer|installer,rant|rant,html5|HTML5,javascript|Javascript,vulnerabilities|vulnerabilities,web|Web,aslr|ASLR,dep|DEP,social media|social media,troll|troll,binary planting|binary planting,dll hijacking|DLL hijacking,dll preloading|DLL preloading,security|security,facebook|facebook,facebook messages|facebook messages,social networks|social networks,spam|spam,object|object,smalltalk|smalltalk,agile|Agile,devops|Devops,dvcs|DVCS,tdd|TDD,vcs|VCS,authentication|authentication,cryptography|cryptography,oauth|oauth,rails|rails,ruby|ruby,dll hell|DLL hell,gcc|GCC,visual studio|Visual Studio,certificate|certificate,ssl|ssl,tls|tls,x509|x509,anonymity|anonymity,privacy|privacy,web criminality|web criminality,cowboy|cowboy,developers|developers,guru|guru,hiring|hiring,ninja|ninja,js|js,software|software,software security|software security,android|android,java|java,push|push,sql injection|SQL injection,apache|apache,performance|performance,tuning|tuning,web development|web development,web server|web server,json|json,hr|hr,job posting|job posting,recruitment|recruitment,confidentiality|confidentiality,crypto|crypto,distributed systems|distributed systems,otr|OTR,decentralized|decentralized,kickstarter|kickstarter,telegram|Telegram,algorithm|algorithm,protocol|protocol,consistency|consistency,naming|naming,protocols|protocols,cluster|cluster,distributed system|distributed system,language|language,mathematics|mathematics,story|story,pgp|pgp,nom|nom,parser|parser,rust|Rust -->
+
+<!-- tag_words: agile|Agilealgorithm|algorithmandroid|androidanonymity|anonymityapache|apacheaslr|ASLRauthentication|authenticationbinary planting|binary plantingcertificate|certificatecluster|clusterconfidentiality|confidentialityconsistency|consistencycowboy|cowboycryptography|cryptographycrypto|cryptodecentralized|decentralizeddep|DEPdevelopers|developersdevops|Devopsdistributed systems|distributed systemsdistributed system|distributed systemdll hell|DLL helldll hijacking|DLL hijackingdll preloading|DLL preloadingdvcs|DVCSdxva|dxvafacebook messages|facebook messagesfacebook|facebookgcc|GCCgdb|gdbguru|guruhiring|hiringhr|hrhtml5|HTML5installer|installerjavascript|Javascriptjava|javajob posting|job postingjson|jsonjs|jskickstarter|kickstarterlanguage|languagelua|luamathematics|mathematicsmingw|mingwnaming|namingninja|ninjanom|nomoauth|oauthobject|objectotr|OTRparser|parserperformance|performancepgp|pgpprivacy|privacyprotocols|protocolsprotocol|protocolpush|pushpython|pythonrails|railsrant|rantrecruitment|recruitmentruby|rubyrust|Rustsecurity|securitysmalltalk|smalltalksocial media|social mediasocial networks|social networkssoftware security|software securitysoftware|softwarespam|spamsql injection|SQL injectionssl|sslstory|storytdd|TDDtelegram|Telegramtls|tlstroll|trolltuning|tuningvcs|VCSvisual studio|Visual Studiovlc|vlcvulnerabilities|vulnerabilitiesweb criminality|web criminalityweb development|web developmentweb server|web serverweb|Webwindows|windowsx509|x509 -->
+
+<div id="tags-page">
+  <div class="tags-list">
+    
+    
+    <a href="#agile" class="tag-link">
+      <span class="tag-name">Agile</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#algorithm" class="tag-link">
+      <span class="tag-name">algorithm</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#android" class="tag-link">
+      <span class="tag-name">android</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#anonymity" class="tag-link">
+      <span class="tag-name">anonymity</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#apache" class="tag-link">
+      <span class="tag-name">apache</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#aslr" class="tag-link">
+      <span class="tag-name">ASLR</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#authentication" class="tag-link">
+      <span class="tag-name">authentication</span>
+      <span class="tag-count">7</span>
+    </a>
+    
+    
+    <a href="#binary-planting" class="tag-link">
+      <span class="tag-name">binary planting</span>
+      <span class="tag-count">2</span>
+    </a>
+    
+    
+    <a href="#certificate" class="tag-link">
+      <span class="tag-name">certificate</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#cluster" class="tag-link">
+      <span class="tag-name">cluster</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#confidentiality" class="tag-link">
+      <span class="tag-name">confidentiality</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#consistency" class="tag-link">
+      <span class="tag-name">consistency</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#cowboy" class="tag-link">
+      <span class="tag-name">cowboy</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#cryptography" class="tag-link">
+      <span class="tag-name">cryptography</span>
+      <span class="tag-count">9</span>
+    </a>
+    
+    
+    <a href="#crypto" class="tag-link">
+      <span class="tag-name">crypto</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#decentralized" class="tag-link">
+      <span class="tag-name">decentralized</span>
+      <span class="tag-count">2</span>
+    </a>
+    
+    
+    <a href="#dep" class="tag-link">
+      <span class="tag-name">DEP</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#developers" class="tag-link">
+      <span class="tag-name">developers</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#devops" class="tag-link">
+      <span class="tag-name">Devops</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#distributed-systems" class="tag-link">
+      <span class="tag-name">distributed systems</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#distributed-system" class="tag-link">
+      <span class="tag-name">distributed system</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#dll-hell" class="tag-link">
+      <span class="tag-name">DLL hell</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#dll-hijacking" class="tag-link">
+      <span class="tag-name">DLL hijacking</span>
+      <span class="tag-count">2</span>
+    </a>
+    
+    
+    <a href="#dll-preloading" class="tag-link">
+      <span class="tag-name">DLL preloading</span>
+      <span class="tag-count">2</span>
+    </a>
+    
+    
+    <a href="#dvcs" class="tag-link">
+      <span class="tag-name">DVCS</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#dxva" class="tag-link">
+      <span class="tag-name">dxva</span>
+      <span class="tag-count">2</span>
+    </a>
+    
+    
+    <a href="#facebook-messages" class="tag-link">
+      <span class="tag-name">facebook messages</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#facebook" class="tag-link">
+      <span class="tag-name">facebook</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#gcc" class="tag-link">
+      <span class="tag-name">GCC</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#gdb" class="tag-link">
+      <span class="tag-name">gdb</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#guru" class="tag-link">
+      <span class="tag-name">guru</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#hiring" class="tag-link">
+      <span class="tag-name">hiring</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#hr" class="tag-link">
+      <span class="tag-name">hr</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#html5" class="tag-link">
+      <span class="tag-name">HTML5</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#installer" class="tag-link">
+      <span class="tag-name">installer</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#javascript" class="tag-link">
+      <span class="tag-name">Javascript</span>
+      <span class="tag-count">2</span>
+    </a>
+    
+    
+    <a href="#java" class="tag-link">
+      <span class="tag-name">java</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#job-posting" class="tag-link">
+      <span class="tag-name">job posting</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#json" class="tag-link">
+      <span class="tag-name">json</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#js" class="tag-link">
+      <span class="tag-name">js</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#kickstarter" class="tag-link">
+      <span class="tag-name">kickstarter</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#language" class="tag-link">
+      <span class="tag-name">language</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#lua" class="tag-link">
+      <span class="tag-name">lua</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#mathematics" class="tag-link">
+      <span class="tag-name">mathematics</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#mingw" class="tag-link">
+      <span class="tag-name">mingw</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#naming" class="tag-link">
+      <span class="tag-name">naming</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#ninja" class="tag-link">
+      <span class="tag-name">ninja</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#nom" class="tag-link">
+      <span class="tag-name">nom</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#oauth" class="tag-link">
+      <span class="tag-name">oauth</span>
+      <span class="tag-count">3</span>
+    </a>
+    
+    
+    <a href="#object" class="tag-link">
+      <span class="tag-name">object</span>
+      <span class="tag-count">2</span>
+    </a>
+    
+    
+    <a href="#otr" class="tag-link">
+      <span class="tag-name">OTR</span>
+      <span class="tag-count">2</span>
+    </a>
+    
+    
+    <a href="#parser" class="tag-link">
+      <span class="tag-name">parser</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#performance" class="tag-link">
+      <span class="tag-name">performance</span>
+      <span class="tag-count">3</span>
+    </a>
+    
+    
+    <a href="#pgp" class="tag-link">
+      <span class="tag-name">pgp</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#privacy" class="tag-link">
+      <span class="tag-name">privacy</span>
+      <span class="tag-count">4</span>
+    </a>
+    
+    
+    <a href="#protocols" class="tag-link">
+      <span class="tag-name">protocols</span>
+      <span class="tag-count">2</span>
+    </a>
+    
+    
+    <a href="#protocol" class="tag-link">
+      <span class="tag-name">protocol</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#push" class="tag-link">
+      <span class="tag-name">push</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#python" class="tag-link">
+      <span class="tag-name">python</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#rails" class="tag-link">
+      <span class="tag-name">rails</span>
+      <span class="tag-count">4</span>
+    </a>
+    
+    
+    <a href="#rant" class="tag-link">
+      <span class="tag-name">rant</span>
+      <span class="tag-count">3</span>
+    </a>
+    
+    
+    <a href="#recruitment" class="tag-link">
+      <span class="tag-name">recruitment</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#ruby" class="tag-link">
+      <span class="tag-name">ruby</span>
+      <span class="tag-count">3</span>
+    </a>
+    
+    
+    <a href="#rust" class="tag-link">
+      <span class="tag-name">Rust</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#security" class="tag-link">
+      <span class="tag-name">security</span>
+      <span class="tag-count">22</span>
+    </a>
+    
+    
+    <a href="#smalltalk" class="tag-link">
+      <span class="tag-name">smalltalk</span>
+      <span class="tag-count">2</span>
+    </a>
+    
+    
+    <a href="#social-media" class="tag-link">
+      <span class="tag-name">social media</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#social-networks" class="tag-link">
+      <span class="tag-name">social networks</span>
+      <span class="tag-count">2</span>
+    </a>
+    
+    
+    <a href="#software-security" class="tag-link">
+      <span class="tag-name">software security</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#software" class="tag-link">
+      <span class="tag-name">software</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#spam" class="tag-link">
+      <span class="tag-name">spam</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#sql-injection" class="tag-link">
+      <span class="tag-name">SQL injection</span>
+      <span class="tag-count">2</span>
+    </a>
+    
+    
+    <a href="#ssl" class="tag-link">
+      <span class="tag-name">ssl</span>
+      <span class="tag-count">3</span>
+    </a>
+    
+    
+    <a href="#story" class="tag-link">
+      <span class="tag-name">story</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#tdd" class="tag-link">
+      <span class="tag-name">TDD</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#telegram" class="tag-link">
+      <span class="tag-name">Telegram</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#tls" class="tag-link">
+      <span class="tag-name">tls</span>
+      <span class="tag-count">3</span>
+    </a>
+    
+    
+    <a href="#troll" class="tag-link">
+      <span class="tag-name">troll</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#tuning" class="tag-link">
+      <span class="tag-name">tuning</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#vcs" class="tag-link">
+      <span class="tag-name">VCS</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#visual-studio" class="tag-link">
+      <span class="tag-name">Visual Studio</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#vlc" class="tag-link">
+      <span class="tag-name">vlc</span>
+      <span class="tag-count">5</span>
+    </a>
+    
+    
+    <a href="#vulnerabilities" class="tag-link">
+      <span class="tag-name">vulnerabilities</span>
+      <span class="tag-count">10</span>
+    </a>
+    
+    
+    <a href="#web-criminality" class="tag-link">
+      <span class="tag-name">web criminality</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#web-development" class="tag-link">
+      <span class="tag-name">web development</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#web-server" class="tag-link">
+      <span class="tag-name">web server</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+    
+    <a href="#web" class="tag-link">
+      <span class="tag-name">Web</span>
+      <span class="tag-count">10</span>
+    </a>
+    
+    
+    <a href="#windows" class="tag-link">
+      <span class="tag-name">windows</span>
+      <span class="tag-count">8</span>
+    </a>
+    
+    
+    <a href="#x509" class="tag-link">
+      <span class="tag-name">x509</span>
+      <span class="tag-count">1</span>
+    </a>
+    
+  </div>
+
+  <hr/>
+
+  <div class="posts-by-tag">
+    
+    
+    <div id="agile" class="posts-for-tag">
+      <h2>Agile</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/general/2011/02/18/the-geal-test-extending-the-joel-test.html">
+                The Geal test: extending the Joel Test
+                <small>18 Feb 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="algorithm" class="posts-for-tag">
+      <h2>algorithm</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/crypto/security/2013/12/20/criterions-for-a-crypto-app.html">
+                Criterions for a crypto app
+                <small>20 Dec 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="android" class="posts-for-tag">
+      <h2>android</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/general/2012/12/07/testing-android-push-without-a-server.html">
+                Testing Android push without a server
+                <small>07 Dec 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="anonymity" class="posts-for-tag">
+      <h2>anonymity</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/security/2012/01/05/worst-case-messaging-protocol.html">
+                Worst Case Messaging Protocol
+                <small>05 Jan 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="apache" class="posts-for-tag">
+      <h2>apache</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/general/security/2013/01/25/5-easy-tips-to-accelerate-ssl.html">
+                5 easy tips to accelerate SSL
+                <small>25 Jan 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="aslr" class="posts-for-tag">
+      <h2>ASLR</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/security/videolan/2010/07/02/current-state-of-security-in-vlc-on-windows.html">
+                Current state of security in VLC on Windows
+                <small>02 Jul 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="authentication" class="posts-for-tag">
+      <h2>authentication</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/crypto/security/2013/12/20/criterions-for-a-crypto-app.html">
+                Criterions for a crypto app
+                <small>20 Dec 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/crypto/general/security/2013/12/17/telegram-stand-back-we-know-maths.html">
+                Telegram, AKA "Stand back, we have Math PhDs!"
+                <small>17 Dec 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/crypto/security/2013/08/09/theoretical-definitions-for-crypto-wannabes.html">
+                Theoretical definitions for crypto wannabes
+                <small>09 Aug 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/crypto/2013/07/09/group-messaging-crypto-and-the-cap-theorem.html">
+                Group messaging crypto and the CAP theorem
+                <small>09 Jul 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/security/2012/06/13/your-data-is-precious.html">
+                Your data is precious
+                <small>13 Jun 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/security/2012/01/05/worst-case-messaging-protocol.html">
+                Worst Case Messaging Protocol
+                <small>05 Jan 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/reinventing%20the%20wheel/security/web/2011/04/01/yet-another-authentication-scheme.html">
+                Yet another authentication scheme
+                <small>01 Apr 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="binary-planting" class="posts-for-tag">
+      <h2>binary planting</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/videolan/2010/08/27/update-to-a-safer-vlc.html">
+                Update to a safer VLC
+                <small>27 Aug 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/general/security/videolan/2010/08/23/fixing-the-dll-loading-vulnerability.html">
+                Fixing the DLL loading vulnerability
+                <small>23 Aug 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="certificate" class="posts-for-tag">
+      <h2>certificate</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/general/reinventing%20the%20wheel/security/web/2011/11/18/how-to-get-a-certificate-signed-by-multiple-certification-authorities.html">
+                How to get a certificate signed by multiple certification authorities
+                <small>18 Nov 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="cluster" class="posts-for-tag">
+      <h2>cluster</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/architecture/2014/05/31/the-network-is-the-computer-the-cluster-is-the-ram.html">
+                The network is the computer, the cluster is the RAM
+                <small>31 May 2014</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="confidentiality" class="posts-for-tag">
+      <h2>confidentiality</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/crypto/2013/07/09/group-messaging-crypto-and-the-cap-theorem.html">
+                Group messaging crypto and the CAP theorem
+                <small>09 Jul 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="consistency" class="posts-for-tag">
+      <h2>consistency</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/crypto/protocols/2014/04/07/revisiting-zookos-triangle.html">
+                Revisiting Zooko's triangle
+                <small>07 Apr 2014</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="cowboy" class="posts-for-tag">
+      <h2>cowboy</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/general/2012/08/23/hiring-gurus.html">
+                Hiring gurus
+                <small>23 Aug 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="cryptography" class="posts-for-tag">
+      <h2>cryptography</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/architecture/crypto/protocols/2015/10/01/crypto-problems-you-actually-need-to-solve.html">
+                Crypto problems you actually need to solve
+                <small>01 Oct 2015</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/general/security/2014/07/21/a-world-without-certificate-authorities.html">
+                A world without certificate authorities
+                <small>21 Jul 2014</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/crypto/protocols/2014/04/07/revisiting-zookos-triangle.html">
+                Revisiting Zooko's triangle
+                <small>07 Apr 2014</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/crypto/security/2013/12/20/criterions-for-a-crypto-app.html">
+                Criterions for a crypto app
+                <small>20 Dec 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/crypto/general/security/2013/12/17/telegram-stand-back-we-know-maths.html">
+                Telegram, AKA "Stand back, we have Math PhDs!"
+                <small>17 Dec 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/crypto/general/security/2013/10/29/safechat-p2p-encrypted-messages.html">
+                SafeChat, P2P encrypted messages?
+                <small>29 Oct 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/crypto/security/2013/08/09/theoretical-definitions-for-crypto-wannabes.html">
+                Theoretical definitions for crypto wannabes
+                <small>09 Aug 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/security/2012/01/05/worst-case-messaging-protocol.html">
+                Worst Case Messaging Protocol
+                <small>05 Jan 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/reinventing%20the%20wheel/security/web/2011/04/01/yet-another-authentication-scheme.html">
+                Yet another authentication scheme
+                <small>01 Apr 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="crypto" class="posts-for-tag">
+      <h2>crypto</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/crypto/2013/07/09/group-messaging-crypto-and-the-cap-theorem.html">
+                Group messaging crypto and the CAP theorem
+                <small>09 Jul 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="decentralized" class="posts-for-tag">
+      <h2>decentralized</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/architecture/crypto/protocols/2015/10/01/crypto-problems-you-actually-need-to-solve.html">
+                Crypto problems you actually need to solve
+                <small>01 Oct 2015</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/crypto/general/security/2013/10/29/safechat-p2p-encrypted-messages.html">
+                SafeChat, P2P encrypted messages?
+                <small>29 Oct 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="dep" class="posts-for-tag">
+      <h2>DEP</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/security/videolan/2010/07/02/current-state-of-security-in-vlc-on-windows.html">
+                Current state of security in VLC on Windows
+                <small>02 Jul 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="developers" class="posts-for-tag">
+      <h2>developers</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/general/2012/08/23/hiring-gurus.html">
+                Hiring gurus
+                <small>23 Aug 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="devops" class="posts-for-tag">
+      <h2>Devops</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/general/2011/02/18/the-geal-test-extending-the-joel-test.html">
+                The Geal test: extending the Joel Test
+                <small>18 Feb 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="distributed-systems" class="posts-for-tag">
+      <h2>distributed systems</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/crypto/2013/07/09/group-messaging-crypto-and-the-cap-theorem.html">
+                Group messaging crypto and the CAP theorem
+                <small>09 Jul 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="distributed-system" class="posts-for-tag">
+      <h2>distributed system</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/architecture/2014/05/31/the-network-is-the-computer-the-cluster-is-the-ram.html">
+                The network is the computer, the cluster is the RAM
+                <small>31 May 2014</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="dll-hell" class="posts-for-tag">
+      <h2>DLL hell</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/reinventing%20the%20wheel/2011/08/16/manage-your-libraries-with-symlinks-on-windows.html">
+                Manage your libraries with symlinks on Windows
+                <small>16 Aug 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="dll-hijacking" class="posts-for-tag">
+      <h2>DLL hijacking</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/videolan/2010/08/27/update-to-a-safer-vlc.html">
+                Update to a safer VLC
+                <small>27 Aug 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/general/security/videolan/2010/08/23/fixing-the-dll-loading-vulnerability.html">
+                Fixing the DLL loading vulnerability
+                <small>23 Aug 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="dll-preloading" class="posts-for-tag">
+      <h2>DLL preloading</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/videolan/2010/08/27/update-to-a-safer-vlc.html">
+                Update to a safer VLC
+                <small>27 Aug 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/general/security/videolan/2010/08/23/fixing-the-dll-loading-vulnerability.html">
+                Fixing the DLL loading vulnerability
+                <small>23 Aug 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="dvcs" class="posts-for-tag">
+      <h2>DVCS</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/general/2011/02/18/the-geal-test-extending-the-joel-test.html">
+                The Geal test: extending the Joel Test
+                <small>18 Feb 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="dxva" class="posts-for-tag">
+      <h2>dxva</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/videolan/2010/07/22/vlc-1-1-1-is-out-gpu-decoding-for-ati.html">
+                VLC 1.1.1 is out: GPU decoding for ATI
+                <small>22 Jul 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/videolan/2010/01/20/5-reasons-to-wait-for-vlc-1-1.html">
+                5 reasons to wait for VLC 1.1
+                <small>20 Jan 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="facebook-messages" class="posts-for-tag">
+      <h2>facebook messages</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/general/security/2010/11/16/gorgeous-spammer-wants-to-add-you-as-a-friend.html">
+                Gorgeous spammer wants to add you as a friend
+                <small>16 Nov 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="facebook" class="posts-for-tag">
+      <h2>facebook</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/general/security/2010/11/16/gorgeous-spammer-wants-to-add-you-as-a-friend.html">
+                Gorgeous spammer wants to add you as a friend
+                <small>16 Nov 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="gcc" class="posts-for-tag">
+      <h2>GCC</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/reinventing%20the%20wheel/2011/08/16/manage-your-libraries-with-symlinks-on-windows.html">
+                Manage your libraries with symlinks on Windows
+                <small>16 Aug 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="gdb" class="posts-for-tag">
+      <h2>gdb</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/general/2010/01/11/people-based-motivator.html">
+                People based motivator
+                <small>11 Jan 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="guru" class="posts-for-tag">
+      <h2>guru</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/general/2012/08/23/hiring-gurus.html">
+                Hiring gurus
+                <small>23 Aug 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="hiring" class="posts-for-tag">
+      <h2>hiring</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/general/2012/08/23/hiring-gurus.html">
+                Hiring gurus
+                <small>23 Aug 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="hr" class="posts-for-tag">
+      <h2>hr</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/general/2013/03/18/my-ideal-job-post.html">
+                My ideal job posting
+                <small>18 Mar 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="html5" class="posts-for-tag">
+      <h2>HTML5</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/security/2010/06/13/web-vulnerabilities-in-an-html-5-application.html">
+                Web vulnerabilities in an HTML 5 application
+                <small>13 Jun 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="installer" class="posts-for-tag">
+      <h2>installer</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/reinventing%20the%20wheel/2010/05/17/i-hate-installers.html">
+                I hate installers
+                <small>17 May 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="javascript" class="posts-for-tag">
+      <h2>Javascript</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/reinventing%20the%20wheel/ruby/smalltalk/2011/08/31/jtalk-on-rails-editing-javascript-in-my-browser.html">
+                Jtalk on Rails: editing Javascript in my browser
+                <small>31 Aug 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/security/2010/06/13/web-vulnerabilities-in-an-html-5-application.html">
+                Web vulnerabilities in an HTML 5 application
+                <small>13 Jun 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="java" class="posts-for-tag">
+      <h2>java</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/general/2012/12/07/testing-android-push-without-a-server.html">
+                Testing Android push without a server
+                <small>07 Dec 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="job-posting" class="posts-for-tag">
+      <h2>job posting</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/general/2013/03/18/my-ideal-job-post.html">
+                My ideal job posting
+                <small>18 Mar 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="json" class="posts-for-tag">
+      <h2>json</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/ruby/security/2013/02/06/filter-rails-json-input-with-route-constraints.html">
+                Filter Rails JSON input with route constraints
+                <small>06 Feb 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="js" class="posts-for-tag">
+      <h2>js</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/general/security/2012/11/05/going-to-the-freelance-side.html">
+                Going to the freelance side
+                <small>05 Nov 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="kickstarter" class="posts-for-tag">
+      <h2>kickstarter</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/crypto/general/security/2013/10/29/safechat-p2p-encrypted-messages.html">
+                SafeChat, P2P encrypted messages?
+                <small>29 Oct 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="language" class="posts-for-tag">
+      <h2>language</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/architecture/2014/05/31/the-network-is-the-computer-the-cluster-is-the-ram.html">
+                The network is the computer, the cluster is the RAM
+                <small>31 May 2014</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="lua" class="posts-for-tag">
+      <h2>lua</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/videolan/2010/01/20/5-reasons-to-wait-for-vlc-1-1.html">
+                5 reasons to wait for VLC 1.1
+                <small>20 Jan 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="mathematics" class="posts-for-tag">
+      <h2>mathematics</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/general/2014/07/16/programming-vs-mathematics-and-other-pointless-debates.html">
+                Programming VS Mathematics, and other pointless debates
+                <small>16 Jul 2014</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="mingw" class="posts-for-tag">
+      <h2>mingw</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/general/2010/01/11/people-based-motivator.html">
+                People based motivator
+                <small>11 Jan 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="naming" class="posts-for-tag">
+      <h2>naming</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/crypto/protocols/2014/04/07/revisiting-zookos-triangle.html">
+                Revisiting Zooko's triangle
+                <small>07 Apr 2014</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="ninja" class="posts-for-tag">
+      <h2>ninja</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/general/2012/08/23/hiring-gurus.html">
+                Hiring gurus
+                <small>23 Aug 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="nom" class="posts-for-tag">
+      <h2>nom</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/general/rust/security/2016/11/25/this-year-in-nom-2-0-is-here.html">
+                This year in nom: 2.0 is here!
+                <small>25 Nov 2016</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="oauth" class="posts-for-tag">
+      <h2>oauth</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/ruby/security/2011/06/28/rails-and-oauth-plugin-part-2-the-consumer.html">
+                Rails and oauth-plugin part 2: the consumer
+                <small>28 Jun 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/ruby/security/2011/06/02/rails-and-oauth-plugin-part-1-the-provider.html">
+                Rails and oauth-plugin part 1: the provider
+                <small>02 Jun 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/reinventing%20the%20wheel/security/web/2011/04/01/yet-another-authentication-scheme.html">
+                Yet another authentication scheme
+                <small>01 Apr 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="object" class="posts-for-tag">
+      <h2>object</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/reinventing%20the%20wheel/ruby/smalltalk/2011/08/31/jtalk-on-rails-editing-javascript-in-my-browser.html">
+                Jtalk on Rails: editing Javascript in my browser
+                <small>31 Aug 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/smalltalk/2011/02/04/smalltalk-for-engineers.html">
+                Smalltalk for engineers
+                <small>04 Feb 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="otr" class="posts-for-tag">
+      <h2>OTR</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/architecture/crypto/protocols/2015/10/01/crypto-problems-you-actually-need-to-solve.html">
+                Crypto problems you actually need to solve
+                <small>01 Oct 2015</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/crypto/2013/07/09/group-messaging-crypto-and-the-cap-theorem.html">
+                Group messaging crypto and the CAP theorem
+                <small>09 Jul 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="parser" class="posts-for-tag">
+      <h2>parser</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/general/rust/security/2016/11/25/this-year-in-nom-2-0-is-here.html">
+                This year in nom: 2.0 is here!
+                <small>25 Nov 2016</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="performance" class="posts-for-tag">
+      <h2>performance</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/general/rust/security/2016/11/25/this-year-in-nom-2-0-is-here.html">
+                This year in nom: 2.0 is here!
+                <small>25 Nov 2016</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/security/2013/01/30/looking-for-big-architectures-and-adventurous-sysadmins.html">
+                Looking for big architectures and adventurous sysadmins
+                <small>30 Jan 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/general/security/2013/01/25/5-easy-tips-to-accelerate-ssl.html">
+                5 easy tips to accelerate SSL
+                <small>25 Jan 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="pgp" class="posts-for-tag">
+      <h2>pgp</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/architecture/crypto/protocols/2015/10/01/crypto-problems-you-actually-need-to-solve.html">
+                Crypto problems you actually need to solve
+                <small>01 Oct 2015</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="privacy" class="posts-for-tag">
+      <h2>privacy</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/crypto/general/security/2013/12/17/telegram-stand-back-we-know-maths.html">
+                Telegram, AKA "Stand back, we have Math PhDs!"
+                <small>17 Dec 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/crypto/security/2013/08/09/theoretical-definitions-for-crypto-wannabes.html">
+                Theoretical definitions for crypto wannabes
+                <small>09 Aug 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/security/2012/11/14/warning-your-users-about-a-vulnerability.html">
+                Warning your users about a vulnerability
+                <small>14 Nov 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/security/2012/01/05/worst-case-messaging-protocol.html">
+                Worst Case Messaging Protocol
+                <small>05 Jan 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="protocols" class="posts-for-tag">
+      <h2>protocols</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/architecture/crypto/protocols/2015/10/01/crypto-problems-you-actually-need-to-solve.html">
+                Crypto problems you actually need to solve
+                <small>01 Oct 2015</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/crypto/protocols/2014/04/07/revisiting-zookos-triangle.html">
+                Revisiting Zooko's triangle
+                <small>07 Apr 2014</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="protocol" class="posts-for-tag">
+      <h2>protocol</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/crypto/security/2013/12/20/criterions-for-a-crypto-app.html">
+                Criterions for a crypto app
+                <small>20 Dec 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="push" class="posts-for-tag">
+      <h2>push</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/general/2012/12/07/testing-android-push-without-a-server.html">
+                Testing Android push without a server
+                <small>07 Dec 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="python" class="posts-for-tag">
+      <h2>python</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/general/2010/01/11/people-based-motivator.html">
+                People based motivator
+                <small>11 Jan 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="rails" class="posts-for-tag">
+      <h2>rails</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/ruby/security/2013/02/06/filter-rails-json-input-with-route-constraints.html">
+                Filter Rails JSON input with route constraints
+                <small>06 Feb 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/reinventing%20the%20wheel/ruby/smalltalk/2011/08/31/jtalk-on-rails-editing-javascript-in-my-browser.html">
+                Jtalk on Rails: editing Javascript in my browser
+                <small>31 Aug 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/ruby/security/2011/06/28/rails-and-oauth-plugin-part-2-the-consumer.html">
+                Rails and oauth-plugin part 2: the consumer
+                <small>28 Jun 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/ruby/security/2011/06/02/rails-and-oauth-plugin-part-1-the-provider.html">
+                Rails and oauth-plugin part 1: the provider
+                <small>02 Jun 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="rant" class="posts-for-tag">
+      <h2>rant</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/security/2012/06/13/your-data-is-precious.html">
+                Your data is precious
+                <small>13 Jun 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/general/2010/07/07/i-hate-the-web.html">
+                I hate the web
+                <small>07 Jul 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/reinventing%20the%20wheel/2010/05/17/i-hate-installers.html">
+                I hate installers
+                <small>17 May 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="recruitment" class="posts-for-tag">
+      <h2>recruitment</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/general/2013/03/18/my-ideal-job-post.html">
+                My ideal job posting
+                <small>18 Mar 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="ruby" class="posts-for-tag">
+      <h2>ruby</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/ruby/security/2013/02/06/filter-rails-json-input-with-route-constraints.html">
+                Filter Rails JSON input with route constraints
+                <small>06 Feb 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/ruby/security/2011/06/28/rails-and-oauth-plugin-part-2-the-consumer.html">
+                Rails and oauth-plugin part 2: the consumer
+                <small>28 Jun 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/ruby/security/2011/06/02/rails-and-oauth-plugin-part-1-the-provider.html">
+                Rails and oauth-plugin part 1: the provider
+                <small>02 Jun 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="rust" class="posts-for-tag">
+      <h2>Rust</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/general/2017/08/23/adventures-in-logging.html">
+                Adventures in logging
+                <small>23 Aug 2017</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="security" class="posts-for-tag">
+      <h2>security</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/general/rust/2017/07/12/how-to-rewrite-you-project-in-rust.html">
+                How to rewrite your project in Rust
+                <small>12 Jul 2017</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/rust/2017/07/10/why-you-should-actually-rewrite-it-in-rust.html">
+                Why you should, actually, rewrite it in Rust
+                <small>10 Jul 2017</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/general/rust/security/2016/11/25/this-year-in-nom-2-0-is-here.html">
+                This year in nom: 2.0 is here!
+                <small>25 Nov 2016</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/architecture/2014/05/31/the-network-is-the-computer-the-cluster-is-the-ram.html">
+                The network is the computer, the cluster is the RAM
+                <small>31 May 2014</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/crypto/security/2013/12/20/criterions-for-a-crypto-app.html">
+                Criterions for a crypto app
+                <small>20 Dec 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/crypto/general/security/2013/12/17/telegram-stand-back-we-know-maths.html">
+                Telegram, AKA "Stand back, we have Math PhDs!"
+                <small>17 Dec 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/crypto/general/security/2013/10/29/safechat-p2p-encrypted-messages.html">
+                SafeChat, P2P encrypted messages?
+                <small>29 Oct 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/crypto/security/2013/08/09/theoretical-definitions-for-crypto-wannabes.html">
+                Theoretical definitions for crypto wannabes
+                <small>09 Aug 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/crypto/2013/07/09/group-messaging-crypto-and-the-cap-theorem.html">
+                Group messaging crypto and the CAP theorem
+                <small>09 Jul 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/ruby/security/2013/02/06/filter-rails-json-input-with-route-constraints.html">
+                Filter Rails JSON input with route constraints
+                <small>06 Feb 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/security/2013/01/30/looking-for-big-architectures-and-adventurous-sysadmins.html">
+                Looking for big architectures and adventurous sysadmins
+                <small>30 Jan 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/general/security/2013/01/25/5-easy-tips-to-accelerate-ssl.html">
+                5 easy tips to accelerate SSL
+                <small>25 Jan 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/general/security/2013/01/14/harden-wordpress-using-database-permissions.html">
+                Harden Wordpress using database permissions
+                <small>14 Jan 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/security/2012/11/14/warning-your-users-about-a-vulnerability.html">
+                Warning your users about a vulnerability
+                <small>14 Nov 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/general/security/2012/08/29/software-security-is-like-medicine.html">
+                Software security is like medicine
+                <small>29 Aug 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/security/2012/06/13/your-data-is-precious.html">
+                Your data is precious
+                <small>13 Jun 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/security/2012/01/05/worst-case-messaging-protocol.html">
+                Worst Case Messaging Protocol
+                <small>05 Jan 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/general/reinventing%20the%20wheel/security/web/2011/11/18/how-to-get-a-certificate-signed-by-multiple-certification-authorities.html">
+                How to get a certificate signed by multiple certification authorities
+                <small>18 Nov 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/ruby/security/2011/06/28/rails-and-oauth-plugin-part-2-the-consumer.html">
+                Rails and oauth-plugin part 2: the consumer
+                <small>28 Jun 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/ruby/security/2011/06/02/rails-and-oauth-plugin-part-1-the-provider.html">
+                Rails and oauth-plugin part 1: the provider
+                <small>02 Jun 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/reinventing%20the%20wheel/security/web/2011/04/01/yet-another-authentication-scheme.html">
+                Yet another authentication scheme
+                <small>01 Apr 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/general/security/videolan/2010/08/23/fixing-the-dll-loading-vulnerability.html">
+                Fixing the DLL loading vulnerability
+                <small>23 Aug 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="smalltalk" class="posts-for-tag">
+      <h2>smalltalk</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/reinventing%20the%20wheel/ruby/smalltalk/2011/08/31/jtalk-on-rails-editing-javascript-in-my-browser.html">
+                Jtalk on Rails: editing Javascript in my browser
+                <small>31 Aug 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/smalltalk/2011/02/04/smalltalk-for-engineers.html">
+                Smalltalk for engineers
+                <small>04 Feb 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="social-media" class="posts-for-tag">
+      <h2>social media</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/general/2010/07/07/i-hate-the-web.html">
+                I hate the web
+                <small>07 Jul 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="social-networks" class="posts-for-tag">
+      <h2>social networks</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/security/2012/06/13/your-data-is-precious.html">
+                Your data is precious
+                <small>13 Jun 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/general/security/2010/11/16/gorgeous-spammer-wants-to-add-you-as-a-friend.html">
+                Gorgeous spammer wants to add you as a friend
+                <small>16 Nov 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="software-security" class="posts-for-tag">
+      <h2>software security</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/general/security/2012/11/05/going-to-the-freelance-side.html">
+                Going to the freelance side
+                <small>05 Nov 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="software" class="posts-for-tag">
+      <h2>software</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/general/security/2012/11/05/going-to-the-freelance-side.html">
+                Going to the freelance side
+                <small>05 Nov 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="spam" class="posts-for-tag">
+      <h2>spam</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/general/security/2010/11/16/gorgeous-spammer-wants-to-add-you-as-a-friend.html">
+                Gorgeous spammer wants to add you as a friend
+                <small>16 Nov 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="sql-injection" class="posts-for-tag">
+      <h2>SQL injection</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/ruby/security/2013/02/06/filter-rails-json-input-with-route-constraints.html">
+                Filter Rails JSON input with route constraints
+                <small>06 Feb 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/general/security/2013/01/14/harden-wordpress-using-database-permissions.html">
+                Harden Wordpress using database permissions
+                <small>14 Jan 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="ssl" class="posts-for-tag">
+      <h2>ssl</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/security/2013/01/30/looking-for-big-architectures-and-adventurous-sysadmins.html">
+                Looking for big architectures and adventurous sysadmins
+                <small>30 Jan 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/general/security/2013/01/25/5-easy-tips-to-accelerate-ssl.html">
+                5 easy tips to accelerate SSL
+                <small>25 Jan 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/general/reinventing%20the%20wheel/security/web/2011/11/18/how-to-get-a-certificate-signed-by-multiple-certification-authorities.html">
+                How to get a certificate signed by multiple certification authorities
+                <small>18 Nov 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="story" class="posts-for-tag">
+      <h2>story</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/general/security/2014/07/21/a-world-without-certificate-authorities.html">
+                A world without certificate authorities
+                <small>21 Jul 2014</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="tdd" class="posts-for-tag">
+      <h2>TDD</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/general/2011/02/18/the-geal-test-extending-the-joel-test.html">
+                The Geal test: extending the Joel Test
+                <small>18 Feb 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="telegram" class="posts-for-tag">
+      <h2>Telegram</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/crypto/general/security/2013/12/17/telegram-stand-back-we-know-maths.html">
+                Telegram, AKA "Stand back, we have Math PhDs!"
+                <small>17 Dec 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="tls" class="posts-for-tag">
+      <h2>tls</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/security/2013/01/30/looking-for-big-architectures-and-adventurous-sysadmins.html">
+                Looking for big architectures and adventurous sysadmins
+                <small>30 Jan 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/general/security/2013/01/25/5-easy-tips-to-accelerate-ssl.html">
+                5 easy tips to accelerate SSL
+                <small>25 Jan 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/general/reinventing%20the%20wheel/security/web/2011/11/18/how-to-get-a-certificate-signed-by-multiple-certification-authorities.html">
+                How to get a certificate signed by multiple certification authorities
+                <small>18 Nov 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="troll" class="posts-for-tag">
+      <h2>troll</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/general/2010/07/07/i-hate-the-web.html">
+                I hate the web
+                <small>07 Jul 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="tuning" class="posts-for-tag">
+      <h2>tuning</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/general/security/2013/01/25/5-easy-tips-to-accelerate-ssl.html">
+                5 easy tips to accelerate SSL
+                <small>25 Jan 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="vcs" class="posts-for-tag">
+      <h2>VCS</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/general/2011/02/18/the-geal-test-extending-the-joel-test.html">
+                The Geal test: extending the Joel Test
+                <small>18 Feb 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="visual-studio" class="posts-for-tag">
+      <h2>Visual Studio</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/reinventing%20the%20wheel/2011/08/16/manage-your-libraries-with-symlinks-on-windows.html">
+                Manage your libraries with symlinks on Windows
+                <small>16 Aug 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="vlc" class="posts-for-tag">
+      <h2>vlc</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/videolan/2010/08/27/update-to-a-safer-vlc.html">
+                Update to a safer VLC
+                <small>27 Aug 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/videolan/2010/07/22/vlc-1-1-1-is-out-gpu-decoding-for-ati.html">
+                VLC 1.1.1 is out: GPU decoding for ATI
+                <small>22 Jul 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/security/videolan/2010/07/02/current-state-of-security-in-vlc-on-windows.html">
+                Current state of security in VLC on Windows
+                <small>02 Jul 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/videolan/2010/01/20/5-reasons-to-wait-for-vlc-1-1.html">
+                5 reasons to wait for VLC 1.1
+                <small>20 Jan 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/general/2010/01/11/people-based-motivator.html">
+                People based motivator
+                <small>11 Jan 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="vulnerabilities" class="posts-for-tag">
+      <h2>vulnerabilities</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/rust/2017/07/10/why-you-should-actually-rewrite-it-in-rust.html">
+                Why you should, actually, rewrite it in Rust
+                <small>10 Jul 2017</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/crypto/security/2013/12/20/criterions-for-a-crypto-app.html">
+                Criterions for a crypto app
+                <small>20 Dec 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/crypto/general/security/2013/12/17/telegram-stand-back-we-know-maths.html">
+                Telegram, AKA "Stand back, we have Math PhDs!"
+                <small>17 Dec 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/crypto/security/2013/08/09/theoretical-definitions-for-crypto-wannabes.html">
+                Theoretical definitions for crypto wannabes
+                <small>09 Aug 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/general/security/2013/01/14/harden-wordpress-using-database-permissions.html">
+                Harden Wordpress using database permissions
+                <small>14 Jan 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/security/2012/11/14/warning-your-users-about-a-vulnerability.html">
+                Warning your users about a vulnerability
+                <small>14 Nov 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/general/security/2012/08/29/software-security-is-like-medicine.html">
+                Software security is like medicine
+                <small>29 Aug 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/videolan/2010/08/27/update-to-a-safer-vlc.html">
+                Update to a safer VLC
+                <small>27 Aug 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/general/security/videolan/2010/08/23/fixing-the-dll-loading-vulnerability.html">
+                Fixing the DLL loading vulnerability
+                <small>23 Aug 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/security/2010/06/13/web-vulnerabilities-in-an-html-5-application.html">
+                Web vulnerabilities in an HTML 5 application
+                <small>13 Jun 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="web-criminality" class="posts-for-tag">
+      <h2>web criminality</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/security/2012/06/13/your-data-is-precious.html">
+                Your data is precious
+                <small>13 Jun 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="web-development" class="posts-for-tag">
+      <h2>web development</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/general/security/2013/01/25/5-easy-tips-to-accelerate-ssl.html">
+                5 easy tips to accelerate SSL
+                <small>25 Jan 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="web-server" class="posts-for-tag">
+      <h2>web server</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/general/security/2013/01/25/5-easy-tips-to-accelerate-ssl.html">
+                5 easy tips to accelerate SSL
+                <small>25 Jan 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="web" class="posts-for-tag">
+      <h2>Web</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/security/2013/01/30/looking-for-big-architectures-and-adventurous-sysadmins.html">
+                Looking for big architectures and adventurous sysadmins
+                <small>30 Jan 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/general/security/2013/01/14/harden-wordpress-using-database-permissions.html">
+                Harden Wordpress using database permissions
+                <small>14 Jan 2013</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/security/2012/11/14/warning-your-users-about-a-vulnerability.html">
+                Warning your users about a vulnerability
+                <small>14 Nov 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/security/2012/06/13/your-data-is-precious.html">
+                Your data is precious
+                <small>13 Jun 2012</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/reinventing%20the%20wheel/ruby/smalltalk/2011/08/31/jtalk-on-rails-editing-javascript-in-my-browser.html">
+                Jtalk on Rails: editing Javascript in my browser
+                <small>31 Aug 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/ruby/security/2011/06/28/rails-and-oauth-plugin-part-2-the-consumer.html">
+                Rails and oauth-plugin part 2: the consumer
+                <small>28 Jun 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/development/ruby/security/2011/06/02/rails-and-oauth-plugin-part-1-the-provider.html">
+                Rails and oauth-plugin part 1: the provider
+                <small>02 Jun 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/smalltalk/2011/02/04/smalltalk-for-engineers.html">
+                Smalltalk for engineers
+                <small>04 Feb 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/general/2010/07/07/i-hate-the-web.html">
+                I hate the web
+                <small>07 Jul 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/security/2010/06/13/web-vulnerabilities-in-an-html-5-application.html">
+                Web vulnerabilities in an HTML 5 application
+                <small>13 Jun 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="windows" class="posts-for-tag">
+      <h2>windows</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/development/reinventing%20the%20wheel/2011/08/16/manage-your-libraries-with-symlinks-on-windows.html">
+                Manage your libraries with symlinks on Windows
+                <small>16 Aug 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/smalltalk/2011/02/04/smalltalk-for-engineers.html">
+                Smalltalk for engineers
+                <small>04 Feb 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/videolan/2010/08/27/update-to-a-safer-vlc.html">
+                Update to a safer VLC
+                <small>27 Aug 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/general/security/videolan/2010/08/23/fixing-the-dll-loading-vulnerability.html">
+                Fixing the DLL loading vulnerability
+                <small>23 Aug 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/videolan/2010/07/22/vlc-1-1-1-is-out-gpu-decoding-for-ati.html">
+                VLC 1.1.1 is out: GPU decoding for ATI
+                <small>22 Jul 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/reinventing%20the%20wheel/2010/05/17/i-hate-installers.html">
+                I hate installers
+                <small>17 May 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/videolan/2010/01/20/5-reasons-to-wait-for-vlc-1-1.html">
+                5 reasons to wait for VLC 1.1
+                <small>20 Jan 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+          <li>
+            <h3>
+              <a href="/general/2010/01/11/people-based-motivator.html">
+                People based motivator
+                <small>11 Jan 2010</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+    
+    <div id="x509" class="posts-for-tag">
+      <h2>x509</h2>
+      <ul class="posts-list">
+        
+          <li>
+            <h3>
+              <a href="/general/reinventing%20the%20wheel/security/web/2011/11/18/how-to-get-a-certificate-signed-by-multiple-certification-authorities.html">
+                How to get a certificate signed by multiple certification authorities
+                <small>18 Nov 2011</small>
+              </a>
+            </h3>
+          </li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</div>
+</div>
+
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>

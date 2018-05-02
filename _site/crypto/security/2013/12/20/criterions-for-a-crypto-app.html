@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      Criterions for a crypto app &middot; Unhandled Expression
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="post">
+
+    <div id="sidebar">
+  <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
+    <div class="site-title">
+      <a href="/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Unhandled Expression
+      </a>
+    </div>
+    <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/about.html">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/architecture.html">Architecture</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/crypto.html">Crypto</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/development.html">Development</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/rust.html">Rust</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/security.html">Security</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/videolan.html">VideoLAN</a>
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  <nav id="sidebar-icon-links">
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/tags.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/search.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+  <p>
+  &copy; 2018.
+  <a href="/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+
+    <main class="container">
+      <header>
+  <h1 class="post-title">Criterions for a crypto app</h1>
+</header>
+<div class="content">
+  <div class="post-meta">
+  <span class="post-date">20 Dec 2013</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/crypto.html">
+          Crypto
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+  <div class="post-body">
+    <p>Following the previous article, people have asked me what I would consider as a good secure system, and others asked me to review their app, so I think it will be interesting to expose my process when studying those projects.</p>
+<h2>Threat modeling</h2>
+<p>The most important point I look for in a project is <strong>the threat model</strong>. This is the document that will explain for whom the project was created, who are the adversaries, what they are trying to obtain, and which of these threats you are addressing.</p>
+<p>Without that document, I cannot know if you considered all the possible actors, and I must infer it from the protocol, which is relatively easy, but my view of the threat model might not correspond to what you expected.</p>
+<p>With a good threat model, I can know right away what is your target market (ex: sexting for teens, or secure reporting for journalists in war environments), see if your users will understand the implications, if it will need training, and more importantly, if your system can be safe for that context.</p>
+<p><strong>You cannot create a project and say that it will solve all of the privacy problems with some magical crypto algorithm</strong>, against all adversaries, even the state actors. I would prefer a useful tool for a niche with real and well defined needs.</p>
+<h2>Prior art</h2>
+<p>As you have probably seen, the secure messaging space is already very crowded. If you come up with a new solution to an already solved problem, you need to justify it. Why didn't you improve an existing project? Couldn't you adapt someone else's code, add a better UI?</p>
+<p>the NIH syndrome is at the heart of innovation, so I am not against it. But in the case of crypto applications, it might be a good idea to employ already existing (and already audited) code, instead of writing a whole new protocol or algorithm from scratch.</p>
+<p>Otherwise, <strong>if you are working on an unsolved problem, or improving on current solutions, be prepared to justify it</strong>, and a lot, if you employ unusual systems. I am not telling you to avoid funny stuff like Pailler's cryptosystem, PIR or pairing based cryptography. Just be aware that people will ask you about these.</p>
+<h2>Publications</h2>
+<p>That part is fundamental: <strong>if you are providing a new protocol or algorithm, you should publish it and ask for review before you start coding and get users</strong>. I am not advising you to start up LaTeX and write a paper in ACM format. Just explaining your system on a webpage is fine. The crypto community is full of nice people that will be able to point out if there is any problem (and if you use the academic way of publishing, you might even profit from other people's funding to get reviews :p).</p>
+<p>Some said that the crypto community is full of bitter people eager to hit any new project, following the whole Telegram debacle. That tends to happen when you make a big announcement to get users, telling that it will solve any security problem, and dismiss the opinions of experts, without having asked for review previously.</p>
+<p>Note that some of those experts have worked for years on a project before even thinking of communicating about it. As examples, check out <a title="Briar" href="http://briar.sourceforge.net/" target="_blank">Briar</a>, <a title="Pond" href="https://pond.imperialviolet.org/" target="_blank">Pond</a> or <a title="Cryptosphere" href="http://cryptosphere.org/" target="_blank">Cryptosphere</a>: those are quiet but interesting projects. They are not trying to get a lot of users quickly or profit from the post Snowden panic. They have been at it for a long time.</p>
+<p>So, publish, ask for review, fix flaws, publish again, fix stuff, and repeat again and again. That is the smartest way to spend your time and money on your project. Once everything is developed and deployed, you will have a hard time trying to plug the holes.</p>
+<h2>Protocol design</h2>
+<p>Once we get in the technical stuff, the protocol design is interesting to get a high level view of what you want to achieve. I'll ask questions like:</p>
+<ul>
+<li>Is it server centric or P2P? (note: a network of server introduces routing, but is not P2P)</li>
+<li>Does it include authentication?</li>
+<li>Is it encrypted end to end?</li>
+<li>How do you protect against DoS?</li>
+<li>Is it versioned? Do you allow for protocol version negotiation? Are the algorithms negotiated?</li>
+<li>Can you revoke keys or identities?</li>
+</ul>
+<p>Often, <strong>the protocol show what you want to achieve with your system, and it is often answering more threats than the crypto algorithms themselves</strong>. A good way to present your protocols is to use <a title="XKCD style sequence diagrams" href="http://bramp.github.io/js-sequence-diagrams/" target="_blank">diagrams</a> and present the message contents.</p>
+<p>Do not insist on algorithms at this point: use general words to describe the primitive you need, like authenticated cipher, public key, key derivation function, MAC. You might change the algorithms later, so stating the properties you need will help reviewers understand what you want to achieve.</p>
+<p>A specific note on server VS peer to peer: it is a very understandable feeling for geeks that P2P architectures look better, because they're decentralizing everything, etc. But they can introduce other problems (like hole punching or sybil attacks), and in some case, you will not be able to avoid servers (for message routing and retries, for mobile systems, etc). Both types of systems are fine, just be aware of their shortcomings.</p>
+<h2>Cryptographic constructs</h2>
+<p>Cryptographic algorithms are not enough, you need to apply them correctly.<strong> I will have no pity if you say you use "military grade AES 256 encryption"</strong> but do not know what is a <a title="ECB is when you see the penguin" href="http://en.wikipedia.org/wiki/Block_cipher_mode_of_operation" target="_blank">block cipher mode</a> or <a title="Encrypt-Then-MAC" href="http://www.daemonology.net/blog/2009-06-24-encrypt-then-mac.html" target="_blank">Encrypt-Then-MAC</a>. A lot of ugly details can hide here, so do not try to be clever, use battle tested systems:</p>
+<ul>
+<li>add a separate authentication layer to Diffie-Hellman key exchanges</li>
+<li>use an authenticated encryption mode</li>
+<li>use RSA-OAEP instead of PKCS1 padding</li>
+<li>know well if you need a nonce, an unpredictable number or a time based ID</li>
+<li>etc.</li>
+</ul>
+<p>This is one of the parts where crypto experts will ask annoying questions, because a lot of bugs come from there. They can also propose better solutions (safer, more performant, etc), so listen to them.</p>
+<p>If you are employing an unusual scheme here, be prepared to justify it. It might be ok for you, but if the design looks weird to cryptographers, that will raise alarms. Your scheme could be safe, but if it has never been proven right, you are taking a risk, and your users will take that risk too. Is it worth it? Hint: your weird design should provide a unique property that no other algorithm has.</p>
+<h2>Choice of algorithms</h2>
+<p>Yes, I do not worry about algorithms until I am already deep in the system. It is not that hard to make correct choices there. Just listen to the recent attacks (ie, avoid RC4) choose large enough keys, choose correct elliptic curves.</p>
+<p>Every algorithm has parameters that you need to get right, so be sure to document yourself on your algorithm choices:</p>
+<ul>
+<li>AES-CBC needs an initialization vector, but AES-CTR uses an incremented nonce</li>
+<li>RSA needs a good exponent</li>
+<li>Some elliptic curves <a href="http://en.wikipedia.org/wiki/Table_of_costs_of_operations_in_elliptic_curves" target="_blank">work better for some operations</a></li>
+</ul>
+<p>Even if you choose dubious algorithms, if your protocol was well designed, you will be able to move to better algorithm. Be careful with algorithm negotiation, though, a lot of smart people were bitten before.</p>
+<h2>The implementation</h2>
+<p>This is probably the part that I will skip, because I do not have the time nor the funding to audit thoroughly the code of every new projects. I will often grep a bit through the code, look for some important points, but this is not something that should be done quickly. This is where the protocol review shows its limits.</p>
+<p><strong>Even with a good design, a lot of vulnerabilities can be present in a flawed implementation</strong>. Crypto projects should undergo a careful audit like the one <a title="Least Authority" href="https://leastauthority.com/" target="_blank">Least Authority</a> performed recently on <a title="Cryptocat" href="https://crypto.cat/" target="_blank">Cryptocat</a>. And that is why you should not communicate about your project before it has been reviewed.</p>
+<p>There are things you should always look for in your software projects:</p>
+<ul>
+<li>encrypting data at rest: if you worry about stolen data, know that a mobile phone or laptop can be stolen</li>
+<li>random number generation: you should use a CSPRNG, with a good source, and probably some user or device specific data</li>
+<li>data backup: is it possible? is it safe?</li>
+<li>software updates: are they downloaded from a secure source? Are the updates verified?</li>
+<li>Do you use public key pinning?</li>
+<li>How long are they private keys stored as plaintext in memory?</li>
+</ul>
+<p>The implementation details are as important as the whole protocol. You can have a good protocol, but a small error in the code could greatly affect your users. Nevertheless, specifying your protocol is useful, because people can provide better implementations, or make it interoperate with other software. Having other implementations is a good thing: you will not control those versions, but they will be able to construct cool stuff around your system, and make a part of your PR.</p>
+<h2>User interface</h2>
+<p>this part is more and more important, because we have been able to create safe systems for years, but often at the price of usability. The user experience of crypto apps needs a lot of innovation, and I'll follow closely any interesting idea in that space: onboarding experience, useful alerts, user decision making, etc. People should be able to understand when there is a security problem.</p>
+<p>I'll state it once more: <strong>if you create a new crypto software, you HAVE to make it easy to use and understand</strong>. Some complexity is acceptable, but it must be compensated by documentation (with screenshots, etc) or training.</p>
+<h2>Other criterions</h2>
+<p>There are two others that I could think of, but they do not matter that much.</p>
+<p>The first is the team. I have been accused of making fun of Telegram for waving around their team of PhDs, but the truth is that I was hopeful: a team full of smart people can come up with interesting design and solve complex problems. If they do not deliver on that, I could be less indulgent. That does not mean I will think less of people without big diplomas. I know too many smart people that dropped out of school to make that mistake. Ultimately, the important thing to judge is the design.</p>
+<p>The last parameter is attitude. It is normal to be defensive when someone else reviews your work, but that does not justify denial and dishonesty. People are often taking time off of their job to study your system, so they will be quick and get to the point. If you do not answer or refuse to explain your decisions, it will smell fishy. Even more if you did not ask for a review before communicating about your project. But it does not matter that much. If you are humble and quick to answer, people may help you out of good will, but if you anger cryptographers, you may just have won a free thorough audit :D</p>
+<p>&nbsp;</p>
+
+    
+
+
+
+<div class="post-tags">
+  
+    
+    <a href="/tags.html#algorithm">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">algorithm</span>
+    </a>
+  
+    
+    <a href="/tags.html#authentication">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">authentication</span>
+    </a>
+  
+    
+    <a href="/tags.html#cryptography">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">cryptography</span>
+    </a>
+  
+    
+    <a href="/tags.html#protocol">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">protocol</span>
+    </a>
+  
+    
+    <a href="/tags.html#security">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">security</span>
+    </a>
+  
+    
+    <a href="/tags.html#vulnerabilities">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">vulnerabilities</span>
+    </a>
+  
+</div>
+  </div>
+
+  
+<!--  <section class="comments">
+    <h2>Comments</h2>
+  </section>
+-->
+
+
+  <section class="related">
+  <h2>Related Posts</h2>
+  <ul class="posts-list">
+    
+      <li>
+        <h3>
+          <a href="/general/rust/2018/02/02/poc-compiling-to-ebpf-from-rust.html">
+            PoC: compiling to eBPF from Rust
+            <small>02 Feb 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/rust/2018/01/10/rust-2018-maybe-dont-be-too-stable.html">
+            Rust 2018: maybe don't be too stable
+            <small>10 Jan 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/general/2017/08/23/adventures-in-logging.html">
+            Adventures in logging
+            <small>23 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</section>
+
+</div>
+
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>

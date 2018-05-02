@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      Development &middot; Unhandled Expression
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="category">
+
+    <div id="sidebar">
+  <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
+    <div class="site-title">
+      <a href="/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Unhandled Expression
+      </a>
+    </div>
+    <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/about.html">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/architecture.html">Architecture</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/crypto.html">Crypto</a>
+    
+  
+
+  
+    
+      <a class="category-link  active"
+          href="/category/development.html">Development</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/rust.html">Rust</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/security.html">Security</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/videolan.html">VideoLAN</a>
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  <nav id="sidebar-icon-links">
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/tags.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/search.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+  <p>
+  &copy; 2018.
+  <a href="/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+
+    <main class="container">
+      <header>
+  <h1 class="page-title">Development</h1>
+</header>
+<div class="content">
+  
+  <p>Software development</p>
+
+
+
+<ul class="posts-list">
+  
+  
+    <li>
+      <h3>
+        <a href="/development/general/rust/2016/04/14/using-llvm-pgo-in-rust.html">
+          PoC: using LLVM's profile guided optimization in Rust
+          <small>14 Apr 2016</small>
+        </a>
+      </h3>
+    </li>
+  
+    <li>
+      <h3>
+        <a href="/development/general/2014/07/16/programming-vs-mathematics-and-other-pointless-debates.html">
+          Programming VS Mathematics, and other pointless debates
+          <small>16 Jul 2014</small>
+        </a>
+      </h3>
+    </li>
+  
+    <li>
+      <h3>
+        <a href="/development/2013/11/18/handling-io-failure.html">
+          Handling IO failure
+          <small>18 Nov 2013</small>
+        </a>
+      </h3>
+    </li>
+  
+    <li>
+      <h3>
+        <a href="/development/general/2013/03/18/my-ideal-job-post.html">
+          My ideal job posting
+          <small>18 Mar 2013</small>
+        </a>
+      </h3>
+    </li>
+  
+    <li>
+      <h3>
+        <a href="/development/security/2013/01/30/looking-for-big-architectures-and-adventurous-sysadmins.html">
+          Looking for big architectures and adventurous sysadmins
+          <small>30 Jan 2013</small>
+        </a>
+      </h3>
+    </li>
+  
+    <li>
+      <h3>
+        <a href="/development/general/security/2013/01/25/5-easy-tips-to-accelerate-ssl.html">
+          5 easy tips to accelerate SSL
+          <small>25 Jan 2013</small>
+        </a>
+      </h3>
+    </li>
+  
+    <li>
+      <h3>
+        <a href="/development/general/2012/12/07/testing-android-push-without-a-server.html">
+          Testing Android push without a server
+          <small>07 Dec 2012</small>
+        </a>
+      </h3>
+    </li>
+  
+    <li>
+      <h3>
+        <a href="/development/security/2012/11/14/warning-your-users-about-a-vulnerability.html">
+          Warning your users about a vulnerability
+          <small>14 Nov 2012</small>
+        </a>
+      </h3>
+    </li>
+  
+    <li>
+      <h3>
+        <a href="/development/general/security/2012/11/05/going-to-the-freelance-side.html">
+          Going to the freelance side
+          <small>05 Nov 2012</small>
+        </a>
+      </h3>
+    </li>
+  
+    <li>
+      <h3>
+        <a href="/development/security/2012/01/05/worst-case-messaging-protocol.html">
+          Worst Case Messaging Protocol
+          <small>05 Jan 2012</small>
+        </a>
+      </h3>
+    </li>
+  
+    <li>
+      <h3>
+        <a href="/development/reinventing%20the%20wheel/2011/08/16/manage-your-libraries-with-symlinks-on-windows.html">
+          Manage your libraries with symlinks on Windows
+          <small>16 Aug 2011</small>
+        </a>
+      </h3>
+    </li>
+  
+    <li>
+      <h3>
+        <a href="/development/ruby/security/2011/06/28/rails-and-oauth-plugin-part-2-the-consumer.html">
+          Rails and oauth-plugin part 2: the consumer
+          <small>28 Jun 2011</small>
+        </a>
+      </h3>
+    </li>
+  
+    <li>
+      <h3>
+        <a href="/development/ruby/security/2011/06/02/rails-and-oauth-plugin-part-1-the-provider.html">
+          Rails and oauth-plugin part 1: the provider
+          <small>02 Jun 2011</small>
+        </a>
+      </h3>
+    </li>
+  
+    <li>
+      <h3>
+        <a href="/development/reinventing%20the%20wheel/security/web/2011/04/01/yet-another-authentication-scheme.html">
+          Yet another authentication scheme
+          <small>01 Apr 2011</small>
+        </a>
+      </h3>
+    </li>
+  
+    <li>
+      <h3>
+        <a href="/development/general/2011/02/18/the-geal-test-extending-the-joel-test.html">
+          The Geal test: extending the Joel Test
+          <small>18 Feb 2011</small>
+        </a>
+      </h3>
+    </li>
+  
+</ul>
+
+</div>
+
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>

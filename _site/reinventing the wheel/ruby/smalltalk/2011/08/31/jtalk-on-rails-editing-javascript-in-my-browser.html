@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      Jtalk on Rails: editing Javascript in my browser &middot; Unhandled Expression
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="post">
+
+    <div id="sidebar">
+  <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
+    <div class="site-title">
+      <a href="/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Unhandled Expression
+      </a>
+    </div>
+    <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/about.html">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/architecture.html">Architecture</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/crypto.html">Crypto</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/development.html">Development</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/rust.html">Rust</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/security.html">Security</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/videolan.html">VideoLAN</a>
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  <nav id="sidebar-icon-links">
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/tags.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/search.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+  <p>
+  &copy; 2018.
+  <a href="/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+
+    <main class="container">
+      <header>
+  <h1 class="post-title">Jtalk on Rails: editing Javascript in my browser</h1>
+</header>
+<div class="content">
+  <div class="post-meta">
+  <span class="post-date">31 Aug 2011</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        Reinventing the wheel
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        Ruby
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        Smalltalk
+      
+    
+  </span>
+</div>
+
+  <div class="post-body">
+    <p>If you don't know JTalk yet, you're missing something. It's an awesome piece of work: a Smalltalk to Javascript compiler and a Smalltalk editor running in Javascript, <strong>IN YOUR BROWSER</strong>! <a title="JTalk project page" href="http://jtalk-project.org/" target="_blank">Go check it out, now!</a></p>
+<p>Now that you've played a bit with JTalk, let's get started.</p>
+<p>If you're like me, you're a bit annoyed by WebDAV, the proposed solution to save changes to disk. And if you're like me, you would like to use Jtalk with Rails, and because you're a lazy ass like me, you use WEBrick instead of Apache for your development.</p>
+<p>Let's hack something up to replace WebDAV!</p>
+<h2>Create a Rails application</h2>
+<p>[sourcecode language="bash"]<br />
+rails new jtalkonrails<br />
+cd jtalkonrails<br />
+bundle install<br />
+rm public/index.html<br />
+rails generate controller home index<br />
+printf &quot;Jtalkonrails::Application.routes.draw do\n  root :to =&gt; \&quot;home#index\&quot;\nend\n&quot; &gt; config/routes.rb<br />
+[/sourcecode]</p>
+<p>(I should really make a script out of all my rails initialization commands, one of these days...)</p>
+<h2>Add Jtalk to your application</h2>
+<p>[sourcecode language="bash"]<br />
+cd public/<br />
+wget http://github.com/NicolasPetton/jtalk/tarball/master --no-check-certificate<br />
+tar zxvf master<br />
+cp -R NicolasPetton-jtalk-20cd63e/st .<br />
+cp -R NicolasPetton-jtalk-20cd63e/js .<br />
+cp -R NicolasPetton-jtalk-20cd63e/css .<br />
+cp -R NicolasPetton-jtalk-20cd63e/ide .<br />
+rm -rf NicolasPetton-jtalk-20cd63e<br />
+[/sourcecode]</p>
+<p>JTalk stores source code in three forms: Smalltalk code, Javascript code and smaller Javascript code ("*.deploy.js").</p>
+<h2>Jtalk hello world: the Counter example</h2>
+<p>now, edit app/views/layouts/application.html.erb so that it looks like this:</p>
+<p>[sourcecode language="html"]<br />
+&lt;!DOCTYPE html&gt;<br />
+&lt;html&gt;<br />
+&lt;head&gt;<br />
+  &lt;title&gt;Jtalk On Rails&lt;/title&gt;<br />
+  &lt;%= stylesheet_link_tag :all %&gt;<br />
+  &lt;%= javascript_include_tag :defaults %&gt;<br />
+  &lt;%= csrf_meta_tag %&gt;<br />
+  &lt;script src=&quot;js/jtalk.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;<br />
+  &lt;script type=&quot;text/javascript&quot;&gt; loadJtalk()&lt;/script&gt;<br />
+&lt;/head&gt;<br />
+&lt;body&gt;<br />
+&lt;button onclick=&quot;smalltalk.Browser._open()&quot;&gt;Class browser&lt;/button&gt;</p>
+<p>&lt;div id=&quot;counters&quot;&gt;&lt;/div&gt;</p>
+<p>&lt;script type=&quot;text/javascript&quot;&gt;<br />
+  jQuery(document).ready(function() {'#counters'._asJQuery()._append_(smalltalk.Counter._new())});<br />
+&lt;/script&gt;<br />
+&lt;%= yield %&gt;</p>
+<p>&lt;/body&gt;<br />
+&lt;/html&gt;<br />
+[/sourcecode]</p>
+<p>Here, we included a button to open the code browser, and added a Counter in a div. Oh, I forgot to tell you: Jtalk works seamlessly with JQuery :)<br />
+Now, go check it out, and you will seee the counter and be able to increase and decrease the value displayed (yes, that's a counter).</p>
+<h2>Editing the code</h2>
+<p>Click on the "Class browser" button to start the IDE. Select the "Examples" category, the "Counter" class, the "actions" method category, and the "increase method". You will see in the text box below the source code of the increase method:</p>
+<p>[sourcecode language="smalltalk"]<br />
+increase<br />
+    count := count + 1.<br />
+    header contents: [:html | html with: count asString]<br />
+[/sourcecode]</p>
+<p>Edit that method to increase by steps of 2 instead of 1, and hit "Save". Now, the counter on your page will increase by steps of 2.<br />
+Unfortunately, on the next page refresh, you will lose these changes. That's why the "Commit category" button is there.<br />
+It will take the updated files (here, Examples.st, Examples.js and Examples.deploy.js) and make a PUT request to their original URL.</p>
+<p>A PUT, you said? Well, I can work something out with a PUT.</p>
+<h2>Saving the code</h2>
+<p>Let's create a new controller, called Uploader:</p>
+<p>[sourcecode language="bash"]<br />
+rails generate controller uploader jtalk<br />
+[/sourcecode]</p>
+<p>And edit config/routes.rb as follows:</p>
+<p>[sourcecode language="ruby"]<br />
+Jtalkonrails::Application.routes.draw do<br />
+  root :to =&gt; &quot;home#index&quot;<br />
+  if Rails.env == 'development'<br />
+    put 'st/:id' =&gt; 'uploader#jtalk'<br />
+    put 'js/:id' =&gt; 'uploader#jtalk'<br />
+    put 'js/:id.:deploy' =&gt; 'uploader#jtalk'<br />
+  end<br />
+end<br />
+[/sourcecode]</p>
+<p>Now the PUT requests are redirected to our controller, but only in the development environment. You do not want to make your JS editable from the browser in a production app. DO NOT WANT!</p>
+<p>The only thing left is the controller itself:</p>
+<p>[sourcecode language="ruby"]<br />
+class UploaderController &lt; ApplicationController</p>
+<p>  def jtalk<br />
+    path = Rails.root.join('public')<br />
+    if(params[:format] == &quot;js&quot;)<br />
+      path = path.join(&quot;js&quot;)<br />
+    elsif(params[:format] == &quot;st&quot;)<br />
+      path = path.join(&quot;st&quot;)<br />
+    end</p>
+<p>    if(params[:deploy])<br />
+      path = path.join(params[:id]+&quot;.deploy.&quot;+params[:format])<br />
+    else<br />
+      path = path.join(params[:id]+&quot;.&quot;+params[:format])<br />
+    end</p>
+<p>    File.open(path, &quot;w&quot;) do |f|<br />
+      f.write(request.body.read())<br />
+    end</p>
+<p>    head 200<br />
+  end</p>
+<p>end<br />
+[/sourcecode]</p>
+<p>Here, we build the file path from the parameters. I use <em>request.body.read()</em> to get the file content because Rails seems to truncate the beginning of the file.</p>
+<h2>Profit</h2>
+<p>Now, go back to the web page, click on "Commit category", and refresh the page. Your changes were saved! You can enjoy editing your frontend directly from the webpage itself, in the code browser, and more importantly, write your whole frontend in Smalltalk! It's still missing the workflow "edit-try-debug-edit-continue", but it already feels just like a "normal" Smalltalk environment. <strong>It feels like home</strong> :)</p>
+<h3>Post Scriptum</h3>
+<p>If you want to add a new category, it's easy: create a file <em>Mycategory.js</em> and put it in <em>public/js</em>, with this content:</p>
+<p>[sourcecode language="javascript"]<br />
+smalltalk.addClass('Myclass', smalltalk.Object, [], 'Mycategory');</p>
+<p>[/sourcecode]</p>
+<p>and change your initialization from <em>loadJtalk()</em> to <em>loadJtalk(new Array("Mycategory.js")).</em> The new category will now appear in the code browser, and clicking on "Commit category" will create the deployment file and Smalltalk source file.</p>
+
+    
+
+
+
+<div class="post-tags">
+  
+    
+    <a href="/tags.html#javascript">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">Javascript</span>
+    </a>
+  
+    
+    <a href="/tags.html#object">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">object</span>
+    </a>
+  
+    
+    <a href="/tags.html#rails">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">rails</span>
+    </a>
+  
+    
+    <a href="/tags.html#smalltalk">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">smalltalk</span>
+    </a>
+  
+    
+    <a href="/tags.html#web">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">Web</span>
+    </a>
+  
+</div>
+  </div>
+
+  
+<!--  <section class="comments">
+    <h2>Comments</h2>
+  </section>
+-->
+
+
+  <section class="related">
+  <h2>Related Posts</h2>
+  <ul class="posts-list">
+    
+      <li>
+        <h3>
+          <a href="/general/rust/2018/02/02/poc-compiling-to-ebpf-from-rust.html">
+            PoC: compiling to eBPF from Rust
+            <small>02 Feb 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/rust/2018/01/10/rust-2018-maybe-dont-be-too-stable.html">
+            Rust 2018: maybe don't be too stable
+            <small>10 Jan 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/general/2017/08/23/adventures-in-logging.html">
+            Adventures in logging
+            <small>23 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</section>
+
+</div>
+
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>

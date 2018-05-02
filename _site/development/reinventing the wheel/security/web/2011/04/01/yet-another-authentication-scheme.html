@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      Yet another authentication scheme &middot; Unhandled Expression
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="post">
+
+    <div id="sidebar">
+  <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
+    <div class="site-title">
+      <a href="/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Unhandled Expression
+      </a>
+    </div>
+    <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/about.html">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/architecture.html">Architecture</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/crypto.html">Crypto</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/development.html">Development</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/rust.html">Rust</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/security.html">Security</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/videolan.html">VideoLAN</a>
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  <nav id="sidebar-icon-links">
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/tags.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/search.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+  <p>
+  &copy; 2018.
+  <a href="/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+
+    <main class="container">
+      <header>
+  <h1 class="post-title">Yet another authentication scheme</h1>
+</header>
+<div class="content">
+  <div class="post-meta">
+  <span class="post-date">01 Apr 2011</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/development.html">
+          Development
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        Reinventing the wheel
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        Web
+      
+    
+  </span>
+</div>
+
+  <div class="post-body">
+    <p>Recently, I was asked to design a new authentication protocol for a web service. I know that I shouldn't do reinvent the wheel, so I immediatly proposed OAUTH.  It turns out that it can't be used in this situation. Here are the constraints:</p>
+<p>-calls to the webservice must be authenticated: I can keep the tokens and signature from OAUTH here. The problem is: how do I get that token?</p>
+<p>-calls are made from devices or applications without access to a webbrowser (embedded devices, phones, etc.). The redirection dance of OAUTH is not acceptable here</p>
+<p>-communications are done over an untrusted network, without SSL.</p>
+<p>-I can't use application keys and secrets to encrypt and sign the authentication process: clients include open source software and smartphone applications. You can't hide a secret key in these.</p>
+<p>-the protocol has to be simple to implement, on a lot of languages</p>
+<p>-the server must not store the password in cleartext (I shouldn't have to precise this...), the client must not store the password</p>
+<p>Summing it up: no preshared keys, no browser, no SSL, untrusted networks, no passwords stored, and an OAUTH-like environment once the client is authenticated (tokens, authorizations, revoking, etc)</p>
+<p>Apparently, I should just give up. But I like to play, so I'll try!</p>
+<p>First, I must say that I am not an expert in security nor cryptography. But I'm really enthusiastic about these subjects, and my day job is at a company providing strong authentication solutions (no, this protocol is not related to my day job). So, I know a bit about the subject, and I know that I should ask for reviews, hence this post.</p>
+<h2>Rough ideas</h2>
+<p>We need a safe communication over an untrusted network. TLS immediatly comes to mind, but the targeted applications might not have access to a TLS implementation. I'd like to use SRP, but I don't think I'm able to implement it correctly (and it has to be SIMPLE). Using Diffie-Hellman to establish a shared key is another idea, but it is not safe against MITM.</p>
+<p>Here's my idea: we don't need to generate a shared secret, we already have it. It's the password!</p>
+<p>But how can I use the password if the server doesn't store it in cleartext?</p>
+<h2>The trick: key derivation functions</h2>
+<p>Decveoplers are finally understanding that they should not use MD5 nor SHA1 to store their passwords, even with a salt, because computing power is so cheap these days that anyone could crack easily a lot of passwords.</p>
+<p>It is now recommended to use other functrions tro store passwords. The key derivation functions are a class of functions that create a key from a password. Basically, they do it by interating a lot of times. That makes them very slow, which is an interesting property if you want to stpre passwords: it is too expensive to "crack" the password. PBKDF2, bcrypt and scrypt are well known  key derivation functions. They're simple to use and available in a lot of languages.</p>
+<p>With these functions, I can safely store the passwords, and generate a key shared with the client.</p>
+<p>In short: if I store kdf(password, N) with N the number of iterations, I can send any M &gt; N to the client and ask him to compute the key, without compromising what I store.</p>
+<h2>Designing the protocol</h2>
+<p>Now that we have a way to use a shared key, we can look at what will go over the wire to establish it. If I use directly kdf(pass, M), anybody getting access to the client storage will be able to obtain the key for any L &gt; M. So, the key establishment has to use a nonce. That way, the client will only use the password once and forget it, and store the derivated key.</p>
+<p>I would rather use a truly random key that has no relation with the password. It could be given to the client, encrypted with the derivated key. The derivated key could then be thrown away. But I still do not know if it is really necesary.</p>
+<p>The server still needs to authenticate the client. The client will make a second call to the web service, signing it with HMAC and the key.</p>
+<p>That's it! It is really simple, so if there are flaws I did not see, you will surely catch them.</p>
+<h2>TL; DR</h2>
+<p>The protocol is based on key derivation functions, like PBKDF or bcrypt.</p>
+<ul>
+<li>The server stores login and H = kdf(pass, N), with N integer</li>
+<li>The client wants to authenticate and makes a call to the server with the login as argument</li>
+<li>The server replies with M &gt; N and i nonce</li>
+<li>The client calculates k1 = kdf(kdf(pass, M)+i, 1)</li>
+<li>The server calculates k2 = kdf(kdf(H, M-N)+i, 1)</li>
+<li>The client calls the server with args "user=login&amp;sign=".HMAC("user=login", k2)</li>
+<li>If k1=k2. The signature matches and the client is authenticated.</li>
+</ul>
+
+    
+
+
+
+<div class="post-tags">
+  
+    
+    <a href="/tags.html#authentication">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">authentication</span>
+    </a>
+  
+    
+    <a href="/tags.html#cryptography">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">cryptography</span>
+    </a>
+  
+    
+    <a href="/tags.html#oauth">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">oauth</span>
+    </a>
+  
+    
+    <a href="/tags.html#security">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">security</span>
+    </a>
+  
+</div>
+  </div>
+
+  
+<!--  <section class="comments">
+    <h2>Comments</h2>
+  </section>
+-->
+
+
+  <section class="related">
+  <h2>Related Posts</h2>
+  <ul class="posts-list">
+    
+      <li>
+        <h3>
+          <a href="/general/rust/2018/02/02/poc-compiling-to-ebpf-from-rust.html">
+            PoC: compiling to eBPF from Rust
+            <small>02 Feb 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/rust/2018/01/10/rust-2018-maybe-dont-be-too-stable.html">
+            Rust 2018: maybe don't be too stable
+            <small>10 Jan 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/general/2017/08/23/adventures-in-logging.html">
+            Adventures in logging
+            <small>23 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</section>
+
+</div>
+
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>

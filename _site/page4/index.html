@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      Unhandled Expression &middot; Geoffroy Couprie – software security and architecture consultant
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="index">
+
+    <div id="sidebar">
+  <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
+    <h1 class="site-title">
+      <a href="/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Unhandled Expression
+      </a>
+    </h1>
+    <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/about.html">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/architecture.html">Architecture</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/crypto.html">Crypto</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/development.html">Development</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/rust.html">Rust</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/security.html">Security</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/videolan.html">VideoLAN</a>
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  <nav id="sidebar-icon-links">
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/tags.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/search.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+  <p>
+  &copy; 2018.
+  <a href="/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+
+    <main class="container">
+      <div class="content">
+  
+<div class="pagination">
+  <a class="pagination-item newer"
+     href="/page3">
+    Newer
+  </a>
+</div>
+
+
+
+  
+
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/crypto/security/2013/12/20/criterions-for-a-crypto-app.html">
+        Criterions for a crypto app
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">20 Dec 2013</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/crypto.html">
+          Crypto
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+    
+      <p>Following the previous article, people have asked me what I would consider as a good secure system, and others asked me to review their app, so I think it will be interesting to expose my process when studying those projects.</p>
+<h2>Threat modeling</h2>
+<p>The most important point I look for in a project is <strong>the threat model</strong>. This is the document that will explain for whom the project was created, who are the adversaries, what they are trying to obtain, and which of these threats you are addressing.</p>
+<p>Without that document, I cannot know if you considered all the possible actors, and I must infer it from the protocol, which is relatively easy, but my view of the threat model might not correspond to what you expected.</p>
+<p>With a good threat model, I can know right away what is your target market (ex: sexting for teens, or secure reporting for journalists in war environments), see if your users will understand the implications, if it will need training, and more importantly, if your system can be safe for that context.</p>
+<p><strong>You cannot create a project and say that it will solve all of the privacy problems with some magical crypto algorithm</strong>, against all adversaries, even the state actors. I would prefer a useful tool for a niche with real and well defined needs.</p>
+<h2>Prior art</h2>
+<p>As you have probably seen, the secure messaging space is already very crowded. If you come up with a new solution to an already solved problem, you need to justify it. Why didn't you improve an existing project? Couldn't you adapt someone else's code, add a better UI?</p>
+<p>the NIH syndrome is at the heart of innovation, so I am not against it. But in the case of crypto applications, it might be a good idea to employ already existing (and already audited) code, instead of writing a whole new protocol or algorithm from scratch.</p>
+<p>Otherwise, <strong>if you are working on an unsolved problem, or improving on current solutions, be prepared to justify it</strong>, and a lot, if you employ unusual systems. I am not telling you to avoid funny stuff like Pailler's cryptosystem, PIR or pairing based cryptography. Just be aware that people will ask you about these.</p>
+<h2>Publications</h2>
+<p>That part is fundamental: <strong>if you are providing a new protocol or algorithm, you should publish it and ask for review before you start coding and get users</strong>. I am not advising you to start up LaTeX and write a paper in ACM format. Just explaining your system on a webpage is fine. The crypto community is full of nice people that will be able to point out if there is any problem (and if you use the academic way of publishing, you might even profit from other people's funding to get reviews :p).</p>
+<p>Some said that the crypto community is full of bitter people eager to hit any new project, following the whole Telegram debacle. That tends to happen when you make a big announcement to get users, telling that it will solve any security problem, and dismiss the opinions of experts, without having asked for review previously.</p>
+<p>Note that some of those experts have worked for years on a project before even thinking of communicating about it. As examples, check out <a title="Briar" href="http://briar.sourceforge.net/" target="_blank">Briar</a>, <a title="Pond" href="https://pond.imperialviolet.org/" target="_blank">Pond</a> or <a title="Cryptosphere" href="http://cryptosphere.org/" target="_blank">Cryptosphere</a>: those are quiet but interesting projects. They are not trying to get a lot of users quickly or profit from the post Snowden panic. They have been at it for a long time.</p>
+<p>So, publish, ask for review, fix flaws, publish again, fix stuff, and repeat again and again. That is the smartest way to spend your time and money on your project. Once everything is developed and deployed, you will have a hard time trying to plug the holes.</p>
+<h2>Protocol design</h2>
+<p>Once we get in the technical stuff, the protocol design is interesting to get a high level view of what you want to achieve. I'll ask questions like:</p>
+<ul>
+<li>Is it server centric or P2P? (note: a network of server introduces routing, but is not P2P)</li>
+<li>Does it include authentication?</li>
+<li>Is it encrypted end to end?</li>
+<li>How do you protect against DoS?</li>
+<li>Is it versioned? Do you allow for protocol version negotiation? Are the algorithms negotiated?</li>
+<li>Can you revoke keys or identities?</li>
+</ul>
+<p>Often, <strong>the protocol show what you want to achieve with your system, and it is often answering more threats than the crypto algorithms themselves</strong>. A good way to present your protocols is to use <a title="XKCD style sequence diagrams" href="http://bramp.github.io/js-sequence-diagrams/" target="_blank">diagrams</a> and present the message contents.</p>
+<p>Do not insist on algorithms at this point: use general words to describe the primitive you need, like authenticated cipher, public key, key derivation function, MAC. You might change the algorithms later, so stating the properties you need will help reviewers understand what you want to achieve.</p>
+<p>A specific note on server VS peer to peer: it is a very understandable feeling for geeks that P2P architectures look better, because they're decentralizing everything, etc. But they can introduce other problems (like hole punching or sybil attacks), and in some case, you will not be able to avoid servers (for message routing and retries, for mobile systems, etc). Both types of systems are fine, just be aware of their shortcomings.</p>
+<h2>Cryptographic constructs</h2>
+<p>Cryptographic algorithms are not enough, you need to apply them correctly.<strong> I will have no pity if you say you use "military grade AES 256 encryption"</strong> but do not know what is a <a title="ECB is when you see the penguin" href="http://en.wikipedia.org/wiki/Block_cipher_mode_of_operation" target="_blank">block cipher mode</a> or <a title="Encrypt-Then-MAC" href="http://www.daemonology.net/blog/2009-06-24-encrypt-then-mac.html" target="_blank">Encrypt-Then-MAC</a>. A lot of ugly details can hide here, so do not try to be clever, use battle tested systems:</p>
+<ul>
+<li>add a separate authentication layer to Diffie-Hellman key exchanges</li>
+<li>use an authenticated encryption mode</li>
+<li>use RSA-OAEP instead of PKCS1 padding</li>
+<li>know well if you need a nonce, an unpredictable number or a time based ID</li>
+<li>etc.</li>
+</ul>
+<p>This is one of the parts where crypto experts will ask annoying questions, because a lot of bugs come from there. They can also propose better solutions (safer, more performant, etc), so listen to them.</p>
+<p>If you are employing an unusual scheme here, be prepared to justify it. It might be ok for you, but if the design looks weird to cryptographers, that will raise alarms. Your scheme could be safe, but if it has never been proven right, you are taking a risk, and your users will take that risk too. Is it worth it? Hint: your weird design should provide a unique property that no other algorithm has.</p>
+<h2>Choice of algorithms</h2>
+<p>Yes, I do not worry about algorithms until I am already deep in the system. It is not that hard to make correct choices there. Just listen to the recent attacks (ie, avoid RC4) choose large enough keys, choose correct elliptic curves.</p>
+<p>Every algorithm has parameters that you need to get right, so be sure to document yourself on your algorithm choices:</p>
+<ul>
+<li>AES-CBC needs an initialization vector, but AES-CTR uses an incremented nonce</li>
+<li>RSA needs a good exponent</li>
+<li>Some elliptic curves <a href="http://en.wikipedia.org/wiki/Table_of_costs_of_operations_in_elliptic_curves" target="_blank">work better for some operations</a></li>
+</ul>
+<p>Even if you choose dubious algorithms, if your protocol was well designed, you will be able to move to better algorithm. Be careful with algorithm negotiation, though, a lot of smart people were bitten before.</p>
+<h2>The implementation</h2>
+<p>This is probably the part that I will skip, because I do not have the time nor the funding to audit thoroughly the code of every new projects. I will often grep a bit through the code, look for some important points, but this is not something that should be done quickly. This is where the protocol review shows its limits.</p>
+<p><strong>Even with a good design, a lot of vulnerabilities can be present in a flawed implementation</strong>. Crypto projects should undergo a careful audit like the one <a title="Least Authority" href="https://leastauthority.com/" target="_blank">Least Authority</a> performed recently on <a title="Cryptocat" href="https://crypto.cat/" target="_blank">Cryptocat</a>. And that is why you should not communicate about your project before it has been reviewed.</p>
+<p>There are things you should always look for in your software projects:</p>
+<ul>
+<li>encrypting data at rest: if you worry about stolen data, know that a mobile phone or laptop can be stolen</li>
+<li>random number generation: you should use a CSPRNG, with a good source, and probably some user or device specific data</li>
+<li>data backup: is it possible? is it safe?</li>
+<li>software updates: are they downloaded from a secure source? Are the updates verified?</li>
+<li>Do you use public key pinning?</li>
+<li>How long are they private keys stored as plaintext in memory?</li>
+</ul>
+<p>The implementation details are as important as the whole protocol. You can have a good protocol, but a small error in the code could greatly affect your users. Nevertheless, specifying your protocol is useful, because people can provide better implementations, or make it interoperate with other software. Having other implementations is a good thing: you will not control those versions, but they will be able to construct cool stuff around your system, and make a part of your PR.</p>
+<h2>User interface</h2>
+<p>this part is more and more important, because we have been able to create safe systems for years, but often at the price of usability. The user experience of crypto apps needs a lot of innovation, and I'll follow closely any interesting idea in that space: onboarding experience, useful alerts, user decision making, etc. People should be able to understand when there is a security problem.</p>
+<p>I'll state it once more: <strong>if you create a new crypto software, you HAVE to make it easy to use and understand</strong>. Some complexity is acceptable, but it must be compensated by documentation (with screenshots, etc) or training.</p>
+<h2>Other criterions</h2>
+<p>There are two others that I could think of, but they do not matter that much.</p>
+<p>The first is the team. I have been accused of making fun of Telegram for waving around their team of PhDs, but the truth is that I was hopeful: a team full of smart people can come up with interesting design and solve complex problems. If they do not deliver on that, I could be less indulgent. That does not mean I will think less of people without big diplomas. I know too many smart people that dropped out of school to make that mistake. Ultimately, the important thing to judge is the design.</p>
+<p>The last parameter is attitude. It is normal to be defensive when someone else reviews your work, but that does not justify denial and dishonesty. People are often taking time off of their job to study your system, so they will be quick and get to the point. If you do not answer or refuse to explain your decisions, it will smell fishy. Even more if you did not ask for a review before communicating about your project. But it does not matter that much. If you are humble and quick to answer, people may help you out of good will, but if you anger cryptographers, you may just have won a free thorough audit :D</p>
+<p>&nbsp;</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/crypto/general/security/2013/12/17/telegram-stand-back-we-know-maths.html">
+        Telegram, AKA "Stand back, we have Math PhDs!"
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">17 Dec 2013</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/crypto.html">
+          Crypto
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        General
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+    
+      <p><strong>Disclaimer: this post is now very old and may not reflect the current state of Telegram's protocol. There has been other research in the meantime, and this post should not be used for your choice of secure messaging app. That said, on a personal note, I still think Telegram's cryptosystem is weird, and its justifications are fallacious. If you want a recommendation on secure messaging apps: use a system based on the <a href="https://whispersystems.org/blog/signal-inside-and-out/" target="_blank">Axolotl/Signal</a> protocol. It is well designed and has been audited. <a href="https://whispersystems.org/" target="_blank">Signal</a> and <a href="https://www.whatsapp.com/security/" target="_blank">WhatsApp</a> are both using that protocol, and there are others.</strong></p>
+<p>Here is the second entry in our serie about weird encryption apps, about <a title="Telegram" href="http://telegram.org" target="_blank">Telegram</a>, which got some press recently.</p>
+<p>According to their website, Telegram is "cloud based and heavily encrypted". How secure is it?</p>
+<blockquote><p>Very secure. We are based on a new protocol, MTProto, built by our own specialists, employing time-tested security algorithms. At this moment, the biggest security threat to your Telegram messages is your mother reading over your shoulder. We took care of the rest.</p></blockquote>
+<p>(from their <a title="Telegram's FAQ" href="http://telegram.org/faq#security" target="_blank">FAQ</a>)</p>
+<p>Yup. Very secure, they said it.</p>
+<p>So, let's take a look around.</p>
+<h2>Available technical information</h2>
+<p>Their website details the protocol. They could have added some diagrams, instead of text-only, but that's still readable. There is also <a title="Open source Telegram protocol" href="https://github.com/ex3ndr/telegram-mt/" target="_blank">an open source Java implementation of their protocol</a>. That's a good point.</p>
+<p>About the team (yes, I know, I said I would not do ad hominem attacks, but they insist on that point):</p>
+<blockquote><p><span style="color:#000000;">The team behind Telegram, led by Nikolai Durov, consists of six ACM champions, half of them Ph.Ds in math. It took them about two years to roll out the current version of MTProto. Names and degrees may indeed not mean as much in some fields as they do in others, but this protocol is the result of thougtful and prolonged work of professionals</span></p></blockquote>
+<p>(Seen on <a title="Telegram on Hacker News" href="https://news.ycombinator.com/item?id=6916860" target="_blank">Hacker News</a>)</p>
+<p>They are not cryptographers, but they have some background in maths. Great!</p>
+<p>So, what is the system's architecture? <strong>Basically, a few servers everywhere in the world, routing messages between clients</strong>. Authentication is only done between the client and the server, not between clients communicating with each other. Encryption happens between the client and the server, but not using TLS (some home made protocol instead). Encryption can happen <a title="Telegram's secret chats" href="https://core.telegram.org/api/end-to-end" target="_blank">end to end</a> between clients, but there is no authentication, so <strong>the server can perform a MITM attack</strong>.</p>
+<p>Basically, their threat model is a simple "trust the server". What goes around the network may be safely encrypted, although we don't know anything about their server to server communication, nor about their data storage system. But whatever goes through the server is available in clear. By today's standards, that's boring, unsafe and careless. For equivalent systems, see Lavabit or iMessage. <strong>They will not protect your messages against law enforcement eavesdropping or server compromise. Worse: you cannot detect MITM between you and your peers</strong>.</p>
+<p>I could stop there, but that would not be fun. The juicy bits are in the crypto design. The ideas are not wrong per se, but the algorithm choices are weird and unsafe, and they take the most complicated route for everything.</p>
+<h2>Network protocol</h2>
+<p>The protocol has two phases: the key exchange and the communication.</p>
+<p>The key exchange registers a device to the server. They wrote a custom protocol for that, because TLS was too slow and complicated. That's true, TLS needs two roundtrips between the client and the server to exchange a key. It also needs x509 certificates, and a combination of a public key algorithm like RSA or DSA, and eventually a key exchange algorithm like Diffie-Hellman.</p>
+<p><a title="Telegram's key exchange" href="http://core.telegram.org/mtproto/auth_key" target="_blank">Telegram greatly simplified the exchange</a> by requiring three roundtrips, using RSA, AES-IGE (some weird mode that nobody uses), and Diffie-Hellman, along with a proof of work (the client has to factor a number, probably a DoS protection). Also, they employ some home made function to generate the AES key and IV from nonces generated by the server and the client (server_nonce appears in plaintext during the communication):</p>
+<ul>
+<li>key = SHA1(new_nonce + server_nonce) + substr (SHA1(server_nonce + new_nonce), 0, 12);</li>
+<li>IV = substr (SHA1(server_nonce + new_nonce), 12, 8) + SHA1(new_nonce + new_nonce) + substr (new_nonce, 0, 4);</li>
+</ul>
+<p>Note that AES-IGE is not an authenticated encryption mode. So they verify the integrity. By using plain SHA1 (nope, not a real MAC) on the plaintext. And encrypting the hash along with the plaintext (yup, pseudoMAC-Then-Encrypt).</p>
+<p>The final DH exchange creates the authorization key that will be stored (probably in plaintext) on the client and the server.</p>
+<p>I really don't understand why they needed such a complicated protocol. They could have made something like: the client generates a key pair, encrypts the public key with the server's public key, sends it to the server with a nonce, and the server sends back the nonce encrypted with the client's public key. Simple and easy. And this would have provided public keys for the clients, for end-to-end authentication.</p>
+<p>About the communication phase: they use some combination of server salt, message id and message sequence number to prevent replay attacks. Interestingly, they have a message key, made of the 128 lower order bits of the SHA1 of the message. That message key transits in plaintext, so if you know the message headers, there is probably some nice info leak there.</p>
+<p>The AES key (still in IGE mode) used for message encryption is generated like this:</p>
+<p>The algorithm for computing aes_key and aes_iv from auth_key and msg_key is as follows:</p>
+<ul>
+<li>sha1_a = SHA1 (msg_key + substr (auth_key, x, 32));</li>
+<li>sha1_b = SHA1 (substr (auth_key, 32+x, 16) + msg_key + substr (auth_key, 48+x, 16));</li>
+<li>sha1_с = SHA1 (substr (auth_key, 64+x, 32) + msg_key);</li>
+<li>sha1_d = SHA1 (msg_key + substr (auth_key, 96+x, 32));</li>
+<li>aes_key = substr (sha1_a, 0, 8) + substr (sha1_b, 8, 12) + substr (sha1_c, 4, 12);</li>
+<li>aes_iv = substr (sha1_a, 8, 12) + substr (sha1_b, 0, 8) + substr (sha1_c, 16, 4) + substr (sha1_d, 0, 8);</li>
+</ul>
+<p>where x = 0 for messages from client to server and x = 8 for those from server to client.</p>
+<p><del>Since the auth_key is permanent, and the message key only depends on the server salt (living 24h), the session (probably permanent, can be forgotten by the server) and the beginning of the message, the message key may be the same for a potentially large number of messages. Yes, <strong>a lot of messages will probably share the same AES key and IV</strong>.</del></p>
+<p><strong>Edit: Following Telegram's comment, the AES key and IV will be different for every message. Still, they depend on the content of the message, and that is a very bad design. Keys and initialization vectors should always be generated from a CSPRNG, independent from the encrypted content.</strong></p>
+<p><strong>Edit 2: the <a title="protocol diagram" href="https://core.telegram.org/img/mtproto_encryption.png" target="_blank">new protocol diagram</a> makes it clear that the key is generated by a weak KDF from the auth key and some data transmitted as plaintext. There should be some nice statistical analysis to do there.</strong></p>
+<p><del><strong>Edit 3: Well, if you send the same message twice (in a day, since the server salt lives 24h), the key and IV will be the same, and the ciphertext will be the same too. This is a real flaw, that is usually fixed by changing IVs regularly (even broken protocols like WEP do it) and changing keys regularly (cf Forward Secrecy in TLS or OTR)</strong></del>. The unencrypted message contains a (time-dependent) message ID and sequence number that are incremented, and the client won't accept replayed messages, or too old message IDs.</p>
+<p><strong>Edit 4: Someone <a href="http://habrahabr.ru/post/206900/" target="_blank">found a flaw</a> in the <a title="Web archive for Telegram" href="http://web.archive.org/web/20131220000537/https://core.telegram.org/api/end-to-end" target="_blank">end to end secret chat.</a> The key generated from the Diffie-Hellman exchange was combined with a server-provided nonce: <code>key = (pow(g_a, b) mod dh_prime) xor nonce</code>. With that, the server can perform a MITM on the connection and generate the same key for both peers by manipulating the nonce, thus defeating the key verification. Telegram has updated their protocol description and will fix the flaw. (That nonce was introduced to fix RNG issues on mobile devices).</strong></p>
+<p>Seriously, I have never seen anyone use the MAC to generate the encryption key. Even if I wanted to put a backdoor in a protocol, I would not make it so evident...</p>
+<p>To sum it up: <strong>avoid at all costs</strong>. There are no new ideas, and they add their flawed homegrown mix of RSA, AES-IGE, plain SHA1 integrity verification, MAC-Then-Encrypt, and a custom KDF. Instead of Telegram, you should use well known and audited protocols, like OTR (usable in IRC, Jabber) or the Axolotl key ratcheting of TextSecure.</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/development/2013/11/18/handling-io-failure.html">
+        Handling IO failure
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">18 Nov 2013</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/development.html">
+          Development
+        </a>
+      
+    
+  </span>
+</div>
+
+    
+      <p>Let's talk a bit about IO programming. Filesystem, network, GUI... You cannot write useful code without doing IO these days. So why is it so damn hard to do in "safe" languages like Haskell?</p>
+<p>Well, in Haskell, you isolate the unsafe parts to be able to reason safely on the rest of the code. What does "unsafe" mean in that context? Mostly, unsafe code is unpredictable, non deterministic and will fail for a number of reasons independent from your program's code.</p>
+<p>Surely, you might think "come on, it cannot be that hard, I'm doing HTTP requests everywhere in my code, and there is no problem". Well, let's see how a simple HTTPS request could fail:</p>
+<ul>
+<li>you are disconnected from the network (you have no IP)</li>
+<li>you are connected to the network, but it is not connected to anything</li>
+<li>your network is connected to Internet, but routers are dropping packets</li>
+<li>your network is connected to Internet, but very slow</li>
+<li>your DNS server is unreachable</li>
+<li>your DNS server drops your packets</li>
+<li>your DNS server cannot parse your request</li>
+<li>your DNS server cannot contact other server to get your answer</li>
+<li>your DNS server sends back an invalid response</li>
+<li>your DNS server sends back an outdated response</li>
+<li>you cannot reach the web server's IP from your network</li>
+<li>the web server drops your packets silently before connecting</li>
+<li>the web server connects, then drops the connection silently</li>
+<li>the web server rejects your connection</li>
+<li>the web server cannot parse your packets, and so, rejects them</li>
+<li>the web server timeouts</li>
+<li>the server's certificate is expired</li>
+<li>the server's certificate is not for the right subject name</li>
+<li>the server's certification chain has parts missing</li>
+<li>the server's certification chain has an unknown root</li>
+<li>the server's certificate was revoked</li>
+<li>the packet's signatures are invalid</li>
+<li>your user agent and the server do not support the same versions of TLS</li>
+<li>your user agent and the server do not have common cipher suites</li>
+<li>the web server closes the connection without warning</li>
+<li>the web server timeouts</li>
+<li>the web server crashes</li>
+<li>the web server cannot parse your HTTP request and rejects it</li>
+<li>your request is too large</li>
+<li>the web server parses your HTTP request correctly, but your cookie or OAuth token is invalid</li>
+<li>the data you requested does not exist</li>
+<li>the data you requested is elsewhere</li>
+<li>your user agent does not support the mime type of the data</li>
+<li>the data requested is too large for a simple response</li>
+<li>the server only sends a part of the data, then drops the connection</li>
+<li>your user agent cannot parse the response</li>
+<li>your user agent can parse the data, but some way or another, it is invalid</li>
+</ul>
+<p>If you have worked for some time with networks, all of those have probably happened to you at some point (and the list is not nearly exhaustive). What did you do in your code? Did you handle all these exceptions? Did you catch all the exceptions (see what I did there)? Do you check for all the error codes? Do you retry the requests where you need to?</p>
+<p>Let's face it: most of the network handling code out there is made of big chunks of procedural code, without much error handling, in blocking mode. In most cases, it is ok. But that is sloppy programming.</p>
+<p>Safe languages do not allow you to write sloppy code like that. So, we are stuck between correct but overly complex code, and simple but failing code. Choose your weapons.</p>
+<p>Personally, I prefer isolating unsafe code in asynchronous systems like futures or actors. I know failure will happen, I know threads will crash, I know I will make errors in my code. That is ok, it happens. So, let's write robust code to handle failure.</p>
+<p>For network errors, I just want to know if the server is unreachable. It is ok, I will try later. If my request's authentication is rejected, I want to know, and must handle that failure. Some errors should be handled seriously, others must be put in the "ok, it failed, whatever" bin.</p>
+<p>Even if languages like Haskell make it harder to perform IO safely, they are still good tools, because they let you isolate unsafe parts, to let you reason on safe, deterministic parts of the program.</p>
+<p><strong>P.S.</strong>: ok, the network case was maybe a bit too much. Surely, filesystem usage will be easier? Just for the fun, let's list some possible failures when you want to open a file for reading and writing:</p>
+<ul>
+<li>invalid path</li>
+<li>correct path, but you do not have the permission</li>
+<li>correct path, you have the permission, but the file does not exists</li>
+<li>you do not have the permission to create the file</li>
+<li>you check that the file does not exists, then you try to create it, but someone already created it in the meantime (fun security bug, that one)</li>
+<li>the file exists, but someone is already writing on it, no concurrent access</li>
+<li>you have the handle you want on the file, but someone just deleted it</li>
+<li>not enough file descriptors available (oh, please, no)</li>
+<li>someone is writing to the file at the same time</li>
+<li>there are so many page faults that your program is slowed down</li>
+<li>the disk is slow, blocking on a large operation</li>
+<li>the disk is full</li>
+<li>you checked that you have enough room, but someone is filling the disk at the same time</li>
+<li>the file is on a networked file system, and it is slow</li>
+<li>the file is on a remote disk, and the network just failed</li>
+<li>hardware failure in the disk</li>
+<li>hardware failure in the RAID array (and for some reason, redundancy was not enough, you lost the data)</li>
+<li>the file is on a USB card that someone just unplugged</li>
+</ul>
+<p>Basically, IO is a nightmare. Please wake me up now.</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/crypto/general/security/2013/10/29/safechat-p2p-encrypted-messages.html">
+        SafeChat, P2P encrypted messages?
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">29 Oct 2013</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/crypto.html">
+          Crypto
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        General
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+    
+      <p>For the first article in the new post serie about "let's pick apart the new kickstarted secure decentralized software of the week", I chose <a title="SafeChat's KickStarter" href="http://www.kickstarter.com/projects/davidcrawford/safechat" target="_blank">SafeChat</a>, which started just two days ago. Yes, I like to hunt young preys :p</p>
+<p>A note, before we begin: this analysis is based on publicly available information at the time of writing. If the authors of the project give more information, I can update the article to match it. The goal is to assert, with what little we know about the project, if it is a good idea to give money to this project. I will only concentrate on the technical parts, not on the team itself (even if, for some of those projects, I think they're idiots running with scissors in hand).</p>
+<h2>What is SafeChat?</h2>
+<blockquote><p>Open source encryption based instant messaging software</p>
+<p><b>SafeChat </b>is a brilliantly simple deeply secure instant messaging system for mobile phones and computers</p>
+</blockquote>
+<p>SafeChat is an instant messaging software designed by <a title="Commercial Free (lol)" href="http://cfme.co" target="_blank">Commercial Free</a>. There is no real indication about who really works there, and where the company is based, except for David Crawford, who created the Kickstarter project and is based in Montreal in Canada.</p>
+<p>Note that SafeChat is only a small part of the services they want to provide. Commercial Free will also have plans including an email encryption service (no info about that one) and cloud storage.</p>
+<h2>Available technical information</h2>
+<p>There is not much to see. They say they are almost done with the core code, but the only thing they present is some videos of what the interaction with the app could be.</p>
+<p>Apparently, it is an instant messaging application with Android and iOS applications and some server components.  Session keys are generated for the communication between users. They will manage the server component, and the service will be available with a yearly subscription.</p>
+<p>It seems they don't want to release much information about the cryptographic components they use. They talk about "peer to peer encryption" (lol) which is open source and standard. If anyone understands what algorithm or protocol they refer to, please enlighten me. They also say they will mix in some proprietary code (so much for open source).</p>
+<p>I especially like the part about NIST. They mock NIST, telling that they have thrown "all standard encryption commonly used today out the window". I am still wondering what "open source and standard peer to peer encryption" means.</p>
+<h2>Network protocol</h2>
+<p>The iOS and Android applications will apparently provide direct communication between users. I guess that from their emphasis on P2P, but also from the price they claim: $10 per user per year would be a bit small to pay for server costs if they had to route all the messages.</p>
+<p>P2P communication between phones is technically feasible. They would probably need to implement some TCP hole punching in their solution, but it is doable.</p>
+<p>Looking athe the video, it seems there is a key agreement before communication. I do not really like the interaction they chose to represent key agreement (with the colors and the smileys). There are too many different states, while  people only need to know "are we safe now?"</p>
+<p>I am not sure if there is a presence protocol. The video does not really show it. If there is no presence system, are messages stored until the person is online? Stored on the server or on the client? Does the server notify the client when the person becomes available?</p>
+<h2>Cryptography</h2>
+<blockquote><p>By bringing together existing theories of cryptography and some proprietary code to bind them together, we are making a deeply encrypted private chatting system that continues to evolve as the field of cryptography does.</p>
+</blockquote>
+<p>Yup, I really feel safe now.</p>
+<p>Joke aside, here is what we can guess:</p>
+<ul>
+<li>session keys for the communication between users. I don't know if it is a Diffie-Hellman based protocol</li>
+<li>no rekeying, ie no perfect forward secrecy</li>
+<li>no info on message authentication or integrity verification</li>
+<li>I am not sure if the app generates some asymmetric keys for authentication, if there is trust on first use, or whatever else</li>
+<li>the server might not be very safe, because they really, really want to rely on German laws to protect it. If the crypto was fully managed client side, they would not care about servers taken down, they could just pop another somewhere.</li>
+</ul>
+<p>There could be a PKI managed by Commercial Free. That would be consistent with the subscription model (short lived certificates is an easy way of limiting the usage of a service).</p>
+<h2>Threat model</h2>
+<p>Now, we can draw the rough threat model they are using:</p>
+<blockquote><p>What we want to do is make it impractical for an organization to snoop your communications as it would become very hard to find them and then harder still to decrypt them.</p>
+</blockquote>
+<p>Pro tip: a system with a central server does not make it hard to find communications.</p>
+<p>Attacker types:</p>
+<ul>
+<li><strong>phone thief:</strong> I don't think they use client side encryption for credentials and logs. Phone thiefs and forensics engineers won't have a real problem there</li>
+<li><strong>network operator:</strong> they can disrupt the communication, but will probably not be able to decrypt or do MITM (I really think the server is managing the authentication part, along with setting up the communication)</li>
+<li><strong>law enforcement:</strong> they want to rely on German laws to protect their system. At the same time, they do not say they will move out to Germany to operate the system. If they stay in Canada, that changes the legal part. If they use a certificate authority, protecting the server will be useless, because they can just ask the key at the company.</li>
+<li><strong>server attacker:</strong> the server will probably be Windows based (see the core developer's skills). Since that design is really server centric, taking down the server might take down the whole service. And attacking it will reveal lots of interesting metadata, and probably offer MITM capabilities</li>
+<li><strong>nation state:</strong> please, stop joking...</li>
+</ul>
+<p>So...</p>
+<p><strong>Really, nothing interesting here. I do not see any reason to give money to this project</strong>: there is nothing new, it does not solve big problems like anonymous messaging, or staying reliable if one server is down. Worse, it is probably possible to perform a MITM attack if you manage the server. Nowadays, if you create a cryptographic protocol with client side encryption, you must make sure that your security is based on the client, not the server.</p>
+<p>Alternatives to this service:</p>
+<ul>
+<li>Apple iMessage: closed source, only for iOS, encrypted message, MITM is permitted for Apple by the protocol, but "we have not architected the server for this". Already available.</li>
+<li><a title="Open Whisper Systems" href="https://whispersystems.org/" target="_blank">Text Secure by OpenWhisperSystems</a>: open source, available for iOS and Android, uses SMS as a transport protocol, uses OTR (Off the Record protocol) to protect the communication, no server component. <strong>Choose Text Secure!</strong> It is really easy to use, and OTR is well integrated in the interface.</li>
+</ul>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/security/2013/10/01/the-rules-of-security-by-obscurity.html">
+        The rules of security by obscurity
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">01 Oct 2013</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+    
+      <h2>The first rule of security by obscurity is: DON'T</h2>
+<p>There, I said it. Now you can stop reading. Or you can continue. But watch where you step.</p>
+<p>Security by obscurity is generally frowned upon, because people have relied on it as their only layer of defense. When you think that nobody will be able to reverse engineer your clever code, or find that specific file holding all the secrets, you have already lost. People got quite efficient at reverse engineering and finding secrets.</p>
+<p>That's why it is recommended to rely on safer algorithms and techniques to protect your system. They have been tested, and were created especially for that purpose. That can be encryption algorithms, authorization systems, etc.</p>
+<h2>The second rule of security by obscurity is: you should not need it</h2>
+<p>Defense is hard because of information asymmetry: the attacker often has more information than you to approach the system. That could be 0-day vulnerabilities, or the knowledge that you misconfigured one of your servers. The attacker has basically more time and more money than what you can spend on security.</p>
+<p>The tools you have at hand? Patching the code, controlling authorizations, verifying your logs... You get a system that should not be easy to attack even if the attacker is familiar with the underlying software.</p>
+<p>Except that the attacker might be well informed on the problems of deploying that particular CMS. Or there's a specific vulnerability you don't know about that is exploited automatically by botnets...</p>
+<h2>The third rule of security by obscurity is: DON'T, but...</h2>
+<p>The goal of your defense layers is to drive up the cost of an attack. A really motivated attacker will always find a way (with enough ressources, they could break in your office to steal data directly). So, what you want is to make an attack costly, to drive off attackers with less ressources.</p>
+<p>And what will security through obscurity provide you? Time! They will provide you with time to defend, and waste the attacker's time. It is in no way enough to protect you, but it can give you a lot of benefits:</p>
+<ul>
+<li>confuse automated tools: moving some specific files or pages of your CMS out of their default location will prevent most automated attacks. That will not stop human attackers, but they might need to modify their scripts, and we all know that's annoying :p</li>
+<li>slow down information gathering: removing the server headers is a pretty standard practice.  Some more sophisticated tools might be able to guess server version and/or framework type in other ways, but basic tools will not.</li>
+<li>lie to the attackers to send them through a honeypot. Then, you can observe them, learn about their process and prepare for other attacks.</li>
+<li>detect suspect behaviour, like bruteforce queries, and send bogus data instead of rejecting them. That means more data to analyze manually for the adversary.</li>
+<li>Are you trying to send encrypted data? Do you really need a public handshake protocol, displaying the whole algorithm negotiation? Sometimes, communicating directly with a pre shared key and pre negotiated algorithms will work just fine, and only show garbage to the attacker.</li>
+</ul>
+<p>See the pattern there? We already know ressourceful attackers will get past those false defenses. But the point is to make them waste time in basically three ways:</p>
+<ul>
+<li>forbid automated attacks, they should ressort to manual ways</li>
+<li>make them work to get useful information</li>
+<li>mess with their heads</li>
+</ul>
+<p>Security by obscurity is basically the fun side of defense, because you're always looking for ways to annoy the adversary ;)</p>
+<h2>The fourth rule of security by obscurity is: you are not the attacker</h2>
+<p>While those defense techniques can be useful, be aware that they can significantly hamper your day to day work. They should not prevent you from managing your system correctly. Every "WTF" moment for an attacker might be a "WTF" moment for one of your developers, system administrators, or even worse, one of your users.</p>
+<p>Worse, sometimes, it might annoy you, but will be bypassed easily by the adversary (do not underestimate their ability to write clever automated tools).</p>
+<p>So, be careful with security by obscurity, do not rely only on it, and have fun annoying the attackers :)</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+
+  
+<div class="pagination">
+  <a class="pagination-item older"
+     href="/page5">
+    Older
+  </a>
+</div>
+
+
+</div>
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>

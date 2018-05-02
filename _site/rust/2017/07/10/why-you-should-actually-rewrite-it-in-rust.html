@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      Why you should, actually, rewrite it in Rust &middot; Unhandled Expression
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="post">
+
+    <div id="sidebar">
+  <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
+    <div class="site-title">
+      <a href="/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Unhandled Expression
+      </a>
+    </div>
+    <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/about.html">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/architecture.html">Architecture</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/crypto.html">Crypto</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/development.html">Development</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/rust.html">Rust</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/security.html">Security</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/videolan.html">VideoLAN</a>
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  <nav id="sidebar-icon-links">
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/tags.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/search.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+  <p>
+  &copy; 2018.
+  <a href="/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+
+    <main class="container">
+      <header>
+  <h1 class="post-title">Why you should, actually, rewrite it in Rust</h1>
+</header>
+<div class="content">
+  <div class="post-meta">
+  <span class="post-date">10 Jul 2017</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/rust.html">
+          Rust
+        </a>
+      
+    
+  </span>
+</div>
+
+  <div class="post-body">
+    <p>You might have seen those obnoxious "you should rewrite it in Rust comments" here and there:</p>
+<ul>
+<li>in a <a href="https://transitiontech.ca/random/RIIR">blogpost</a></li>
+<li>in a <a href="https://github.com/fc00/go-fc00/issues/1">Github issue</a></li>
+<li>you might have heard about <a href="http://n-gate.com/hackernews/2017/02/21/0/">that Rust Evangelism Strike Force</a></li>
+<li>it even has a joke <a href="https://twitter.com/rustevangelism">twitter account</a></li>
+</ul>
+<p>It's like at every new memory vulnerability in well known software, there’s that one person saying Rust would have avoided the issue. We get it, it’s annoying, and it does not help us grow Rust. This attitude is generally frowned upon in the Rust community. You can't just show up into someone’s project telling them to rewrite everything.</p>
+<p>so, why am I writing this? Why would I try to convince you, now, that you should actually rewrite your software in Rust?</p>
+<p>That's because I have been working on this subject for a long time now:</p>
+<ul>
+<li>I did <a href="https://www.youtube.com/watch?v=YTy_JOxGOd4">multiple</a> <a href="https://www.youtube.com/watch?v=e92Yrp3W_2I">talks</a> on it  </li>
+<li>I even co-wrote a <a href="http://spw17.langsec.org/papers.html#parsers2017">paper</a></li>
+<li>I did it both as client and personal work</li>
+</ul>
+<p>So, I'm commited to this, and yes, I believe you should rewrite some code in Rust. But there's a right way to do it.</p>
+<h2>Why rewrite stuff?</h2>
+<p>Our software systems are built on sand. We got pretty good at maintaining and fixing them over the years, but the cracks are showing. We still have not fixed definitely most of the low level vulnerabilities: stack buffer overflow (yes, those still exist), heap overflow, use after free, double free, off by one; the list goes on. We have some tools, like DEP, ASLR, stack canaries, control flow integrity, fuzzing. Large projects with funding, like Chrome, can resort to sandboxing parts of their application. The rest of us can still run those applications inside a virtual machine. This situation will not improve. <strong>There's a huge amount of old (think 90s), bad quality, barely maintained code that we reuse everywhere endlessly</strong>. The good thing with hardware is that at some point, it gets replaced. Software just gets copied again. Worse, with the development of IoT, a lot of the code that ships will never be updated. It's likely that some of those old libraries will still be there 15, 20 years from now.</p>
+<p>Let's not shy away from the issue here. Most of those are written in C or C++ (and usually an old version). It is well known that it is hard to write correct, reliable software in those languages. Think of all the security related things you have to keep track of in a C codebase:</p>
+<ul>
+<li>pointer arithmetic</li>
+<li>allocations and deallocations</li>
+<li>data is mutable by default</li>
+<li>functions return integers to mean pointers and error codes. Errors can be implicitely ignored</li>
+<li>type casts, overflows and underflows are hard to track</li>
+<li>buffer bounds in indexing and copying</li>
+<li><a href="https://blog.regehr.org/archives/1520">all the undefined behaviours</a></li>
+</ul>
+<p>Of course, some developers can do this work. Of course, there are sanitizers. But it's an enormous effort to perform everyday for every project.</p>
+<p>Those languages are well suited for low level programming, but require extreme care and expertise to avoid most of those issues. And even then, we assume the developers will always be well rested, focused and careful. We're only humans, after all. Note that in 2017, there are still people claiming that a C developer with sufficient expertise would avoid all those issues. It's time we put this idea to rest. Yes, some projects can avoid a lot of vulnerabilities, with a team of good developers, frequent code reviews, a restricted set of features, funding, tools, etc. Most projects cannot. And as I said earlier, a lot of the code is not even maintained.</p>
+<p>So we have to do something. We must make our software foundations stronger. That means fixing operating systems, drivers, libraries, command line tools, servers, everything. We might not be able to fix most of it today, or the next year, but maybe 10 years from now the situation will have improved.</p>
+<p>Unfortunately, we cannot rewrite everything. If you ever attempted to rewrite a project from scratch, you'd know that while you can avoid some of the mistakes you made before, you will probably <a href="https://daniel.haxx.se/blog/2017/03/27/curl-is-c/">introduce a lot of regressions and new bugs</a>. It's also wrong on the human side: if there are maintainers for the projects, they would need to work on the new and old one at the same time. Worse, you would have to teach them the new approach, the new language (which they might not like), and plan for an upgrade to the new project for all users.</p>
+<p>This is not doable, and this is the part most people asking for project rewrites in Rust do not understand. What I'm advocating for is much simpler: <strong>surgically replace weaker parts but keep most of the project intact</strong>.</p>
+<h2>How</h2>
+<p>Most of the issues will happen around IO and input data handling, so it makes sense to focus on it. It happens there because that's where the code manipulates buffers, parsers, and uses a lot of pointer calculations. It is also the least interesting part for software maintainers, since it is usually not where you add useful features, business logic, etc. And this logic is usually working well, so you do not want to replace it. If we could rewrite a small part of an application or library without disrupting the rest of the code, we would get most of the benefits without the issues of a full rewrite. It is the exact same project, with the same interface, same distribution packaging as before, same developer team. We would just make an annoying part of the software stronger and more maintainable.</p>
+<p>This is where Rust comes in. It is focused on providing memory safety, thread safety while keeping the code performant and the developer productive. As such, it is generally easier to get safe, reliable code in production while writing basic Rust, than a competent, well rested C developer using all the tools available could do.</p>
+<p>Most of the other safe languages have strong requirements, like a runtime and a garbage collector. And usually, they expect to be the host application (how many languages assume they will handle the process's entry point?). Here, we are guests in someone else's house. We must integrate nicely and quietly.</p>
+<p>Rust is a strong candidate for this because:</p>
+<ul>
+<li>it can easily call C code</li>
+<li>it can easily be called by C code (it can export C compatible functions and structures)</li>
+<li>it does not need a garbage collector</li>
+<li>if you want, it does not even need to handle allocations</li>
+<li>the Rust compiler can produce static and dynamic libraries, and even object files</li>
+<li>the Rust compiler avoids most of the memory vulnerabilities you get in C (yes, I had to mention it)</li>
+</ul>
+<p>So you can actually take a piece of C code inside an existing project, import the C structures and functions to access them from Rust, rewrite the code in Rust, export the functions and structures from Rust, compile it and link it with the rest of the project.</p>
+<p>If you don't believe it's possible, take a look at these two examples:</p>
+<ul>
+<li><a href="https://github.com/rusticata/rusticata">Rusticata</a> integrates Rust parsers written with nom in Suricata, an intrusion detection system</li>
+<li>a <a href="https://github.com/geal/rust-vlc-demux">VLC media player plugin</a> to parse FLV files, written entirely in Rust </li>
+</ul>
+<p>You get a lot of benefits from this approach. First, Rust has great package management with Cargo and crates.io. That means you can separate some of the work in different libraries. See as an example the <a href="https://github.com/rusticata">list of parsers</a> from the Rusticata project. You can test them independently, and even reuse them in other projects. The <a href="https://github.com/rust-av/flavors">FLV parser</a> I wrote for VLC can also work in a <a href="https://github.com/sdroege/gst-plugin-rs/tree/master/gst-plugin-flv">Rust GStreamer plugin</a> You can also make a separate library for the glue with the host application. I'm working on <a href="https://github.com/Geal/vlc_module.rs">vlc_module</a> exactly for that purpose: making Rust VLC plugins easier to write.</p>
+<p>This approach works well for applications with a plugin oriented architecture, but you can also rewrite core parts of an application or library. The biggest issue is high coupling of C code, but it is usually easy to rewrite bit by bit by keeping a common interface. Whenever you have rewritten some coupled parts of of a project, you can take time to refactor it in a more Rusty way, and leverage the type system to help you. A good example of this is the <a href="https://github.com/carols10cents/rust-out-your-c-talk">rewrite of the Zopfli library from C to Rust</a>.</p>
+<p>This brings us to another important part of that infrastructure rewrite work: while we can rewrite part of an existing project without being too intrusive, we can also rewrite a library entirely, keeping exactly the same C API. You can have a Rust library, dynamic or static, with the exact same C header, that you could import in a project to replace the C one. This is a huge result. It's like replacing a load-bearing wall in an existing building. This is not an easy thing to realize, but once it's done, you can improve a lot of projects at once, provided your distribution's package manager supports that replacement, or other projects take the time to upgrade.</p>
+<p>This is a lot of work, but every time we advance a little, everybody can benefit from it, and it will add up over the years. So we might as well start now.</p>
+<p>Currently, I'm focused on VLC. This is a good target because it's a popular application that's often part of the basic stack of any computer (browser, office suite, media player). So it's a big target. But take a look at the list of dependencies in most web applications, or the dependency graph of common distributions. There is a lot of low hanging fruit there.</p>
+<p>Now, how would you actually perform those rewrites? You can <a href="https://unhandledexpression.com/2017/07/12/how-to-rewrite-you-project-in-rust/">check out the next post</a> and <a href="http://spw17.langsec.org/papers/chifflier-parsing-in-2017.pdf">the paper explaining how we did it in Rusticata and VLC</a>.</p>
+
+    
+
+
+
+<div class="post-tags">
+  
+    
+    <a href="/tags.html#security">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">security</span>
+    </a>
+  
+    
+    <a href="/tags.html#vulnerabilities">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">vulnerabilities</span>
+    </a>
+  
+</div>
+  </div>
+
+  
+<!--  <section class="comments">
+    <h2>Comments</h2>
+  </section>
+-->
+
+
+  <section class="related">
+  <h2>Related Posts</h2>
+  <ul class="posts-list">
+    
+      <li>
+        <h3>
+          <a href="/general/rust/2018/02/02/poc-compiling-to-ebpf-from-rust.html">
+            PoC: compiling to eBPF from Rust
+            <small>02 Feb 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/rust/2018/01/10/rust-2018-maybe-dont-be-too-stable.html">
+            Rust 2018: maybe don't be too stable
+            <small>10 Jan 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/general/2017/08/23/adventures-in-logging.html">
+            Adventures in logging
+            <small>23 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</section>
+
+</div>
+
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>

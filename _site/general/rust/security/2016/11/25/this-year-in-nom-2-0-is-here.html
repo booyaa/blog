@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      This year in nom: 2.0 is here! &middot; Unhandled Expression
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="post">
+
+    <div id="sidebar">
+  <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
+    <div class="site-title">
+      <a href="/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Unhandled Expression
+      </a>
+    </div>
+    <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/about.html">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/architecture.html">Architecture</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/crypto.html">Crypto</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/development.html">Development</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/rust.html">Rust</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/security.html">Security</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/videolan.html">VideoLAN</a>
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  <nav id="sidebar-icon-links">
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/tags.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/search.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+  <p>
+  &copy; 2018.
+  <a href="/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+
+    <main class="container">
+      <header>
+  <h1 class="post-title">This year in nom: 2.0 is here!</h1>
+</header>
+<div class="content">
+  <div class="post-meta">
+  <span class="post-date">25 Nov 2016</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        General
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/rust.html">
+          Rust
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+  <div class="post-body">
+    <p>Nearly one year ago, on November 15th 2015, I released the 1.0 version of <a href="https://github.com/Geal/nom">nom, the fast parser combinators library</a> I wrote in <a href="http://rust-lang.org/">Rust</a>. A lot happened around that project, and I have been really happy to interact with nom users around the world.</p>
+<p><!--more--></p>
+<p>TL;DR: it's new nom day! The 2.0 release is here! Read the <a href="https://github.com/Geal/nom/blob/master/CHANGELOG.md">changelog</a>. Follow the <a href="https://github.com/Geal/nom/blob/ca1398538b0050b4009f67151063405766e0c84f/doc/upgrading_to_nom_2.md">upgrade documentation</a> if it breaks stuff.</p>
+<p><img class="aligncenter size-full wp-image-954" src="/assets/celebrate.gif" alt="celebrate" width="499" height="285" /></p>
+<h2>Interesting usage</h2>
+<p>I wouldn't be able to list <a href="https://github.com/search?utf8=%E2%9C%93&amp;q=filename%3ACargo.toml+nom">all the projects using nom</a> on this page, even <a href="https://crates.io/crates/nom/reverse_dependencies">the subset present on crates.io</a>, but here are a few examples of what people built with nom:</p>
+<ul>
+<li><a href="https://crates.io/crates/semver">semver</a> briefly shipped with nom in February thanks to <a href="http://twitter.com/steveklabnik">Steve Klabnik</a>, until he replaced it with a regexp based solution (no hard feelings, I'd have done the same)</li>
+<li><a href="https://github.com/joelself/tomllib">tomllib</a>, a complete TOML implementation written by <a href="https://twitter.com/JoelSelf">Joel Self</a></li>
+<li>a <a href="https://github.com/maxmcc/rust-jvm">JVM</a>, because why not! Great work coming from a team of students at the University of Pennsylvania</li>
+<li><a href="https://github.com/tagua-vm/parser">Tagua VM</a>, a great PHP implementation in Rust by <a href="https://twitter.com/mnt_io">Ivan Enderlin</a></li>
+<li> <a href="https://github.com/dtolnay/syn">syn</a>, the Rust item parser written by <a href="https://github.com/dtolnay">David Tolnay</a> everybody uses with the <a href="https://github.com/rust-lang/rfcs/blob/master/text/1681-macros-1.1.md">macros 1.1 feature</a> to generate code from structures or enums, <a href="https://github.com/dtolnay/syn/blob/7184b1381ea1552cd02336775a6fbf47e4bc9dfc/src/nom.rs">actually ships with its own fork of nom</a>! It was forked to remove the incomplete data handling, and reduce compilation times</li>
+<li><a href="https://github.com/deech/shen-rust">shen-rust</a>, a complete implementation of the Shen language in Rust that was <a href="https://www.thestrangeloop.com/2016/rusty-runtimes-building-languages-in-rust.html">presented at Strangeloop 2016</a> by <a href="https://twitter.com/deech">Aditya Siram</a></li>
+<li><a href="https://github.com/rusticata">a series of parsers (DER, NTP, SNMP, IPSec, TLS)</a> were developed for its integration in the <a href="https://suricata-ids.org/">Suricata</a> network analysis tool. This work was presented at <a href="http://suricon.net/wp-content/uploads/2016/11/SuriCon2016_PierreChifflier.pdf">Suricon 2016</a> by <a href="https://twitter.com/pollux7">Pierre Chifflier</a></li>
+</ul>
+<p>And a lot of other projects. As a side note, people apparently like to build parsers for flac, bittorrent and bitcoin stuff, LISP and Scheme tokenizers and, oddly, ASN.1 libraries :D</p>
+<p>I have been really humbled by what people achieved with this little library, and I hope it will enable even more awesome projects!</p>
+<h2>Growth and stabilization</h2>
+<p>The goal before 1.0 was to get a usable parsing library, and after 1.0, to <a href="https://github.com/Geal/nom/blob/master/CHANGELOG.md">add features people were missing</a> and explore new ideas. A lot of code was contributed for bitstream and string parsing, and adding a lot of useful combinators like "peek!", "separated_list!" or "tuple!".</p>
+<p>Unfortunately, a few parts of nom got increasingly painful to maintain and support, so the 2.0 was a good opportunity to clean them up, and add more features while we're at it.</p>
+<p>The <a href="http://rust.unhandledexpression.com/nom/macro.chain!.html">"chain!" combinator</a>, which everybody uses to parse a sequence of things and accumulate the results in structs or tuple, is now deprecated, and will be replaced by <a href="http://rust.unhandledexpression.com/nom/macro.do_parse!.html">"do_parse!"</a>, a simpler alternative. There are also a lot of specific helpers to make your code nicer, like <a href="http://rust.unhandledexpression.com/nom/macro.pair!.html">"pair!"</a>, <a href="http://rust.unhandledexpression.com/nom/macro.preceded!.html">"preceded!"</a>, <a href="http://rust.unhandledexpression.com/nom/macro.delimited!.html">"delimited!"</a>, <a href="http://rust.unhandledexpression.com/nom/macro.separated_pair!.html">"separated_pair!"</a>, <a href="http://rust.unhandledexpression.com/nom/macro.separated_list!.html">"separated_list!"</a> and <a href="http://rust.unhandledexpression.com/nom/macro.delimited!.html">"delimited!"</a>. Yes, I went to great lengths to make sure you stop using chain :)</p>
+<p>The "length_value!" and other associated combinators were refactored, to have more sensible names and behaviours. "eof", eol" and the basic token parsers like "digit" or "alphanumeric" got the same treatment. Those can be a source of issues in the upgrade to 2.0, but if the new behaviour does not work in your project, replacing them is still easy with the "is_a!" combinator and others.</p>
+<p>At last, I changed the name of the "error!" macro that was conflicting with the one from the log crate. I hoped that by waiting long enough, the log people would change their macro, but it looks like I lost :p</p>
+<h2>New combinators</h2>
+<p>A few new simple combinators are here:</p>
+<ul>
+<li>the previously mentioned "do_parse!" makes nicer code than "chain!":</li>
+</ul>
+<p>The "chain!" version uses this weird closure-like syntax (while not actually using a closure) with a comma ending the parser list:</p>
+<pre>named!(filetype_parser&lt;&amp;[u8],FileType&gt;, 
+ chain!( 
+ m: brand_name ~ 
+ v: take!(4) ~ 
+ c: many0!(brand_name) , 
+ ||{ FileType{
+   major_brand: m,
+   major_brand_version:v,
+   compatible_brands: c
+ } } 
+));</pre>
+<p>The "do_parse!" version only uses "&gt;&gt;" as separating token, and returns a value as a tuple. If the tuple contains only value, (A) is conveniently equivalent to A.</p>
+<pre>named!(filetype_parser&lt;&amp;[u8],FileType&gt;, 
+ do_parse!( 
+   m: brand_name &gt;&gt; 
+   v: take!(4) &gt;&gt; 
+   c: many0!(brand_name) &gt;&gt; 
+   (FileType{
+     major_brand: m,
+     major_brand_version:v,
+     compatible_brands: c
+   }) 
+));</pre>
+<p>"chain!" had too many features, like a "?" indicating a parser was optional (which you can now do with "opt!"), and you could declare one of the values as mutable. All of those and the awkward syntax made it hard to maintain. Still, it was one of the first useful combinators in nom, and it can now happily retire</p>
+<ul>
+<li><a href="http://rust.unhandledexpression.com/nom/macro.permutation!.html">"permutation!"</a> applies its child parser in any order, as long as all of them succeed once</li>
+</ul>
+<pre>  fn permutation() {
+    named!(perm&lt;(&amp;[u8], &amp;[u8], &amp;[u8])&gt;,
+      permutation!(tag!("abcd"), tag!("efg"), tag!("hi"))
+    );
+
+    let expected = (&amp;b"abcd"[..], &amp;b"efg"[..], &amp;b"hi"[..]);
+
+    let a = &amp;b"abcdefghijk"[..];
+    assert_eq!(perm(a), Done(&amp;b"jk"[..], expected));
+    let b = &amp;b"efgabcdhijk"[..];
+    assert_eq!(perm(b), Done(&amp;b"jk"[..], expected));
+    let c = &amp;b"hiefgabcdjk"[..];
+    assert_eq!(perm(c), Done(&amp;b"jk"[..], expected)
+}</pre>
+<p>This one was very interesting to write :)</p>
+<ul>
+<li><a href="http://rust.unhandledexpression.com/nom/macro.tag_no_case!.html">"tag_no_case!"</a> works like <a href="http://rust.unhandledexpression.com/nom/macro.tag!.html">"tag!"</a>, but compares independently from the case. This works great for ASCII strings, since the comparison requires no allocation, but the UTF-8 case is trickier, and I'm still looking for a correct way to handle it</li>
+<li><a href="http://rust.unhandledexpression.com/nom/macro.named_attr!.html"><code>"</code>named_attr!"</a> creates functions like <a href="http://rust.unhandledexpression.com/nom/macro.named!.html">"named!"</a><code></code> but can add attributes like documentation. This was a big pain point, now nom parsers can have documentation generated by rustdoc</li>
+<li><code></code>"<a href="http://rust.unhandledexpression.com/nom/macro.many_till!.html">many_till!"</a> applies repeatedly its first child parser until the second succeeds</li>
+</ul>
+<h2>Whitespace separated formats</h2>
+<p>This is one of the biggest new additions, and a feature that people wanted for a long time. A lot of the other Rust parser libraries are designed with programming languages parsing in mind, while I started nom mainly to parse binary formats, like video containers. Those libraries usually handle whitespace parsing for you, and you only need to specify the different elements of your grammars. You essentially work on a list of already separated elements.</p>
+<p>Previously, with nom, you had to explicitely parse the spaces, tabs and end of lines, which made the parsers harder to maintain. What we want in the following example is to recognize a "(", an expression, then a ")", and return the expression, but we have to introduce a lot more code:</p>
+<pre>named!(parens&lt;i64&gt;, delimited!(
+    delimited!(opt!(multispace), tag!("("), opt!(multispace)),
+    expr,
+    delimited!(opt!(multispace), tag!(")"), opt!(multispace))
+  )
+);</pre>
+<p>This new release introduces <a href="http://rust.unhandledexpression.com/nom/macro.ws!.html">"ws!"</a>, a combinator that will automatically insert the separators everywhere:</p>
+<pre>named!(parens&lt;i64&gt;, ws!(delimited!( tag!("("), expr, tag!(")") )) );</pre>
+<p><img class="aligncenter size-full wp-image-953" src="/assets/magic.gif" alt="magic" width="350" height="196" />By default, it removes spaces, tabs, carriage returns and line feed, but you can easily specify your own separator parser and make your own version of "ws!".</p>
+<p>This makes whitespace separated formats very easy to write. See for example the <a href="https://github.com/Geal/nom/blob/ac8fe712b9f8b3da661828ffc5b97a825007b590/tests/json.rs">quickly put together, probably not spec compliant JSON parser</a> I added as test.</p>
+<p>If you're working on a language parsers, this should help you greatly.</p>
+<h2>Architecture changes</h2>
+<h3>Error management</h3>
+<p>The error management system that accumulated errors and input positions as it backtracks through the parser tree is great for some projects like language parsers, but others were not using it and got a penalty because of vectors allocation and deallocation.</p>
+<p>In the 2.0 release, this error management system is now activated by the "verbose-errors" feature. Projects that don't use it should build correctly right away, and their parsers could get 30% to 50% faster!</p>
+<h3>Input types</h3>
+<p>One of nom's original assumptions was that it should work on byte slices and strings instead of byte or char iterators, because the CPU likes contiguous data. As always, the reality is a bit more complex than that, but it worked well and made the code very simple: I only passed subslices from one parser to the next.</p>
+<p>But I wrongly assumed that because of that design, nom could only work on contiguous data. <a href="https://twitter.com/carllerche">Carl Lerche</a> made the interesting point that there are few points where nom actually needs to read a serie of bytes or chars and those could accomodate other data structures like ropes or a list of buffers.</p>
+<p>So I got to work on an abstraction for input types that would work for &amp;[u8] and &amp;str, but also for other types. In the process, I was able to factor most of the &amp;str specific combinators with the &amp;[u8] ones. This will make them easier to maintain in the future.</p>
+<p>The result of that work is <a href="https://github.com/Geal/nom/blob/2e2730cdb451a555f68ff8cc27f852d3d292df42/src/traits.rs">a list of traits</a> that any input type should implement to be usable with nom. I <a href="https://github.com/Geal/nom/blob/2e2730cdb451a555f68ff8cc27f852d3d292df42/tests/blockbuf-arithmetic.rs#L17-L187">experimented a bit with the BlockBuf type</a>, and this approach looks promising. I expect that people will find cool applications for this, like parsers returning references to not yet loaded data, or blocking a coroutine on a tag comparison until the data is available.</p>
+<h2>A smooth upgrade process</h2>
+<p>For the 1.0 release, I choose a few projects using nom, and tried to build them to test the new version and document the upgrade. This was so useful that I did it again for 2.0, so if you're lucky, you maintain one of the 30 crates I tested, and you received a pull request doing that upgrade for you. Otherwise, I wrote <a href="https://github.com/Geal/nom/blob/ca1398538b0050b4009f67151063405766e0c84f/doc/upgrading_to_nom_2.md">an upgrade documentation</a> that you can follow to fix the migration issues. You're still lucky, though, because most crates will build (or only require a one line fix in Cargo.toml).</p>
+<p><img class="aligncenter size-full wp-image-955" src="/assets/fixingstuff.gif" alt="fixingstuff" width="240" height="180" /></p>
+<p>I'll write soon about that process and the benefits you can get by applying it to your projects.</p>
+<h2>The future</h2>
+<p>I have a lot of ideas for the next version, also a lot of pull requests to merge and issues to fix. Not everything could make it into the 2.0, otherwise I would never have released it.</p>
+<p>In short, the plan:</p>
+<ul>
+<li>rewrite completely the producers and consumers system. It is not very usable right now. It could be replaced by an implementation based on futures</li>
+<li>improve the performance. I got a good enough library by choosing the most naive solutions, but there are lots of points I could improve (especially in helping LLVM generate faster code)</li>
+<li>implement a new serialization library. I believe there is some room for a serialization system that does not rely on automatic code generation, and it would go well with nom</li>
+<li>continue my work on writing <a href="https://github.com/Geal/rust-vlc-demux">nom demuxers for VLC media player</a>. I have a good proof of concept, now I need to make it production ready</li>
+<li>add new, interesting examples: indentation based programming languages, tokio integration, integration in high performance networking systems</li>
+<li>I'll release very soon a large networking tool that relies heavily on nom. Expect some big news :)</li>
+</ul>
+<p>That's it, now go and upgrade your code, you'll enjoy this new version!</p>
+<p>&nbsp;</p>
+
+    
+
+
+
+<div class="post-tags">
+  
+    
+    <a href="/tags.html#nom">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">nom</span>
+    </a>
+  
+    
+    <a href="/tags.html#parser">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">parser</span>
+    </a>
+  
+    
+    <a href="/tags.html#performance">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">performance</span>
+    </a>
+  
+    
+    <a href="/tags.html#security">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">security</span>
+    </a>
+  
+</div>
+  </div>
+
+  
+<!--  <section class="comments">
+    <h2>Comments</h2>
+  </section>
+-->
+
+
+  <section class="related">
+  <h2>Related Posts</h2>
+  <ul class="posts-list">
+    
+      <li>
+        <h3>
+          <a href="/general/rust/2018/02/02/poc-compiling-to-ebpf-from-rust.html">
+            PoC: compiling to eBPF from Rust
+            <small>02 Feb 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/rust/2018/01/10/rust-2018-maybe-dont-be-too-stable.html">
+            Rust 2018: maybe don't be too stable
+            <small>10 Jan 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/general/2017/08/23/adventures-in-logging.html">
+            Adventures in logging
+            <small>23 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</section>
+
+</div>
+
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>

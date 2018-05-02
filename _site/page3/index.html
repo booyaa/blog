@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      Unhandled Expression &middot; Geoffroy Couprie – software security and architecture consultant
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="index">
+
+    <div id="sidebar">
+  <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
+    <h1 class="site-title">
+      <a href="/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Unhandled Expression
+      </a>
+    </h1>
+    <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/about.html">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/architecture.html">Architecture</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/crypto.html">Crypto</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/development.html">Development</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/rust.html">Rust</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/security.html">Security</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/videolan.html">VideoLAN</a>
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  <nav id="sidebar-icon-links">
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/tags.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/search.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+  <p>
+  &copy; 2018.
+  <a href="/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+
+    <main class="container">
+      <div class="content">
+  
+<div class="pagination">
+  <a class="pagination-item newer"
+     href="/page2">
+    Newer
+  </a>
+</div>
+
+
+
+  
+
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/development/general/2014/07/16/programming-vs-mathematics-and-other-pointless-debates.html">
+        Programming VS Mathematics, and other pointless debates
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">16 Jul 2014</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/development.html">
+          Development
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        General
+      
+    
+  </span>
+</div>
+
+    
+      <p>I do not know who started this argument a few days ago. It feels like something coming from HN. Do you need to know mathematics to be a good programmer?</p>
+<p>There is a lot of differing opinions. Maybe programming is a subbranch of mathematics, or programming is using mathematics. Or learning programming is closer to learning a new language. For me, saying that programming is about languages is like saying that literature is about languages. Sure, you need words to indicate concepts, some languages are better suited than others for that, and some concepts are better expressed in other languages. It is more like a hierarchy to me: philosophy formalizes concepts used by authors to write in common languages. Mathematics formalize concepts used by programmers to create code in common languages.<br />
+But this is besides the point.</p>
+<p>This debate sparks outrage, since it touches a central point of our education, and one that is often not taught very well. "Look, I do not use geometry while writing a loop, so maths are pointless for me". A lot of developers will never learn basic algebra or logic and will never need it in their day job. And that's okay.<br />
+Programming is not a single profession anymore. Each and every one of us has a different definition. A mechanical engineer working on bridges, another on metallic parts for cars and another one on plastic toys all have different needs, different techniques for their job, although the fundamental basis (evaluating breaking strength, time of assembly, production costs) is the same. That does not make one of these jobs worth more than the other.</p>
+<p>The real problem is that we are still fighting among ourselves to define what our job is. The other pointless debate, about software being engineering, science or craft, is evidence of that. And it will stay hard to define for a long time.<br />
+We are in a unique position. Usually, when a new field emerges, either tinkerers are launching it and later, good practices are studied to make it engineering, or scientists create it, then means of production become cheaper and crafters take over.<br />
+Computers were started by scientists, but the ease of access gave crafters a good opportunity to take over. But that does not mean research stopped when people started coding at home. So now, in a relatively new field (less than a century), while we are still exploring, we have a very large spectrum of jobs and approaches, from the most scientific to the most artistic kind. And that is okay. More world views will help us get better at our respective jobs.</p>
+<p>So, while you are arguing that the other side is misguided, irrealistic or unrigorous, take time to consider where they come from. They do not have the same job, and that job can seem pointless to you, but they can be good at it, so there is probably something good you can learn from their approach. The only thing you should not forgive from the other side is the lack of curiosity.</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/architecture/2014/05/31/the-network-is-the-computer-the-cluster-is-the-ram.html">
+        The network is the computer, the cluster is the RAM
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">31 May 2014</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/architecture.html">
+          Architecture
+        </a>
+      
+    
+  </span>
+</div>
+
+    
+      <p>There is a very weird part of web applications, where all the nice abstractions and syntax reasoning go wrong, at the interface between the code and a database. At best, there is a leaky abstraction of the database with an ORM, and you have to think about what methods to apply to get the underlying SQL query you need, at worse, you write queries and deserialize manually.</p>
+<p>This happens because at one point, applications needed to manipulate more data than their host's memory could handle. This required a good abstraction over storage, efficient data walking algorithms and fine tuned caching. This also required thousands of hours of engineering, to get a database that is at least bearable to use. Since so much work was put in those databases, you might as well implement as many features as possible, to reuse all this fine engineering.</p>
+<p>To work efficiently with these data warehouses and offload a part of the selection work from the application, query languages inspired from logic programming were invented. Basically, they make it easy to work with relations: entity/attribute/value triplets like RDF, or tabled data. Those query language are voluntarily not Turing complete: they do not include loops, negation or unbounded recursion. This helps a lot in optimizing the queries.</p>
+<p>Unfortunately, this query language is the barrier between an application and its data. Instead of reasoning about what is in memory, the code must be transformed to load data from the database through a query, deserialize it, compute, reserialize data and put it in the database. Even worse, for efficiency's sake, some developers push more and more logic to the database, with even more complex queries, views and stored procedures.</p>
+<p><strong>What if we could reason directly on a cluster of data as if it was already in the memory?</strong> I do not want to create a structure from a deserialized row, change a value then put that row "where id = $myId". I want to access a structure that is already there in memory, and change the value directly (or clone it and change my index, but that talk is for another blog post).</p>
+<p>"No, you cannot access directly data that is not already in your memory". Sure I can. We already have powerful tools for that. L1 and L2 caches are using that principle, to load data from the RAM and make it available faster to the CPU. Memory mapped file can be lazily loaded page by page in the virtual memory. Imagine loading data lazily from the network, in your address space... Nowadays, <strong>we can index data on 64 bits, enough to address the whole world!</strong></p>
+<p>"But this totally breaks your security model". No, it does not. First, most database clusters already assume they're running on a trusted network. Second, since I see the cluster as a part of my hardware, I think adding a MMU to the lot would work quite well.</p>
+<p>"It does not work, because of concurrent accesses". This already happens in databases, and this is where their powerful query language gets things wrong: if you have a powerful way to access multiple rows at the same time, you have to lock huge parts of the database at once in a transaction to run your mutating query. For virtual memory, we have a lot of interesting tools. Memory pages can be read-write or read-only. Locking through mutexes or Software Transactional Memory could also be implemented at a cluster's scale. But concurrency is a hard problem, that is often better solved through good data architecture. Immutable data, colocating related data, append-only datastructures, all work as well in memory as on a networked cluster.</p>
+<p>This is of course a very big gap to jump, from our traditional databases to a total abstraction in memory, but I think it is an interesting alternative to consider.</p>
+<p>There is another model to consider here, one that is currently adopted by large distributed databases: since an application cannot do all the work by just loading data in its memory space, let's push code onto the data, and run a Turing complete query language on the cluster. This is actually the same kind of model, with worker threads running on your data while you wait for a "work done" message, but you still need to interface your app with the query language. Maybe someday I'll be able to send a compiled function to run on a cluster.</p>
+<p>All in all, the big tools that people built to fight the inefficiencies of yesterday's technology have to be questioned today. By removing the complex abstractions and their obsolete limitations, we could obtain powerful and simple model to write our future code.</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/crypto/protocols/2014/04/07/revisiting-zookos-triangle.html">
+        Revisiting Zooko's triangle
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">07 Apr 2014</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/crypto.html">
+          Crypto
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        Protocols
+      
+    
+  </span>
+</div>
+
+    
+      <p>In 2001, <a title=" *introduction | *current events | *stuff Names: Distributed, Secure, Human-Readable: Choose Two" href="http://web.archive.org/web/20011020191610/http://zooko.com/distnames.html" target="_blank">Zooko Wilcox-O'Hearn conjectured</a> that a key value system, in the way the keys address those values, must make a compromise between three properties. Those properties are:</p>
+<ul>
+<li>distributed: there is no central authority in the system (and the other nodes of the system are potentially untrusted)</li>
+<li>secure: a name lookup cannot return an incorrect value, even in the presence of an attacker</li>
+<li>human usable keys: keys that a human will be able to remember and write without errors</li>
+</ul>
+<p>The conjecture stated that you may have at most two out of these three properties in the system.</p>
+<p>Examples of those properties at work:</p>
+<ul>
+<li>the DNS is secure (one possible record for a given name) and human usable (domain names can be learned), but not distributed (the server chain is centralized)</li>
+<li>the PGP mapping between email and public keys is distributed (no central authority defining which email has which key) and human usable (public keys are indexed by emails) but not secure (depending on your view of the web of trust, identities could be falsified)</li>
+<li>Tor .onion addresses are secure (the address is the hash of the public key) and distributed (nobody can decide that an address redirects to the wrong server) but not human meaningful (have you seen those addresses?)</li>
+</ul>
+<p>Some systems, like NameCoin, emerged lately and exhibited those three properties at the same time. So is the conjecture disproved? Not really.</p>
+<p>When considering that triangle, people often make a mistake: assuming that you have to choose two of these properties and will never approach the third. These properties must not be seen as absolute.</p>
+<p>Human usability is easily addressed with Petname systems, where a software assistant can help you add human-meaningful names to secure and distributed keys (at risk of collision, but not system wide).</p>
+<p>You can add some distributed features in a centralized system like SSL certificate authorities by accepting multiple authorities.</p>
+<p>NameCoin is distributed and human meaningful, and creates a secure view of the system through the blockchain.</p>
+<p>And so on.</p>
+<p>The three properties should be redefined with what we know ten years later.</p>
+<h2>Human usable names</h2>
+<p>We now understand that a human meaningful name is a complex concept. We see people typing "facebook" in a search engine because they would not remember "facebook.com". Phone numbers are difficult to remember. Passwords, even when chosen through easy to remember methods, will be repeated at some point. And we could also talk about typosquatting...</p>
+<p>Here is a proposition: <strong>a human usable key is an identifier that a human can remember easily in large numbers and distinguish as easily from other identifiers</strong>. I say identifier because it could be a string, a picture, anything that stands out enough to be remember and for which differences could be easily spotted.</p>
+<p>That definition is useful because it is quantifiable. We can measure how many 10 digits phone numbers a human can remember. We can measure how many differences a human can spot in two strings or pictures.</p>
+<h2>Decentralized and/or secure names</h2>
+<p>The original text indicates distributed as "there is no central authority which can control the namespace, which is the same as saying that the namespace spans trust boundaries". The trust boundary is defined as the space in which nodes could be vulnerable to each other (because they trust each other). In a fully distributed system, a node may not be able to force any other node to have a different view of the system.</p>
+<p>Secure means that there is only one correct answer for a name lookup, whoever does the lookup. This is the same as saying that there is a consensus (at least in a distributed system).</p>
+<p>We can see that the decentralized and secure properties are at odds with the consensus problem in a distributed system. This is where systems like NameCoin make the compromise. They exchange an absolute secure view of the system for an eventual consistency, and fully distributed trust boundaries for byzantine problems. They guarantee that, at some point, and unless there are too many traitors in the systems, there will be a universal and unique mapping for a human readable name.</p>
+<p>So, we could replace the "secure" property by: <strong>the whole system recognizes that there is only one good answer for a record at some point in the future</strong>. Again, this is measurable, and it also addresses the oddity in DNS that records have to propagate (so sometimes the view can differ). Systems where identifiers do not give unique responses will not satisfy that definition.</p>
+<p>The last property, "decentralized", can be formulated like this: <strong>a node's view of the names cannot be influenced by a group of unauthorized nodes</strong>. In a centralized system, where there is essentially one node, this definition cannot apply. In a hierarchy of nodes, like DNS, we can easily see that a node's view can be abused, since there is only one node you need to compromise to influence it, its first nameserver (this is used, for good and for bad reasons, in a lot of companies). In a distributed system, this definition becomes quantifiable and joins the byzantine problem: how many traitor nodes do you need to modify a node's view of the system?</p>
+<p>Here, we have three new definitions that are more nuanced, allow some compromise and modulation of the needs, and for which the limits can be measured or calculated. These quantified limits can be useful to describe and compare the future naming system propositions.</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/crypto/general/security/2014/02/21/how-to-choose-your-secure-messaging-app.html">
+        How to choose your secure messaging app
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">21 Feb 2014</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/crypto.html">
+          Crypto
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        General
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+    
+      <p>Since WhatsApp announced its acquisition, a lot of people started to switch to alternatives, trying to escape from Facebook. Some of them then discovered <a href="http://unhandledexpression.com/2013/12/17/telegram-stand-back-we-know-maths/" target="_blank">my article about Telegram</a>, and a common answer was "hey, at least, it is better than WhatsApp, because it is open source, faster and it has encryption".</p>
+<p>This is a very bad way to decide what application you should use. If you choose a secure messaging app, it must be because you need it, not just because you want to avoid Facebook.</p>
+<p>Those are <strong>not</strong> good enough requirements:</p>
+<ul>
+<li>independent from Facebook</li>
+<li>fast</li>
+<li>multi platforms</li>
+<li>open source</li>
+</ul>
+<p>Yes, even open source, because it does not magically make software safe.</p>
+<p>So, what are goods requirements? Well, I already have a<a href="http://unhandledexpression.com/2013/12/20/criterions-for-a-crypto-app/" target="_blank"> list of what a secure messaging app should meet</a> to be considered. If an app does not follow those requirements, it may not be a good idea to use it.</p>
+<p>But it still does not mean the app will fit your use case. So you must define your use case:</p>
+<ul>
+<li>Why do you need it?</li>
+<li>With whom will you communicate?</li>
+<li>Who is the adversary?</li>
+<li>What will happen if some of your information is revealed to the adversary?</li>
+<li>Does it need to be always available?</li>
+<li>For how long will it be used?</li>
+</ul>
+<p>This is part of what I mean when I insist on having a threat model: you cannot choose correctly if you do not know the risks.</p>
+<p>Here are a few examples that you could consider.</p>
+<h3>The activist in a protest</h3>
+<p>The activist must be able to communicate quickly in the crowd. Identifying info might not be the most important part, because she can use burner phones (phones that will be abandoned after the protest). The most important feature is that it should be always available. Phone networks were often used to disrupt activist communication, so a way to send message through WiFi our bluetooth might be useful. The messages can be sent to a lot of different people, so being able to identify them might be important. If it is large enough to be infiltrated easily, then having no way to identify people is crucial.</p>
+<p>Being able to send photos is important, because they might be the only proof of what happened in the protest. Here, I have in mind the excellent ObscuraCam app, which is able to quickly hide the faces of people in photos before sending them.</p>
+<p>The application should not keep logs, or provide a way to quickly delete them, or encrypt them by default, because once someone is caught, the police will look through the phone.</p>
+<p>The crypto algorithms and protocols should be safe and proven for that use case, because the adversaries will have the resources to exploit any flaw.</p>
+<p>No need for a good update system if the devices will be destroyed after use.</p>
+<h3>The employee of a company with confidential projects</h3>
+<p>The adversaries here are other companies, or even other countries. The most important practice here is the "need to know": reduce the number of persons knowing the confidential information. that means the persons communicating between themselves is reduced, and you can expect that they have a mean of exchanging information securely (example: to verify a public key).</p>
+<p>Identifying who talks with whom is not really dangerous, because it is easy to track the different groups in a company. You may be confident enough that the reduced group will not be infiltrated by the adversary. The messages should be stored, and ideally be searchable. File exchange should be present.</p>
+<p>There could be some kind of escrow system, to reveal information if you have a certain access level. Authentication is a crucial point.</p>
+<p>The crypto may be funnier for that case, because the flexibility needed can be provided by some systems, like identity based encryption.Enterprise policies might be able to force regular uodates of the system, so that everybody has the same protocol version at the ame time, and any eventual flaw will be patched quickly.</p>
+<h3>The common user</h3>
+<p>It is you, me, anyone wanting to exchange private messages with friends or family. Here, trying to protect against the NSA is futile, because most of the contacts might not have the training needed. Trying to hide the contacts list from Facebook is futile too: even if someone protects the information, one of the contacts may not. The adversary you should consider here: crooks, pirates, anyone that could exploit the private messages for criminal ways (stealing bank info, blakcmailing, sending malware, etc).</p>
+<p>An application fitting this use case should encrypt messages, preferably end to end, to limit problems when the exchange server is compromised. The service might not provide any expectation of anonymity. Messages should be stored, but encrypting them is a good option, in case the device is lost or stolen.</p>
+<p>The crypto does not need to be very advanced, but it should use common, well known designs.</p>
+<p>There should be a good update system, a way to negotiate protocol versions (and forbid some unsafe versions), because you will never be sure that everybody has performed all the needed updates.</p>
+<h3>Your use case here</h3>
+<p>Those were some common situations, for which some solutions exist, but there are a lot more possible use cases. If you are not sure about yours and need help defining your threat model, do not hesitate to ask for help, and do not jump on a solution because the marketing material says it is safe.</p>
+<p>A good security solution will not only tell you what is protected, and how, but also what is not protected, and the security margins you have. It will also teach you the discipline you need to apply to get the most out of it.</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/general/2014/02/20/problem-with-meritocracy.html">
+        The problem with meritocracy
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">20 Feb 2014</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        General
+      
+    
+  </span>
+</div>
+
+    
+      <p>Everytime people discuss the hacker community and its diversity, I see someone waving the "meritocracy" argument. "It is not our fault those minorities are not well represented, if they knew more stuff or did more stuff, they would have a better status".</p>
+<p>It is easy to see how that argument would be flawed, as meritocracy is a power structure, and whenever a power structure is created, after some time it tends to reinforce its own community. But that is not my point right now.</p>
+<p>I realized that the idea of meritocracy is so deeply ingrained in the hacker mindset that we lost sight of what was important. I can see how that idea is appealing. Once you prove you know stuff, people will recognize you, and that will be enough to motivate you to learn. Except it is not. The meritocracy is just another way to exclude people. Once you consider someone's status by how much you perceive they know, things go downhill.</p>
+<p>Some are good at faking knowledge. Some know their craft, but do not talk that well. Some are not experts, but have good ideas. Some would like to learn without being judged. Everytime you dismiss someone's opinion because of their apparent (lack of) knowledge, everytime you favor someone's opinion because of their apparent knowledge, you are being unscientific and unwelcoming. You are not a hacker, you are just a jerk.</p>
+<p><strong>Somewhere along the way, people got too hung up on meritocracy, and forgot that you hack for knowledge and for fun, not for status</strong>. It is all about testing stuff, learning, sharing what you learned, discussing ideas and helping others do the same, whatever their skills or their experience. Status and power structures should have nothing to do with that.</p>
+<p>Guess what? I pointed out that bad behaviour, but I am guilty of it too. I have to constantly keep myself in check, to avoid judging people instead of judging ideas. That's alright. Doing the right thing always requires some effort.</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+
+  
+<div class="pagination">
+  <a class="pagination-item older"
+     href="/page4">
+    Older
+  </a>
+</div>
+
+
+</div>
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>

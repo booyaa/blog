@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      Theoretical definitions for crypto wannabes &middot; Unhandled Expression
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="post">
+
+    <div id="sidebar">
+  <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
+    <div class="site-title">
+      <a href="/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Unhandled Expression
+      </a>
+    </div>
+    <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/about.html">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/architecture.html">Architecture</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/crypto.html">Crypto</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/development.html">Development</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/rust.html">Rust</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/security.html">Security</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/videolan.html">VideoLAN</a>
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  <nav id="sidebar-icon-links">
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/tags.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/search.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+  <p>
+  &copy; 2018.
+  <a href="/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+
+    <main class="container">
+      <header>
+  <h1 class="post-title">Theoretical definitions for crypto wannabes</h1>
+</header>
+<div class="content">
+  <div class="post-meta">
+  <span class="post-date">09 Aug 2013</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/crypto.html">
+          Crypto
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+  <div class="post-body">
+    <p>Every week, I hear about a new secure software designed to protect your privacy, thwart the NSA/GCHQ and save kittens. Most of the time, though, they're started by people that are very enthusiastic yet unskilled.</p>
+<p>They tend to concentrate directly on choosing algorithms and writing code, instead of stepping back and thinking a bit about what they want to develop.</p>
+<p>Sure, they probably spent some time saying things like:</p>
+<ul>
+<li>that piece of data should absolutely be encrypted</li>
+<li>users will all have key pairs to authenticate themselves</li>
+<li>we should use AES, that's the safest choice (what are theses "modes" you're talking about?)</li>
+</ul>
+<p>That is not how you design a protocol. That is not how you design a software using encryption. And that is not how you will design the next secure distributed social network.</p>
+<p>To design your system, you need three things:</p>
+<ul>
+<li>a good threat model</li>
+<li>theoretical tools addressing the threats</li>
+<li>algorithms implementing these theoretical tools</li>
+</ul>
+<p>As you see, most of the projects only have the third item, and that's insufficient to design a correct system. <em>If you don't have a good threat model, you don't have a good mental model</em> of your users and attackers, their means and their objectives. If you don't have the theoretical tools, you will try to shoehorn your favorite algorithm on the problem without knowing if it really fits (example: using hash algorithms to store passwords :p).</p>
+<p>So, in this post, I'll provide those (simplified) theoretical definitions. You will probably recognize some of them.</p>
+<h2>High level view</h2>
+<p>First, you need to forget notions like "privacy", use any of these terms to describe the properties you want to achieve:</p>
+<ul>
+<li><strong>authentication</strong>: you can recognize which entity you are communicating with</li>
+<li><strong>authorization</strong>: the entity cannot get access to data it has no permission on (note that it is different from authentication)</li>
+<li><strong>confidentiality</strong>: the data should not be readable by an entity that has no permission on it (it can be protected by crypto, but also by policies in the code)</li>
+<li><strong>integrity</strong>: unauthorized modification of the data can be detected and marked as invalid</li>
+<li><strong>non repudiation</strong>: an entity cannot deny it has executed an action</li>
+<li><strong>deniability</strong>: an entity _can_ deny it has executed an action</li>
+</ul>
+<p>Ok, now that we have some basic properties, let's apply them: think for a long time about the actors of the system (users, malicious users, admins, sysadmins, random attacker on the network, etc), what authorizations they have, what they should not get access to, what data moves on the network and between whom.</p>
+<p>You should now have a very basic threat model and a rough overview of your system or protocol: you know what part of the network communications should be confidential, you know where you would need to authenticate.</p>
+<p>You will now need some ideas about the type of attacks that could happen to your system, because you probably did not think of everything. Separate your systems in logical parts (like "client", and "server", etc), observe them, and observe how they communicate.</p>
+<h2>Common attacks</h2>
+<h3>Security properties</h3>
+<p>Here are some security properties that will be useful when you will try to choose algorithms later:</p>
+<ul>
+<li><strong>Random oracle</strong>: a system that answers deterministically every question with a random answer from its answer space. You cannot predict what it will answer, but if you send the same question twice, it will answer the same both times.</li>
+<li><strong>Perfect secrecy</strong>: for any two plaintext messages of same size, an attacker cannot distinguish which plaintext maps to which ciphertext. Basically, the adversary learns nothing from the ciphertext only.</li>
+<li><strong>Semantic security</strong>: same thing as perfect secrecy, except what the adversary learns on the plaintext is negligible. example: One Time Pad</li>
+</ul>
+<h3>Security tests</h3>
+<p>those properties can be tested by creating a "game", where the attacker tries to guess information on the data:</p>
+<ul>
+<li><strong>IND-CPA</strong> (indistinguishability under the chosen plaintext attack) test: the adversary can generate as many ciphertexts as he wants. Then, he chooses two messages m0 and m1 of same length, those messages are encrypted, and one of the ciphertexts is sent back to him. The adversary should not be able to guess which message was used to generate that ciphertext (note that this is just one way of testing for CPA, there are many other schemes, some with stronger properties)</li>
+<li><strong>IND-CCA</strong> (indistinguishability under the chosen ciphertext attack): the attacker can get the decryption of arbitrary ciphertexts, but should not, from this, be able to decrypt any other ciphertext.</li>
+</ul>
+<h3>Attack patterns</h3>
+<p>Here are some common attack types that can be applied to crypto protocols. The list is not exhaustive, and covers only crypto attacks: there are many more ways to attack a system.</p>
+<ul>
+<li><strong>Replay attacks</strong>: the attacker has observed some valid (encrypted or not) data going on the wire, and tries to send it again. Obviously, it should not be accepted</li>
+<li><strong>MITM</strong> (Man In The Middle): the attacker can observe and modify live data running between two actors of the system. In the worst case, the attacker should not be able to forge valid data, decrypt data, or impersonate one of the users. In the best case, it should be detectable.</li>
+<li><strong>Oracle attack</strong>: when an algorithm or protocol has a part that can act as an oracle (can be asked something and give answer, like a server), an attacker could exploit flaws in the algorithm to get useful information on the data (then the oracle is not a random oracle). Timing attacks are part of this type of attack. See also padding oracle attacks, or the recent BREACH attack on TLS.</li>
+<li><strong>Offline attack</strong>: the attacker got access to some encrypted data (on the wire, or by accessing a disk somewhere), stored it, and tries to decrypt it for an amount of time</li>
+</ul>
+<p>You should now have a better view of the system: what are the parts of the system that need protection, what attacks they must resist, and what properties they should have.</p>
+<p>That means we can go to the next part: choosing the tools to implement the solution.</p>
+<h2>General cryptographic functions</h2>
+<p>No, we will not choose algorithms right now. That would be too easy :D</p>
+<p>We will choose from a list of cryptographic constructions that implement some of the security properties of the system, and combine them to meet all the needed properties:</p>
+<ul>
+<li><strong>Secure Pseudo Random Function</strong>: function from spaces K (keys) and X (message) to Y (other message space). The basic definition is that if you choose randomly one of these functions (like choosing randomly a k from K), its output will appear totally random (testable with IND-CPA).</li>
+<li><strong>Pseudo Random Permutation</strong>: this is a PRF where X and Y are the same space. It is bijective (every y from Y maps to exactly one x from X, and every y is an output of the function), and there exists an efficient inversion function for it (from Y to X). Example: AES (in ECB, which is unsafe for common use)</li>
+<li><strong>Message Authentication Code</strong>: defines a pair of algorithms. One of them takes a key k and a message m and outputs a code c. The other algorithm takes k, m, c and outputs True or False. An attacker should not be able to forge a valid c without knowing k. A PRF could be used to construct a MAC system. A hash function too. Example: HMAC</li>
+<li><strong>Authenticated encryption</strong>: an encryption function (with semantic security under the CPA) where the attacker cannot forge new ciphertexts that decrypt correctly. Example: AES-GCM.</li>
+<li><strong>Hash function</strong>: collision resistance (cannot find different messages m1, m2 so that H(m1) == H(m2), with different collision levels). Not easily invertible. Usually, they are fast. Example: SHA2.</li>
+<li><strong>Trapdoor function</strong>: a function that is easy to compute, for which finding its inverse is hard, unless you have specific information. (secure under IND-CCA). examples: RSA, DSA.</li>
+<li><strong>Zero knowledge proof</strong>: a way to prove something to the other party in a communication, without giving her any info, except the proof.</li>
+</ul>
+<p>There are a lot of other constructions, depending on your needs, from low level algorithms like the Diffie Hellman key exchange to higher level protocols like OTR. Again, the constructions will depend on the security properties.</p>
+<h2>Choosing the algorithms</h2>
+<p>Can we do it now? YES! But there are rules. You must not choose an algorithm because it's hype or because someone said so in an old book. Basically, you choose algorithms that implement the properties you need (like authenticated encryption), and you choose the parameters of the algorithm (key size, exponent, elliptic curve) depending on the strength you need. Basically, a key size can define how much time encrypted data should remain impossible to decrypt. Those parameters also define the performance of the algorithm. Don't choose them without consulting experts, or you will face problems similar to those encountered by the projects that used low RSA exponents (it looks good from a performance standpoint, but it introduces very bad security).</p>
+<h2>Am I done now?</h2>
+<p>Nope. We have only define some very high level parts. Creating a protocol implies a lot of thoughts on:</p>
+<ul>
+<li>how you establish the communications</li>
+<li>protocol negotiation (version, algorithms, etc)</li>
+<li>key exchange</li>
+<li>authentication</li>
+<li>nonce usage</li>
+<li>storing sessions</li>
+<li>handling lost connections</li>
+<li>renegotiation</li>
+<li>closing the connection</li>
+<li>etc.</li>
+</ul>
+<p>As you can see, designing a protocol involves a lot more than choosing a few algorithms. Note that this was only a very rough overview of what you would need to create a safe system. And we did not even start coding!</p>
+<p>So, if you want to build the next privacy protecting system, please talk to experts. They don't necessarily want to make you feel bad. They just have a lot of formal tools and the experience needed to see what will not work.</p>
+
+    
+
+
+
+<div class="post-tags">
+  
+    
+    <a href="/tags.html#authentication">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">authentication</span>
+    </a>
+  
+    
+    <a href="/tags.html#cryptography">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">cryptography</span>
+    </a>
+  
+    
+    <a href="/tags.html#privacy">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">privacy</span>
+    </a>
+  
+    
+    <a href="/tags.html#security">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">security</span>
+    </a>
+  
+    
+    <a href="/tags.html#vulnerabilities">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">vulnerabilities</span>
+    </a>
+  
+</div>
+  </div>
+
+  
+<!--  <section class="comments">
+    <h2>Comments</h2>
+  </section>
+-->
+
+
+  <section class="related">
+  <h2>Related Posts</h2>
+  <ul class="posts-list">
+    
+      <li>
+        <h3>
+          <a href="/general/rust/2018/02/02/poc-compiling-to-ebpf-from-rust.html">
+            PoC: compiling to eBPF from Rust
+            <small>02 Feb 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/rust/2018/01/10/rust-2018-maybe-dont-be-too-stable.html">
+            Rust 2018: maybe don't be too stable
+            <small>10 Jan 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/general/2017/08/23/adventures-in-logging.html">
+            Adventures in logging
+            <small>23 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</section>
+
+</div>
+
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      Worst Case Messaging Protocol &middot; Unhandled Expression
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="post">
+
+    <div id="sidebar">
+  <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
+    <div class="site-title">
+      <a href="/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Unhandled Expression
+      </a>
+    </div>
+    <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/about.html">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/architecture.html">Architecture</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/crypto.html">Crypto</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/development.html">Development</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/rust.html">Rust</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/security.html">Security</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/videolan.html">VideoLAN</a>
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  <nav id="sidebar-icon-links">
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/tags.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/search.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+  <p>
+  &copy; 2018.
+  <a href="/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+
+    <main class="container">
+      <header>
+  <h1 class="post-title">Worst Case Messaging Protocol</h1>
+</header>
+<div class="content">
+  <div class="post-meta">
+  <span class="post-date">05 Jan 2012</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/development.html">
+          Development
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+  <div class="post-body">
+    <p>We already have lots of tools to communicate safely, and in some cases, anonymously. These tools work well for their purpose, but spying and law enforcement tools have also improved.</p>
+<p>People are forced to decrypt their hard drives in airports. Rootkits are developed by police forces. DPI systems are installed on a country level. Using the graph of who communicates with whom, it is possible to map the whole hierarchy of an organisation, even if all communications are encrypted. How can we defend against that?</p>
+<p>I believe that the analysis of organisations is one of the biggest threats right now. The ability to recognize an organization is the ability to destroy it by seizing a few members. That may be useful against terrorists, but these tools are too powerful, and they may be used by the wrong hands. Terrorists already know how to defend against such systems, but what of common people? Any company, association or union could be broken anytime.</p>
+<p>I think we need tools to mount resilient organizations. A compromised node shouldn't bring down the whole system. Intercepted messages shouldn't give too much information on the different parties. People can still find ways to send their messages safely (PGP, dead drops, giving USB keys hand to hand), but we need a framework to build decentralized human systems.</p>
+<p>Here is the solution I propose: a messaging protocol designed to protect identities and route around interception. This protocol is designed to work in the worst case (hence its name), when any communication could be intercepted, and even when we can only use offline communication.</p>
+<p>Every message is encrypted, signed and nearly anonymized (if you already know the emitter or receiver, you can recognize their presence, but this can be mitigated). To introduce redundant routes in the network, a simple broadcast is used (the protocol is not designed for IP networks, but for human networks, with limited P2P communication). Any node can be used to transmit all the messages. The fundamental idea is that if you're compromised, the whole organization can still work safely without you.</p>
+<h2>Prerequisites</h2>
+<h3>Assumptions</h3>
+<ul>
+<li>Every communication can be intercepted</li>
+<li>if a node is compromised, every message it can read or write is compromised</li>
+<li>People can still create a P2P (IRL) network to communicate (aka giving an USB key to someone else)</li>
+</ul>
+<h3>Goals</h3>
+<ul>
+<li>Confidentiality</li>
+<li>Anonymity</li>
+<li>Authentication</li>
+<li>Deniability? (I am just a messenger)</li>
+<li>Untraceability</li>
+<li>Can work offline (worst case)</li>
+</ul>
+<p>For this protocol, we need a RNG, a HMAC function, a symmetric cipher and an asymmetric cipher. I have not yet decided what algorithms must be used. They could be specified in the message format, to permit future changes in algorithms.</p>
+<h2>Message format</h2>
+<ul>
+<li>nonce1</li>
+<li>HMAC( sender's public key, nonce1 )</li>
+<li>expiration date</li>
+<li>symcrypt( symmetric key, message )</li>
+<li>nonce2</li>
+<li>For each receiver:
+<ul>
+<li>asymcrypt( receiver1's public key, symmetric key )</li>
+<li>HMAC( receiver1's public key, nonce2 )</li>
+<li>asymcrypt( receiver2's public key, symmetric key )</li>
+<li>HMAC( receiver2's public key, nonce2 )</li>
+</ul>
+</li>
+<li>asymsign( sender's private key, whole message )</li>
+</ul>
+<p>Here is how it works:<br />
+An identity is represented by one or more public keys (you can have a different public key for each of your contacts, it makes messages difficult to link to one person). They are not publicly linked to a name or email address, but the software layer could handle the complexity with a good enough UI. I do not cover key exchange: users must design their own way to meet or establish communications.</p>
+<p>Every user is a hub: all messages are broadcasted by all users. To prevent data explosion, expiration dates are used. Users recognize the message they receive and the identity of the emitter, using the HMAC of the public keys. All communication are encrypted, but I use the convergent encryption ideas to have multirecipient messages.</p>
+<h2>Handling the messages</h2>
+<h3>Parsing</h3>
+<ul>
+<li>verify if one of my public keys is in the receivers by calculating the HMAC with nonce2</li>
+<li>validate the signature (if I already know the emitter's public key)</li>
+<li>decrypt the symmetric key that was encrypted with my public key</li>
+<li>decrypt the message</li>
+</ul>
+<h3>Creating messages</h3>
+<ul>
+<li>write the message</li>
+<li>choose the emitter's identity and public key</li>
+<li>choose the receivers and the public keys used</li>
+<li>choose an expiration date</li>
+<li>generate two random nonces</li>
+<li>generate a symmetric key</li>
+<li>insert nonce 1 and the HMAC of nonce 1 and my key</li>
+<li>insert the expiration date</li>
+<li>encrypt the message with the symmetric key and insert it</li>
+<li>insert nonce 2</li>
+<li>for each receiver:
+<ul>
+<li>encrypt the symmetric key with the receiver's public key and insert the result</li>
+<li>insert the HMAC of nonce 2 and the receiver's public key</li>
+</ul>
+</li>
+<li>sign the whole message with my private key and append the signature</li>
+</ul>
+<h3>Sending messages</h3>
+<ul>
+<li>Take all the messages you received</li>
+<li>filter them according to some rules:
+<ul>
+<li>remove expired messages</li>
+<li>remove messages too large?</li>
+<li>etc</li>
+</ul>
+</li>
+<li>add your messages to the list</li>
+<li>give the message list to the next node in the network</li>
+</ul>
+<p>This protocol is voluntarily simple and extensible. New techniques can be devised based on this protocol, like dummy receivers in a message or dummy messages to complicate analysis. It is independent of the type of data transmitted, so any type of client could use this protocol (it is at the same level as IP). Most of the logic will be in the client and the contact manager, to present an interface easy to use.</p>
+<p>I truly hope we will never need this to communicate, but recent events have convinced me that I need to release it, just in case.</p>
+<p>I am open to any critique or suggestion about this protocol. I will soon open a repository to host some code implementing it, and it will of course be open to contributions :)</p>
+
+    
+
+
+
+<div class="post-tags">
+  
+    
+    <a href="/tags.html#anonymity">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">anonymity</span>
+    </a>
+  
+    
+    <a href="/tags.html#authentication">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">authentication</span>
+    </a>
+  
+    
+    <a href="/tags.html#cryptography">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">cryptography</span>
+    </a>
+  
+    
+    <a href="/tags.html#privacy">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">privacy</span>
+    </a>
+  
+    
+    <a href="/tags.html#security">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">security</span>
+    </a>
+  
+</div>
+  </div>
+
+  
+<!--  <section class="comments">
+    <h2>Comments</h2>
+  </section>
+-->
+
+
+  <section class="related">
+  <h2>Related Posts</h2>
+  <ul class="posts-list">
+    
+      <li>
+        <h3>
+          <a href="/general/rust/2018/02/02/poc-compiling-to-ebpf-from-rust.html">
+            PoC: compiling to eBPF from Rust
+            <small>02 Feb 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/rust/2018/01/10/rust-2018-maybe-dont-be-too-stable.html">
+            Rust 2018: maybe don't be too stable
+            <small>10 Jan 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/general/2017/08/23/adventures-in-logging.html">
+            Adventures in logging
+            <small>23 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</section>
+
+</div>
+
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>
