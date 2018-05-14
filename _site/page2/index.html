@@ -166,6 +166,10 @@
     
   
 
+  
+    
+  
+
 
   
 
@@ -234,6 +238,10 @@
     
   
 
+  
+
+  
+    
   
 
   
@@ -347,6 +355,102 @@
 
   
 
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/rust/2017/07/10/why-you-should-actually-rewrite-it-in-rust.html">
+        Why you should, actually, rewrite it in Rust
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">10 Jul 2017</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/rust.html">
+          Rust
+        </a>
+      
+    
+  </span>
+</div>
+
+    
+      <p>You might have seen those obnoxious "you should rewrite it in Rust comments" here and there:</p>
+<ul>
+<li>in a <a href="https://transitiontech.ca/random/RIIR">blogpost</a></li>
+<li>in a <a href="https://github.com/fc00/go-fc00/issues/1">Github issue</a></li>
+<li>you might have heard about <a href="http://n-gate.com/hackernews/2017/02/21/0/">that Rust Evangelism Strike Force</a></li>
+<li>it even has a joke <a href="https://twitter.com/rustevangelism">twitter account</a></li>
+</ul>
+<p>It's like at every new memory vulnerability in well known software, there’s that one person saying Rust would have avoided the issue. We get it, it’s annoying, and it does not help us grow Rust. This attitude is generally frowned upon in the Rust community. You can't just show up into someone’s project telling them to rewrite everything.</p>
+<p>so, why am I writing this? Why would I try to convince you, now, that you should actually rewrite your software in Rust?</p>
+<p>That's because I have been working on this subject for a long time now:</p>
+<ul>
+<li>I did <a href="https://www.youtube.com/watch?v=YTy_JOxGOd4">multiple</a> <a href="https://www.youtube.com/watch?v=e92Yrp3W_2I">talks</a> on it  </li>
+<li>I even co-wrote a <a href="http://spw17.langsec.org/papers.html#parsers2017">paper</a></li>
+<li>I did it both as client and personal work</li>
+</ul>
+<p>So, I'm commited to this, and yes, I believe you should rewrite some code in Rust. But there's a right way to do it.</p>
+<h2>Why rewrite stuff?</h2>
+<p>Our software systems are built on sand. We got pretty good at maintaining and fixing them over the years, but the cracks are showing. We still have not fixed definitely most of the low level vulnerabilities: stack buffer overflow (yes, those still exist), heap overflow, use after free, double free, off by one; the list goes on. We have some tools, like DEP, ASLR, stack canaries, control flow integrity, fuzzing. Large projects with funding, like Chrome, can resort to sandboxing parts of their application. The rest of us can still run those applications inside a virtual machine. This situation will not improve. <strong>There's a huge amount of old (think 90s), bad quality, barely maintained code that we reuse everywhere endlessly</strong>. The good thing with hardware is that at some point, it gets replaced. Software just gets copied again. Worse, with the development of IoT, a lot of the code that ships will never be updated. It's likely that some of those old libraries will still be there 15, 20 years from now.</p>
+<p>Let's not shy away from the issue here. Most of those are written in C or C++ (and usually an old version). It is well known that it is hard to write correct, reliable software in those languages. Think of all the security related things you have to keep track of in a C codebase:</p>
+<ul>
+<li>pointer arithmetic</li>
+<li>allocations and deallocations</li>
+<li>data is mutable by default</li>
+<li>functions return integers to mean pointers and error codes. Errors can be implicitely ignored</li>
+<li>type casts, overflows and underflows are hard to track</li>
+<li>buffer bounds in indexing and copying</li>
+<li><a href="https://blog.regehr.org/archives/1520">all the undefined behaviours</a></li>
+</ul>
+<p>Of course, some developers can do this work. Of course, there are sanitizers. But it's an enormous effort to perform everyday for every project.</p>
+<p>Those languages are well suited for low level programming, but require extreme care and expertise to avoid most of those issues. And even then, we assume the developers will always be well rested, focused and careful. We're only humans, after all. Note that in 2017, there are still people claiming that a C developer with sufficient expertise would avoid all those issues. It's time we put this idea to rest. Yes, some projects can avoid a lot of vulnerabilities, with a team of good developers, frequent code reviews, a restricted set of features, funding, tools, etc. Most projects cannot. And as I said earlier, a lot of the code is not even maintained.</p>
+<p>So we have to do something. We must make our software foundations stronger. That means fixing operating systems, drivers, libraries, command line tools, servers, everything. We might not be able to fix most of it today, or the next year, but maybe 10 years from now the situation will have improved.</p>
+<p>Unfortunately, we cannot rewrite everything. If you ever attempted to rewrite a project from scratch, you'd know that while you can avoid some of the mistakes you made before, you will probably <a href="https://daniel.haxx.se/blog/2017/03/27/curl-is-c/">introduce a lot of regressions and new bugs</a>. It's also wrong on the human side: if there are maintainers for the projects, they would need to work on the new and old one at the same time. Worse, you would have to teach them the new approach, the new language (which they might not like), and plan for an upgrade to the new project for all users.</p>
+<p>This is not doable, and this is the part most people asking for project rewrites in Rust do not understand. What I'm advocating for is much simpler: <strong>surgically replace weaker parts but keep most of the project intact</strong>.</p>
+<h2>How</h2>
+<p>Most of the issues will happen around IO and input data handling, so it makes sense to focus on it. It happens there because that's where the code manipulates buffers, parsers, and uses a lot of pointer calculations. It is also the least interesting part for software maintainers, since it is usually not where you add useful features, business logic, etc. And this logic is usually working well, so you do not want to replace it. If we could rewrite a small part of an application or library without disrupting the rest of the code, we would get most of the benefits without the issues of a full rewrite. It is the exact same project, with the same interface, same distribution packaging as before, same developer team. We would just make an annoying part of the software stronger and more maintainable.</p>
+<p>This is where Rust comes in. It is focused on providing memory safety, thread safety while keeping the code performant and the developer productive. As such, it is generally easier to get safe, reliable code in production while writing basic Rust, than a competent, well rested C developer using all the tools available could do.</p>
+<p>Most of the other safe languages have strong requirements, like a runtime and a garbage collector. And usually, they expect to be the host application (how many languages assume they will handle the process's entry point?). Here, we are guests in someone else's house. We must integrate nicely and quietly.</p>
+<p>Rust is a strong candidate for this because:</p>
+<ul>
+<li>it can easily call C code</li>
+<li>it can easily be called by C code (it can export C compatible functions and structures)</li>
+<li>it does not need a garbage collector</li>
+<li>if you want, it does not even need to handle allocations</li>
+<li>the Rust compiler can produce static and dynamic libraries, and even object files</li>
+<li>the Rust compiler avoids most of the memory vulnerabilities you get in C (yes, I had to mention it)</li>
+</ul>
+<p>So you can actually take a piece of C code inside an existing project, import the C structures and functions to access them from Rust, rewrite the code in Rust, export the functions and structures from Rust, compile it and link it with the rest of the project.</p>
+<p>If you don't believe it's possible, take a look at these two examples:</p>
+<ul>
+<li><a href="https://github.com/rusticata/rusticata">Rusticata</a> integrates Rust parsers written with nom in Suricata, an intrusion detection system</li>
+<li>a <a href="https://github.com/geal/rust-vlc-demux">VLC media player plugin</a> to parse FLV files, written entirely in Rust </li>
+</ul>
+<p>You get a lot of benefits from this approach. First, Rust has great package management with Cargo and crates.io. That means you can separate some of the work in different libraries. See as an example the <a href="https://github.com/rusticata">list of parsers</a> from the Rusticata project. You can test them independently, and even reuse them in other projects. The <a href="https://github.com/rust-av/flavors">FLV parser</a> I wrote for VLC can also work in a <a href="https://github.com/sdroege/gst-plugin-rs/tree/master/gst-plugin-flv">Rust GStreamer plugin</a> You can also make a separate library for the glue with the host application. I'm working on <a href="https://github.com/Geal/vlc_module.rs">vlc_module</a> exactly for that purpose: making Rust VLC plugins easier to write.</p>
+<p>This approach works well for applications with a plugin oriented architecture, but you can also rewrite core parts of an application or library. The biggest issue is high coupling of C code, but it is usually easy to rewrite bit by bit by keeping a common interface. Whenever you have rewritten some coupled parts of of a project, you can take time to refactor it in a more Rusty way, and leverage the type system to help you. A good example of this is the <a href="https://github.com/carols10cents/rust-out-your-c-talk">rewrite of the Zopfli library from C to Rust</a>.</p>
+<p>This brings us to another important part of that infrastructure rewrite work: while we can rewrite part of an existing project without being too intrusive, we can also rewrite a library entirely, keeping exactly the same C API. You can have a Rust library, dynamic or static, with the exact same C header, that you could import in a project to replace the C one. This is a huge result. It's like replacing a load-bearing wall in an existing building. This is not an easy thing to realize, but once it's done, you can improve a lot of projects at once, provided your distribution's package manager supports that replacement, or other projects take the time to upgrade.</p>
+<p>This is a lot of work, but every time we advance a little, everybody can benefit from it, and it will add up over the years. So we might as well start now.</p>
+<p>Currently, I'm focused on VLC. This is a good target because it's a popular application that's often part of the basic stack of any computer (browser, office suite, media player). So it's a big target. But take a look at the list of dependencies in most web applications, or the dependency graph of common distributions. There is a lot of low hanging fruit there.</p>
+<p>Now, how would you actually perform those rewrites? You can <a href="https://unhandledexpression.com/2017/07/12/how-to-rewrite-you-project-in-rust/">check out the next post</a> and <a href="http://spw17.langsec.org/papers/chifflier-parsing-in-2017.pdf">the paper explaining how we did it in Rusticata and VLC</a>.</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
   
   <article class="post-body">
     <h2 class="post-title">
@@ -739,68 +843,6 @@ sys     0m0.070s</p></blockquote>
       <p>I'm getting less and less satisfied with Twitter to exchange thoughts. The 140 characters is not the obvious problem, since you can chain messages easily. The issue is that those thoughts are ephemeral. This medium does not optimize for smart discussion with relevant people, but for quick wit from currently available people, before being dumped under a stack of comments on the latest news. The retweeting does not help much, since the primary reason for retweeting are 1. it's funny 2. it is shocking 3. it's inspiring, and long last "maybe it's interesting". They don't create much discussion.</p>
 <p>Until now, I have primarily used this blog for long posts (thus explaining why I don't write much here). As my friends say "if it's more than 3 tweets, write a blog post".</p>
 <p>So in the following months, I'll try to post short, not well researched but spontaneous articles, instead of ranting in 140 characters.</p>
-
-    
-
-    
-      
-      
-      
-
-      
-    
-  </article>
-  
-  <article class="post-body">
-    <h2 class="post-title">
-      <a href="/general/security/2014/07/21/a-world-without-certificate-authorities.html">
-        A world without certificate authorities
-      </a>
-    </h2>
-    <div class="post-meta">
-  <span class="post-date">21 Jul 2014</span>
-  <span class="post-categories">
-    
-      &bull;
-
-      
-      
-      
-
-      
-        General
-      
-    
-      &bull;
-
-      
-      
-      
-
-      
-        <a href="/category/security.html">
-          Security
-        </a>
-      
-    
-  </span>
-</div>
-
-    
-      <p><img class="aligncenter size-full wp-image-779" src="/assets/14156305171_d2c0a5e9bc_b.jpg" alt="love locks" width="525" height="525" /><br />
-When networks began to expand and people saw the need for secure communication, they designed complex systems based on public key cryptography, that worked more or less. Problem: how do you trust that the key a server sent you is the right one? How can you make sure that it is not somebody else trying to impersonate that website?</p>
-<p>Multiple solutions were proposed, and the most promising was a public directory of domain names and associated public keys, maintained by a peer to peer network named KeyCoin. It looked better than so called Web Of Trust solutions, because everybody could agree on what was the correct key for a given domain. As long as nobody hold 51% of the network, no change could happen without being validated by a lot of different peers. The network was maintained by 10000 enthusiast system administrators who took their task very seriously (after all, the security of the whole system depended on their honesty), and nobody had enough computing power to take over the network.</p>
-<p>After a while, people began using the system, since it was directly integrated in their browsers, but they did not want to run a node on the network themselves. It was too bothersome, and they could trust the administrators. Also, they had to ask one of them to make a change everytime. The whole process was a bit artisanal.</p>
-<p>In the meantime, some people demonstrated the 51% attack on networks of reduced size, and that worried people. They wanted a safe system, one that was not only relying on those sysadmins that could do anything. Who were they anyway? Running that system was still too complex for non technical too run it themselves anyway, so they did not worry enough. But some governments found that rewriting the truth of name/key matching was interesting. Maybe to catch pedophiles, terrorists, criminals. Or maybe to censor websites, I do not know, they told me it was for my own good.</p>
-<p>Some smart person found a good solution: if controlling the whole system necessitated owning 51% of the system, the easiest way was to have a lot of machines, enough to counteract the sysadmins. That did not seem risky when people designed the system. Nobody could have enough computing power to take over the whole network, and there would be even more nodes every day.</p>
-<p>Yet, that person got enough funding to install tens of thousands of machines and make them join the network. They even provided a nice enough interface for people and businesses to input their domain name and public key, as long as they paid some fees. The sysadmins welcomed him at first, since money coming in the system validated their ideas. Atfer a while, they started worrying, since none of them could keep up with the computing power, but that company asssured them it would never attain 51% of the network.</p>
-<p>Other companies jumped on the bandwagon and started to profit from that new business opportunity. Governments started their own server farms to participate too. Problem: now that everybody (except the sysadmins) had a lot of computing power, nobody had enough to control the network entirely.</p>
-<p>So they started making alliances. If a few major players work as a team, they can do whatever they want on the network. If one of them decided to try and replace a key on the ledger, others could help it. Of course, once they begun doing that, others wanted to participate. So they created a few rules to join their club. First, you needed to have enough machines. That was a good rule, because that made a big barrier to entry. You could not start as a small player. The other rules? You had to submit to an audit, performed by the other players. Yet another barrier to entry. And once they deemed you acceptable, you had to follow the requests of governments, which were arbitrarily refusing candidates.</p>
-<p>Even with the big barriers to entry, a few hundred players came up, often backed by governments. Of course, all ended up in the same team, doing whatever they wanted, as long as nobody was complaining, because anytime one of them had something shady to do, all of them followed automatically.</p>
-<p>Since building those big companies required money, they made their clients pay more and more, and to make it easier to accept, provided "premium" options where they show they trust you more, since they took the time to phone your company and ask a few questions.</p>
-<p>Some found that big system too centralized, too obedient to states, and decided to fork it. There are separate public ledgers, but they do not come directly embedded in browsers, you need to integrate them yourself, and that's bothersome. Also, most of those networks have a few hundred nodes at best.</p>
-<p>From a nice, decentralized, home made system, we ended up with a centralized system controlled by corporations and governments.</p>
-<p>Now let me tell you about that system I designed. It is based on a concept named certificate, a cryptographically signed file that links the public key to a domain name. Now here's the catch: a certificate represents a key, and is signed by another key, which is represented by another certificate, and so on and so forth until a certificate that signs itself. That system is good, because you just have to embed the root certificate that your friends gives you, and you'll be able to verify the key of his websites, even if those keys change. And this, without even asking the public ledger, so that is a truly decentralized and more anonymous system! Nothing could go wrong with that, right?</p>
 
     
 

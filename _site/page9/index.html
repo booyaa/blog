@@ -166,6 +166,10 @@
     
   
 
+  
+    
+  
+
 
   
 
@@ -234,6 +238,10 @@
     
   
 
+  
+
+  
+    
   
 
   
@@ -347,6 +355,168 @@
 
   
 
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/development/ruby/security/2011/06/28/rails-and-oauth-plugin-part-2-the-consumer.html">
+        Rails and oauth-plugin part 2: the consumer
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">28 Jun 2011</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/development.html">
+          Development
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        Ruby
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+    
+      <p>In the previous post, I showed how you could build a provider with oauth-plugin and Rails. Now, I will demonstrate how to build a consumer (it's a lot easier).</p>
+<p>I will assume that your provider is already running on localhost:3000. The consumer will run on localhost:4000 (run it with "rails server -p 4000").</p>
+<h2>Here we go!</h2>
+<p>[sourcecode language="bash"]<br />
+rails new consumer<br />
+cd consumer<br />
+[/sourcecode]</p>
+<p>Put this in your Gemfile:</p>
+<p>[sourcecode language="ruby"]<br />
+source 'http://rubygems.org'<br />
+gem 'rails', '3.0.7'<br />
+gem 'sqlite3'<br />
+gem 'devise'<br />
+gem &quot;oauth-plugin&quot;, &quot;&gt;= 0.4.0.pre1&quot;<br />
+[/sourcecode]</p>
+<p>And run these commands:</p>
+<p>[sourcecode language="bash"]<br />
+bundle install<br />
+rails generate devise:install<br />
+rails generate devise User<br />
+rake db:migrate<br />
+rails generate controller welcome index<br />
+rm public/index.html<br />
+[/sourcecode]</p>
+<p>And here is your routes.rb:</p>
+<p>[sourcecode language="ruby"]<br />
+Provider::Application.routes.draw do<br />
+devise_for :users<br />
+root :to =&gt; &quot;welcome#index&quot;<br />
+end<br />
+[/sourcecode]</p>
+<h2>Create the consumer</h2>
+<p>[sourcecode language="bash"]<br />
+rails generate oauth_consumer user<br />
+rake db:migrate<br />
+[/sourcecode]</p>
+<p>in app/controllers/oauth_consumers_controller.rb, replace:</p>
+<p>[sourcecode language="ruby"]<br />
+before_filter :login_required, :only=&gt;:index<br />
+[/sourcecode]</p>
+<p>by</p>
+<p>[sourcecode language="ruby"]<br />
+before_filter :authenticate_user!, :only=&gt;:index<br />
+[/sourcecode]</p>
+<p>Uncomment the methods for devise (go_back, logged_in? currentuser=, deny_access!) in app/controllers/oauth_consumers_controller.rb.</p>
+<p>Add to app/models/user.rb:</p>
+<p>[sourcecode language="ruby"]<br />
+ has_one  :test, :class_name=&gt;&quot;TestToken&quot;, :dependent=&gt;:destroy<br />
+[/sourcecode]</p>
+<p>Now go to http://localhost:3000/oauth_clients/ to register your first application with these parameters:</p>
+<blockquote><p>Name:                 Test consumer<br />
+Main Application URL: http://localhost:4000/<br />
+Callback URL:         http://localhost:4000/oauth_consumers/test/callback</p></blockquote>
+<p>You're redirected to http://localhost:3000/oauth_clients/1. It shows:</p>
+<blockquote><p>Consumer Key:      CRcIJ15MwSqlDTxsH8MpO3En4wjaOxkqeofLioH4</p>
+<p>Consumer Secret:   C7uci8xkyMShCf4SNXWPclKbBo3ml1Zf2W2XWu4W</p>
+<p>Request Token URL: http://localhost:3000/oauth/request_token</p>
+<p>Access Token URL:  http://localhost:3000/oauth/access_token</p>
+<p>Authorize URL:     http://localhost:3000/oauth/authorize</p></blockquote>
+<p>Now, you need to put the key and secret in config/initializers/oauth_consumers.rb:</p>
+<p>[sourcecode language="ruby"]<br />
+ OAUTH_CREDENTIALS={<br />
+:test =&gt;{<br />
+:key =&gt; &quot;CRcIJ15MwSqlDTxsH8MpO3En4wjaOxkqeofLioH4&quot;,<br />
+     :secret =&gt; &quot;C7uci8xkyMShCf4SNXWPclKbBo3ml1Zf2W2XWu4W&quot;,<br />
+     :expose =&gt; true<br />
+   }<br />
+ }<br />
+[/sourcecode]</p>
+<p>Create app/models/test_token.rb. This model will store the token for your provider. If you want to provide helpful methods, take inspiration from lib/oauth/models/consumers/services/.</p>
+<p>[sourcecode language="ruby"]<br />
+class TestToken &lt; ConsumerToken<br />
+TEST_SETTINGS={<br />
+:site =&gt; &quot;http://localhost:3000&quot;,<br />
+:request_token_path =&gt; &quot;/oauth/request_token&quot;,<br />
+:access_token_path =&gt; &quot;/oauth/access_token&quot;,<br />
+:authorize_path =&gt; &quot;/oauth/authorize&quot;<br />
+}</p>
+<p>def self.consumer(options={})<br />
+@consumer ||= OAuth::Consumer.new(credentials[:key], credentials[:secret], TEST_SETTINGS.merge(options))<br />
+end</p>
+<p>end<br />
+[/sourcecode]</p>
+<p>You should now be able to use the URLs "/oauth_consumers/test/client/", "/oauth_consumers/test/callback", "/oauth_consumers/test/callback2"," /oauth_consumers/test/edit",<br />
+and "/oauth_consumers/test".</p>
+<p>Modify the welcome controller t get the provider data:</p>
+<p>[sourcecode language="ruby"]<br />
+ class WelcomeController &lt; ApplicationController<br />
+ def index<br />
+ # cf http://oauth.rubyforge.org/rdoc/classes/OAuth/AccessToken.html<br />
+ @consumer_tokens=TestToken.all :conditions=&gt;{:user_id=&gt;current_user.id}<br />
+ @token = @consumer_tokens.first.client<br />
+ logger.info &quot;private data: &quot;+@token.get(&quot;/data/index&quot;).body<br />
+ end</p>
+<p>end<br />
+[/sourcecode]</p>
+<p>To connect a user to an external service link or redirect them to:</p>
+<p>/oauth_consumers/[SERVICE_NAME]</p>
+<p>Where SERVICE_NAME is the name you set in the OAUTH_CREDENTIALS hash. This will request the request token and redirect the user to the services authorization screen. When the user accepts the get redirected back to:</p>
+<p>/oauth_consumers/[SERVICE_NAME]/callback</p>
+<h2>That's it</h2>
+<p>This tutorial is really short, and could be explained a bit more, but I'll leave that for another post. You have enough to start tinkering with OAuth. Have fun!</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
   
   <article class="post-body">
     <h2 class="post-title">
@@ -772,61 +942,6 @@ oauth_token = ClientApplication.find_token(request_proxy.token)<br />
 <p>You can do about anything in Smalltalk, like other languages: desktop applications, web applications, use databases, network protocols, REST APIs... It is particularly suited for big applications with complex object models.</p>
 <p>For desktop applications, you will easily have cross platform code and UI, but you won't be able to use native windows (at least, not with Squeak or Pharo). For web applications, you can choose between these frameworks: <a href="http://www.seaside.st">Seaside</a>, <a href="http://www.iliadproject.org">Iliad</a> and <a href="http://www.aidaweb.si/">Aida</a>. Each one has a different philosophy, and different strengths, so try them all out!</p>
 <p>Developing in Smalltalk has been an amazing experience: I learned a lot, and the concepts and habits I took are easily applied to other languages. now, I just need a way to work in Smalltalk for my day job :)</p>
-
-    
-
-    
-      
-      
-      
-
-      
-    
-  </article>
-  
-  <article class="post-body">
-    <h2 class="post-title">
-      <a href="/general/security/2010/11/16/gorgeous-spammer-wants-to-add-you-as-a-friend.html">
-        Gorgeous spammer wants to add you as a friend
-      </a>
-    </h2>
-    <div class="post-meta">
-  <span class="post-date">16 Nov 2010</span>
-  <span class="post-categories">
-    
-      &bull;
-
-      
-      
-      
-
-      
-        General
-      
-    
-      &bull;
-
-      
-      
-      
-
-      
-        <a href="/category/security.html">
-          Security
-        </a>
-      
-    
-  </span>
-</div>
-
-    
-      <p style="text-align:justify;">Yesterday was introduced the<a title="The Facebook blog" href="http://blog.facebook.com/blog.php?post=452288242130" target="_blank"> new Facebook Messages interface</a>. Huzzah! You get an @facebook.com email address, unification of IM and email, conversation history, etc. That sounds cool! And what is that new feature called "social inbox"? That's nice, messages from your friends will be prioritized and appear directly in your inbox, and other emails will go to the "others" box. Wait, what?</p>
-<p style="text-align:justify;">This feature is meant to help you <del>waste time</del> connect efficiently with your network. I won't go into the analysis of how your email contacts are not always friends, even the important and regular ones, how will Google react, or how will we send emails with no subject line. I'm sure someone will talk about that at length. Instead, let's talk about these nice people always interested in becoming our friends, sell us cheap software enlarge our <del>pe</del> bank account: spammers.</p>
-<p style="text-align:justify;">In the old world of regular email (yes, old, we're in Web 2.0, Gmail is soooo last week), we had spam filters. <a title="WP: Antispam techniques" href="http://en.wikipedia.org/wiki/Anti-spam_techniques" target="_blank">A lot of methods</a> were developed to protect us: blacklistingm whitelisting, greylisting, bayesian filters, SMTP verification, CAPTCHAs, etc. They're not all efficient, but services like Gmail are really good at catching unwanted email. Spamming is an activity with a very low conversion rate: you have to send thousands of emails just to get one gullible person to click and buy. Thankfully, emails are cheap to send. But we could improve that conversion rate. Facebook just did it.</p>
-<blockquote><p>With new Messages, your Inbox will only contain messages from your friends and their friends. All other messages will go into an Other folder where you can look at them separately.</p></blockquote>
-<p style="text-align:justify;">Put you in situation. A gorgeous woman/man/<a href="http://en.wikipedia.org/wiki/On_the_Internet,_nobody_knows_you're_a_dog" target="_blank">dog</a> wants to be your friend on Facebook. Will you accept her/him? Let's say she has more or less the same tastes has you (that's surprinsingly easy to get the list of a band's fans, same for book, political views, etc). Not yet? Let's say you have friends more gullible than you. The hot woman is a friend of another friend and sends you a message in these terms: "Hi! We met at &lt;gullible friend&gt;'s party a few months ago, I had a really good time talking to you". You just accepted the friend request, admit it. And a few days/weeks later, she will begin sending you messages about great opportunities like ponzi schemes or nigerian scams. And YOU WILL CLICK! Because it will appear directly in your inbox. Because it comes from one of your friends, someone you more or less trust.</p>
-<p style="text-align:justify;">Facebook just gave spammers a direct access to your inbox, and offered them targeted advertising, thanks to all the groups, likes, music and book fan groups. Spammers are considered dumb, because they automate a lot. But thanks to Facebook's social features, they will learn to customize the mails, just for you. They will pay cheap workers to talk to you through the fake accounts, they will get you, your friends and your family, and will be a part of your great friends network.</p>
-<p style="text-align:justify;">Thanks to Facebook.</p>
 
     
 

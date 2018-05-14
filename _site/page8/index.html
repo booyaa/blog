@@ -166,6 +166,10 @@
     
   
 
+  
+    
+  
+
 
   
 
@@ -234,6 +238,10 @@
     
   
 
+  
+
+  
+    
   
 
   
@@ -347,6 +355,68 @@
 
   
 
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/security/2012/06/13/your-data-is-precious.html">
+        Your data is precious
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">13 Jun 2012</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+    
+      <p>Following LinkedIn's large password leak, I have seen a dangerous thought spread to friends and colleagues:<br />
+"so what if my LinkedIn password has leaked? What can they do? Look for a job for me?"</p>
+<p>That is based on wrong assumptions about what an attacker wants and can do. And it is mistaking the low value you get from a service with the value of your data. Your data is PRECIOUS. Maybe not to you. But everything can be sold, and you'll always find someone interested to buy it. Let's see a few creative uses of your Linkedin account:</p>
+<h2>Analyze your data</h2>
+<p>You might think that what you share is of no use to anyone except potential recruiters, but by mixing your resume, shared links, private messages, all the data you put on the website, I could build a nice profile and sell it to advertisers. Did you put your address and phone number somewhere in your profile? Awesome! I have a lot of targeted advertisements for you!</p>
+<h2>Obtain access to your other accounts(email, Facebook, Twitter, Viadeo...)</h2>
+<p>With your email address and your password, I could probably guess the password for other services. Almost nobody has strong and different passwords for every service. Would you like to see your Facebook or Twitter account compromised? I don't think so.</p>
+<p>Oh, remember to use a strong password, or even two factor authenticatiob for email. A lot of password recovery systems sues emails, so if your mailbox is compromised, your accounts will be compromised.</p>
+<h2>Spam/SEO</h2>
+<p>Nothing ca be done with your account? oh, you have contacts. And maybe, a well referenced profile. I'd be able to send spam links to all your contacts with the user feed, and put them in your profile, to improve the ranking of my websites. Sure, there's no harm to you, if you don't care about losing credibility or annoying your contacts.</p>
+<h2>Using the contact list</h2>
+<p>Oh, yes, I could sell your contact list, that's easy money!</p>
+<p>While I'm at it, I could have fun with your friends and colleagues:</p>
+<ul>
+<li>ask them for money, nude pictures, confidential information, etc.</li>
+<li>tell them that your email account has been compromised, and that they must address their emails to another address controlled by me</li>
+<li>obtain access to their accounts with social engineering</li>
+</ul>
+<div>You may be insignificant, but that's not necessary true of your contacts. <strong>In social networks, your network has a value, and you must protect it</strong>. It is your responsibility to make sure your friends and colleagues don't get compromised through your account.</div>
+<div>It reminds me of the 90s, when I often had this dialogue:</div>
+<div>Me-You should put an antivirus and firewall on your computer.</div>
+<div>You-Why should I? There's nothing interesting on my computer, why would anyone want to infect it?</div>
+<div>Me-I receive from you 10 emails a day, and all of them contain a virus."</div>
+<div></div>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
   
   <article class="post-body">
     <h2 class="post-title">
@@ -810,168 +880,6 @@ echo &quot;Building include and library directories for Windows %PLATFORM%&quot;
 <p>I set up the BOOST and CPPTEST environment variables in another file. Then, I launch Visual Studio from another script which includes it.</p>
 <p>There may be better ways, and that system will evolve in the future, but I'm pretty comfortable with it right now :)</p>
 <p>Depending on my needs, I may grab from the bottom of my disk the package manager I wrote back in school, and make a big solution to download, build and link libs and personal projects. But later, I have some procrastination planned right now.</p>
-
-    
-
-    
-      
-      
-      
-
-      
-    
-  </article>
-  
-  <article class="post-body">
-    <h2 class="post-title">
-      <a href="/development/ruby/security/2011/06/28/rails-and-oauth-plugin-part-2-the-consumer.html">
-        Rails and oauth-plugin part 2: the consumer
-      </a>
-    </h2>
-    <div class="post-meta">
-  <span class="post-date">28 Jun 2011</span>
-  <span class="post-categories">
-    
-      &bull;
-
-      
-      
-      
-
-      
-        <a href="/category/development.html">
-          Development
-        </a>
-      
-    
-      &bull;
-
-      
-      
-      
-
-      
-        Ruby
-      
-    
-      &bull;
-
-      
-      
-      
-
-      
-        <a href="/category/security.html">
-          Security
-        </a>
-      
-    
-  </span>
-</div>
-
-    
-      <p>In the previous post, I showed how you could build a provider with oauth-plugin and Rails. Now, I will demonstrate how to build a consumer (it's a lot easier).</p>
-<p>I will assume that your provider is already running on localhost:3000. The consumer will run on localhost:4000 (run it with "rails server -p 4000").</p>
-<h2>Here we go!</h2>
-<p>[sourcecode language="bash"]<br />
-rails new consumer<br />
-cd consumer<br />
-[/sourcecode]</p>
-<p>Put this in your Gemfile:</p>
-<p>[sourcecode language="ruby"]<br />
-source 'http://rubygems.org'<br />
-gem 'rails', '3.0.7'<br />
-gem 'sqlite3'<br />
-gem 'devise'<br />
-gem &quot;oauth-plugin&quot;, &quot;&gt;= 0.4.0.pre1&quot;<br />
-[/sourcecode]</p>
-<p>And run these commands:</p>
-<p>[sourcecode language="bash"]<br />
-bundle install<br />
-rails generate devise:install<br />
-rails generate devise User<br />
-rake db:migrate<br />
-rails generate controller welcome index<br />
-rm public/index.html<br />
-[/sourcecode]</p>
-<p>And here is your routes.rb:</p>
-<p>[sourcecode language="ruby"]<br />
-Provider::Application.routes.draw do<br />
-devise_for :users<br />
-root :to =&gt; &quot;welcome#index&quot;<br />
-end<br />
-[/sourcecode]</p>
-<h2>Create the consumer</h2>
-<p>[sourcecode language="bash"]<br />
-rails generate oauth_consumer user<br />
-rake db:migrate<br />
-[/sourcecode]</p>
-<p>in app/controllers/oauth_consumers_controller.rb, replace:</p>
-<p>[sourcecode language="ruby"]<br />
-before_filter :login_required, :only=&gt;:index<br />
-[/sourcecode]</p>
-<p>by</p>
-<p>[sourcecode language="ruby"]<br />
-before_filter :authenticate_user!, :only=&gt;:index<br />
-[/sourcecode]</p>
-<p>Uncomment the methods for devise (go_back, logged_in? currentuser=, deny_access!) in app/controllers/oauth_consumers_controller.rb.</p>
-<p>Add to app/models/user.rb:</p>
-<p>[sourcecode language="ruby"]<br />
- has_one  :test, :class_name=&gt;&quot;TestToken&quot;, :dependent=&gt;:destroy<br />
-[/sourcecode]</p>
-<p>Now go to http://localhost:3000/oauth_clients/ to register your first application with these parameters:</p>
-<blockquote><p>Name:                 Test consumer<br />
-Main Application URL: http://localhost:4000/<br />
-Callback URL:         http://localhost:4000/oauth_consumers/test/callback</p></blockquote>
-<p>You're redirected to http://localhost:3000/oauth_clients/1. It shows:</p>
-<blockquote><p>Consumer Key:      CRcIJ15MwSqlDTxsH8MpO3En4wjaOxkqeofLioH4</p>
-<p>Consumer Secret:   C7uci8xkyMShCf4SNXWPclKbBo3ml1Zf2W2XWu4W</p>
-<p>Request Token URL: http://localhost:3000/oauth/request_token</p>
-<p>Access Token URL:  http://localhost:3000/oauth/access_token</p>
-<p>Authorize URL:     http://localhost:3000/oauth/authorize</p></blockquote>
-<p>Now, you need to put the key and secret in config/initializers/oauth_consumers.rb:</p>
-<p>[sourcecode language="ruby"]<br />
- OAUTH_CREDENTIALS={<br />
-:test =&gt;{<br />
-:key =&gt; &quot;CRcIJ15MwSqlDTxsH8MpO3En4wjaOxkqeofLioH4&quot;,<br />
-     :secret =&gt; &quot;C7uci8xkyMShCf4SNXWPclKbBo3ml1Zf2W2XWu4W&quot;,<br />
-     :expose =&gt; true<br />
-   }<br />
- }<br />
-[/sourcecode]</p>
-<p>Create app/models/test_token.rb. This model will store the token for your provider. If you want to provide helpful methods, take inspiration from lib/oauth/models/consumers/services/.</p>
-<p>[sourcecode language="ruby"]<br />
-class TestToken &lt; ConsumerToken<br />
-TEST_SETTINGS={<br />
-:site =&gt; &quot;http://localhost:3000&quot;,<br />
-:request_token_path =&gt; &quot;/oauth/request_token&quot;,<br />
-:access_token_path =&gt; &quot;/oauth/access_token&quot;,<br />
-:authorize_path =&gt; &quot;/oauth/authorize&quot;<br />
-}</p>
-<p>def self.consumer(options={})<br />
-@consumer ||= OAuth::Consumer.new(credentials[:key], credentials[:secret], TEST_SETTINGS.merge(options))<br />
-end</p>
-<p>end<br />
-[/sourcecode]</p>
-<p>You should now be able to use the URLs "/oauth_consumers/test/client/", "/oauth_consumers/test/callback", "/oauth_consumers/test/callback2"," /oauth_consumers/test/edit",<br />
-and "/oauth_consumers/test".</p>
-<p>Modify the welcome controller t get the provider data:</p>
-<p>[sourcecode language="ruby"]<br />
- class WelcomeController &lt; ApplicationController<br />
- def index<br />
- # cf http://oauth.rubyforge.org/rdoc/classes/OAuth/AccessToken.html<br />
- @consumer_tokens=TestToken.all :conditions=&gt;{:user_id=&gt;current_user.id}<br />
- @token = @consumer_tokens.first.client<br />
- logger.info &quot;private data: &quot;+@token.get(&quot;/data/index&quot;).body<br />
- end</p>
-<p>end<br />
-[/sourcecode]</p>
-<p>To connect a user to an external service link or redirect them to:</p>
-<p>/oauth_consumers/[SERVICE_NAME]</p>
-<p>Where SERVICE_NAME is the name you set in the OAUTH_CREDENTIALS hash. This will request the request token and redirect the user to the services authorization screen. When the user accepts the get redirected back to:</p>
-<p>/oauth_consumers/[SERVICE_NAME]/callback</p>
-<h2>That's it</h2>
-<p>This tutorial is really short, and could be explained a bit more, but I'll leave that for another post. You have enough to start tinkering with OAuth. Have fun!</p>
 
     
 

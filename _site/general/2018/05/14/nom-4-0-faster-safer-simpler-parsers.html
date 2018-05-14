@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      nom 4.0: faster, safer, simpler parsers &middot; Unhandled Expression
+    
+  </title>
+
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-117988815-1', 'auto');
+  ga('send', 'pageview');
+  </script>
+
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="post">
+
+    <div id="sidebar">
+  <header>
+    <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
+    <div class="site-title">
+      <a href="/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Unhandled Expression
+      </a>
+    </div>
+    <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/about.html">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/architecture.html">Architecture</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/crypto.html">Crypto</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/development.html">Development</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/rust.html">Rust</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/security.html">Security</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/category/videolan.html">VideoLAN</a>
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  <nav id="sidebar-icon-links">
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/tags.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/search.html">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+  <p>
+  &copy; 2018.
+  <a href="/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+
+    <main class="container">
+      <header>
+  <h1 class="post-title">nom 4.0: faster, safer, simpler parsers</h1>
+</header>
+<div class="content">
+  <div class="post-meta">
+  <span class="post-date">14 May 2018</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        General
+      
+    
+  </span>
+</div>
+
+  <div class="post-body">
+    <p>I’m delighted to announce that <a href="https://github.com/geal/nom">nom</a>, the extremely
+fast Rust parser combinators library, has reached major version 4.</p>
+
+<p><strong>TL;DR: the new nom version is simpler, faster, has a better documentation, and you can
+find a summary of what changed in
+<a href="https://github.com/Geal/nom/blob/master/doc/upgrading_to_nom_4.md">the upgrade documentation</a></strong></p>
+
+<p><strong>side note: how fast is nom? it can reach <a href="https://github.com/Geal/parser_benchmarks/tree/master/http">2GB/s when parsing HTTP requests</a></strong></p>
+
+<p><img src="/assets/nom.png" alt="nom logo" /></p>
+
+<p>Since nom is now a well established, serious project, we got a brand new logo,
+courtesy of <a href="https://corkami.github.io/">Ange Albertini</a>.
+The nom monster will happily eat your data byte by byte :)</p>
+
+<p>It took nearly 6 months of development and the library went through nearly 5
+entire rewrites. Compare that to previous major releases, which took a month at
+most to do. But it was worth it! This new release cleans up a lot of old bugs
+and unintuitive behaviours, simplifies some common patterns, is faster, uses less
+memory, gives better errors, but the way parsers are written stay the same.
+It’s like an entirely new engine under the same body work!</p>
+
+<h2 id="moving-from-iresult-to-result">Moving from <code class="highlighter-rouge">IResult</code> to <code class="highlighter-rouge">Result</code></h2>
+
+<p>This was a long standing request. nom used a three-legged enum as return type for the parsers:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// example parser signature</span>
+<span class="k">fn</span> <span class="nf">parser</span><span class="p">(</span><span class="n">input</span><span class="p">:</span> <span class="n">I</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="n">IResult</span><span class="o">&lt;</span><span class="n">I</span><span class="p">,</span><span class="n">O</span><span class="o">&gt;</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+
+<span class="k">pub</span> <span class="k">enum</span> <span class="n">IResult</span><span class="o">&lt;</span><span class="n">I</span><span class="p">,</span><span class="n">O</span><span class="p">,</span><span class="n">E</span><span class="o">=</span><span class="nb">u32</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="c">/// remaining input, result value</span>
+  <span class="nf">Done</span><span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="n">O</span><span class="p">),</span>
+  <span class="c">/// indicates the parser encountered an error. E is a custom error type you can redefine</span>
+  <span class="nf">Error</span><span class="p">(</span><span class="nb">Err</span><span class="p">),</span>
+  <span class="c">/// Incomplete contains a Needed, an enum than can represent a known quantity of input data, or unknown</span>
+  <span class="nf">Incomplete</span><span class="p">(</span><span class="n">Needed</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">pub</span> <span class="k">enum</span> <span class="n">Needed</span> <span class="p">{</span>
+  <span class="c">/// needs more data, but we do not know how much</span>
+  <span class="n">Unknown</span><span class="p">,</span>
+  <span class="c">/// contains the required total data size</span>
+  <span class="nf">Size</span><span class="p">(</span><span class="nb">usize</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">// if the "verbose-errors" feature is not active</span>
+<span class="k">pub</span> <span class="k">type</span> <span class="nb">Err</span><span class="o">&lt;</span><span class="n">E</span><span class="o">=</span><span class="nb">u32</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">ErrorKind</span><span class="p">;</span>
+
+<span class="c">// if the "verbose-errors" feature is active</span>
+<span class="k">pub</span> <span class="k">enum</span> <span class="nb">Err</span><span class="o">&lt;</span><span class="n">P</span><span class="p">,</span><span class="n">E</span><span class="o">=</span><span class="nb">u32</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="c">/// An error code, represented by an ErrorKind, which can contain a custom error code represented by E</span>
+  <span class="nf">Code</span><span class="p">(</span><span class="n">ErrorKind</span><span class="p">),</span>
+  <span class="c">/// An error code, and the next error</span>
+  <span class="nf">Node</span><span class="p">(</span><span class="n">ErrorKind</span><span class="p">,</span> <span class="nb">Vec</span><span class="o">&lt;</span><span class="nb">Err</span><span class="o">&lt;</span><span class="n">P</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;&gt;</span><span class="p">),</span>
+  <span class="c">/// An error code, and the input position</span>
+  <span class="nf">Position</span><span class="p">(</span><span class="n">ErrorKind</span><span class="p">,</span> <span class="n">P</span><span class="p">),</span>
+  <span class="c">/// An error code, the input position and the next error</span>
+  <span class="nf">NodePosition</span><span class="p">(</span><span class="n">ErrorKind</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="nb">Vec</span><span class="o">&lt;</span><span class="nb">Err</span><span class="o">&lt;</span><span class="n">P</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;&gt;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>That old <code class="highlighter-rouge">IResult</code> structure did not transform well to the commonly used <code class="highlighter-rouge">Result</code>,
+people did not want to see the <code class="highlighter-rouge">Incomplete</code> case (when the parser indicates it does
+not have enough data to decide) if they do not need it. And the different error types
+depending on the <code class="highlighter-rouge">verbose-errors</code> feature were confusing and causing errors when nom
+appeared multiple times in dependency trees.</p>
+
+<p>So I replaced it with a new, <code class="highlighter-rouge">Result</code> based design:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">pub</span> <span class="k">type</span> <span class="n">IResult</span><span class="o">&lt;</span><span class="n">I</span><span class="p">,</span> <span class="n">O</span><span class="p">,</span> <span class="n">E</span> <span class="o">=</span> <span class="nb">u32</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">Result</span><span class="o">&lt;</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">O</span><span class="p">),</span> <span class="nb">Err</span><span class="o">&lt;</span><span class="n">I</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;&gt;</span><span class="p">;</span>
+
+<span class="k">pub</span> <span class="k">enum</span> <span class="nb">Err</span><span class="o">&lt;</span><span class="n">I</span><span class="p">,</span> <span class="n">E</span> <span class="o">=</span> <span class="nb">u32</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="c">/// There was not enough data</span>
+  <span class="nf">Incomplete</span><span class="p">(</span><span class="n">Needed</span><span class="p">),</span>
+  <span class="c">/// The parser had an error (recoverable)</span>
+  <span class="nf">Error</span><span class="p">(</span><span class="n">Context</span><span class="o">&lt;</span><span class="n">I</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span><span class="p">),</span>
+  <span class="c">/// The parser had an unrecoverable error</span>
+  <span class="nf">Failure</span><span class="p">(</span><span class="n">Context</span><span class="o">&lt;</span><span class="n">I</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="k">pub</span> <span class="k">enum</span> <span class="n">Needed</span> <span class="p">{</span>
+  <span class="c">/// needs more data, but we do not know how much</span>
+  <span class="n">Unknown</span><span class="p">,</span>
+  <span class="c">/// contains the required additional data size</span>
+  <span class="nf">Size</span><span class="p">(</span><span class="nb">usize</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">// if the "verbose-errors" feature is inactive</span>
+<span class="k">pub</span> <span class="k">enum</span> <span class="n">Context</span><span class="o">&lt;</span><span class="n">I</span><span class="p">,</span> <span class="n">E</span> <span class="o">=</span> <span class="nb">u32</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="nf">Code</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">ErrorKind</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="c">// if the "verbose-errors" feature is active</span>
+<span class="k">pub</span> <span class="k">enum</span> <span class="n">Context</span><span class="o">&lt;</span><span class="n">I</span><span class="p">,</span> <span class="n">E</span> <span class="o">=</span> <span class="nb">u32</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="nf">Code</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">ErrorKind</span><span class="p">),</span>
+  <span class="nf">List</span><span class="p">(</span><span class="nb">Vec</span><span class="o">&lt;</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">ErrorKind</span><span class="p">)</span><span class="o">&gt;</span><span class="p">),</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Aside from being more compatible with, like, the whole Rust ecosystem, this new design
+has lots of interesting points:</p>
+
+<ul>
+  <li>the <code class="highlighter-rouge">Context</code> enum is now extended by the <code class="highlighter-rouge">verbose-errors</code> feature, so it is the same type</li>
+  <li>errors always store position information</li>
+  <li><code class="highlighter-rouge">Incomplete</code> has moved to the error case so you can easily ignore it</li>
+  <li><code class="highlighter-rouge">IResult::Done(remaining, value)</code> has been replaced with <code class="highlighter-rouge">Ok((remaining, value))</code> so you could easily do <code class="highlighter-rouge">let (remaining, value) = parser(input)?;</code> like you would do with other <code class="highlighter-rouge">Result</code> based functions</li>
+  <li>the <code class="highlighter-rouge">Err</code> enum now contains a<code class="highlighter-rouge">Failure</code> case epresenting an unrecoverable error (combinators like <code class="highlighter-rouge">alt!</code> will not try another branch)</li>
+</ul>
+
+<p>And we get all of these benefits while keeping the same memory footprint in “simple” errors mode,
+and reducing it in “verbose” errors mode:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>size of <code class="highlighter-rouge">IResult</code></th>
+      <th>simple errors</th>
+      <th>verbose errors</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>nom 3</td>
+      <td>40 bytes</td>
+      <td>64 bytes</td>
+    </tr>
+    <tr>
+      <td>nom 4</td>
+      <td>40 bytes</td>
+      <td>48 bytes</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>And it gets faster! Depending on the format, I have seen improvements between 4% and 40%!</p>
+
+<h2 id="dealing-with-incomplete-usage">Dealing with Incomplete usage</h2>
+
+<p>nom’s parsers are designed to work around streaming issues: if there is not enough data to decide, a
+parser will return <code class="highlighter-rouge">Incomplete</code> instead of returning a partial value that might be false.</p>
+
+<p>As an example, if you want to parse alphabetic characters then digits, when you get the whole input
+<code class="highlighter-rouge">abc123;</code>, the parser will return <code class="highlighter-rouge">abc</code> for alphabetic characters, and <code class="highlighter-rouge">123</code> for the digits, and <code class="highlighter-rouge">;</code>
+as remaining input.</p>
+
+<p>But if you get that input in chunks, like <code class="highlighter-rouge">ab</code> then <code class="highlighter-rouge">c123;</code>, the alphabetic characters parser will
+return <code class="highlighter-rouge">Incomplete</code>, because it does not know if there will be more matching characters afterwards.
+If it returned <code class="highlighter-rouge">ab</code> directly, the digit parser would fail on the rest of the input, even though the
+input had the valid format.</p>
+
+<p>For some users, though, the input will never be partial (everything could be loaded in memory at once),
+and the solution in nom 3 and before was to wrap parts of the parsers with the <code class="highlighter-rouge">complete!()</code> combinator
+that transforms <code class="highlighter-rouge">Incomplete</code> in <code class="highlighter-rouge">Error</code>.</p>
+
+<p>nom 4 is much stricter about the behaviour with partial data, but provides better tools to deal with it.
+Thanks to the new <code class="highlighter-rouge">AtEof</code> trait for input types, nom now provides the <code class="highlighter-rouge">CompleteByteSlice(&amp;amp;[u8])</code> and
+<code class="highlighter-rouge">CompleteStr(str)</code> input types, for which the <code class="highlighter-rouge">at_eof()</code> method always returns true.
+With these types, no need to put a <code class="highlighter-rouge">complete!()</code> combinator everywhere, you can juste apply those types
+like this:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">named!</span><span class="p">(</span><span class="n">parser</span><span class="o">&lt;&amp;</span><span class="p">[</span><span class="nb">u8</span><span class="p">],</span> <span class="n">O</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">...</span> <span class="p">);</span>
+
+<span class="c">// becomes</span>
+
+<span class="nd">named!</span><span class="p">(</span><span class="n">parser</span><span class="o">&lt;</span><span class="n">CompleteByteSlice</span><span class="p">,</span> <span class="n">O</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">...</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">named!</span><span class="p">(</span><span class="n">parser</span><span class="o">&lt;&amp;</span><span class="nb">str</span><span class="p">,</span> <span class="n">O</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">...</span> <span class="p">);</span>
+
+<span class="c">// becomes</span>
+
+<span class="nd">named!</span><span class="p">(</span><span class="n">parser</span><span class="o">&lt;</span><span class="n">CompleteStr</span><span class="p">,</span> <span class="n">O</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">...</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>And as an example, for a unit test:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">assert_eq!</span><span class="p">(</span><span class="nf">parser</span><span class="p">(</span><span class="s">"abcd123"</span><span class="p">),</span> <span class="nf">Ok</span><span class="p">((</span><span class="s">"123"</span><span class="p">,</span> <span class="s">"abcd"</span><span class="p">));</span>
+
+<span class="c">// becomes</span>
+
+<span class="nd">assert_eq!</span><span class="p">(</span><span class="nf">parser</span><span class="p">(</span><span class="nf">CompleteStr</span><span class="p">(</span><span class="s">"abcd123"</span><span class="p">)),</span> <span class="nf">Ok</span><span class="p">((</span><span class="nf">CompleteStr</span><span class="p">(</span><span class="s">"123"</span><span class="p">),</span> <span class="nf">CompleteStr</span><span class="p">(</span><span class="s">"abcd"</span><span class="p">)));</span>
+</code></pre></div></div>
+
+<p>These types allow you to correctly handle cases like text formats for which there might be a last
+empty line or not, as seen in <a href="https://github.com/Geal/nom/blob/87d837006467aebcdb0c37621da874a56c8562b5/tests/multiline.rs">one of the examples</a>.</p>
+
+<p>If those types feel a bit long to write everywhere in the parsers, it’s possible
+to alias them like this:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span> <span class="n">Input</span> <span class="o">=</span> <span class="n">CompleteByteSlice</span><span class="p">;</span>
+
+<span class="k">pub</span> <span class="k">fn</span> <span class="nf">Input</span><span class="p">(</span><span class="n">input</span><span class="p">:</span><span class="o">&amp;</span><span class="nv">'a</span><span class="p">[</span><span class="nb">u8</span><span class="p">])</span> <span class="k">-&gt;</span> <span class="n">Input</span> <span class="p">{</span>
+  <span class="nf">CompleteByteSlice</span><span class="p">(</span><span class="n">input</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="better-documentation">Better documentation</h2>
+
+<p>Previous documentation was scattered around and hard to navigate, especially
+when trying to find the exact combinator that would work perfectly for what we
+want.</p>
+
+<p>So the <a href="https://github.com/Geal/nom/blob/master/README.md">new README</a> is now
+more about what can be done instead of an incomplete reference.</p>
+
+<p>The <a href="https://docs.rs/nom">documentation homepage</a> is an introduction to parser
+combinators and nom’s design, with some examples to show common combinators
+like <code class="highlighter-rouge">do_parse</code>.</p>
+
+<p>There’s a brand new <a href="https://github.com/Geal/nom/blob/master/doc/choosing_a_combinator.md">“choosing a combinator” doc</a>
+to help you find what you need, arranged by categories, with example usage
+and expected results.</p>
+
+<p>And there are new examples for a lot of parser and combinators.</p>
+
+<h2 id="various-fixes">Various fixes</h2>
+
+<p><code class="highlighter-rouge">no_std</code> usage is now working correctly. For most of nom’s combinators, you
+will not need anything more than <code class="highlighter-rouge">core</code>, and a few basic combinators like
+<code class="highlighter-rouge">many0</code> or <code class="highlighter-rouge">separated_list</code> require <code class="highlighter-rouge">alloc</code>.</p>
+
+<p>Some parsers sometimes ended up in the middle of UTF-8 characters, now those
+streams are handled correctly.</p>
+
+<h2 id="performance">Performance</h2>
+
+<p>Here is a comparison of nom’s internal benchmarks, between 3.2.1 and 4.0.0, in default mode:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cargo benchcmp 3.2.1.bench 4.0.0.bench
+ name             3.2.1.bench ns/iter  4.0.0.bench ns/iter  diff ns/iter   diff % 
+ arithmetic       759                  469                          -290  -38.21% 
+ ini              998 (109 MB/s)       897 (122 MB/s)               -101  -10.12% 
+ ini_key_value    45 (400 MB/s)        47 (382 MB/s)                   2    4.44% 
+ ini_keys_values  91 (483 MB/s)        85 (529 MB/s)                  -6   -6.59% 
+ ini_str          1,399 (77 MB/s)      1,396 (78 MB/s)                -3   -0.21% 
+ json_bench       2,149                1,694                        -455  -21.17% 
+ http_test        700                  659                           -41   -5.86% 
+</code></pre></div></div>
+
+<p>And here is the difference for verbose errors:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cargo benchcmp 3.2.1.bench 4.0.0.bench 
+ name             3.2.1.bench ns/iter  4.0.0.bench ns/iter  diff ns/iter   diff % 
+ arithmetic       1,731                1,523                        -208  -12.02% 
+ ini              1,199 (90 MB/s)      1,061 (103 MB/s)             -138  -11.51% 
+ ini_key_value    70 (257 MB/s)        60 (300 MB/s)                 -10  -14.29% 
+ ini_keys_values  133 (330 MB/s)       111 (405 MB/s)                -22  -16.54% 
+ ini_str          1,525 (71 MB/s)      1,621 (67 MB/s)                96    6.30% 
+ json_bench       2,905                2,193                        -712  -24.51% 
+ http_test        854                  941                            87   10.19% 
+</code></pre></div></div>
+
+<p>nom 4 is not faster everywhere, ther are still some small regressions that will be fixed
+soon, but overall we see great improvements.</p>
+
+<h2 id="the-future-for-nom">the future for nom</h2>
+
+<p><a href="https://github.com/geal/nom">nom 4</a> is a huge release, and the new design
+will probably take some time to settle. There’s probably a lot of low hanging
+fruit on the performance side, and I look forward to my next obsessive
+profiling sessions.</p>
+
+<p>Meanwhile, nom will continue to happily munch bytes for you, as one of the
+fastest, most reliable parsing libraries available.</p>
+
+<p>In the future, I’m interested in supporting more use cases, like zero
+allocation parsers or Web Assembly usage, and integrating more SIMD work,
+like what was done for the HTTP parser. The goal is to get nom parsers to
+secure data access in more and more systems, whatever the language or platform.</p>
+
+
+    
+
+
+
+<div class="post-tags">
+  
+    
+    <a href="/tags.html#rust">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">Rust</span>
+    </a>
+  
+</div>
+  </div>
+
+  
+<!--  <section class="comments">
+    <h2>Comments</h2>
+  </section>
+-->
+
+
+  <section class="related">
+  <h2>Related Posts</h2>
+  <ul class="posts-list">
+    
+      <li>
+        <h3>
+          <a href="/general/rust/2018/02/02/poc-compiling-to-ebpf-from-rust.html">
+            PoC: compiling to eBPF from Rust
+            <small>02 Feb 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/rust/2018/01/10/rust-2018-maybe-dont-be-too-stable.html">
+            Rust 2018: maybe don't be too stable
+            <small>10 Jan 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/general/2017/08/23/adventures-in-logging.html">
+            Adventures in logging
+            <small>23 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</section>
+
+</div>
+
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>

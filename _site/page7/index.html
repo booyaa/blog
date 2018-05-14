@@ -166,6 +166,10 @@
     
   
 
+  
+    
+  
+
 
   
 
@@ -234,6 +238,10 @@
     
   
 
+  
+
+  
+    
   
 
   
@@ -347,6 +355,77 @@
 
   
 
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/development/general/2012/12/07/testing-android-push-without-a-server.html">
+        Testing Android push without a server
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">07 Dec 2012</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/development.html">
+          Development
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        General
+      
+    
+  </span>
+</div>
+
+    
+      <p>Adding push support to an Android app is quite easy, but it can be cumbersome to test it if the server part is not ready yet.</p>
+<p>For this, you only need your API key, and the registration ID for your device (you can get it from a call to <em>GCMRegistrar.getRegistrationId</em>). Also, you should have already called <em>GCMRegistrar.register</em> from your app, with your sender id.</p>
+<p>Then, to send a push message to your application, use this code:</p>
+<blockquote><p>import java.io.IOException;</p>
+<p>import com.google.android.gcm.server.*;</p>
+<p>public class Main {</p>
+<p>/**<br />
+* @param args<br />
+*/<br />
+public static void main(String[] args) {</p>
+<p>String apiKey = "...";</p>
+<p>String deviceId = "...";<br />
+Sender sender = new Sender(apiKey);<br />
+Message message = new Message.Builder().addData("data1", "hello").build();</p>
+<p>try {<br />
+Result result = sender.send(message, deviceId, 2);<br />
+System.out.println("got result: "+result.toString());<br />
+} catch (IOException e) {<br />
+// TODO Auto-generated catch block<br />
+e.printStackTrace();<br />
+}<br />
+}</p>
+<p>}</p></blockquote>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
   
   <article class="post-body">
     <h2 class="post-title">
@@ -602,68 +681,6 @@ What can you do now? The usual (and natural) reaction is to downplay the vulnera
 <p>That is also dangerous, because you will gather good or average developers with a very high idea of themselves. They think of themselves as awesome developers, so why would they learn anything? For your teams, you need team players, humble people, able to recognize their errors, and able to learn. You don't need a lonesome cowboy.</p>
 <p>Even worse, you will refuse future gurus because they're not good enough right now. Some developers have a lot of potential, and can bloom in the right environment. Think of it: a developer cheaper than others who will deliver more than others in a year! You will also refuse useful people: an bad developer with a knack for debugging, a bad developer with a lot of knowledge about low level problems, a bad developer who will boost your team's productivity, just because he's good with people...</p>
 <p>These job posts reinforce the cargo cult of the awesome geek wrangling tons of awesome code without sleep and with a lot of coffee. Enough with that! We geeks are not produced in chain, with A, B, or C quality level. We are real people, with unique qualities or defects, and you will miss out on awesome people while you wait for your prince charming.</p>
-
-    
-
-    
-      
-      
-      
-
-      
-    
-  </article>
-  
-  <article class="post-body">
-    <h2 class="post-title">
-      <a href="/security/2012/06/13/your-data-is-precious.html">
-        Your data is precious
-      </a>
-    </h2>
-    <div class="post-meta">
-  <span class="post-date">13 Jun 2012</span>
-  <span class="post-categories">
-    
-      &bull;
-
-      
-      
-      
-
-      
-        <a href="/category/security.html">
-          Security
-        </a>
-      
-    
-  </span>
-</div>
-
-    
-      <p>Following LinkedIn's large password leak, I have seen a dangerous thought spread to friends and colleagues:<br />
-"so what if my LinkedIn password has leaked? What can they do? Look for a job for me?"</p>
-<p>That is based on wrong assumptions about what an attacker wants and can do. And it is mistaking the low value you get from a service with the value of your data. Your data is PRECIOUS. Maybe not to you. But everything can be sold, and you'll always find someone interested to buy it. Let's see a few creative uses of your Linkedin account:</p>
-<h2>Analyze your data</h2>
-<p>You might think that what you share is of no use to anyone except potential recruiters, but by mixing your resume, shared links, private messages, all the data you put on the website, I could build a nice profile and sell it to advertisers. Did you put your address and phone number somewhere in your profile? Awesome! I have a lot of targeted advertisements for you!</p>
-<h2>Obtain access to your other accounts(email, Facebook, Twitter, Viadeo...)</h2>
-<p>With your email address and your password, I could probably guess the password for other services. Almost nobody has strong and different passwords for every service. Would you like to see your Facebook or Twitter account compromised? I don't think so.</p>
-<p>Oh, remember to use a strong password, or even two factor authenticatiob for email. A lot of password recovery systems sues emails, so if your mailbox is compromised, your accounts will be compromised.</p>
-<h2>Spam/SEO</h2>
-<p>Nothing ca be done with your account? oh, you have contacts. And maybe, a well referenced profile. I'd be able to send spam links to all your contacts with the user feed, and put them in your profile, to improve the ranking of my websites. Sure, there's no harm to you, if you don't care about losing credibility or annoying your contacts.</p>
-<h2>Using the contact list</h2>
-<p>Oh, yes, I could sell your contact list, that's easy money!</p>
-<p>While I'm at it, I could have fun with your friends and colleagues:</p>
-<ul>
-<li>ask them for money, nude pictures, confidential information, etc.</li>
-<li>tell them that your email account has been compromised, and that they must address their emails to another address controlled by me</li>
-<li>obtain access to their accounts with social engineering</li>
-</ul>
-<div>You may be insignificant, but that's not necessary true of your contacts. <strong>In social networks, your network has a value, and you must protect it</strong>. It is your responsibility to make sure your friends and colleagues don't get compromised through your account.</div>
-<div>It reminds me of the 90s, when I often had this dialogue:</div>
-<div>Me-You should put an antivirus and firewall on your computer.</div>
-<div>You-Why should I? There's nothing interesting on my computer, why would anyone want to infect it?</div>
-<div>Me-I receive from you 10 emails a day, and all of them contain a virus."</div>
-<div></div>
 
     
 

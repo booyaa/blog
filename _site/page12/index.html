@@ -11,7 +11,7 @@
 
   <title>
     
-      Current state of security in VLC on Windows &middot; Unhandled Expression
+      Unhandled Expression &middot; Geoffroy Couprie – software security and architecture consultant
     
   </title>
 
@@ -45,12 +45,12 @@
 </head>
 
 
-  <body class="post">
+  <body class="index">
 
     <div id="sidebar">
   <header>
     <img src="https://s.gravatar.com/avatar/ed9901b9b80743c05aedf58b4f4926dd?s=200" alt="self" />
-    <div class="site-title">
+    <h1 class="site-title">
       <a href="/">
         
           <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
@@ -60,7 +60,7 @@
         
         Unhandled Expression
       </a>
-    </div>
+    </h1>
     <p class="lead">Geoffroy Couprie – software security and architecture consultant</p>
   </header>
   <nav id="sidebar-nav-links">
@@ -342,12 +342,28 @@
 
 
     <main class="container">
-      <header>
-  <h1 class="post-title">Current state of security in VLC on Windows</h1>
-</header>
-<div class="content">
-  <div class="post-meta">
-  <span class="post-date">02 Jul 2010</span>
+      <div class="content">
+  
+<div class="pagination">
+  <a class="pagination-item newer"
+     href="/page11">
+    Newer
+  </a>
+</div>
+
+
+
+  
+
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/general/2010/01/05/new-blog-new-year-new-whatever.html">
+        New blog, new year, new whatever
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">05 Jan 2010</span>
   <span class="post-categories">
     
       &bull;
@@ -357,123 +373,35 @@
       
 
       
-        <a href="/category/security.html">
-          Security
-        </a>
-      
-    
-      &bull;
-
-      
-      
-      
-
-      
-        <a href="/category/videolan.html">
-          VideoLAN
-        </a>
+        General
       
     
   </span>
 </div>
 
-  <div class="post-body">
-    <p>A recent report from <a href="http://secunia.com/blog/105">Secunia</a> states that popular Windows applications don't use the DEP and ASLR protections. It is true for VLC up to 1.0: the latest version at the moment, 1.1, supports permanent DEP mode, and ASLR on all of its DLLs.</p>
-<p>One thing the report could have shown is the difference between applicatins built with MSVC or GCC. Adding DEP and ASLR in Visual Studio means adding /NXCompat and DynamicBase to the compilation options. With MinGW, there is a <a href="http://eleves.ec-lille.fr/~couprieg/post/Enable-DEP-and-ASLR-on-your-applications-built-with-MinGW">different trick</a>. This article on my old blog is slightly outdated: ld in binutils 2.20 supports the --nxcompat and --dynamicbase options. So, now, the developers using GCC have no more excuse!</p>
-<p>Let's sum up the state of the security of VLC:</p>
-<ul>
-<li>1.0.5 is NOT SAFE on Windows. 1.0.6 brings a lot of <a href="http://www.videolan.org/security/sa1003.html">security fixes</a>, but this version was not released on Windows. And security features are not used.</li>
-<li>1.1.0 supports permanent DEP and ASLR (with DllCharacteristics flag, only on Vista/7) and termination on heap corruption</li>
-<li>1.1.1 supports the same as 1.1.0, and adds DEP on XP SP3 with SetProcessDEPPolicy</li>
-<li>SafeSEH and stack cookies are not yet used</li>
-</ul>
-<p>The developers using LibVLC should check their software: DEP won't be activated if their executable doesn't support it.</p>
+    
+      <p>Hello, happy readers and indexing bots! Here is my brand new blog!</p>
+<p><a title="my old blog" href="http://eleves.ec-lille.fr/~couprieg/" target="_blank">The old one</a> was getting messy, alterning french and english posts without any reason, and it had no purpose.</p>
+<p>So, I present you with my new blog: a place for me to write about fun code, weird bugs, even weirder opinions, and to share a lot of bad puns.</p>
+<p>I host it on <a title="Wordpress hosting" href="http://www.wordpress.com" target="_blank">Wordpress.com</a>, so that its admins do all the boring work in my place. Thanks, guys!</p>
+<p>I will copy my tutorials for VLC media player from my old blog to the <a title="VideoLAN wiki" href="http://wiki.videolan.org" target="_blank">VideoLAN wiki</a>, and the other posts still useful (if there are ones) will be posted here (dear Wordpress.com admins, could you add the Dotclear importing plugin here, please?).</p>
+<p>That's it, have a good time reading this blog, and happy new year!</p>
 
     
 
+    
+      
+      
+      
 
-
-<div class="post-tags">
+      
+    
+  </article>
   
-    
-    <a href="/tags.html#aslr">
-    
-      <span class="icon">
-        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0 0h24v24H0z" fill="none"/>
-    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
-</svg>
-      </span>&nbsp;<span class="tag-name">ASLR</span>
-    </a>
-  
-    
-    <a href="/tags.html#dep">
-    
-      <span class="icon">
-        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0 0h24v24H0z" fill="none"/>
-    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
-</svg>
-      </span>&nbsp;<span class="tag-name">DEP</span>
-    </a>
-  
-    
-    <a href="/tags.html#vlc">
-    
-      <span class="icon">
-        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0 0h24v24H0z" fill="none"/>
-    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
-</svg>
-      </span>&nbsp;<span class="tag-name">vlc</span>
-    </a>
-  
-</div>
-  </div>
 
   
-<!--  <section class="comments">
-    <h2>Comments</h2>
-  </section>
--->
-
-
-  <section class="related">
-  <h2>Related Posts</h2>
-  <ul class="posts-list">
-    
-      <li>
-        <h3>
-          <a href="/general/2018/05/14/nom-4-0-faster-safer-simpler-parsers.html">
-            nom 4.0: faster, safer, simpler parsers
-            <small>14 May 2018</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="/general/rust/2018/02/02/poc-compiling-to-ebpf-from-rust.html">
-            PoC: compiling to eBPF from Rust
-            <small>02 Feb 2018</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="/rust/2018/01/10/rust-2018-maybe-dont-be-too-stable.html">
-            Rust 2018: maybe don't be too stable
-            <small>10 Jan 2018</small>
-          </a>
-        </h3>
-      </li>
-    
-  </ul>
-</section>
 
 </div>
-
     </main>
 
     <!-- Optional footer content -->

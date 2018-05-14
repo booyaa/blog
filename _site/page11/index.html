@@ -166,6 +166,10 @@
     
   
 
+  
+    
+  
+
 
   
 
@@ -234,6 +238,10 @@
     
   
 
+  
+
+  
+    
   
 
   
@@ -347,6 +355,66 @@
 
   
 
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/security/videolan/2010/07/02/current-state-of-security-in-vlc-on-windows.html">
+        Current state of security in VLC on Windows
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">02 Jul 2010</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/videolan.html">
+          VideoLAN
+        </a>
+      
+    
+  </span>
+</div>
+
+    
+      <p>A recent report from <a href="http://secunia.com/blog/105">Secunia</a> states that popular Windows applications don't use the DEP and ASLR protections. It is true for VLC up to 1.0: the latest version at the moment, 1.1, supports permanent DEP mode, and ASLR on all of its DLLs.</p>
+<p>One thing the report could have shown is the difference between applicatins built with MSVC or GCC. Adding DEP and ASLR in Visual Studio means adding /NXCompat and DynamicBase to the compilation options. With MinGW, there is a <a href="http://eleves.ec-lille.fr/~couprieg/post/Enable-DEP-and-ASLR-on-your-applications-built-with-MinGW">different trick</a>. This article on my old blog is slightly outdated: ld in binutils 2.20 supports the --nxcompat and --dynamicbase options. So, now, the developers using GCC have no more excuse!</p>
+<p>Let's sum up the state of the security of VLC:</p>
+<ul>
+<li>1.0.5 is NOT SAFE on Windows. 1.0.6 brings a lot of <a href="http://www.videolan.org/security/sa1003.html">security fixes</a>, but this version was not released on Windows. And security features are not used.</li>
+<li>1.1.0 supports permanent DEP and ASLR (with DllCharacteristics flag, only on Vista/7) and termination on heap corruption</li>
+<li>1.1.1 supports the same as 1.1.0, and adds DEP on XP SP3 with SetProcessDEPPolicy</li>
+<li>SafeSEH and stack cookies are not yet used</li>
+</ul>
+<p>The developers using LibVLC should check their software: DEP won't be activated if their executable doesn't support it.</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
   
   <article class="post-body">
     <h2 class="post-title">
@@ -606,50 +674,15 @@
     
   </article>
   
-  <article class="post-body">
-    <h2 class="post-title">
-      <a href="/general/2010/01/05/new-blog-new-year-new-whatever.html">
-        New blog, new year, new whatever
-      </a>
-    </h2>
-    <div class="post-meta">
-  <span class="post-date">05 Jan 2010</span>
-  <span class="post-categories">
-    
-      &bull;
 
-      
-      
-      
-
-      
-        General
-      
-    
-  </span>
+  
+<div class="pagination">
+  <a class="pagination-item older"
+     href="/page12">
+    Older
+  </a>
 </div>
 
-    
-      <p>Hello, happy readers and indexing bots! Here is my brand new blog!</p>
-<p><a title="my old blog" href="http://eleves.ec-lille.fr/~couprieg/" target="_blank">The old one</a> was getting messy, alterning french and english posts without any reason, and it had no purpose.</p>
-<p>So, I present you with my new blog: a place for me to write about fun code, weird bugs, even weirder opinions, and to share a lot of bad puns.</p>
-<p>I host it on <a title="Wordpress hosting" href="http://www.wordpress.com" target="_blank">Wordpress.com</a>, so that its admins do all the boring work in my place. Thanks, guys!</p>
-<p>I will copy my tutorials for VLC media player from my old blog to the <a title="VideoLAN wiki" href="http://wiki.videolan.org" target="_blank">VideoLAN wiki</a>, and the other posts still useful (if there are ones) will be posted here (dear Wordpress.com admins, could you add the Dotclear importing plugin here, please?).</p>
-<p>That's it, have a good time reading this blog, and happy new year!</p>
-
-    
-
-    
-      
-      
-      
-
-      
-    
-  </article>
-  
-
-  
 
 </div>
     </main>

@@ -166,6 +166,10 @@
     
   
 
+  
+    
+  
+
 
   
 
@@ -234,6 +238,10 @@
     
   
 
+  
+
+  
+    
   
 
   
@@ -347,6 +355,73 @@
 
   
 
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/security/2013/10/01/the-rules-of-security-by-obscurity.html">
+        The rules of security by obscurity
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">01 Oct 2013</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+    
+      <h2>The first rule of security by obscurity is: DON'T</h2>
+<p>There, I said it. Now you can stop reading. Or you can continue. But watch where you step.</p>
+<p>Security by obscurity is generally frowned upon, because people have relied on it as their only layer of defense. When you think that nobody will be able to reverse engineer your clever code, or find that specific file holding all the secrets, you have already lost. People got quite efficient at reverse engineering and finding secrets.</p>
+<p>That's why it is recommended to rely on safer algorithms and techniques to protect your system. They have been tested, and were created especially for that purpose. That can be encryption algorithms, authorization systems, etc.</p>
+<h2>The second rule of security by obscurity is: you should not need it</h2>
+<p>Defense is hard because of information asymmetry: the attacker often has more information than you to approach the system. That could be 0-day vulnerabilities, or the knowledge that you misconfigured one of your servers. The attacker has basically more time and more money than what you can spend on security.</p>
+<p>The tools you have at hand? Patching the code, controlling authorizations, verifying your logs... You get a system that should not be easy to attack even if the attacker is familiar with the underlying software.</p>
+<p>Except that the attacker might be well informed on the problems of deploying that particular CMS. Or there's a specific vulnerability you don't know about that is exploited automatically by botnets...</p>
+<h2>The third rule of security by obscurity is: DON'T, but...</h2>
+<p>The goal of your defense layers is to drive up the cost of an attack. A really motivated attacker will always find a way (with enough ressources, they could break in your office to steal data directly). So, what you want is to make an attack costly, to drive off attackers with less ressources.</p>
+<p>And what will security through obscurity provide you? Time! They will provide you with time to defend, and waste the attacker's time. It is in no way enough to protect you, but it can give you a lot of benefits:</p>
+<ul>
+<li>confuse automated tools: moving some specific files or pages of your CMS out of their default location will prevent most automated attacks. That will not stop human attackers, but they might need to modify their scripts, and we all know that's annoying :p</li>
+<li>slow down information gathering: removing the server headers is a pretty standard practice.  Some more sophisticated tools might be able to guess server version and/or framework type in other ways, but basic tools will not.</li>
+<li>lie to the attackers to send them through a honeypot. Then, you can observe them, learn about their process and prepare for other attacks.</li>
+<li>detect suspect behaviour, like bruteforce queries, and send bogus data instead of rejecting them. That means more data to analyze manually for the adversary.</li>
+<li>Are you trying to send encrypted data? Do you really need a public handshake protocol, displaying the whole algorithm negotiation? Sometimes, communicating directly with a pre shared key and pre negotiated algorithms will work just fine, and only show garbage to the attacker.</li>
+</ul>
+<p>See the pattern there? We already know ressourceful attackers will get past those false defenses. But the point is to make them waste time in basically three ways:</p>
+<ul>
+<li>forbid automated attacks, they should ressort to manual ways</li>
+<li>make them work to get useful information</li>
+<li>mess with their heads</li>
+</ul>
+<p>Security by obscurity is basically the fun side of defense, because you're always looking for ways to annoy the adversary ;)</p>
+<h2>The fourth rule of security by obscurity is: you are not the attacker</h2>
+<p>While those defense techniques can be useful, be aware that they can significantly hamper your day to day work. They should not prevent you from managing your system correctly. Every "WTF" moment for an attacker might be a "WTF" moment for one of your developers, system administrators, or even worse, one of your users.</p>
+<p>Worse, sometimes, it might annoy you, but will be bypassed easily by the adversary (do not underestimate their ability to write clever automated tools).</p>
+<p>So, be careful with security by obscurity, do not rely only on it, and have fun annoying the attackers :)</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
   
   <article class="post-body">
     <h2 class="post-title">
@@ -738,70 +813,6 @@ end<br />
 {&quot;echo&quot; : &quot;blah&quot;, &quot;nb&quot; : &quot;UNION ALL SELECT LOAD_FILE(CHAR(34,47,101,116,99,47,112,97,115,115,119,100,34))&quot;, &quot;data&quot;: [1, 2, 3]}<br />
 [/sourcecode]</p>
 <p>As I said before, it is not safe against the YAML parsing vulnerability. Also, I did not really test the performance of this. But it is still a nice and easy solution for API filtering.</p>
-
-    
-
-    
-      
-      
-      
-
-      
-    
-  </article>
-  
-  <article class="post-body">
-    <h2 class="post-title">
-      <a href="/development/security/2013/01/30/looking-for-big-architectures-and-adventurous-sysadmins.html">
-        Looking for big architectures and adventurous sysadmins
-      </a>
-    </h2>
-    <div class="post-meta">
-  <span class="post-date">30 Jan 2013</span>
-  <span class="post-categories">
-    
-      &bull;
-
-      
-      
-      
-
-      
-        <a href="/category/development.html">
-          Development
-        </a>
-      
-    
-      &bull;
-
-      
-      
-      
-
-      
-        <a href="/category/security.html">
-          Security
-        </a>
-      
-    
-  </span>
-</div>
-
-    
-      <p>Last week, I wrote <a title="5 easy tips to accelerate SSL" href="http://unhandledexpression.com/2013/01/25/5-easy-tips-to-accelerate-ssl/" target="_blank">a post about SSL optimization</a> that showed the big interest people have in getting the absolute best performance from their web servers.</p>
-<p>That post was just a small part of <a title="SSL: what you need to know" href="http://leanpub.com/SSL" target="_blank">the ebook on SSL tuning</a> I am currently writing. This ebook will cover various subjects:</p>
-<ul>
-<li>algorithms comparison</li>
-<li>handshake tuning</li>
-<li>HSTS</li>
-<li>session tickets</li>
-<li>load balancers</li>
-<li>...</li>
-</ul>
-<p>I test a lot of different architectures, to provide you with tips directly adaptable to your system (like I did previously with Apache and Nginx). But I don't have access to every system under the sun...</p>
-<p>So, if you feel adventurous enough to try SSL optimization on your servers, <a href="http://geoffroycouprie.com/" target="_blank">please contact me</a>, I would be happy to help you!</p>
-<p>I am especially interested in large architectures (servers in multiple datacenters around the world, large load balancers, CDNs) and mobile application backends.</p>
-<p>And don't forget to <a title="SSL: what you need to know" href="http://leanpub.com/SSL" target="_blank">check out the ebook, to be notified about updates!</a></p>
 
     
 

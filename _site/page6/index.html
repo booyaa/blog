@@ -166,6 +166,10 @@
     
   
 
+  
+    
+  
+
 
   
 
@@ -234,6 +238,10 @@
     
   
 
+  
+
+  
+    
   
 
   
@@ -347,6 +355,70 @@
 
   
 
+  
+  <article class="post-body">
+    <h2 class="post-title">
+      <a href="/development/security/2013/01/30/looking-for-big-architectures-and-adventurous-sysadmins.html">
+        Looking for big architectures and adventurous sysadmins
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">30 Jan 2013</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/development.html">
+          Development
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+    
+      <p>Last week, I wrote <a title="5 easy tips to accelerate SSL" href="http://unhandledexpression.com/2013/01/25/5-easy-tips-to-accelerate-ssl/" target="_blank">a post about SSL optimization</a> that showed the big interest people have in getting the absolute best performance from their web servers.</p>
+<p>That post was just a small part of <a title="SSL: what you need to know" href="http://leanpub.com/SSL" target="_blank">the ebook on SSL tuning</a> I am currently writing. This ebook will cover various subjects:</p>
+<ul>
+<li>algorithms comparison</li>
+<li>handshake tuning</li>
+<li>HSTS</li>
+<li>session tickets</li>
+<li>load balancers</li>
+<li>...</li>
+</ul>
+<p>I test a lot of different architectures, to provide you with tips directly adaptable to your system (like I did previously with Apache and Nginx). But I don't have access to every system under the sun...</p>
+<p>So, if you feel adventurous enough to try SSL optimization on your servers, <a href="http://geoffroycouprie.com/" target="_blank">please contact me</a>, I would be happy to help you!</p>
+<p>I am especially interested in large architectures (servers in multiple datacenters around the world, large load balancers, CDNs) and mobile application backends.</p>
+<p>And don't forget to <a title="SSL: what you need to know" href="http://leanpub.com/SSL" target="_blank">check out the ebook, to be notified about updates!</a></p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
   
   <article class="post-body">
     <h2 class="post-title">
@@ -763,77 +835,6 @@ Header set Cache-Control "max-age=31536000, public"
 <p>Why am I excited to work on this port? This KickStarter will give us the opportunity to work full time on WinRT for a few months, and solve all these challenges for us, but also for other open source projects. We already know how to create a <a title="VLC's compatibility library" href="http://git.videolan.org/?p=vlc.git;a=tree;f=compat;h=324f1cea3fda392582397d36898615a493b5e3a9;hb=HEAD" target="_blank">compatibility layer</a> for different operating systems, so we will be able to build one for WinRT. We could also come up with guidelines on using free software toolchains to build WinRT applications.</p>
 <p>Basically, we're paving the way to WinRT for opensource libraries and applications, with the nice side effect on running VLC on Windows 8.</p>
 <p><strong>Help us make this project a reality! Please contribute to our <a title="VLC for Windows 8 Kickstarter" href="https://bitly.com/U4mfxS" target="_blank">Kickstarter for Windows 8</a>!</strong></p>
-
-    
-
-    
-      
-      
-      
-
-      
-    
-  </article>
-  
-  <article class="post-body">
-    <h2 class="post-title">
-      <a href="/development/general/2012/12/07/testing-android-push-without-a-server.html">
-        Testing Android push without a server
-      </a>
-    </h2>
-    <div class="post-meta">
-  <span class="post-date">07 Dec 2012</span>
-  <span class="post-categories">
-    
-      &bull;
-
-      
-      
-      
-
-      
-        <a href="/category/development.html">
-          Development
-        </a>
-      
-    
-      &bull;
-
-      
-      
-      
-
-      
-        General
-      
-    
-  </span>
-</div>
-
-    
-      <p>Adding push support to an Android app is quite easy, but it can be cumbersome to test it if the server part is not ready yet.</p>
-<p>For this, you only need your API key, and the registration ID for your device (you can get it from a call to <em>GCMRegistrar.getRegistrationId</em>). Also, you should have already called <em>GCMRegistrar.register</em> from your app, with your sender id.</p>
-<p>Then, to send a push message to your application, use this code:</p>
-<blockquote><p>import java.io.IOException;</p>
-<p>import com.google.android.gcm.server.*;</p>
-<p>public class Main {</p>
-<p>/**<br />
-* @param args<br />
-*/<br />
-public static void main(String[] args) {</p>
-<p>String apiKey = "...";</p>
-<p>String deviceId = "...";<br />
-Sender sender = new Sender(apiKey);<br />
-Message message = new Message.Builder().addData("data1", "hello").build();</p>
-<p>try {<br />
-Result result = sender.send(message, deviceId, 2);<br />
-System.out.println("got result: "+result.toString());<br />
-} catch (IOException e) {<br />
-// TODO Auto-generated catch block<br />
-e.printStackTrace();<br />
-}<br />
-}</p>
-<p>}</p></blockquote>
 
     
 
