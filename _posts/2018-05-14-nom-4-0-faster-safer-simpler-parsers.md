@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "nom 4.0: faster, safer, simpler parsers"
-date: 2018-04-21 12:00:00 +01:00
+date: 2018-05-14 12:00:00 +01:00
 categories:
 - General
 tags:
@@ -11,11 +11,17 @@ tags:
 I'm delighted to announce that [nom](https://github.com/geal/nom), the extremely
 fast Rust parser combinators library, has reached major version 4.
 
-**TL;DR: the new nom version is simpler, faster, has a better documentation, you can
-find a summary of what changed input
+**TL;DR: the new nom version is simpler, faster, has a better documentation, and you can
+find a summary of what changed in
 [the upgrade documentation](https://github.com/Geal/nom/blob/master/doc/upgrading_to_nom_4.md)**
 
 **side note: how fast is nom? it can reach [2GB/s when parsing HTTP requests](https://github.com/Geal/parser_benchmarks/tree/master/http)**
+
+![nom logo](/assets/nom.png)
+
+Since nom is now a well established, serious project, we got a brand new logo,
+courtesy of [Ange Albertini](https://corkami.github.io/).
+The nom monster will happily eat your data byte by byte :)
 
 It took nearly 6 months of development and the library went through nearly 5
 entire rewrites. Compare that to previous major releases, which took a month at
@@ -110,7 +116,7 @@ has lots of interesting points:
 - the `Context` enum is now extended by the `verbose-errors` feature, so it is the same type
 - errors always store position information
 - `Incomplete` has moved to the error case so you can easily ignore it
-- `IResult::Done(remaining, value)` has been replaced with `Ok(remaining, value)` so you could easily do `let (remaining, value) = parser(input)?;` like you would do with other `Result` based functions
+- `IResult::Done(remaining, value)` has been replaced with `Ok((remaining, value))` so you could easily do `let (remaining, value) = parser(input)?;` like you would do with other `Result` based functions
 - the `Err` enum now contains a`Failure` case epresenting an unrecoverable error (combinators like `alt!` will not try another branch)
 
 And we get all of these benefits while keeping the same memory footprint in "simple" errors mode,
@@ -259,7 +265,7 @@ Meanwhile, nom will continue to happily munch bytes for you, as one of the
 fastest, most reliable parsing libraries available.
 
 In the future, I'm interested in supporting more use cases, like zero
-allocation parsers, and integrating more SIMD work, like what was done for
-the HTTP parser. My goal is to get nom parser securing data access in more
-and more systems, whatever the language or platform.
+allocation parsers or Web Assembly usage, and integrating more SIMD work,
+like what was done for the HTTP parser. The goal is to get nom parsers to
+secure data access in more and more systems, whatever the language or platform.
 
