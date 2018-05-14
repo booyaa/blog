@@ -6,6 +6,9 @@ categories:
 - General
 tags:
 - Rust
+- parser
+- security
+- nom
 ---
 
 I'm delighted to announce that [nom](https://github.com/geal/nom), the extremely
@@ -13,9 +16,9 @@ fast Rust parser combinators library, has reached major version 4.
 
 **TL;DR: the new nom version is simpler, faster, has a better documentation, and you can
 find a summary of what changed in
-[the upgrade documentation](https://github.com/Geal/nom/blob/master/doc/upgrading_to_nom_4.md)**
+[the upgrade documentation](https://github.com/Geal/nom/blob/master/doc/upgrading_to_nom_4.md).**
 
-**side note: how fast is nom? it can reach [2GB/s when parsing HTTP requests](https://github.com/Geal/parser_benchmarks/tree/master/http)**
+**side note: how fast is nom? it can reach [2GB/s when parsing HTTP requests](https://github.com/Geal/parser_benchmarks/tree/master/http).**
 
 ![nom logo](/assets/nom.png)
 
@@ -253,6 +256,13 @@ $ cargo benchcmp 3.2.1.bench 4.0.0.bench
 
 nom 4 is not faster everywhere, ther are still some small regressions that will be fixed
 soon, but overall we see great improvements.
+
+With nom 4 and some recent work around integrating lookup tables and vectorization
+in nom parsers, we can get [impressive results in HTTP parsing](https://github.com/Geal/parser_benchmarks/tree/master/http)
+(comparing with [combine](https://github.com/Marwes/combine), [Joyent's http-parser](https://github.com/joyent/http-parser),
+[httparse](https://github.com/seanmonstar/httparse) and [picohttpparser](https://github.com/h2o/picohttpparser)):
+
+![HTTP benchmarks](/assets/http_benchmarks.png)
 
 ## the future for nom
 
