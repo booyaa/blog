@@ -434,7 +434,7 @@
 <p>That’s why the <a href="https://github.com/iovisor/bcc" rel="noopener" target="_blank">BCC project</a> provides an easy to use interface to compile and load eBPF programs. They made it so simple that you can write a python script to compile, load and interact with your program:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">bcc</span> <span class="kn">import</span> <span class="n">BPF</span>
-<span class="n">BPF</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s">'int kprobe__sys_clone(void *ctx) { bpf_trace_printk("Hello, World!&amp;#092;n"); return 0; }'</span><span class="p">)</span><span class="o">.</span><span class="n">trace_print</span><span class="p">()</span>
+<span class="n">BPF</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s">'int kprobe__sys_clone(void *ctx) { bpf_trace_printk("Hello, World!</span><span class="se">\n</span><span class="s">"); return 0; }'</span><span class="p">)</span><span class="o">.</span><span class="n">trace_print</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>They provide a lot of <a href="https://github.com/iovisor/bcc/tree/master/examples" rel="noopener" target="_blank">useful examples</a> and <a href="https://github.com/iovisor/bcc/blob/master/docs/tutorial_bcc_python_developer.md" rel="noopener" target="_blank">a nice tutorial</a> to get started writing eBPF tracers.</p>
@@ -447,13 +447,13 @@
 
 <p>Since it is possible to compile to eBPF bytecode from C, it is possible to compile LLVM IR (the kind of bytecode LLVM generates from the code before compiling it to the target CPU’s assembly) to eBPF. Look for “LLVM IR debugging” in <a href="https://cilium.readthedocs.io/en/latest/bpf/#llvm" rel="noopener" target="_blank">this link</a> for an example. And I know I can compile Rust to that LLVM IR, and everything should work out, as long as Rust’s LLVM version is the same as the system’s version.</p>
 
-<p>So I created a small Rust project, and wrote the following build script:</p>
+<p>So I created a small Rust project (<a href="https://github.com/Geal/rust-ebpf-demo">code available here</a>), and wrote the following build script:</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
 cargo rustc <span class="nt">--release</span> <span class="nt">--</span> <span class="nt">--emit</span><span class="o">=</span>llvm-ir
-<span class="nb">cp </span>target/release/deps/hello-&amp;#042<span class="p">;</span>.ll hello.ll
+<span class="nb">cp </span>target/release/deps/hello-<span class="k">*</span>.ll hello.ll
 cargo rustc <span class="nt">--release</span> <span class="nt">--</span> <span class="nt">--emit</span><span class="o">=</span>llvm-bc
-<span class="nb">cp </span>target/release/deps/hello-&amp;#042<span class="p">;</span>.bc hello.bc
+<span class="nb">cp </span>target/release/deps/hello-<span class="k">*</span>.bc hello.bc
 llc-4.0 hello.bc <span class="nt">-march</span><span class="o">=</span>bpf <span class="nt">-filetype</span><span class="o">=</span>obj <span class="nt">-o</span> hello.o
 </code></pre></div></div>
 
@@ -475,18 +475,18 @@ I used the example program from <a href="https://kinvolk.io/blog/2017/09/an-upda
 
 <span class="nd">#[no_mangle]</span>
 <span class="nd">#[link_section</span> <span class="nd">=</span> <span class="s">"kprobe/SyS_clone"</span><span class="nd">]</span>
-<span class="k">pub</span> <span class="k">extern</span> <span class="s">"C"</span> <span class="k">fn</span> <span class="nf">kprobe__sys_clone</span><span class="p">(</span><span class="n">ctx</span><span class="p">:</span> <span class="o">*</span><span class="k">mut</span> <span class="nb">u8</span><span class="p">)</span> <span class="err">-</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="nb">i32</span> <span class="p">{</span>
+<span class="k">pub</span> <span class="k">extern</span> <span class="s">"C"</span> <span class="k">fn</span> <span class="nf">kprobe__sys_clone</span><span class="p">(</span><span class="n">ctx</span><span class="p">:</span> <span class="o">*</span><span class="k">mut</span> <span class="nb">u8</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nb">i32</span> <span class="p">{</span>
   <span class="k">let</span> <span class="n">BPF_FUNC_trace_printk</span> <span class="o">=</span> <span class="k">unsafe</span> <span class="p">{</span>
-    <span class="nn">transmute</span><span class="p">::</span> <span class="nb">i32</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;(</span><span class="mi">6</span><span class="p">)</span>
+    <span class="nn">transmute</span><span class="p">::</span><span class="o">&lt;</span><span class="nb">i32</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
   <span class="p">};</span>
 
 <span class="k">let</span> <span class="n">msg</span><span class="p">:</span> <span class="p">[</span><span class="nb">u8</span><span class="p">;</span> <span class="mi">17</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">104u8</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">108</span><span class="p">,</span> <span class="mi">108</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">114</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">109</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">114</span><span class="p">,</span> <span class="mi">117</span><span class="p">,</span> <span class="mi">115</span><span class="p">,</span> <span class="mi">116</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">];</span> <span class="c">//b"hello from Rust\0"</span>
-  <span class="nf">BPF_FUNC_trace_printk</span><span class="p">((</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">msg</span><span class="p">)</span><span class="nf">.as_ptr</span><span class="p">(),</span> <span class="mi">17</span><span class="p">);</span>
+  <span class="nf">BPF_FUNC_trace_printk</span><span class="p">((</span><span class="o">&amp;</span><span class="n">msg</span><span class="p">)</span><span class="nf">.as_ptr</span><span class="p">(),</span> <span class="mi">17</span><span class="p">);</span>
 <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>First, the constants are in their own ELF section, this is expected by gobpf’s elf loader. Apparently, I cannot write <code class="highlighter-rouge">pub static _license: &amp;amp;amp;'static [u8] = b"GPL\0"</code>, because the <code class="highlighter-rouge">_license</code> symbol would then be a relocation of the actual string.</p>
+<p>First, the constants are in their own ELF section, this is expected by gobpf’s elf loader. Apparently, I cannot write <code class="highlighter-rouge">pub static _license: &amp;'static [u8] = b"GPL\0"</code>, because the <code class="highlighter-rouge">_license</code> symbol would then be a relocation of the actual string.</p>
 
 <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#</span><span class="p">[</span><span class="n">no_mangle</span><span class="p">]</span>
 <span class="nd">#[link_section</span> <span class="nd">=</span> <span class="s">"license"</span><span class="nd">]</span>
@@ -501,21 +501,21 @@ I used the example program from <a href="https://kinvolk.io/blog/2017/09/an-upda
 
 <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#</span><span class="p">[</span><span class="n">no_mangle</span><span class="p">]</span>
 <span class="nd">#[link_section</span> <span class="nd">=</span> <span class="s">"kprobe/SyS_clone"</span><span class="nd">]</span>
-<span class="k">pub</span> <span class="k">extern</span> <span class="s">"C"</span> <span class="k">fn</span> <span class="nf">kprobe__sys_clone</span><span class="p">(</span><span class="n">ctx</span><span class="p">:</span> <span class="o">*</span><span class="k">mut</span> <span class="nb">u8</span><span class="p">)</span> <span class="err">-</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="nb">i32</span> <span class="p">{</span>
+<span class="k">pub</span> <span class="k">extern</span> <span class="s">"C"</span> <span class="k">fn</span> <span class="nf">kprobe__sys_clone</span><span class="p">(</span><span class="n">ctx</span><span class="p">:</span> <span class="o">*</span><span class="k">mut</span> <span class="nb">u8</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nb">i32</span> <span class="p">{</span>
 </code></pre></div></div>
 
 <p>Now we might need to import functions. They are <a href="http://elixir.free-electrons.com/linux/v4.7/source/include/uapi/linux/bpf.h#L153" rel="noopener" target="_blank">defined in a C enum</a>, but interpreted as function pointers. So calling the printk function from there amounts writing the instruction <code class="highlighter-rouge">call 6</code>.
 So we transmute the number <code class="highlighter-rouge">6</code> into a function. I know, ewww, but it works :D</p>
 
 <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">BPF_FUNC_trace_printk</span> <span class="o">=</span> <span class="k">unsafe</span> <span class="p">{</span>
-  <span class="nn">transmute</span><span class="p">::</span> <span class="nb">i32</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;(</span><span class="mi">6</span><span class="p">)</span>
+  <span class="nn">transmute</span><span class="p">::</span><span class="o">&lt;</span><span class="nb">i32</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
 <span class="p">};</span>
 </code></pre></div></div>
 
 <p>And now, the last part, actually printing something. To avoid the previous issue of a constant string appearing as a relocated symbol on which gobpf will throw an error, I defined it as a local constant, then called <code class="highlighter-rouge">BPF_FUNC_trace_printk</code> on it. That should be harmless, right?</p>
 
 <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">msg</span><span class="p">:</span> <span class="p">[</span><span class="nb">u8</span><span class="p">;</span> <span class="mi">17</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">104u8</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">108</span><span class="p">,</span> <span class="mi">108</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">114</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">109</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">114</span><span class="p">,</span> <span class="mi">117</span><span class="p">,</span> <span class="mi">115</span><span class="p">,</span> <span class="mi">116</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">];</span> <span class="c">//b"hello from Rust\0"</span>
-<span class="nf">BPF_FUNC_trace_printk</span><span class="p">((</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">msg</span><span class="p">)</span><span class="nf">.as_ptr</span><span class="p">(),</span> <span class="mi">17</span><span class="p">);</span>
+<span class="nf">BPF_FUNC_trace_printk</span><span class="p">((</span><span class="o">&amp;</span><span class="n">msg</span><span class="p">)</span><span class="nf">.as_ptr</span><span class="p">(),</span> <span class="mi">17</span><span class="p">);</span>
 </code></pre></div></div>
 
 <p>So now, let’s take a look at the generated LLVM IR (the ll file):</p>

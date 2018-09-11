@@ -12,97 +12,8 @@ categories:
 - Rust
 tags: []
 meta:
-  _wpcom_is_markdown: '1'
-  _edit_last: '3997956'
-  geo_public: '0'
-  _oembed_11e55cc48ec6d97b9119895c09eb77c0: "<div class=\"embed-twitter\"><blockquote
-    class=\"twitter-tweet\" data-width=\"525\" data-dnt=\"true\"><p lang=\"en\" dir=\"ltr\">guess
-    who has an eBPF tracer written in Rust? This guy\U0001F44D <a href=\"https://t.co/3aE1giGWeK\">pic.twitter.com/3aE1giGWeK</a></p>&mdash;
-    Geoffroy Couprie (@gcouprie) <a href=\"https://twitter.com/gcouprie/status/957332988462882819?ref_src=twsrc%5Etfw\">January
-    27, 2018</a></blockquote><script async src=\"https://platform.twitter.com/widgets.js\"
-    charset=\"utf-8\"></script></div>"
-  _oembed_time_11e55cc48ec6d97b9119895c09eb77c0: '1517603539'
-  _oembed_5bae8e736d42b1662ba750e816d2f257: "<div class=\"embed-twitter\"><blockquote
-    class=\"twitter-tweet\" data-width=\"525\" data-dnt=\"true\"><p lang=\"en\" dir=\"ltr\">you:
-    *sobbing* please stop...you can&#39;t rewrite everything in Rust!<br>me: *\U0001F449video
-    games* Rust<br>you: nooo\U0001F622<br>me: *\U0001F449kernel* Rust<br>you: stop
-    that\U0001F62D<br>me: *\U0001F449frontend apps* Rust &amp; wasm<br>you: \U0001F631</p>&mdash;
-    Geoffroy Couprie (@gcouprie) <a href=\"https://twitter.com/gcouprie/status/951526092279607297?ref_src=twsrc%5Etfw\">January
-    11, 2018</a></blockquote><script async src=\"https://platform.twitter.com/widgets.js\"
-    charset=\"utf-8\"></script></div>"
-  _oembed_time_5bae8e736d42b1662ba750e816d2f257: '1517603540'
-  _oembed_83868b67aae2f5abec37b594424bafc3: "<div class=\"embed-twitter\"><blockquote
-    class=\"twitter-tweet\" data-width=\"500\" data-dnt=\"true\"><p lang=\"en\" dir=\"ltr\">guess
-    who has an eBPF tracer written in Rust? This guy\U0001F44D <a href=\"https://t.co/3aE1giGWeK\">pic.twitter.com/3aE1giGWeK</a></p>&mdash;
-    Geoffroy Couprie (@gcouprie) <a href=\"https://twitter.com/gcouprie/status/957332988462882819?ref_src=twsrc%5Etfw\">January
-    27, 2018</a></blockquote><script async src=\"https://platform.twitter.com/widgets.js\"
-    charset=\"utf-8\"></script></div>"
-  _oembed_a3a113cb717c681b3a2423ecb5de3ee7: "<div class=\"embed-twitter\"><blockquote
-    class=\"twitter-tweet\" data-width=\"550\" data-dnt=\"true\"><p lang=\"en\" dir=\"ltr\">guess
-    who has an eBPF tracer written in Rust? This guy\U0001F44D <a href=\"https://t.co/3aE1giGWeK\">pic.twitter.com/3aE1giGWeK</a></p>&mdash;
-    Geoffroy Couprie (@gcouprie) <a href=\"https://twitter.com/gcouprie/status/957332988462882819?ref_src=twsrc%5Etfw\">January
-    27, 2018</a></blockquote><script async src=\"https://platform.twitter.com/widgets.js\"
-    charset=\"utf-8\"></script></div>"
-  _oembed_time_a3a113cb717c681b3a2423ecb5de3ee7: '1517603591'
-  _oembed_162070069db0721cefdd33e2eeac9715: "<div class=\"embed-twitter\"><blockquote
-    class=\"twitter-tweet\" data-width=\"550\" data-dnt=\"true\"><p lang=\"en\" dir=\"ltr\">you:
-    *sobbing* please stop...you can&#39;t rewrite everything in Rust!<br>me: *\U0001F449video
-    games* Rust<br>you: nooo\U0001F622<br>me: *\U0001F449kernel* Rust<br>you: stop
-    that\U0001F62D<br>me: *\U0001F449frontend apps* Rust &amp; wasm<br>you: \U0001F631</p>&mdash;
-    Geoffroy Couprie (@gcouprie) <a href=\"https://twitter.com/gcouprie/status/951526092279607297?ref_src=twsrc%5Etfw\">January
-    11, 2018</a></blockquote><script async src=\"https://platform.twitter.com/widgets.js\"
-    charset=\"utf-8\"></script></div>"
-  _oembed_time_162070069db0721cefdd33e2eeac9715: '1517603591'
-  _oembed_3dec68f877aa2288ead7d0c459b2b1df: "<div class=\"embed-twitter\"><blockquote
-    class=\"twitter-tweet\" data-width=\"500\" data-dnt=\"true\"><p lang=\"en\" dir=\"ltr\">you:
-    *sobbing* please stop...you can&#39;t rewrite everything in Rust!<br>me: *\U0001F449video
-    games* Rust<br>you: nooo\U0001F622<br>me: *\U0001F449kernel* Rust<br>you: stop
-    that\U0001F62D<br>me: *\U0001F449frontend apps* Rust &amp; wasm<br>you: \U0001F631</p>&mdash;
-    Geoffroy Couprie (@gcouprie) <a href=\"https://twitter.com/gcouprie/status/951526092279607297?ref_src=twsrc%5Etfw\">January
-    11, 2018</a></blockquote><script async src=\"https://platform.twitter.com/widgets.js\"
-    charset=\"utf-8\"></script></div>"
-  _oembed_ba93949556bacbaaf0585c4cadbd76d0: "<div class=\"embed-twitter\"><blockquote
-    class=\"twitter-tweet\" data-width=\"550\" data-dnt=\"true\"><p lang=\"en\" dir=\"ltr\">guess
-    who has an eBPF tracer written in Rust? This guy\U0001F44D <a href=\"https://t.co/3aE1giGWeK\">pic.twitter.com/3aE1giGWeK</a></p>&mdash;
-    Geoffroy Couprie (@gcouprie) <a href=\"https://twitter.com/gcouprie/status/957332988462882819?ref_src=twsrc%5Etfw\">January
-    27, 2018</a></blockquote><script async src=\"https://platform.twitter.com/widgets.js\"
-    charset=\"utf-8\"></script></div>"
-  timeline_notification: '1517603593'
-  _publicize_job_id: '14314517170'
-  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=14335834&stype=M&topic=6365290824275681280&type=U&a=JAVj
-  _publicize_done_97921: '1'
-  _wpas_done_77741: '1'
-  _oembed_time_83868b67aae2f5abec37b594424bafc3: '1517603594'
-  _oembed_time_3dec68f877aa2288ead7d0c459b2b1df: '1517603594'
-  _oembed_time_ba93949556bacbaaf0585c4cadbd76d0: '1517603649'
-  _oembed_93db8bb66f5c1cc3a8eb87415889d990: "<div class=\"embed-twitter\"><blockquote
-    class=\"twitter-tweet\" data-width=\"550\" data-dnt=\"true\"><p lang=\"en\" dir=\"ltr\">you:
-    *sobbing* please stop...you can&#39;t rewrite everything in Rust!<br>me: *\U0001F449video
-    games* Rust<br>you: nooo\U0001F622<br>me: *\U0001F449kernel* Rust<br>you: stop
-    that\U0001F62D<br>me: *\U0001F449frontend apps* Rust &amp; wasm<br>you: \U0001F631</p>&mdash;
-    Geoffroy Couprie (@gcouprie) <a href=\"https://twitter.com/gcouprie/status/951526092279607297?ref_src=twsrc%5Etfw\">January
-    11, 2018</a></blockquote><script async src=\"https://platform.twitter.com/widgets.js\"
-    charset=\"utf-8\"></script></div>"
-  _oembed_time_93db8bb66f5c1cc3a8eb87415889d990: '1517603649'
-  _oembed_387744a6913800531564b4e8f73956cc: "<div class=\"embed-twitter\"><blockquote
-    class=\"twitter-tweet\" data-width=\"220\" data-dnt=\"true\"><p lang=\"en\" dir=\"ltr\">guess
-    who has an eBPF tracer written in Rust? This guy\U0001F44D <a href=\"https://t.co/3aE1giGWeK\">pic.twitter.com/3aE1giGWeK</a></p>&mdash;
-    Geoffroy Couprie (@gcouprie) <a href=\"https://twitter.com/gcouprie/status/957332988462882819?ref_src=twsrc%5Etfw\">January
-    27, 2018</a></blockquote><script async src=\"https://platform.twitter.com/widgets.js\"
-    charset=\"utf-8\"></script></div>"
-  _wpas_skip_77741: '1'
-  _oembed_time_387744a6913800531564b4e8f73956cc: '1519227860'
-  _oembed_27d9dc2d16eb9472b82db70ca3e30f8e: "<div class=\"embed-twitter\"><blockquote
-    class=\"twitter-tweet\" data-width=\"220\" data-dnt=\"true\"><p lang=\"en\" dir=\"ltr\">you:
-    *sobbing* please stop...you can&#39;t rewrite everything in Rust!<br>me: *\U0001F449video
-    games* Rust<br>you: nooo\U0001F622<br>me: *\U0001F449kernel* Rust<br>you: stop
-    that\U0001F62D<br>me: *\U0001F449frontend apps* Rust &amp; wasm<br>you: \U0001F631</p>&mdash;
-    Geoffroy Couprie (@gcouprie) <a href=\"https://twitter.com/gcouprie/status/951526092279607297?ref_src=twsrc%5Etfw\">January
-    11, 2018</a></blockquote><script async src=\"https://platform.twitter.com/widgets.js\"
-    charset=\"utf-8\"></script></div>"
-  _oembed_time_27d9dc2d16eb9472b82db70ca3e30f8e: '1519227861'
 author:
-  login: geaaal
+  login: geal
   email: geo.couprie@gmail.com
   display_name: Géal
   first_name: ''
@@ -166,7 +77,7 @@ That's why the <a href="https://github.com/iovisor/bcc" rel="noopener" target="_
 
 ```python
 from bcc import BPF
-BPF(text='int kprobe__sys_clone(void *ctx) { bpf_trace_printk("Hello, World!&#092;n"); return 0; }').trace_print()
+BPF(text='int kprobe__sys_clone(void *ctx) { bpf_trace_printk("Hello, World!\n"); return 0; }').trace_print()
 ```
 
 They provide a lot of <a href="https://github.com/iovisor/bcc/tree/master/examples" rel="noopener" target="_blank">useful examples</a> and <a href="https://github.com/iovisor/bcc/blob/master/docs/tutorial_bcc_python_developer.md" rel="noopener" target="_blank">a nice tutorial</a> to get started writing eBPF tracers.
@@ -179,14 +90,14 @@ And, now, you'll see where I am going with this. Being one of those annoying Rus
 
 Since it is possible to compile to eBPF bytecode from C, it is possible to compile LLVM IR (the kind of bytecode LLVM generates from the code before compiling it to the target CPU's assembly) to eBPF. Look for "LLVM IR debugging" in <a href="https://cilium.readthedocs.io/en/latest/bpf/#llvm" rel="noopener" target="_blank">this link</a> for an example. And I know I can compile Rust to that LLVM IR, and everything should work out, as long as Rust's LLVM version is the same as the system's version.
 
-So I created a small Rust project, and wrote the following build script:
+So I created a small Rust project ([code available here](https://github.com/Geal/rust-ebpf-demo)), and wrote the following build script:
 
 ```sh
 #!/bin/sh
 cargo rustc --release -- --emit=llvm-ir
-cp target/release/deps/hello-&#042;.ll hello.ll
+cp target/release/deps/hello-*.ll hello.ll
 cargo rustc --release -- --emit=llvm-bc
-cp target/release/deps/hello-&#042;.bc hello.bc
+cp target/release/deps/hello-*.bc hello.bc
 llc-4.0 hello.bc -march=bpf -filetype=obj -o hello.o
 ```
 
@@ -209,18 +120,18 @@ pub static _version: u32 = 0xFFFFFFFE;
 
 #[no_mangle]
 #[link_section = "kprobe/SyS_clone"]
-pub extern "C" fn kprobe__sys_clone(ctx: *mut u8) -&gt; i32 {
+pub extern "C" fn kprobe__sys_clone(ctx: *mut u8) -> i32 {
   let BPF_FUNC_trace_printk = unsafe {
-    transmute:: i32&gt;(6)
+    transmute::<i32>(6)
   };
 
 let msg: [u8; 17] = [104u8, 101, 108, 108, 111, 32, 102, 114, 111, 109, 32, 114, 117, 115, 116, 10, 0]; //b"hello from Rust\0"
-  BPF_FUNC_trace_printk((&amp;msg).as_ptr(), 17);
+  BPF_FUNC_trace_printk((&msg).as_ptr(), 17);
 return 0;
 }
 ```
 
-First, the constants are in their own ELF section, this is expected by gobpf's elf loader. Apparently, I cannot write `pub static _license: &amp;amp;'static [u8] = b"GPL\0"`, because the `_license` symbol would then be a relocation of the actual string.
+First, the constants are in their own ELF section, this is expected by gobpf's elf loader. Apparently, I cannot write `pub static _license: &'static [u8] = b"GPL\0"`, because the `_license` symbol would then be a relocation of the actual string.
 
 ```rust
 #[no_mangle]
@@ -237,7 +148,7 @@ Now, the function: gobpf expects a section with the name of the function we will
 ```rust
 #[no_mangle]
 #[link_section = "kprobe/SyS_clone"]
-pub extern "C" fn kprobe__sys_clone(ctx: *mut u8) -&gt; i32 {
+pub extern "C" fn kprobe__sys_clone(ctx: *mut u8) -> i32 {
 ```
 
 Now we might need to import functions. They are <a href="http://elixir.free-electrons.com/linux/v4.7/source/include/uapi/linux/bpf.h#L153" rel="noopener" target="_blank">defined in a C enum</a>, but interpreted as function pointers. So calling the printk function from there amounts writing the instruction `call 6`.
@@ -245,7 +156,7 @@ So we transmute the number `6` into a function. I know, ewww, but it works :D
 
 ```rust
 let BPF_FUNC_trace_printk = unsafe {
-  transmute:: i32&gt;(6)
+  transmute::<i32>(6)
 };
 ```
 
@@ -253,7 +164,7 @@ And now, the last part, actually printing something. To avoid the previous issue
 
 ```rust
 let msg: [u8; 17] = [104u8, 101, 108, 108, 111, 32, 102, 114, 111, 109, 32, 114, 117, 115, 116, 10, 0]; //b"hello from Rust\0"
-BPF_FUNC_trace_printk((&amp;msg).as_ptr(), 17);
+BPF_FUNC_trace_printk((&msg).as_ptr(), 17);
 ```
 
 So now, let's take a look at the generated LLVM IR (the ll file):
