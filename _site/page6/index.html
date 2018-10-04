@@ -359,6 +359,114 @@
   
   <article class="post-body">
     <h2 class="post-title">
+      <a href="/ruby/security/2013/02/06/filter-rails-json-input-with-route-constraints.html">
+        Filter Rails JSON input with route constraints
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">06 Feb 2013</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        Ruby
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+    
+      <p>Following the recent <a title="Vulnerability in JSON Parser in Ruby on Rails 3.0 and 2.3" href="https://groups.google.com/forum/?fromgroups=#!topic/rubyonrails-security/1h2DR63ViGo" target="_blank">YAML parsing vulnerabilities in Rails</a>, I decided to act on an idea I had a few months ago: using route constraints to define strict API contracts in Rails.</p>
+<p>Sadly, it does not protect against the YAML parsing problem (and the probable similar vulnerabilities we will see in the following months), because the request is interpreted before going through the route constraints. But it can protect from the <a title="Rails security guide: mass assignment" href="http://guides.rubyonrails.org/security.html#mass-assignment" target="_blank">mass assignment vulnerability</a>., and probably some SQL injections.</p>
+<p>Here is the idea: Rails 3 introduced the route constraints, a way to execute fonctions on the request before it is passed to the controllers. By combining it with the json-schema gem, we can filter the JSON input quite easily.</p>
+<p>For the following example data:</p>
+<p>[sourcecode language="javascript"]<br />
+{&quot;echo&quot; : &quot;blah&quot;, &quot;nb&quot; : 1, &quot;data&quot;: [1, 2, 3]}<br />
+[/sourcecode]</p>
+<p>We can define the following schema:</p>
+<p>[sourcecode language="javascript"]<br />
+{<br />
+    &quot;type&quot;: &quot;object&quot;,<br />
+    &quot;$schema&quot;: &quot;http://json-schema.org/draft-03/schema&quot;,<br />
+    &quot;id&quot;: &quot;#&quot;,<br />
+    &quot;required&quot;: false,<br />
+    &quot;additionalProperties&quot;: false,<br />
+    &quot;properties&quot;: {<br />
+        &quot;data&quot;: {<br />
+            &quot;type&quot;: &quot;array&quot;,<br />
+            &quot;id&quot;: &quot;data&quot;,<br />
+            &quot;required&quot;: false,<br />
+            &quot;items&quot;: {<br />
+                &quot;type&quot;: &quot;number&quot;,<br />
+                &quot;id&quot;: &quot;0&quot;,<br />
+                &quot;required&quot;: false<br />
+            }<br />
+        },<br />
+        &quot;echo&quot;: {<br />
+            &quot;type&quot;: &quot;string&quot;,<br />
+            &quot;id&quot;: &quot;echo&quot;,<br />
+            &quot;required&quot;: false<br />
+        },<br />
+        &quot;nb&quot;: {<br />
+            &quot;type&quot;: &quot;number&quot;,<br />
+            &quot;id&quot;: &quot;nb&quot;,<br />
+            &quot;required&quot;: false<br />
+        }<br />
+    }<br />
+}<br />
+[/sourcecode]</p>
+<p>(Use the <a title="JSON schema generator" href="http://www.jsonschema.net/" target="_blank">JSON schema generator</a> to create your own)</p>
+<p>Save this schema to "data.schema" and add "json-schema" to your Gemfile. You will then be able to filter inputs with code like the following "config/routes.rb":</p>
+<p>[sourcecode language="ruby"]<br />
+require &quot;json-schema&quot;<br />
+class LolJSONConstraint<br />
+  def matches?(request)<br />
+    if(request.headers[&quot;CONTENT_TYPE&quot;] == &quot;application/json&quot;)<br />
+      JSON::Validator.validate(&quot;data.schema&quot;, request.headers[&quot;action_dispatch.request.request_parameters&quot;])<br />
+    end<br />
+  end<br />
+end</p>
+<p>Yamlvuln::Application.routes.draw do<br />
+  resources :posts, :constraints =&gt; LolJSONConstraint.new<br />
+end<br />
+[/sourcecode]</p>
+<p>The constraint will load the schema, and apply it to the incoming data, and return a 404 error if the JSON is invalid. The "additionalProperties" set to false in the schema is required to refuse the properties you didn't define and protect the application from mass assignment.</p>
+<p>If I tried, for example, to send the following JSON to the application, there would be an error:</p>
+<p>[sourcecode language="javascript"]<br />
+{&quot;echo&quot; : &quot;blah&quot;, &quot;nb&quot; : &quot;UNION ALL SELECT LOAD_FILE(CHAR(34,47,101,116,99,47,112,97,115,115,119,100,34))&quot;, &quot;data&quot;: [1, 2, 3]}<br />
+[/sourcecode]</p>
+<p>As I said before, it is not safe against the YAML parsing vulnerability. Also, I did not really test the performance of this. But it is still a nice and easy solution for API filtering.</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
       <a href="/development/security/2013/01/30/looking-for-big-architectures-and-adventurous-sysadmins.html">
         Looking for big architectures and adventurous sysadmins
       </a>
@@ -790,52 +898,6 @@ Header set Cache-Control "max-age=31536000, public"
 <p><strong>Thanks to this configuration, even a SQL injection in a plugin will not reach the password hashes!</strong> We also removed dangerous permissions like "FILE". I'd like to prevent timing attacks like "SELECT BENCHMARK(5000000,ENCODE('MSG','by 5 seconds'));" but i did not figure out what is the right syntax for this (I tried variations around: "revoke execute on function benchmark from read", without result).</p>
 <p>Thankfully, WordPress mostly works with this configuration, and I think that a lot of other applications could be protected like this. Imagine: you could grant insert but not select on the credit card table in an e-commerce application, and process transactions with a background task with the right permissions.</p>
 <p>Database privileges are indeed a powerful tool to protect your code from SQL injections. They might require some architectural changes, but the profits can be huge for your security.</p>
-
-    
-
-    
-      
-      
-      
-
-      
-    
-  </article>
-  
-  <article class="post-body">
-    <h2 class="post-title">
-      <a href="/videolan/2012/12/20/vlc-for-win8-building-the-new-compatibility-layer.html">
-        VLC For Win8: building the new compatibility layer
-      </a>
-    </h2>
-    <div class="post-meta">
-  <span class="post-date">20 Dec 2012</span>
-  <span class="post-categories">
-    
-      &bull;
-
-      
-      
-      
-
-      
-        <a href="/category/videolan.html">
-          VideoLAN
-        </a>
-      
-    
-  </span>
-</div>
-
-    
-      <p>As you can see, <strong>we are doing a <a title="VLC Kickstarter" href="https://bitly.com/U4mfxS" target="_blank">KickStarter for the Windows 8 (WinRT) port of VLC media player</a></strong>. The goal is to take our existing code, which already works on Windows 8's "desktop mode", and make it run on WinRT, the "Metro" interface.</p>
-<p>Porting code to WinRT offers significant challenges, mainly caused by the changes in the APIs. A lot of functions we were using, like LoadLibrary, are not available anymore, and replaced by slightly different functions (like <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh447159%28v=vs.85%29.aspx" target="_blank">LoadPackagedLibrary</a>). Those might not be too hard to integrate into our current code base.</p>
-<p>Other APIs, like sockets, were replaced by their COM interfaces counterpart (for instance Windows.Networking.Sockets). They are used to provide asynchronous interfaces for code running under WinRT. They got inspiration from mobile applications and the "always responsive" goal: a WinRT application should not use blocking code, and should go to sleep or wake up quickly if needed. With COM interfaces, the code polling the socket is executed in another process, and the data is provided through a callback. This changes a bit the usual networking code (connect-&gt;select-&gt;read-&gt;select&gt;...) and we need to write a large layer of compatibility code.</p>
-<p>After all of that, we still have to solve the issue of packaging. We already experimented a bit with side loading, which offers an easy way to distribute applications, but the real goal is to push VLC media player to the Windows Store.</p>
-<p>So, <a title="Why we need a KickStarter for Metro" href="http://www.jbkempf.com/blog/post/2012/Why-we-need-a-KickStarter-for-Metro" target="_blank">why are we doing this</a>? Windows 8 is happening, it is now preinstalled on most of the new computers.</p>
-<p>Why am I excited to work on this port? This KickStarter will give us the opportunity to work full time on WinRT for a few months, and solve all these challenges for us, but also for other open source projects. We already know how to create a <a title="VLC's compatibility library" href="http://git.videolan.org/?p=vlc.git;a=tree;f=compat;h=324f1cea3fda392582397d36898615a493b5e3a9;hb=HEAD" target="_blank">compatibility layer</a> for different operating systems, so we will be able to build one for WinRT. We could also come up with guidelines on using free software toolchains to build WinRT applications.</p>
-<p>Basically, we're paving the way to WinRT for opensource libraries and applications, with the nice side effect on running VLC on Windows 8.</p>
-<p><strong>Help us make this project a reality! Please contribute to our <a title="VLC for Windows 8 Kickstarter" href="https://bitly.com/U4mfxS" target="_blank">Kickstarter for Windows 8</a>!</strong></p>
 
     
 

@@ -359,6 +359,45 @@
   
   <article class="post-body">
     <h2 class="post-title">
+      <a href="/general/2015/08/29/frustrating-communication.html">
+        Frustrating communication
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">29 Aug 2015</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        General
+      
+    
+  </span>
+</div>
+
+    
+      <p>I'm getting less and less satisfied with Twitter to exchange thoughts. The 140 characters is not the obvious problem, since you can chain messages easily. The issue is that those thoughts are ephemeral. This medium does not optimize for smart discussion with relevant people, but for quick wit from currently available people, before being dumped under a stack of comments on the latest news. The retweeting does not help much, since the primary reason for retweeting are 1. it's funny 2. it is shocking 3. it's inspiring, and long last "maybe it's interesting". They don't create much discussion.</p>
+<p>Until now, I have primarily used this blog for long posts (thus explaining why I don't write much here). As my friends say "if it's more than 3 tweets, write a blog post".</p>
+<p>So in the following months, I'll try to post short, not well researched but spontaneous articles, instead of ranting in 140 characters.</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
       <a href="/general/security/2014/07/21/a-world-without-certificate-authorities.html">
         A world without certificate authorities
       </a>
@@ -592,107 +631,6 @@ Computers were started by scientists, but the ease of access gave crafters a goo
 <p>So, we could replace the "secure" property by: <strong>the whole system recognizes that there is only one good answer for a record at some point in the future</strong>. Again, this is measurable, and it also addresses the oddity in DNS that records have to propagate (so sometimes the view can differ). Systems where identifiers do not give unique responses will not satisfy that definition.</p>
 <p>The last property, "decentralized", can be formulated like this: <strong>a node's view of the names cannot be influenced by a group of unauthorized nodes</strong>. In a centralized system, where there is essentially one node, this definition cannot apply. In a hierarchy of nodes, like DNS, we can easily see that a node's view can be abused, since there is only one node you need to compromise to influence it, its first nameserver (this is used, for good and for bad reasons, in a lot of companies). In a distributed system, this definition becomes quantifiable and joins the byzantine problem: how many traitor nodes do you need to modify a node's view of the system?</p>
 <p>Here, we have three new definitions that are more nuanced, allow some compromise and modulation of the needs, and for which the limits can be measured or calculated. These quantified limits can be useful to describe and compare the future naming system propositions.</p>
-
-    
-
-    
-      
-      
-      
-
-      
-    
-  </article>
-  
-  <article class="post-body">
-    <h2 class="post-title">
-      <a href="/crypto/general/security/2014/02/21/how-to-choose-your-secure-messaging-app.html">
-        How to choose your secure messaging app
-      </a>
-    </h2>
-    <div class="post-meta">
-  <span class="post-date">21 Feb 2014</span>
-  <span class="post-categories">
-    
-      &bull;
-
-      
-      
-      
-
-      
-        <a href="/category/crypto.html">
-          Crypto
-        </a>
-      
-    
-      &bull;
-
-      
-      
-      
-
-      
-        General
-      
-    
-      &bull;
-
-      
-      
-      
-
-      
-        <a href="/category/security.html">
-          Security
-        </a>
-      
-    
-  </span>
-</div>
-
-    
-      <p>Since WhatsApp announced its acquisition, a lot of people started to switch to alternatives, trying to escape from Facebook. Some of them then discovered <a href="http://unhandledexpression.com/2013/12/17/telegram-stand-back-we-know-maths/" target="_blank">my article about Telegram</a>, and a common answer was "hey, at least, it is better than WhatsApp, because it is open source, faster and it has encryption".</p>
-<p>This is a very bad way to decide what application you should use. If you choose a secure messaging app, it must be because you need it, not just because you want to avoid Facebook.</p>
-<p>Those are <strong>not</strong> good enough requirements:</p>
-<ul>
-<li>independent from Facebook</li>
-<li>fast</li>
-<li>multi platforms</li>
-<li>open source</li>
-</ul>
-<p>Yes, even open source, because it does not magically make software safe.</p>
-<p>So, what are goods requirements? Well, I already have a<a href="http://unhandledexpression.com/2013/12/20/criterions-for-a-crypto-app/" target="_blank"> list of what a secure messaging app should meet</a> to be considered. If an app does not follow those requirements, it may not be a good idea to use it.</p>
-<p>But it still does not mean the app will fit your use case. So you must define your use case:</p>
-<ul>
-<li>Why do you need it?</li>
-<li>With whom will you communicate?</li>
-<li>Who is the adversary?</li>
-<li>What will happen if some of your information is revealed to the adversary?</li>
-<li>Does it need to be always available?</li>
-<li>For how long will it be used?</li>
-</ul>
-<p>This is part of what I mean when I insist on having a threat model: you cannot choose correctly if you do not know the risks.</p>
-<p>Here are a few examples that you could consider.</p>
-<h3>The activist in a protest</h3>
-<p>The activist must be able to communicate quickly in the crowd. Identifying info might not be the most important part, because she can use burner phones (phones that will be abandoned after the protest). The most important feature is that it should be always available. Phone networks were often used to disrupt activist communication, so a way to send message through WiFi our bluetooth might be useful. The messages can be sent to a lot of different people, so being able to identify them might be important. If it is large enough to be infiltrated easily, then having no way to identify people is crucial.</p>
-<p>Being able to send photos is important, because they might be the only proof of what happened in the protest. Here, I have in mind the excellent ObscuraCam app, which is able to quickly hide the faces of people in photos before sending them.</p>
-<p>The application should not keep logs, or provide a way to quickly delete them, or encrypt them by default, because once someone is caught, the police will look through the phone.</p>
-<p>The crypto algorithms and protocols should be safe and proven for that use case, because the adversaries will have the resources to exploit any flaw.</p>
-<p>No need for a good update system if the devices will be destroyed after use.</p>
-<h3>The employee of a company with confidential projects</h3>
-<p>The adversaries here are other companies, or even other countries. The most important practice here is the "need to know": reduce the number of persons knowing the confidential information. that means the persons communicating between themselves is reduced, and you can expect that they have a mean of exchanging information securely (example: to verify a public key).</p>
-<p>Identifying who talks with whom is not really dangerous, because it is easy to track the different groups in a company. You may be confident enough that the reduced group will not be infiltrated by the adversary. The messages should be stored, and ideally be searchable. File exchange should be present.</p>
-<p>There could be some kind of escrow system, to reveal information if you have a certain access level. Authentication is a crucial point.</p>
-<p>The crypto may be funnier for that case, because the flexibility needed can be provided by some systems, like identity based encryption.Enterprise policies might be able to force regular uodates of the system, so that everybody has the same protocol version at the ame time, and any eventual flaw will be patched quickly.</p>
-<h3>The common user</h3>
-<p>It is you, me, anyone wanting to exchange private messages with friends or family. Here, trying to protect against the NSA is futile, because most of the contacts might not have the training needed. Trying to hide the contacts list from Facebook is futile too: even if someone protects the information, one of the contacts may not. The adversary you should consider here: crooks, pirates, anyone that could exploit the private messages for criminal ways (stealing bank info, blakcmailing, sending malware, etc).</p>
-<p>An application fitting this use case should encrypt messages, preferably end to end, to limit problems when the exchange server is compromised. The service might not provide any expectation of anonymity. Messages should be stored, but encrypting them is a good option, in case the device is lost or stolen.</p>
-<p>The crypto does not need to be very advanced, but it should use common, well known designs.</p>
-<p>There should be a good update system, a way to negotiate protocol versions (and forbid some unsafe versions), because you will never be sure that everybody has performed all the needed updates.</p>
-<h3>Your use case here</h3>
-<p>Those were some common situations, for which some solutions exist, but there are a lot more possible use cases. If you are not sure about yours and need help defining your threat model, do not hesitate to ask for help, and do not jump on a solution because the marketing material says it is safe.</p>
-<p>A good security solution will not only tell you what is protected, and how, but also what is not protected, and the security margins you have. It will also teach you the discipline you need to apply to get the most out of it.</p>
 
     
 

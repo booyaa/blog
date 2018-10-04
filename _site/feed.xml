@@ -1,4 +1,164 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.0">Jekyll</generator><link href="http://unhandledexpression.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://unhandledexpression.com/" rel="alternate" type="text/html" /><updated>2018-09-11T10:00:18+02:00</updated><id>http://unhandledexpression.com/</id><title type="html">Unhandled Expression</title><subtitle>Geoffroy Couprie – software security and architecture consultant</subtitle><author><name>Geoffroy Couprie</name></author><entry><title type="html">nom 4.0: faster, safer, simpler parsers</title><link href="http://unhandledexpression.com/general/2018/05/14/nom-4-0-faster-safer-simpler-parsers.html" rel="alternate" type="text/html" title="nom 4.0: faster, safer, simpler parsers" /><published>2018-05-14T13:00:00+02:00</published><updated>2018-05-14T13:00:00+02:00</updated><id>http://unhandledexpression.com/general/2018/05/14/nom-4-0-faster-safer-simpler-parsers</id><content type="html" xml:base="http://unhandledexpression.com/general/2018/05/14/nom-4-0-faster-safer-simpler-parsers.html">&lt;p&gt;I’m delighted to announce that &lt;a href=&quot;https://github.com/geal/nom&quot;&gt;nom&lt;/a&gt;, the extremely
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.0">Jekyll</generator><link href="http://unhandledexpression.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://unhandledexpression.com/" rel="alternate" type="text/html" /><updated>2018-10-04T16:12:28+02:00</updated><id>http://unhandledexpression.com/</id><title type="html">Unhandled Expression</title><subtitle>Geoffroy Couprie – software security and architecture consultant</subtitle><author><name>Geoffroy Couprie</name></author><entry><title type="html">No, pest is not faster than nom</title><link href="http://unhandledexpression.com/general/2018/10/04/no-pest-is-not-faster-than-nom.html" rel="alternate" type="text/html" title="No, pest is not faster than nom" /><published>2018-10-04T15:00:00+02:00</published><updated>2018-10-04T15:00:00+02:00</updated><id>http://unhandledexpression.com/general/2018/10/04/no-pest-is-not-faster-than-nom</id><content type="html" xml:base="http://unhandledexpression.com/general/2018/10/04/no-pest-is-not-faster-than-nom.html">&lt;p&gt;As the main developer of &lt;a href=&quot;https://github.com/geal/nom&quot;&gt;nom, the Rust parser combinators
+library&lt;/a&gt;, I’m usually happy to
+see other parser libraries appear in Rust. The language’s
+strengths play well in that space, and writing parsers is
+a nice way to explore it.&lt;/p&gt;
+
+&lt;p&gt;I’m also happy to see them &lt;a href=&quot;https://github.com/geal/parser_benchmarks&quot;&gt;compete in benchmarks with nom&lt;/a&gt;, since it keeps me on my toes, and improves performance
+for everybody. &lt;a href=&quot;https://github.com/marwes/combine&quot;&gt;Combine&lt;/a&gt; has been
+an interesting competitor here, showing how far one can go without using
+macros.&lt;/p&gt;
+
+&lt;p&gt;That said, &lt;a href=&quot;https://pest.rs/&quot;&gt;the recent release of pest 2.0&lt;/a&gt;,
+a parsing expression grammar library, is pushing me to be petty :D&lt;/p&gt;
+
+&lt;p&gt;That library has been using a benchmark against nom &lt;a href=&quot;https://github.com/sozu-proxy/sozu/blob/master/doc/getting_started.md#run-it-with-docker&quot;&gt;in its
+readme&lt;/a&gt; for a long time. I wrote &lt;a href=&quot;https://github.com/Geal/pestvsnom&quot;&gt;that benchmark&lt;/a&gt;
+to help in the comparison, but the results were slightly misleading:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/pestvsnom_old.svg&quot; alt=&quot;old benchmarks&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The nom benchmark and the “pest (custom AST)” benchmark were
+converting the JSON file to Rust types (&lt;code class=&quot;highlighter-rouge&quot;&gt;Vec&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;HashMap&lt;/code&gt; for
+objects, booleans, strings and floating point numbers).
+While the simple pest parser was validating the file and
+generating a list of tokens without converting them.
+So, yes, of course it will be faster than nom.&lt;/p&gt;
+
+&lt;p&gt;There was &lt;a href=&quot;https://github.com/Geal/parser_benchmarks/blob/588c2cddf9a625a7af6d34c1b4edd42536023121/json/README.md&quot;&gt;further work on the benchmarks&lt;/a&gt;,
+while nom 4 was still in preparation, and pest got interesting
+results:&lt;/p&gt;
+
+&lt;p&gt;The benchmarks were run on a late 2013 Macbook Pro, quad core 2,3 GHz Intel Core i7.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt;basic&lt;/th&gt;
+      &lt;th&gt;canada.json&lt;/th&gt;
+      &lt;th&gt;apache_builds.json&lt;/th&gt;
+      &lt;th&gt;data.json&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;combine&lt;/td&gt;
+      &lt;td&gt;(fails)&lt;/td&gt;
+      &lt;td&gt;127,775,522 ns/iter (+/- 11,140,676) = 17 MB/s&lt;/td&gt;
+      &lt;td&gt;3,732,534 ns/iter (+/- 795,836) = 34 MB/s&lt;/td&gt;
+      &lt;td&gt;241,407 ns/iter (+/- 40,575) = 38 MB/s&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;nom&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;1,333 ns/iter (+/- 247) = 57 MB/s&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;62,971,567 ns/iter (+/- 6,311,768) = 35 MB/s&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;1,209,550 ns/iter (+/- 323,936) = 105 MB/s&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;62,008 ns/iter (+/- 11,685) = 149 MB/s&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;pest&lt;/td&gt;
+      &lt;td&gt;1,405 ns/iter (+/- 238) = 54 MB/s&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;27,701,820 ns/iter (+/- 3,961,221) = 81 MB/s&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;1,694,463 ns/iter (+/- 338,194) = 75 MB/s&lt;/td&gt;
+      &lt;td&gt;131,851 ns/iter (+/- 22,667) = 70 MB/s&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;I could have left it at that.&lt;/p&gt;
+
+&lt;p&gt;But today (October 4th, 2018), &lt;a href=&quot;https://pest.rs/&quot;&gt;the pest website&lt;/a&gt;
+featured a very misleading graph.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/pest-graph.png&quot; alt=&quot;the pest benchmark graph&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Yes, it’s very easy to make nom look bad if you:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;conveniently remove the slowest pest parser&lt;/li&gt;
+  &lt;li&gt;do not put any link to the benchmark code&lt;/li&gt;
+  &lt;li&gt;avoid saying how many iterations are done, on which file, etc&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;start the horizontal axis at 20ms instead of 0ms, so that nom appears twice slower&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;this is ridiculous, and deserves all the pettiness I can muster.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-real-benchmark&quot;&gt;The real benchmark&lt;/h2&gt;
+
+&lt;p&gt;I took the &lt;a href=&quot;https://github.com/Geal/pestvsnom&quot;&gt;old benchmark&lt;/a&gt;
+reused the &lt;a href=&quot;https://github.com/Geal/pestvsnom/blob/master/assets/canada.json&quot;&gt;canada.json file&lt;/a&gt;,
+added the &lt;a href=&quot;https://github.com/Geal/pestvsnom/blob/master/assets/data.json&quot;&gt;data.json file&lt;/a&gt;
+from &lt;a href=&quot;https://github.com/pest-parser/pest/blob/master/grammars/benches/data.json&quot;&gt;pest’s own JSON benchmark&lt;/a&gt;, applied &lt;a href=&quot;https://github.com/pest-parser/pest/blob/master/grammars/benches/json.rs&quot;&gt;pest’s current way to bench its code&lt;/a&gt; in &lt;a href=&quot;https://github.com/Geal/pestvsnom/blob/master/benches/pest.rs&quot;&gt;my benchmarks&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;After upgrading to nom 4 and pest 2, and fixing some old bugs in &lt;a href=&quot;https://github.com/Geal/pestvsnom/blob/master/benches/nom.rs&quot;&gt;the nom
+parser&lt;/a&gt;,
+I could reproduce the old results (still on a late 2013 Macbook Pro,
+quad core 2,3 GHz Intel Core i7, yes my laptop is getting old):&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;nom:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;canada.json&lt;/code&gt;: 60,734,229 ns/iter (+/- 17,775,618)&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;data.json&lt;/code&gt;: 23,937 ns/iter (+/- 9,992)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;pest:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;canada.json&lt;/code&gt;: 35,041,472 ns/iter (+/- 5,454,302)&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;data.json&lt;/code&gt;: 14,665 ns/iter (+/- 2,041)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Yes, a pest 2.0 parser that does not convert the input to Rust types
+is indeed faster than a nom 4.0 parser that does convert the input to
+Rust types.&lt;/p&gt;
+
+&lt;p&gt;But what happens if I write &lt;a href=&quot;https://github.com/Geal/pestvsnom/blob/master/benches/nom_spans.rs&quot;&gt;a nom 4.0 parser that does not convert
+its input to Rust types&lt;/a&gt;?
+It’s actually a bit easier if I don’t try to generates floats, bools, etc.
+It’s not exactly what pest does. Pest stores indexes along with the original
+slice, while this one will return sub slices for each JSON element.
+Still, here are the results:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;nom:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;canada.json&lt;/code&gt;: 60,734,229 ns/iter (+/- 17,775,618)&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;data.json&lt;/code&gt;: 23,937 ns/iter (+/- 9,992)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;pest:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;canada.json&lt;/code&gt;: 35,041,472 ns/iter (+/- 5,454,302)&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;data.json&lt;/code&gt;: 14,665 ns/iter (+/- 2,041)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;nom_spans (returning slices instead of converting to Rust types):
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;canada.json&lt;/code&gt;: 20,623,381 ns/iter (+/- 1,952,297)&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;data.json&lt;/code&gt;: 10,757 ns/iter (+/- 1,462)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Or, represented as graphs that do not actually mislead us with their axis:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/canada-json-benchmark.png&quot; alt=&quot;canada.json benchmark&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/data-json-benchmark.png&quot; alt=&quot;data.json benchmark&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So, here we are, nom is actually still a lot faster than pest.
+I still find pest’s parser interesting, because the grammar is
+quite readable, but I tend to prefer parser combinators,
+because they make it easy to &lt;a href=&quot;https://github.com/pest-parser/pest/issues/197&quot;&gt;reuse parsers and combinators&lt;/a&gt;
+and allow you to write your own custom elements as you wish.&lt;/p&gt;
+
+&lt;p&gt;So, here we are, if you see ways to improve the benchmarks,
+and in the process make nom or pest faster, please do it :)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/comeatme.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;</content><author><name>Geoffroy Couprie</name></author><category term="Rust" /><category term="parser" /><category term="security" /><category term="nom" /><summary type="html">As the main developer of nom, the Rust parser combinators library, I’m usually happy to see other parser libraries appear in Rust. The language’s strengths play well in that space, and writing parsers is a nice way to explore it.</summary></entry><entry><title type="html">nom 4.0: faster, safer, simpler parsers</title><link href="http://unhandledexpression.com/general/2018/05/14/nom-4-0-faster-safer-simpler-parsers.html" rel="alternate" type="text/html" title="nom 4.0: faster, safer, simpler parsers" /><published>2018-05-14T13:00:00+02:00</published><updated>2018-05-14T13:00:00+02:00</updated><id>http://unhandledexpression.com/general/2018/05/14/nom-4-0-faster-safer-simpler-parsers</id><content type="html" xml:base="http://unhandledexpression.com/general/2018/05/14/nom-4-0-faster-safer-simpler-parsers.html">&lt;p&gt;I’m delighted to announce that &lt;a href=&quot;https://github.com/geal/nom&quot;&gt;nom&lt;/a&gt;, the extremely
 fast Rust parser combinators library, has reached major version 4.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;TL;DR: the new nom version is simpler, faster, has a better documentation, and you can
@@ -1249,6 +1409,4 @@ sys     0m0.070s&lt;/p&gt;&lt;/blockquote&gt;
 &lt;/ul&gt;
 &lt;p&gt;Those are worthwhile targets if you know a fair bit of cryptography and security, and know how to build a complete library or product.&lt;/p&gt;
 &lt;p&gt;But for products, we need better models for infrastructure needs. A like &lt;a href=&quot;https://www.tahoe-lafs.org/trac/tahoe-lafs&quot;&gt;Tahoe-LAFS&lt;/a&gt; is a good model: the user is in control of the data, the provider is oblivious to the content, the user can be the client of multiple providers, and switching from one to another is easy. This does not make for shiny businesses. Infrastructure companies compete mainly on cost, scale, availability, speed, support, since they all provide roughly the same features.&lt;/p&gt;
-&lt;p&gt;Of course, infrastructure requires standards and interoperability, and this usually does not make good material for startup hype. But everyone wins from this in the end.&lt;/p&gt;</content><author><name>{&quot;login&quot;=&gt;&quot;geaaal&quot;, &quot;email&quot;=&gt;&quot;geo.couprie@gmail.com&quot;, &quot;display_name&quot;=&gt;&quot;Géal&quot;, &quot;first_name&quot;=&gt;&quot;&quot;, &quot;last_name&quot;=&gt;&quot;&quot;}</name><email>geo.couprie@gmail.com</email></author><category term="cryptography" /><category term="decentralized" /><category term="OTR" /><category term="pgp" /><category term="protocols" /><summary type="html">To follow up on the small Twitter rant that got people to explain GPG and OTR to me for a whole day, I'll explain the ideas behind this. There is always a new project around self hosting email and PGP, or building a new encrypted chat app. Let's say it aloud right now: those projects are not trying to improve the situation, they just want to build their own. Otherwise, they would help one of the 150 already existing projects. Worse, a lot of those try to build a business out of it, and end up making a system where you need to completely trust their business (as a side note, building a business is fine, but just be honest about your goals). There are things that attract new projects, because the concept is easy to get, and this drives developers right into the &quot;I'm smarter than everybody and can do better than existing projects&quot; territory. But there's a reason they fail. Making an encrypted chat app is solving the same problem as making a chat app -moving people off their existing platform, onto a new one- and additionally writing a safe protocol. Building a whole new infrastructure is not an easy task. Making email and PGP easier to use is not only a UX issue. There is a complete mental model of how it works, what are the failure modes, and what are the trust levels. And you add above that the issues of email's metadata leaks, the lack of forward secrecy, the key management. Even with the simplest interface, it requires that the user builds that mental model, and that she understands other users may have different models. This is pervasive to the way PGP works. It has always been and will always be an expert's tool, and as such unfit to be deployed massively. You cannot solve infrastructure problems by teaching people. You cannot solve infrastructure problems by teaching people There is a pattern here: people want to build tools that will be the basis of safe communications for the years to come. Those are infrastructure problems, like electricity, running water or Internet access. They cannot be solved by teaching people how to use a tool. The tool has to work. They cannot be solved either by decentralization. At some point, someone has to pay for the infrastructure's maintenance. As much as I like the idea of decentralizing everything, this is not how people solve serious engineering problems. But the difference with other types of business is that infrastructure businesses are dumb pipes. They don't care what's running through them, and you can easily replace one with the other. There is a strong need for &quot;private by default&quot;, authenticated, anonymous communication. This will only come if the basic building blocks are here: multiparty Off-The-Record(or other protocols like Axolotl): forward secret communication currently only works in two-party communication. Adding more members and making the protocols safe against partitions is a real challenge multidevice PGP (or alternate message encryption and authentication system): currently, to use PGP on multiple devices, either you synchronize all your private keys on all your devices, or you accept that some devices will not be able to decrypt messages. This will probably not work unless you have a live server somewhere, or at least some hardware device containing keys redundant key storage: systems where a single key holds everything are very seducing, but they're a nightmare for common operation. You will lose the key. And the backup. And the other backup. You will end up copying your master key everywhere, encrypted with a password used infrequently. Either it will be too simple and easily crackable, or too complex and you will forget it. How can a friend or family access the key in case of emergency? private information retrieval: PIR systems are databases that you can query for data, and the database will not know (in some margins) which piece of data you wanted. You do not need to go wild on homomorphic encryption to build something useful encrypted search: the tradeoffs in search on encrypted data are well known, but there are not enough implementations usable cryptography primitives: there is some work in that space, but people still rely on OpenSSL as their goto crypto library. Crypto primitives should not even let you make mistakes Those are worthwhile targets if you know a fair bit of cryptography and security, and know how to build a complete library or product. But for products, we need better models for infrastructure needs. A like Tahoe-LAFS is a good model: the user is in control of the data, the provider is oblivious to the content, the user can be the client of multiple providers, and switching from one to another is easy. This does not make for shiny businesses. Infrastructure companies compete mainly on cost, scale, availability, speed, support, since they all provide roughly the same features. Of course, infrastructure requires standards and interoperability, and this usually does not make good material for startup hype. But everyone wins from this in the end.</summary></entry><entry><title type="html">Frustrating communication</title><link href="http://unhandledexpression.com/general/2015/08/29/frustrating-communication.html" rel="alternate" type="text/html" title="Frustrating communication" /><published>2015-08-29T23:58:44+02:00</published><updated>2015-08-29T23:58:44+02:00</updated><id>http://unhandledexpression.com/general/2015/08/29/frustrating-communication</id><content type="html" xml:base="http://unhandledexpression.com/general/2015/08/29/frustrating-communication.html">&lt;p&gt;I'm getting less and less satisfied with Twitter to exchange thoughts. The 140 characters is not the obvious problem, since you can chain messages easily. The issue is that those thoughts are ephemeral. This medium does not optimize for smart discussion with relevant people, but for quick wit from currently available people, before being dumped under a stack of comments on the latest news. The retweeting does not help much, since the primary reason for retweeting are 1. it's funny 2. it is shocking 3. it's inspiring, and long last &quot;maybe it's interesting&quot;. They don't create much discussion.&lt;/p&gt;
-&lt;p&gt;Until now, I have primarily used this blog for long posts (thus explaining why I don't write much here). As my friends say &quot;if it's more than 3 tweets, write a blog post&quot;.&lt;/p&gt;
-&lt;p&gt;So in the following months, I'll try to post short, not well researched but spontaneous articles, instead of ranting in 140 characters.&lt;/p&gt;</content><author><name>{&quot;login&quot;=&gt;&quot;geaaal&quot;, &quot;email&quot;=&gt;&quot;geo.couprie@gmail.com&quot;, &quot;display_name&quot;=&gt;&quot;Géal&quot;, &quot;first_name&quot;=&gt;&quot;&quot;, &quot;last_name&quot;=&gt;&quot;&quot;}</name><email>geo.couprie@gmail.com</email></author><summary type="html">I'm getting less and less satisfied with Twitter to exchange thoughts. The 140 characters is not the obvious problem, since you can chain messages easily. The issue is that those thoughts are ephemeral. This medium does not optimize for smart discussion with relevant people, but for quick wit from currently available people, before being dumped under a stack of comments on the latest news. The retweeting does not help much, since the primary reason for retweeting are 1. it's funny 2. it is shocking 3. it's inspiring, and long last &quot;maybe it's interesting&quot;. They don't create much discussion. Until now, I have primarily used this blog for long posts (thus explaining why I don't write much here). As my friends say &quot;if it's more than 3 tweets, write a blog post&quot;. So in the following months, I'll try to post short, not well researched but spontaneous articles, instead of ranting in 140 characters.</summary></entry></feed>
+&lt;p&gt;Of course, infrastructure requires standards and interoperability, and this usually does not make good material for startup hype. But everyone wins from this in the end.&lt;/p&gt;</content><author><name>{&quot;login&quot;=&gt;&quot;geaaal&quot;, &quot;email&quot;=&gt;&quot;geo.couprie@gmail.com&quot;, &quot;display_name&quot;=&gt;&quot;Géal&quot;, &quot;first_name&quot;=&gt;&quot;&quot;, &quot;last_name&quot;=&gt;&quot;&quot;}</name><email>geo.couprie@gmail.com</email></author><category term="cryptography" /><category term="decentralized" /><category term="OTR" /><category term="pgp" /><category term="protocols" /><summary type="html">To follow up on the small Twitter rant that got people to explain GPG and OTR to me for a whole day, I'll explain the ideas behind this. There is always a new project around self hosting email and PGP, or building a new encrypted chat app. Let's say it aloud right now: those projects are not trying to improve the situation, they just want to build their own. Otherwise, they would help one of the 150 already existing projects. Worse, a lot of those try to build a business out of it, and end up making a system where you need to completely trust their business (as a side note, building a business is fine, but just be honest about your goals). There are things that attract new projects, because the concept is easy to get, and this drives developers right into the &quot;I'm smarter than everybody and can do better than existing projects&quot; territory. But there's a reason they fail. Making an encrypted chat app is solving the same problem as making a chat app -moving people off their existing platform, onto a new one- and additionally writing a safe protocol. Building a whole new infrastructure is not an easy task. Making email and PGP easier to use is not only a UX issue. There is a complete mental model of how it works, what are the failure modes, and what are the trust levels. And you add above that the issues of email's metadata leaks, the lack of forward secrecy, the key management. Even with the simplest interface, it requires that the user builds that mental model, and that she understands other users may have different models. This is pervasive to the way PGP works. It has always been and will always be an expert's tool, and as such unfit to be deployed massively. You cannot solve infrastructure problems by teaching people. You cannot solve infrastructure problems by teaching people There is a pattern here: people want to build tools that will be the basis of safe communications for the years to come. Those are infrastructure problems, like electricity, running water or Internet access. They cannot be solved by teaching people how to use a tool. The tool has to work. They cannot be solved either by decentralization. At some point, someone has to pay for the infrastructure's maintenance. As much as I like the idea of decentralizing everything, this is not how people solve serious engineering problems. But the difference with other types of business is that infrastructure businesses are dumb pipes. They don't care what's running through them, and you can easily replace one with the other. There is a strong need for &quot;private by default&quot;, authenticated, anonymous communication. This will only come if the basic building blocks are here: multiparty Off-The-Record(or other protocols like Axolotl): forward secret communication currently only works in two-party communication. Adding more members and making the protocols safe against partitions is a real challenge multidevice PGP (or alternate message encryption and authentication system): currently, to use PGP on multiple devices, either you synchronize all your private keys on all your devices, or you accept that some devices will not be able to decrypt messages. This will probably not work unless you have a live server somewhere, or at least some hardware device containing keys redundant key storage: systems where a single key holds everything are very seducing, but they're a nightmare for common operation. You will lose the key. And the backup. And the other backup. You will end up copying your master key everywhere, encrypted with a password used infrequently. Either it will be too simple and easily crackable, or too complex and you will forget it. How can a friend or family access the key in case of emergency? private information retrieval: PIR systems are databases that you can query for data, and the database will not know (in some margins) which piece of data you wanted. You do not need to go wild on homomorphic encryption to build something useful encrypted search: the tradeoffs in search on encrypted data are well known, but there are not enough implementations usable cryptography primitives: there is some work in that space, but people still rely on OpenSSL as their goto crypto library. Crypto primitives should not even let you make mistakes Those are worthwhile targets if you know a fair bit of cryptography and security, and know how to build a complete library or product. But for products, we need better models for infrastructure needs. A like Tahoe-LAFS is a good model: the user is in control of the data, the provider is oblivious to the content, the user can be the client of multiple providers, and switching from one to another is easy. This does not make for shiny businesses. Infrastructure companies compete mainly on cost, scale, availability, speed, support, since they all provide roughly the same features. Of course, infrastructure requires standards and interoperability, and this usually does not make good material for startup hype. But everyone wins from this in the end.</summary></entry></feed>

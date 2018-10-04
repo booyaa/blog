@@ -359,6 +359,117 @@
   
   <article class="post-body">
     <h2 class="post-title">
+      <a href="/crypto/general/security/2013/10/29/safechat-p2p-encrypted-messages.html">
+        SafeChat, P2P encrypted messages?
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">29 Oct 2013</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/crypto.html">
+          Crypto
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        General
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+    
+      <p>For the first article in the new post serie about "let's pick apart the new kickstarted secure decentralized software of the week", I chose <a title="SafeChat's KickStarter" href="http://www.kickstarter.com/projects/davidcrawford/safechat" target="_blank">SafeChat</a>, which started just two days ago. Yes, I like to hunt young preys :p</p>
+<p>A note, before we begin: this analysis is based on publicly available information at the time of writing. If the authors of the project give more information, I can update the article to match it. The goal is to assert, with what little we know about the project, if it is a good idea to give money to this project. I will only concentrate on the technical parts, not on the team itself (even if, for some of those projects, I think they're idiots running with scissors in hand).</p>
+<h2>What is SafeChat?</h2>
+<blockquote><p>Open source encryption based instant messaging software</p>
+<p><b>SafeChat </b>is a brilliantly simple deeply secure instant messaging system for mobile phones and computers</p>
+</blockquote>
+<p>SafeChat is an instant messaging software designed by <a title="Commercial Free (lol)" href="http://cfme.co" target="_blank">Commercial Free</a>. There is no real indication about who really works there, and where the company is based, except for David Crawford, who created the Kickstarter project and is based in Montreal in Canada.</p>
+<p>Note that SafeChat is only a small part of the services they want to provide. Commercial Free will also have plans including an email encryption service (no info about that one) and cloud storage.</p>
+<h2>Available technical information</h2>
+<p>There is not much to see. They say they are almost done with the core code, but the only thing they present is some videos of what the interaction with the app could be.</p>
+<p>Apparently, it is an instant messaging application with Android and iOS applications and some server components.  Session keys are generated for the communication between users. They will manage the server component, and the service will be available with a yearly subscription.</p>
+<p>It seems they don't want to release much information about the cryptographic components they use. They talk about "peer to peer encryption" (lol) which is open source and standard. If anyone understands what algorithm or protocol they refer to, please enlighten me. They also say they will mix in some proprietary code (so much for open source).</p>
+<p>I especially like the part about NIST. They mock NIST, telling that they have thrown "all standard encryption commonly used today out the window". I am still wondering what "open source and standard peer to peer encryption" means.</p>
+<h2>Network protocol</h2>
+<p>The iOS and Android applications will apparently provide direct communication between users. I guess that from their emphasis on P2P, but also from the price they claim: $10 per user per year would be a bit small to pay for server costs if they had to route all the messages.</p>
+<p>P2P communication between phones is technically feasible. They would probably need to implement some TCP hole punching in their solution, but it is doable.</p>
+<p>Looking athe the video, it seems there is a key agreement before communication. I do not really like the interaction they chose to represent key agreement (with the colors and the smileys). There are too many different states, while  people only need to know "are we safe now?"</p>
+<p>I am not sure if there is a presence protocol. The video does not really show it. If there is no presence system, are messages stored until the person is online? Stored on the server or on the client? Does the server notify the client when the person becomes available?</p>
+<h2>Cryptography</h2>
+<blockquote><p>By bringing together existing theories of cryptography and some proprietary code to bind them together, we are making a deeply encrypted private chatting system that continues to evolve as the field of cryptography does.</p>
+</blockquote>
+<p>Yup, I really feel safe now.</p>
+<p>Joke aside, here is what we can guess:</p>
+<ul>
+<li>session keys for the communication between users. I don't know if it is a Diffie-Hellman based protocol</li>
+<li>no rekeying, ie no perfect forward secrecy</li>
+<li>no info on message authentication or integrity verification</li>
+<li>I am not sure if the app generates some asymmetric keys for authentication, if there is trust on first use, or whatever else</li>
+<li>the server might not be very safe, because they really, really want to rely on German laws to protect it. If the crypto was fully managed client side, they would not care about servers taken down, they could just pop another somewhere.</li>
+</ul>
+<p>There could be a PKI managed by Commercial Free. That would be consistent with the subscription model (short lived certificates is an easy way of limiting the usage of a service).</p>
+<h2>Threat model</h2>
+<p>Now, we can draw the rough threat model they are using:</p>
+<blockquote><p>What we want to do is make it impractical for an organization to snoop your communications as it would become very hard to find them and then harder still to decrypt them.</p>
+</blockquote>
+<p>Pro tip: a system with a central server does not make it hard to find communications.</p>
+<p>Attacker types:</p>
+<ul>
+<li><strong>phone thief:</strong> I don't think they use client side encryption for credentials and logs. Phone thiefs and forensics engineers won't have a real problem there</li>
+<li><strong>network operator:</strong> they can disrupt the communication, but will probably not be able to decrypt or do MITM (I really think the server is managing the authentication part, along with setting up the communication)</li>
+<li><strong>law enforcement:</strong> they want to rely on German laws to protect their system. At the same time, they do not say they will move out to Germany to operate the system. If they stay in Canada, that changes the legal part. If they use a certificate authority, protecting the server will be useless, because they can just ask the key at the company.</li>
+<li><strong>server attacker:</strong> the server will probably be Windows based (see the core developer's skills). Since that design is really server centric, taking down the server might take down the whole service. And attacking it will reveal lots of interesting metadata, and probably offer MITM capabilities</li>
+<li><strong>nation state:</strong> please, stop joking...</li>
+</ul>
+<p>So...</p>
+<p><strong>Really, nothing interesting here. I do not see any reason to give money to this project</strong>: there is nothing new, it does not solve big problems like anonymous messaging, or staying reliable if one server is down. Worse, it is probably possible to perform a MITM attack if you manage the server. Nowadays, if you create a cryptographic protocol with client side encryption, you must make sure that your security is based on the client, not the server.</p>
+<p>Alternatives to this service:</p>
+<ul>
+<li>Apple iMessage: closed source, only for iOS, encrypted message, MITM is permitted for Apple by the protocol, but "we have not architected the server for this". Already available.</li>
+<li><a title="Open Whisper Systems" href="https://whispersystems.org/" target="_blank">Text Secure by OpenWhisperSystems</a>: open source, available for iOS and Android, uses SMS as a transport protocol, uses OTR (Off the Record protocol) to protect the communication, no server component. <strong>Choose Text Secure!</strong> It is really easy to use, and OTR is well integrated in the interface.</li>
+</ul>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
       <a href="/security/2013/10/01/the-rules-of-security-by-obscurity.html">
         The rules of security by obscurity
       </a>
@@ -706,114 +817,6 @@
 </p></blockquote>
 <p>Note that I did not talk about years of experience, or a city. I want to hire a Rails developer, not necessarily a french developer. I want someone with experience in optimization, not someone over 27.</p>
 <p>With such a job posting, you will receive a lot more interesting employment applications. Now, are you afraid that it will incur a lot more work? The solution in a future post: how to target candidates efficiently? Get away from job boards!</p>
-
-    
-
-    
-      
-      
-      
-
-      
-    
-  </article>
-  
-  <article class="post-body">
-    <h2 class="post-title">
-      <a href="/ruby/security/2013/02/06/filter-rails-json-input-with-route-constraints.html">
-        Filter Rails JSON input with route constraints
-      </a>
-    </h2>
-    <div class="post-meta">
-  <span class="post-date">06 Feb 2013</span>
-  <span class="post-categories">
-    
-      &bull;
-
-      
-      
-      
-
-      
-        Ruby
-      
-    
-      &bull;
-
-      
-      
-      
-
-      
-        <a href="/category/security.html">
-          Security
-        </a>
-      
-    
-  </span>
-</div>
-
-    
-      <p>Following the recent <a title="Vulnerability in JSON Parser in Ruby on Rails 3.0 and 2.3" href="https://groups.google.com/forum/?fromgroups=#!topic/rubyonrails-security/1h2DR63ViGo" target="_blank">YAML parsing vulnerabilities in Rails</a>, I decided to act on an idea I had a few months ago: using route constraints to define strict API contracts in Rails.</p>
-<p>Sadly, it does not protect against the YAML parsing problem (and the probable similar vulnerabilities we will see in the following months), because the request is interpreted before going through the route constraints. But it can protect from the <a title="Rails security guide: mass assignment" href="http://guides.rubyonrails.org/security.html#mass-assignment" target="_blank">mass assignment vulnerability</a>., and probably some SQL injections.</p>
-<p>Here is the idea: Rails 3 introduced the route constraints, a way to execute fonctions on the request before it is passed to the controllers. By combining it with the json-schema gem, we can filter the JSON input quite easily.</p>
-<p>For the following example data:</p>
-<p>[sourcecode language="javascript"]<br />
-{&quot;echo&quot; : &quot;blah&quot;, &quot;nb&quot; : 1, &quot;data&quot;: [1, 2, 3]}<br />
-[/sourcecode]</p>
-<p>We can define the following schema:</p>
-<p>[sourcecode language="javascript"]<br />
-{<br />
-    &quot;type&quot;: &quot;object&quot;,<br />
-    &quot;$schema&quot;: &quot;http://json-schema.org/draft-03/schema&quot;,<br />
-    &quot;id&quot;: &quot;#&quot;,<br />
-    &quot;required&quot;: false,<br />
-    &quot;additionalProperties&quot;: false,<br />
-    &quot;properties&quot;: {<br />
-        &quot;data&quot;: {<br />
-            &quot;type&quot;: &quot;array&quot;,<br />
-            &quot;id&quot;: &quot;data&quot;,<br />
-            &quot;required&quot;: false,<br />
-            &quot;items&quot;: {<br />
-                &quot;type&quot;: &quot;number&quot;,<br />
-                &quot;id&quot;: &quot;0&quot;,<br />
-                &quot;required&quot;: false<br />
-            }<br />
-        },<br />
-        &quot;echo&quot;: {<br />
-            &quot;type&quot;: &quot;string&quot;,<br />
-            &quot;id&quot;: &quot;echo&quot;,<br />
-            &quot;required&quot;: false<br />
-        },<br />
-        &quot;nb&quot;: {<br />
-            &quot;type&quot;: &quot;number&quot;,<br />
-            &quot;id&quot;: &quot;nb&quot;,<br />
-            &quot;required&quot;: false<br />
-        }<br />
-    }<br />
-}<br />
-[/sourcecode]</p>
-<p>(Use the <a title="JSON schema generator" href="http://www.jsonschema.net/" target="_blank">JSON schema generator</a> to create your own)</p>
-<p>Save this schema to "data.schema" and add "json-schema" to your Gemfile. You will then be able to filter inputs with code like the following "config/routes.rb":</p>
-<p>[sourcecode language="ruby"]<br />
-require &quot;json-schema&quot;<br />
-class LolJSONConstraint<br />
-  def matches?(request)<br />
-    if(request.headers[&quot;CONTENT_TYPE&quot;] == &quot;application/json&quot;)<br />
-      JSON::Validator.validate(&quot;data.schema&quot;, request.headers[&quot;action_dispatch.request.request_parameters&quot;])<br />
-    end<br />
-  end<br />
-end</p>
-<p>Yamlvuln::Application.routes.draw do<br />
-  resources :posts, :constraints =&gt; LolJSONConstraint.new<br />
-end<br />
-[/sourcecode]</p>
-<p>The constraint will load the schema, and apply it to the incoming data, and return a 404 error if the JSON is invalid. The "additionalProperties" set to false in the schema is required to refuse the properties you didn't define and protect the application from mass assignment.</p>
-<p>If I tried, for example, to send the following JSON to the application, there would be an error:</p>
-<p>[sourcecode language="javascript"]<br />
-{&quot;echo&quot; : &quot;blah&quot;, &quot;nb&quot; : &quot;UNION ALL SELECT LOAD_FILE(CHAR(34,47,101,116,99,47,112,97,115,115,119,100,34))&quot;, &quot;data&quot;: [1, 2, 3]}<br />
-[/sourcecode]</p>
-<p>As I said before, it is not safe against the YAML parsing vulnerability. Also, I did not really test the performance of this. But it is still a nice and easy solution for API filtering.</p>
 
     
 
