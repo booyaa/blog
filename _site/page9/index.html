@@ -359,6 +359,172 @@
   
   <article class="post-body">
     <h2 class="post-title">
+      <a href="/reinventing%20the%20wheel/ruby/smalltalk/2011/08/31/jtalk-on-rails-editing-javascript-in-my-browser.html">
+        Jtalk on Rails: editing Javascript in my browser
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">31 Aug 2011</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        Reinventing the wheel
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        Ruby
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        Smalltalk
+      
+    
+  </span>
+</div>
+
+    
+      <p>If you don't know JTalk yet, you're missing something. It's an awesome piece of work: a Smalltalk to Javascript compiler and a Smalltalk editor running in Javascript, <strong>IN YOUR BROWSER</strong>! <a title="JTalk project page" href="http://jtalk-project.org/" target="_blank">Go check it out, now!</a></p>
+<p>Now that you've played a bit with JTalk, let's get started.</p>
+<p>If you're like me, you're a bit annoyed by WebDAV, the proposed solution to save changes to disk. And if you're like me, you would like to use Jtalk with Rails, and because you're a lazy ass like me, you use WEBrick instead of Apache for your development.</p>
+<p>Let's hack something up to replace WebDAV!</p>
+<h2>Create a Rails application</h2>
+<p>[sourcecode language="bash"]<br />
+rails new jtalkonrails<br />
+cd jtalkonrails<br />
+bundle install<br />
+rm public/index.html<br />
+rails generate controller home index<br />
+printf &quot;Jtalkonrails::Application.routes.draw do\n  root :to =&gt; \&quot;home#index\&quot;\nend\n&quot; &gt; config/routes.rb<br />
+[/sourcecode]</p>
+<p>(I should really make a script out of all my rails initialization commands, one of these days...)</p>
+<h2>Add Jtalk to your application</h2>
+<p>[sourcecode language="bash"]<br />
+cd public/<br />
+wget http://github.com/NicolasPetton/jtalk/tarball/master --no-check-certificate<br />
+tar zxvf master<br />
+cp -R NicolasPetton-jtalk-20cd63e/st .<br />
+cp -R NicolasPetton-jtalk-20cd63e/js .<br />
+cp -R NicolasPetton-jtalk-20cd63e/css .<br />
+cp -R NicolasPetton-jtalk-20cd63e/ide .<br />
+rm -rf NicolasPetton-jtalk-20cd63e<br />
+[/sourcecode]</p>
+<p>JTalk stores source code in three forms: Smalltalk code, Javascript code and smaller Javascript code ("*.deploy.js").</p>
+<h2>Jtalk hello world: the Counter example</h2>
+<p>now, edit app/views/layouts/application.html.erb so that it looks like this:</p>
+<p>[sourcecode language="html"]<br />
+&lt;!DOCTYPE html&gt;<br />
+&lt;html&gt;<br />
+&lt;head&gt;<br />
+  &lt;title&gt;Jtalk On Rails&lt;/title&gt;<br />
+  &lt;%= stylesheet_link_tag :all %&gt;<br />
+  &lt;%= javascript_include_tag :defaults %&gt;<br />
+  &lt;%= csrf_meta_tag %&gt;<br />
+  &lt;script src=&quot;js/jtalk.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;<br />
+  &lt;script type=&quot;text/javascript&quot;&gt; loadJtalk()&lt;/script&gt;<br />
+&lt;/head&gt;<br />
+&lt;body&gt;<br />
+&lt;button onclick=&quot;smalltalk.Browser._open()&quot;&gt;Class browser&lt;/button&gt;</p>
+<p>&lt;div id=&quot;counters&quot;&gt;&lt;/div&gt;</p>
+<p>&lt;script type=&quot;text/javascript&quot;&gt;<br />
+  jQuery(document).ready(function() {'#counters'._asJQuery()._append_(smalltalk.Counter._new())});<br />
+&lt;/script&gt;<br />
+&lt;%= yield %&gt;</p>
+<p>&lt;/body&gt;<br />
+&lt;/html&gt;<br />
+[/sourcecode]</p>
+<p>Here, we included a button to open the code browser, and added a Counter in a div. Oh, I forgot to tell you: Jtalk works seamlessly with JQuery :)<br />
+Now, go check it out, and you will seee the counter and be able to increase and decrease the value displayed (yes, that's a counter).</p>
+<h2>Editing the code</h2>
+<p>Click on the "Class browser" button to start the IDE. Select the "Examples" category, the "Counter" class, the "actions" method category, and the "increase method". You will see in the text box below the source code of the increase method:</p>
+<p>[sourcecode language="smalltalk"]<br />
+increase<br />
+    count := count + 1.<br />
+    header contents: [:html | html with: count asString]<br />
+[/sourcecode]</p>
+<p>Edit that method to increase by steps of 2 instead of 1, and hit "Save". Now, the counter on your page will increase by steps of 2.<br />
+Unfortunately, on the next page refresh, you will lose these changes. That's why the "Commit category" button is there.<br />
+It will take the updated files (here, Examples.st, Examples.js and Examples.deploy.js) and make a PUT request to their original URL.</p>
+<p>A PUT, you said? Well, I can work something out with a PUT.</p>
+<h2>Saving the code</h2>
+<p>Let's create a new controller, called Uploader:</p>
+<p>[sourcecode language="bash"]<br />
+rails generate controller uploader jtalk<br />
+[/sourcecode]</p>
+<p>And edit config/routes.rb as follows:</p>
+<p>[sourcecode language="ruby"]<br />
+Jtalkonrails::Application.routes.draw do<br />
+  root :to =&gt; &quot;home#index&quot;<br />
+  if Rails.env == 'development'<br />
+    put 'st/:id' =&gt; 'uploader#jtalk'<br />
+    put 'js/:id' =&gt; 'uploader#jtalk'<br />
+    put 'js/:id.:deploy' =&gt; 'uploader#jtalk'<br />
+  end<br />
+end<br />
+[/sourcecode]</p>
+<p>Now the PUT requests are redirected to our controller, but only in the development environment. You do not want to make your JS editable from the browser in a production app. DO NOT WANT!</p>
+<p>The only thing left is the controller itself:</p>
+<p>[sourcecode language="ruby"]<br />
+class UploaderController &lt; ApplicationController</p>
+<p>  def jtalk<br />
+    path = Rails.root.join('public')<br />
+    if(params[:format] == &quot;js&quot;)<br />
+      path = path.join(&quot;js&quot;)<br />
+    elsif(params[:format] == &quot;st&quot;)<br />
+      path = path.join(&quot;st&quot;)<br />
+    end</p>
+<p>    if(params[:deploy])<br />
+      path = path.join(params[:id]+&quot;.deploy.&quot;+params[:format])<br />
+    else<br />
+      path = path.join(params[:id]+&quot;.&quot;+params[:format])<br />
+    end</p>
+<p>    File.open(path, &quot;w&quot;) do |f|<br />
+      f.write(request.body.read())<br />
+    end</p>
+<p>    head 200<br />
+  end</p>
+<p>end<br />
+[/sourcecode]</p>
+<p>Here, we build the file path from the parameters. I use <em>request.body.read()</em> to get the file content because Rails seems to truncate the beginning of the file.</p>
+<h2>Profit</h2>
+<p>Now, go back to the web page, click on "Commit category", and refresh the page. Your changes were saved! You can enjoy editing your frontend directly from the webpage itself, in the code browser, and more importantly, write your whole frontend in Smalltalk! It's still missing the workflow "edit-try-debug-edit-continue", but it already feels just like a "normal" Smalltalk environment. <strong>It feels like home</strong> :)</p>
+<h3>Post Scriptum</h3>
+<p>If you want to add a new category, it's easy: create a file <em>Mycategory.js</em> and put it in <em>public/js</em>, with this content:</p>
+<p>[sourcecode language="javascript"]<br />
+smalltalk.addClass('Myclass', smalltalk.Object, [], 'Mycategory');</p>
+<p>[/sourcecode]</p>
+<p>and change your initialization from <em>loadJtalk()</em> to <em>loadJtalk(new Array("Mycategory.js")).</em> The new category will now appear in the code browser, and clicking on "Commit category" will create the deployment file and Smalltalk source file.</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
       <a href="/development/reinventing%20the%20wheel/2011/08/16/manage-your-libraries-with-symlinks-on-windows.html">
         Manage your libraries with symlinks on Windows
       </a>
@@ -847,119 +1013,6 @@ oauth_token = ClientApplication.find_token(request_proxy.token)<br />
 <li>The client calls the server with args "user=login&amp;sign=".HMAC("user=login", k2)</li>
 <li>If k1=k2. The signature matches and the client is authenticated.</li>
 </ul>
-
-    
-
-    
-      
-      
-      
-
-      
-    
-  </article>
-  
-  <article class="post-body">
-    <h2 class="post-title">
-      <a href="/development/general/2011/02/18/the-geal-test-extending-the-joel-test.html">
-        The Geal test: extending the Joel Test
-      </a>
-    </h2>
-    <div class="post-meta">
-  <span class="post-date">18 Feb 2011</span>
-  <span class="post-categories">
-    
-      &bull;
-
-      
-      
-      
-
-      
-        <a href="/category/development.html">
-          Development
-        </a>
-      
-    
-      &bull;
-
-      
-      
-      
-
-      
-        General
-      
-    
-  </span>
-</div>
-
-    
-      <p>The <a title="Joel on software - the Joel test" href="http://www.joelonsoftware.com/articles/fog0000000043.html" target="_blank">Joel test</a> was written by Joel Spolsky to provide a few very simple questions for developers to ask in an interview. Here they are:</p>
-<blockquote><p><strong>The Joel Test</strong></p>
-<ol>
-<li>Do you use source control?</li>
-<li>Can you make a build in one step?</li>
-<li>Do you make daily builds?</li>
-<li>Do you have a bug database?</li>
-<li>Do you fix bugs before writing new code?</li>
-<li>Do you have an up-to-date schedule?</li>
-<li>Do you have a spec?</li>
-<li>Do programmers have quiet working conditions?</li>
-<li>Do you use the best tools money can buy?</li>
-<li>Do you have testers?</li>
-<li>Do new candidates write code during their interview?</li>
-<li>Do you do hallway usability testing?</li>
-</ol>
-</blockquote>
-<p>They seem basic, and that's the point: a company with a poor score doesn't give a nice environment to its developers.</p>
-<p>While this test is still applicable, it was written in 2000, and software development has seen a lot of changes and innovation. So, I thought of a few other questions that you can ask your current or future employer:</p>
-<blockquote><p><strong>The Geal Test</strong></p>
-<ol>
-<li>Do you use agile development methods?</li>
-<li>Do you have unit tests?</li>
-<li>Do you perform code reviews?</li>
-<li>Do you use known technologies and frameworks (open source or not)?</li>
-<li>Do developers train and learn on office hours, or in their spare time?</li>
-<li>Do developers communicate with system administrators (deployment requests and bug reports don't count)?</li>
-<li>Do developers communicate with the client?</li>
-<li>Do developers retain copyright on the work done in their spare time?</li>
-</ol>
-</blockquote>
-<p>That's it, 8 more questions, 1 point by positive answer.  Joel said that 11 or 12 for his test is ok. I'm nicer, so I'll say that 6 on my test is good enough.</p>
-<h2>1. Do you use agile development methods?</h2>
-<p>Agile methods have been there for a few years now, and they have proven useful for a lot of projects, especially when you have changing requirements or a very short time to market. Don't let your developers fight everyday against specifications written 5 years ago, let them adapt on the way.</p>
-<h2>2. Do you have unit tests?</h2>
-<p>This should be standard. There are a lot of libraries to write tests in every language, for specific functions, for APIs, for user interfaces, so this approach is well supported. Moreover, if you answered "yes" to Joel's question about daily builds, you can add tests to the loop, and run them right after the daily build. If you're not convinced about the usefulness of unit tests, or fear that it will take too much time: unit tests give you assurance that you won't break the code, they can validate the compliance with the specifications, and automated unit tests will save some time for development. You don't want to pay a developer to test manually over and over the same code, but you can buy a machine to do that.</p>
-<h2>3. Do you perform code reviews?</h2>
-<p>I know that this one is hard to implement in a team, but once the developers are past the "I'm too shy to show you my code" phase, this will help them spot mistakes, learn from the better developers and find new ways to improve the code.</p>
-<h2>4. Do you use known technologies and frameworks (open source or not)?</h2>
-<p>A lot of companies have custom frameworks that they develop and use for their products, that nobody else uses. Although it can be comforting to have your own technology, that you control and maintain, it has a few problems:</p>
-<ul>
-<li>it reeks of <a title="Not Invented Here" href="http://en.wikipedia.org/wiki/Not_Invented_Here" target="_blank">NIH syndrome</a></li>
-<li>it is a cost not directly linked to what you're selling</li>
-<li>you have to train developers to use it</li>
-<li>the expertise they build will be useless in future jobs</li>
-</ul>
-<p>If you use known (and hopefully, recent) technologies, you don't have to maintain it (although you may need to pay for it), you profit from bugfixes for other clients, and you are more likely to attract and hire skilled developers. Seriously, I don't want to waste years to maintain your dead framework.</p>
-<h2>5. Do developers train and learn on office hours, or in their spare time?</h2>
-<p>Software development moves very fast and a developer needs to catch up often. If you don't allocate time in his schedule to read, try and learn, you can still assume that he will still train himself in his spare time. But you take the risk that your Java developer becomes a Ruby expert, because he will learn what he wants, not what you need. If you want your developers to become experts, help them.</p>
-<h2>6. Do developers communicate with system administrators (deployment requests and bug reports don't count)?</h2>
-<p>Too often, the only communication between developers and tech ops is through deployment request and bug reports. The consequence: they don't know each other, they don't trust each other, and when there's a problem, they don't work together. Obviously, this is not a good work environment. As a developer, I'm interested in how my code behaves in real conditions, and I would like helpful bug reports, instead of "it doesn't work, I rollback", and knowing and working with the sys admins can provide it.</p>
-<h2>7. Do developers communicate with the client?</h2>
-<p>Ok, this one will horrify some project managers and a few developers. I know that you want  to control all the interactions with the client, and that developers sometimes have poor communication skills. But if you put a few layers between the developer and the client, this is what the developer will see: specifications that don't make sense, and useless bug reports. Developers are problem analysis machines, so they can understand the needs of your client, and see right away what is implied in architecture, technology and performance. Use their insight, and they will feel useful, and produce better software. Also, if you can, send a developer to watch a  bit how the client works with the software. In 5 minutes, they will spot more bugs and usability problems than in 5 weeks of bug reports.</p>
-<h2>8. Do developers retain copyright on the work done in their spare time?</h2>
-<p>When you're passionate about development, you often have ideas, itches to scratch, and you may not be able to develop them at work. But a lot of contracts have non competition clauses and other clauses giving copyright of ALL your work to the employer. As an employer, it's a way to protect the company, but as a developer, it is scary: you can't use or sell the code written in your spare time. Let your developers work on what they want when they're not in the office, and you will profit from the experience they gained developing their side projects (but state clearly that they work for you on office hours).</p>
-<h2>Bonus</h2>
-<p>I also have 4 bonus questions. They're optional, but they don't hurt.</p>
-<ul>
-<li>Do the developers participate in &lt;LANGUAGE&gt; user groups or developer meetups? In these meetups, they will learn a lot, and if they're experts and enjoy working for you, they will attract other developers.</li>
-<li>Will I have a technical manager? It is reassuring for a developer to know that his manager has a clue about development, knows the difference between a good and a bad developer, can understand his problems and stabd up for his team.</li>
-<li>Do you use a recent version control software? Joel already asked this, but it needs to be precised. Version control systems have improved a lot since his test so, if you can, avoid old stuff like CVS or (worse) SourceSafe. Subversion is fine for most setups now (even on <a title="TortoiseSVN" href="http://tortoisesvn.net/" target="_blank">Windows</a>), and if you use Git or Mercurial, I will be reaaaally happy.</li>
-<li>Do you accept remote working? There are a lot of tools to communicate online: mail, IM, VoIP, web project managers and bug trackers, and developers often know very well how to use them. It's comforting for the employer to know that the developer is always at arm's length, but this will not mean they're more productive. If you remove distractions from the work environment (phone, colleagues), the developer can be more productive (yes, there are actually LESS distractions at home). Also, they won't waste time in transport.</li>
-</ul>
-<p>Now, if you're a developer, rate your own company or future job. If you're a manager, rate your team, and please, please, on behalf of all the developers out there, try to get the perfect score!</p>
-<p>How much did you get?</p>
 
     
 

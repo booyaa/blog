@@ -359,6 +359,85 @@
   
   <article class="post-body">
     <h2 class="post-title">
+      <a href="/architecture/crypto/protocols/2015/10/01/crypto-problems-you-actually-need-to-solve.html">
+        Crypto problems you actually need to solve
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">01 Oct 2015</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/architecture.html">
+          Architecture
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/crypto.html">
+          Crypto
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        Protocols
+      
+    
+  </span>
+</div>
+
+    
+      <p>To follow up on the <a href="https://twitter.com/gcouprie/status/649166702278770688" target="_blank">small Twitter rant</a> that got people to explain GPG and OTR to me for a whole day, I'll explain the ideas behind this.</p>
+<p><img class="aligncenter size-full wp-image-791" src="/assets/screen-shot-2015-10-01-at-14-08-49.png" alt="tweet rant screenshot" width="525" height="438" />There is always a new project around self hosting email and PGP, or building a new encrypted chat app. Let's say it aloud right now: those projects are not trying to improve the situation, they just want to build their own. Otherwise, they would help one of the 150 already existing projects. Worse, a lot of those try to build a business out of it, and end up making a system where you need to completely trust their business (as a side note, building a business is fine, but just be honest about your goals).</p>
+<p>There are things that attract new projects, because the concept is easy to get, and this drives developers right into the "I'm smarter than everybody and can do better than existing projects" territory. But there's a reason they fail.</p>
+<p>Making an encrypted chat app is solving the same problem as making a chat app -moving people off their existing platform, onto a new one- and additionally writing a safe protocol. Building a whole new infrastructure is not an easy task.</p>
+<p>Making email and PGP easier to use is not only a UX issue. There is a complete mental model of how it works, what are the failure modes, and what are the trust levels. And you add above that the issues of email's metadata leaks, the lack of forward secrecy, the key management. Even with the simplest interface, it requires that the user builds that mental model, and that she understands other users may have different models. This is pervasive to the way PGP works. It has always been and will always be an expert's tool, and as such unfit to be deployed massively. You cannot solve infrastructure problems by teaching people.</p>
+<blockquote><p>You cannot solve infrastructure problems by teaching people</p></blockquote>
+<p>There is a pattern here: people want to build tools that will be the basis of safe communications for the years to come. Those are infrastructure problems, like electricity, running water or Internet access. They cannot be solved by teaching people how to use a tool. The tool has to work. They cannot be solved either by decentralization. At some point, someone has to pay for the infrastructure's maintenance. As much as I like the idea of decentralizing everything, this is not how people solve serious engineering problems. But the difference with other types of business is that infrastructure businesses are dumb pipes. They don't care what's running through them, and you can easily replace one with the other.</p>
+<p>There is a strong need for "private by default", authenticated, anonymous communication. This will only come if the basic building blocks are here:</p>
+<ul>
+<li>multiparty Off-The-Record(or other protocols like Axolotl): forward secret communication currently only works in two-party communication. Adding more members and making the protocols safe against partitions is a real challenge</li>
+<li>multidevice PGP (or alternate message encryption and authentication system): currently, to use PGP on multiple devices, either you synchronize all your private keys on all your devices, or you accept that some devices will not be able to decrypt messages. This will probably not work unless you have a live server somewhere, or at least some hardware device containing keys</li>
+<li>redundant key storage: systems where a single key holds everything are very seducing, but they're a nightmare for common operation. You will lose the key. And the backup. And the other backup. You will end up copying your master key everywhere, encrypted with a password used infrequently. Either it will be too simple and easily crackable, or too complex and you will forget it. How can a friend or family access the key in case of emergency?</li>
+<li>private information retrieval: PIR systems are databases that you can query for data, and the database will not know (in some margins) which piece of data you wanted. You do not need to go wild on homomorphic encryption to build something useful</li>
+<li>encrypted search: the tradeoffs in search on encrypted data are well known, but there are not enough implementations</li>
+<li>usable cryptography primitives: there is some work in that space, but people still rely on OpenSSL as their goto crypto library. Crypto primitives should not even let you make mistakes</li>
+</ul>
+<p>Those are worthwhile targets if you know a fair bit of cryptography and security, and know how to build a complete library or product.</p>
+<p>But for products, we need better models for infrastructure needs. A like <a href="https://www.tahoe-lafs.org/trac/tahoe-lafs">Tahoe-LAFS</a> is a good model: the user is in control of the data, the provider is oblivious to the content, the user can be the client of multiple providers, and switching from one to another is easy. This does not make for shiny businesses. Infrastructure companies compete mainly on cost, scale, availability, speed, support, since they all provide roughly the same features.</p>
+<p>Of course, infrastructure requires standards and interoperability, and this usually does not make good material for startup hype. But everyone wins from this in the end.</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
       <a href="/general/2015/08/29/frustrating-communication.html">
         Frustrating communication
       </a>
@@ -552,85 +631,6 @@ Computers were started by scientists, but the ease of access gave crafters a goo
 <p>This is of course a very big gap to jump, from our traditional databases to a total abstraction in memory, but I think it is an interesting alternative to consider.</p>
 <p>There is another model to consider here, one that is currently adopted by large distributed databases: since an application cannot do all the work by just loading data in its memory space, let's push code onto the data, and run a Turing complete query language on the cluster. This is actually the same kind of model, with worker threads running on your data while you wait for a "work done" message, but you still need to interface your app with the query language. Maybe someday I'll be able to send a compiled function to run on a cluster.</p>
 <p>All in all, the big tools that people built to fight the inefficiencies of yesterday's technology have to be questioned today. By removing the complex abstractions and their obsolete limitations, we could obtain powerful and simple model to write our future code.</p>
-
-    
-
-    
-      
-      
-      
-
-      
-    
-  </article>
-  
-  <article class="post-body">
-    <h2 class="post-title">
-      <a href="/crypto/protocols/2014/04/07/revisiting-zookos-triangle.html">
-        Revisiting Zooko's triangle
-      </a>
-    </h2>
-    <div class="post-meta">
-  <span class="post-date">07 Apr 2014</span>
-  <span class="post-categories">
-    
-      &bull;
-
-      
-      
-      
-
-      
-        <a href="/category/crypto.html">
-          Crypto
-        </a>
-      
-    
-      &bull;
-
-      
-      
-      
-
-      
-        Protocols
-      
-    
-  </span>
-</div>
-
-    
-      <p>In 2001, <a title=" *introduction | *current events | *stuff Names: Distributed, Secure, Human-Readable: Choose Two" href="http://web.archive.org/web/20011020191610/http://zooko.com/distnames.html" target="_blank">Zooko Wilcox-O'Hearn conjectured</a> that a key value system, in the way the keys address those values, must make a compromise between three properties. Those properties are:</p>
-<ul>
-<li>distributed: there is no central authority in the system (and the other nodes of the system are potentially untrusted)</li>
-<li>secure: a name lookup cannot return an incorrect value, even in the presence of an attacker</li>
-<li>human usable keys: keys that a human will be able to remember and write without errors</li>
-</ul>
-<p>The conjecture stated that you may have at most two out of these three properties in the system.</p>
-<p>Examples of those properties at work:</p>
-<ul>
-<li>the DNS is secure (one possible record for a given name) and human usable (domain names can be learned), but not distributed (the server chain is centralized)</li>
-<li>the PGP mapping between email and public keys is distributed (no central authority defining which email has which key) and human usable (public keys are indexed by emails) but not secure (depending on your view of the web of trust, identities could be falsified)</li>
-<li>Tor .onion addresses are secure (the address is the hash of the public key) and distributed (nobody can decide that an address redirects to the wrong server) but not human meaningful (have you seen those addresses?)</li>
-</ul>
-<p>Some systems, like NameCoin, emerged lately and exhibited those three properties at the same time. So is the conjecture disproved? Not really.</p>
-<p>When considering that triangle, people often make a mistake: assuming that you have to choose two of these properties and will never approach the third. These properties must not be seen as absolute.</p>
-<p>Human usability is easily addressed with Petname systems, where a software assistant can help you add human-meaningful names to secure and distributed keys (at risk of collision, but not system wide).</p>
-<p>You can add some distributed features in a centralized system like SSL certificate authorities by accepting multiple authorities.</p>
-<p>NameCoin is distributed and human meaningful, and creates a secure view of the system through the blockchain.</p>
-<p>And so on.</p>
-<p>The three properties should be redefined with what we know ten years later.</p>
-<h2>Human usable names</h2>
-<p>We now understand that a human meaningful name is a complex concept. We see people typing "facebook" in a search engine because they would not remember "facebook.com". Phone numbers are difficult to remember. Passwords, even when chosen through easy to remember methods, will be repeated at some point. And we could also talk about typosquatting...</p>
-<p>Here is a proposition: <strong>a human usable key is an identifier that a human can remember easily in large numbers and distinguish as easily from other identifiers</strong>. I say identifier because it could be a string, a picture, anything that stands out enough to be remember and for which differences could be easily spotted.</p>
-<p>That definition is useful because it is quantifiable. We can measure how many 10 digits phone numbers a human can remember. We can measure how many differences a human can spot in two strings or pictures.</p>
-<h2>Decentralized and/or secure names</h2>
-<p>The original text indicates distributed as "there is no central authority which can control the namespace, which is the same as saying that the namespace spans trust boundaries". The trust boundary is defined as the space in which nodes could be vulnerable to each other (because they trust each other). In a fully distributed system, a node may not be able to force any other node to have a different view of the system.</p>
-<p>Secure means that there is only one correct answer for a name lookup, whoever does the lookup. This is the same as saying that there is a consensus (at least in a distributed system).</p>
-<p>We can see that the decentralized and secure properties are at odds with the consensus problem in a distributed system. This is where systems like NameCoin make the compromise. They exchange an absolute secure view of the system for an eventual consistency, and fully distributed trust boundaries for byzantine problems. They guarantee that, at some point, and unless there are too many traitors in the systems, there will be a universal and unique mapping for a human readable name.</p>
-<p>So, we could replace the "secure" property by: <strong>the whole system recognizes that there is only one good answer for a record at some point in the future</strong>. Again, this is measurable, and it also addresses the oddity in DNS that records have to propagate (so sometimes the view can differ). Systems where identifiers do not give unique responses will not satisfy that definition.</p>
-<p>The last property, "decentralized", can be formulated like this: <strong>a node's view of the names cannot be influenced by a group of unauthorized nodes</strong>. In a centralized system, where there is essentially one node, this definition cannot apply. In a hierarchy of nodes, like DNS, we can easily see that a node's view can be abused, since there is only one node you need to compromise to influence it, its first nameserver (this is used, for good and for bad reasons, in a lot of companies). In a distributed system, this definition becomes quantifiable and joins the byzantine problem: how many traitor nodes do you need to modify a node's view of the system?</p>
-<p>Here, we have three new definitions that are more nuanced, allow some compromise and modulation of the needs, and for which the limits can be measured or calculated. These quantified limits can be useful to describe and compare the future naming system propositions.</p>
 
     
 

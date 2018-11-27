@@ -359,6 +359,114 @@
   
   <article class="post-body">
     <h2 class="post-title">
+      <a href="/development/2013/11/18/handling-io-failure.html">
+        Handling IO failure
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">18 Nov 2013</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/development.html">
+          Development
+        </a>
+      
+    
+  </span>
+</div>
+
+    
+      <p>Let's talk a bit about IO programming. Filesystem, network, GUI... You cannot write useful code without doing IO these days. So why is it so damn hard to do in "safe" languages like Haskell?</p>
+<p>Well, in Haskell, you isolate the unsafe parts to be able to reason safely on the rest of the code. What does "unsafe" mean in that context? Mostly, unsafe code is unpredictable, non deterministic and will fail for a number of reasons independent from your program's code.</p>
+<p>Surely, you might think "come on, it cannot be that hard, I'm doing HTTP requests everywhere in my code, and there is no problem". Well, let's see how a simple HTTPS request could fail:</p>
+<ul>
+<li>you are disconnected from the network (you have no IP)</li>
+<li>you are connected to the network, but it is not connected to anything</li>
+<li>your network is connected to Internet, but routers are dropping packets</li>
+<li>your network is connected to Internet, but very slow</li>
+<li>your DNS server is unreachable</li>
+<li>your DNS server drops your packets</li>
+<li>your DNS server cannot parse your request</li>
+<li>your DNS server cannot contact other server to get your answer</li>
+<li>your DNS server sends back an invalid response</li>
+<li>your DNS server sends back an outdated response</li>
+<li>you cannot reach the web server's IP from your network</li>
+<li>the web server drops your packets silently before connecting</li>
+<li>the web server connects, then drops the connection silently</li>
+<li>the web server rejects your connection</li>
+<li>the web server cannot parse your packets, and so, rejects them</li>
+<li>the web server timeouts</li>
+<li>the server's certificate is expired</li>
+<li>the server's certificate is not for the right subject name</li>
+<li>the server's certification chain has parts missing</li>
+<li>the server's certification chain has an unknown root</li>
+<li>the server's certificate was revoked</li>
+<li>the packet's signatures are invalid</li>
+<li>your user agent and the server do not support the same versions of TLS</li>
+<li>your user agent and the server do not have common cipher suites</li>
+<li>the web server closes the connection without warning</li>
+<li>the web server timeouts</li>
+<li>the web server crashes</li>
+<li>the web server cannot parse your HTTP request and rejects it</li>
+<li>your request is too large</li>
+<li>the web server parses your HTTP request correctly, but your cookie or OAuth token is invalid</li>
+<li>the data you requested does not exist</li>
+<li>the data you requested is elsewhere</li>
+<li>your user agent does not support the mime type of the data</li>
+<li>the data requested is too large for a simple response</li>
+<li>the server only sends a part of the data, then drops the connection</li>
+<li>your user agent cannot parse the response</li>
+<li>your user agent can parse the data, but some way or another, it is invalid</li>
+</ul>
+<p>If you have worked for some time with networks, all of those have probably happened to you at some point (and the list is not nearly exhaustive). What did you do in your code? Did you handle all these exceptions? Did you catch all the exceptions (see what I did there)? Do you check for all the error codes? Do you retry the requests where you need to?</p>
+<p>Let's face it: most of the network handling code out there is made of big chunks of procedural code, without much error handling, in blocking mode. In most cases, it is ok. But that is sloppy programming.</p>
+<p>Safe languages do not allow you to write sloppy code like that. So, we are stuck between correct but overly complex code, and simple but failing code. Choose your weapons.</p>
+<p>Personally, I prefer isolating unsafe code in asynchronous systems like futures or actors. I know failure will happen, I know threads will crash, I know I will make errors in my code. That is ok, it happens. So, let's write robust code to handle failure.</p>
+<p>For network errors, I just want to know if the server is unreachable. It is ok, I will try later. If my request's authentication is rejected, I want to know, and must handle that failure. Some errors should be handled seriously, others must be put in the "ok, it failed, whatever" bin.</p>
+<p>Even if languages like Haskell make it harder to perform IO safely, they are still good tools, because they let you isolate unsafe parts, to let you reason on safe, deterministic parts of the program.</p>
+<p><strong>P.S.</strong>: ok, the network case was maybe a bit too much. Surely, filesystem usage will be easier? Just for the fun, let's list some possible failures when you want to open a file for reading and writing:</p>
+<ul>
+<li>invalid path</li>
+<li>correct path, but you do not have the permission</li>
+<li>correct path, you have the permission, but the file does not exists</li>
+<li>you do not have the permission to create the file</li>
+<li>you check that the file does not exists, then you try to create it, but someone already created it in the meantime (fun security bug, that one)</li>
+<li>the file exists, but someone is already writing on it, no concurrent access</li>
+<li>you have the handle you want on the file, but someone just deleted it</li>
+<li>not enough file descriptors available (oh, please, no)</li>
+<li>someone is writing to the file at the same time</li>
+<li>there are so many page faults that your program is slowed down</li>
+<li>the disk is slow, blocking on a large operation</li>
+<li>the disk is full</li>
+<li>you checked that you have enough room, but someone is filling the disk at the same time</li>
+<li>the file is on a networked file system, and it is slow</li>
+<li>the file is on a remote disk, and the network just failed</li>
+<li>hardware failure in the disk</li>
+<li>hardware failure in the RAID array (and for some reason, redundancy was not enough, you lost the data)</li>
+<li>the file is on a USB card that someone just unplugged</li>
+</ul>
+<p>Basically, IO is a nightmare. Please wake me up now.</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
       <a href="/crypto/general/security/2013/10/29/safechat-p2p-encrypted-messages.html">
         SafeChat, P2P encrypted messages?
       </a>
@@ -744,79 +852,6 @@
 <h2>What about yours?</h2>
 <p>I see a lot of new projects appearing lately, with the intention to "fix" chat systems or social networks by building a "secure" distributed system. Unfortunately, most of them do not have a serious background in security or distributed systems. The subject of this article, the CAP theorem, is a very small part of the way we think about distributed systems: people have been researching on the subject for years. Similarly, cryptography and protocols have improved a lot lately.</p>
 <p>So, if you are building one of these, take your time, forget the hype, read up a bit about the theory, and think about your model before you make your technological choices. Please don't repeat the worst mistakes.</p>
-
-    
-
-    
-      
-      
-      
-
-      
-    
-  </article>
-  
-  <article class="post-body">
-    <h2 class="post-title">
-      <a href="/development/general/2013/03/18/my-ideal-job-post.html">
-        My ideal job posting
-      </a>
-    </h2>
-    <div class="post-meta">
-  <span class="post-date">18 Mar 2013</span>
-  <span class="post-categories">
-    
-      &bull;
-
-      
-      
-      
-
-      
-        <a href="/category/development.html">
-          Development
-        </a>
-      
-    
-      &bull;
-
-      
-      
-      
-
-      
-        General
-      
-    
-  </span>
-</div>
-
-    
-      <p>This post is a translation of <a href="http://blog.humancoders.com/post/44145884680/loffre-demploi-ideale-de-gcouprie" title="L'offre d'emploi idéale de Geoffroy Couprie" target="_blank">something I wrote in French for Human Coders</a>. They asked me what would be the ideal job post from a developer's standpoint:</p>
-<p>How whould you write a job announcement attracting good developers? Most recruiters complain that finding the right candidates is an ordeal.</p>
-<p>If you ask me, it is due to very old recruitment practices: writing job posts for paper ads (where you pay by the letter), spamming them to as many people as possible, mandating fishy head hunters... This has worked in the past, but things changed. A lot more companies are competing to recruit developers, and many more developers are available, so separating the wheat from the chaff is harder.</p>
-<p>We can do better! Let's start from scratch. For most candidates, a job posting is the first contact they'll have with your company. It must be attrctive, exciting! When I read "the company X is the leader on the market of Y", I don't think that they're awesome, I just wonder what they really do.</p>
-<p>A job posting is a marketing document. Its purpose is not to filter candidates, but to attract them! And how do you write a marketing document?</p>
-<p>YOU. TALK. ABOUT. THE. CLIENT. You talk about his problems, his aspirations, and only then, will you tell him how you will make things better for him. For a job posting, you must do the same. You talk to THE candidate. Not to multiple candidates, not to the head hunter or the HR department, but to the candidate. Talk about the candidate, and only the candidate. When a developer looks for a job, she doesn't want to "work on your backend application" or "maintain the web server". That is what she will do for you. This is what she wants:</p>
-<ul>
-<li>getting paid to write code</li>
-<li>work on interesting technologies</li>
-<li>a nice workplace atmosphere</li>
-<li>learn</li>
-<li>etc.</li>
-</ul>
-<p>A good job posting should answer the candidate's aspirations, and talk about the career path. Does this job lead to project management? Do you propose in-house training? Is there a career path for expertise in your caompany?</p>
-<p>Do you share values with your candidate? I do not mean the values written by your sales team and displayed on the "our values" page of your website. I am talking about the values of the team where the candidate will end up. Do they work in pair programming? Do they apply test driven development? There is no best way to work, the job can be done in many ways, so you must make sure that the candidate will fit right in.</p>
-<p>What problem are you trying to solve with your company? Do you create websites that can be managed by anyone? Do you provide secure hosting? Whatever your goal is, talk about it instead of talking about the product. I do not want to read, "our company develops a mobile server monitoring tool", because that is uninteresting. If I read "we spent a lot of time on call for diverse companies, so we understood that mobility is crucial for some system administrators, so we created a tool tailored for moving system administrators", I see a real problem, a motivation to work, a culture that I could identify to.</p>
-<p>By talking that way to the candidate, you will filter candidates on motivation and culture instead of filtering on skills. That can be done later, once you see the candidate You did not really think that a resume was a good way to select skilled people, do you?</p>
-<p>Here is a good example of fictive job posting, from a company aggregating news for developers, looking for a Rails developer:</p>
-<p>"You are a passionnate Ruby on Rails developers, you are proiud of you unit tests, and you enjoy the availability of Heroku's services? That's the same for us!</p>
-<blockquote><p>At Company X, we love developers: all of our services are meant for their fulfillment. We propose a news website about various technologies, higly interesting trainings and a job board for startups.</p>
-<p>Our employees benefit fully from these services, and make talks in conferences all around France. By directly talking with other developers, they quickly get an extensive knowledge of current technologies.</p>
-<p>Our news website is growing fast, so we need help to scale it. The web app uses Heroku and MongoDB, with a CoffeeScript front end. Are you well versed in Rails optimization? If yes, we would love to talk with you!"
-</p></blockquote>
-<p>Note that I did not talk about years of experience, or a city. I want to hire a Rails developer, not necessarily a french developer. I want someone with experience in optimization, not someone over 27.</p>
-<p>With such a job posting, you will receive a lot more interesting employment applications. Now, are you afraid that it will incur a lot more work? The solution in a future post: how to target candidates efficiently? Get away from job boards!</p>
 
     
 

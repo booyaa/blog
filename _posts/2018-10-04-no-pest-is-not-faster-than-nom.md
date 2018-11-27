@@ -26,7 +26,7 @@ That said, [the recent release of pest 2.0](https://pest.rs/),
 a parsing expression grammar library, is pushing me to be petty :D
 
 That library has been using a benchmark against nom [in its
-readme](https://github.com/sozu-proxy/sozu/blob/master/doc/getting_started.md#run-it-with-docker) for a long time. I wrote [that benchmark](https://github.com/Geal/pestvsnom)
+readme](https://github.com/pest-parser/pest/blob/f3d208fbf685d932e3939ada9cbf243e79c8950f/README.md#sheer-performance) for a long time. I wrote [that benchmark](https://github.com/Geal/pestvsnom)
 to help in the comparison, but the results were slightly misleading:
 
 ![old benchmarks](/assets/pestvsnom_old.svg)

@@ -359,6 +359,91 @@
   
   <article class="post-body">
     <h2 class="post-title">
+      <a href="/general/security/2013/01/14/harden-wordpress-using-database-permissions.html">
+        Harden Wordpress using database permissions
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">14 Jan 2013</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        General
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/security.html">
+          Security
+        </a>
+      
+    
+  </span>
+</div>
+
+    
+      <p>Here is a small idea that I would like to throw into the world: most web applications use only one database user for most operations (installation, administration, common usage). Couldn't we harness the database to protect a bit your data?</p>
+<h2>How to</h2>
+<p>This is how you could do it:</p>
+<ul>
+<li>Create one user (called 'user') with full privileges on the database</li>
+<li>Create another user with no privileges (let's call him 'read')</li>
+<li>Create a copy of wp-config.php that you will name wp-config-admin.php</li>
+<li>Write the 'read' credentials in the wp-config.php and the normal credentials in wp-config-admin.php (don't forget to use different auth, secure auth, logged in and nonce keys)</li>
+<li>Create a copy of wp-load.php that you will name wp-load-admin.php</li>
+<li>Replace in wp-load-admin.php the reference to wp-config.php by wp-config-admin.php</li>
+<li>Replace in wp-login.php and wp-admin/* the references to wp-load.php by wp-load-admin.php</li>
+<li>Now, you can use the admin interface, create posts, etc.</li>
+<li>Grant some permissions to the 'read' database user: GRANT SELECT ON `db`.* TO 'read'; GRANT INSERT, UPDATE ON `db`.`wp_comments` TO 'read';</li>
+</ul>
+<p>That was a bit of work, but not that hard! So, what did we do here? We created a user for the admin interface with full privileges on the database (create/update posts, change the taxonomy, approve the comments, etc) and another one for the front end interface, with only read privileges on all tables (that bothers me too, but read on).</p>
+<p>This means that SQL injections, either in plugins or in Wordpress code (out of the admin panel) will be much harder to implement with this setup. Beware of the custom tables for some plugins. Those will require specific permissions. Depending on the plugin, some could be read only for common usage.</p>
+<h2>Going further</h2>
+<p>That's nice, but not enough in my opinion. As I said, the full select permission for the 'read' user bothers me. Couldn't we restrict a bit the permissions on wp_users? Some of <a title="WordPress database diagram" href="http://codex.wordpress.org/images/9/9e/WP3.0-ERD.png">the columns</a> are needed, but do we need to access the user_pass column? Also, the "ALL PRIVILEGES" for 'user' is a bit too much. Do we really use the "FILE" privilege (out of SQL injections :D)?</p>
+<p>Without further ado, here are the SQL commands you should use:</p>
+<blockquote><p>GRANT SELECT, INSERT, UPDATE ON `db`.`wp_comments` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_commentmeta` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_links` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_options` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_term_taxonomy` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_usermeta` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_terms` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_term_relationships` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_postmeta` TO 'read';</p>
+<p>GRANT SELECT ON `db`.`wp_posts` TO 'read';</p>
+<p>GRANT SELECT (user_activation_key, id, user_login, user_nicename, user_status, user_url, display_name, user_email, user_registered) ON `db`.`wp_users` TO 'read';</p>
+<p>REVOKE ALL PRIVILEGES ON `db`.* from 'user';</p>
+<p>GRANT SELECT, INSERT, DELETE, UPDATE, CREATE, DROP, ALTER, INDEX <em>ON `db`.* TO 'user';<br />
+</em></p></blockquote>
+<p>With these commands, 'user' can only manipulate tables. If you're an evil DBA, you can even revoke the "CREATE, DROP, ALTER" permission after install, and reactivate them only for upgrades or plugin installation. The 'read' user has the same permissions as before on wp_comments, has "SELECT" on all tables except the wp_users. For wp_users, we grant "SELECT" on all columns except the user_pass one.</p>
+<p><strong>Thanks to this configuration, even a SQL injection in a plugin will not reach the password hashes!</strong> We also removed dangerous permissions like "FILE". I'd like to prevent timing attacks like "SELECT BENCHMARK(5000000,ENCODE('MSG','by 5 seconds'));" but i did not figure out what is the right syntax for this (I tried variations around: "revoke execute on function benchmark from read", without result).</p>
+<p>Thankfully, WordPress mostly works with this configuration, and I think that a lot of other applications could be protected like this. Imagine: you could grant insert but not select on the credit card table in an e-commerce application, and process transactions with a background task with the right permissions.</p>
+<p>Database privileges are indeed a powerful tool to protect your code from SQL injections. They might require some architectural changes, but the profits can be huge for your security.</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
       <a href="/videolan/2012/12/20/vlc-for-win8-building-the-new-compatibility-layer.html">
         VLC For Win8: building the new compatibility layer
       </a>
@@ -632,61 +717,6 @@ What can you do now? The usual (and natural) reaction is to downplay the vulnera
     
       <p>From now on, I am an independent geek! After nearly 2 years at Login People, I am jumping out in the sea to work for myself.</p>
 <p>I will do mainly web development (Rails, Node.JS) and software security (penetration testing, code reviews, protocol audit). Feel free to <a title="Geoffroy Couprie, freelance in software development and security" href="http://geoffroycouprie.com/" target="_blank">contact me</a> for missions, I will be happy to work with you!</p>
-
-    
-
-    
-      
-      
-      
-
-      
-    
-  </article>
-  
-  <article class="post-body">
-    <h2 class="post-title">
-      <a href="/general/security/2012/08/29/software-security-is-like-medicine.html">
-        Software security is like medicine
-      </a>
-    </h2>
-    <div class="post-meta">
-  <span class="post-date">29 Aug 2012</span>
-  <span class="post-categories">
-    
-      &bull;
-
-      
-      
-      
-
-      
-        General
-      
-    
-      &bull;
-
-      
-      
-      
-
-      
-        <a href="/category/security.html">
-          Security
-        </a>
-      
-    
-  </span>
-</div>
-
-    
-      <p>People don't get software security. Between the legends around hackers, the scaremongering by salesmen and the technical level needed to practice it, you won't even try to understand. It is hard to get a high level view of how it works, and how you can protect yourself. But there's a nice little metaphore to understand security: it's like medicine!</p>
-<p>Medicine is about taking care of your body, fighting off illness, healing injuries. The body is a big machine that can fail in a lot of ways, depending on a lot of parameters. It is the same for software security: you want to prevent and repair any disruption that could fail at any time. Security, like medicine, is a very technical domain, and takes a lot of time to learn. Even after learning, you still don't know everything, and you must keep up to date with recent research.</p>
-<p>But basic body maintenance is easy. And protecting your software against basic attacks is easy too. You don't need to study for 11 years to prevent basic SQL injections. Most of the time, the diseases and bugs that will affect you are common, and you don't need Dr House to prevent them.</p>
-<p>Bodies and software are problematic because they both decay through time, and are very sensitive to their environment. Change the environment, and you could catch something new. The world is full of germs and criminals. Is that a good reason to always stay at home? Obviously not. You must accept that you can get sick at any time. So, take steps to protect yourself. Wash your hands and sanitize your inputs. And beware of snake oil.</p>
-<p>Feel free to extend on the metaphore in the comments, and use it to explain software security around you!</p>
-<p>By the way, if you need someone to auscultate your applications, you can contact me at <a title="Geoffroy Couprie" href="http://geoffroycouprie.com/" target="_blank">geoffroycouprie.com</a>. <a href="http://geoffroycouprie.com/"><br />
-</a></p>
 
     
 

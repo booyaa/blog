@@ -359,6 +359,85 @@
   
   <article class="post-body">
     <h2 class="post-title">
+      <a href="/crypto/protocols/2014/04/07/revisiting-zookos-triangle.html">
+        Revisiting Zooko's triangle
+      </a>
+    </h2>
+    <div class="post-meta">
+  <span class="post-date">07 Apr 2014</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/category/crypto.html">
+          Crypto
+        </a>
+      
+    
+      &bull;
+
+      
+      
+      
+
+      
+        Protocols
+      
+    
+  </span>
+</div>
+
+    
+      <p>In 2001, <a title=" *introduction | *current events | *stuff Names: Distributed, Secure, Human-Readable: Choose Two" href="http://web.archive.org/web/20011020191610/http://zooko.com/distnames.html" target="_blank">Zooko Wilcox-O'Hearn conjectured</a> that a key value system, in the way the keys address those values, must make a compromise between three properties. Those properties are:</p>
+<ul>
+<li>distributed: there is no central authority in the system (and the other nodes of the system are potentially untrusted)</li>
+<li>secure: a name lookup cannot return an incorrect value, even in the presence of an attacker</li>
+<li>human usable keys: keys that a human will be able to remember and write without errors</li>
+</ul>
+<p>The conjecture stated that you may have at most two out of these three properties in the system.</p>
+<p>Examples of those properties at work:</p>
+<ul>
+<li>the DNS is secure (one possible record for a given name) and human usable (domain names can be learned), but not distributed (the server chain is centralized)</li>
+<li>the PGP mapping between email and public keys is distributed (no central authority defining which email has which key) and human usable (public keys are indexed by emails) but not secure (depending on your view of the web of trust, identities could be falsified)</li>
+<li>Tor .onion addresses are secure (the address is the hash of the public key) and distributed (nobody can decide that an address redirects to the wrong server) but not human meaningful (have you seen those addresses?)</li>
+</ul>
+<p>Some systems, like NameCoin, emerged lately and exhibited those three properties at the same time. So is the conjecture disproved? Not really.</p>
+<p>When considering that triangle, people often make a mistake: assuming that you have to choose two of these properties and will never approach the third. These properties must not be seen as absolute.</p>
+<p>Human usability is easily addressed with Petname systems, where a software assistant can help you add human-meaningful names to secure and distributed keys (at risk of collision, but not system wide).</p>
+<p>You can add some distributed features in a centralized system like SSL certificate authorities by accepting multiple authorities.</p>
+<p>NameCoin is distributed and human meaningful, and creates a secure view of the system through the blockchain.</p>
+<p>And so on.</p>
+<p>The three properties should be redefined with what we know ten years later.</p>
+<h2>Human usable names</h2>
+<p>We now understand that a human meaningful name is a complex concept. We see people typing "facebook" in a search engine because they would not remember "facebook.com". Phone numbers are difficult to remember. Passwords, even when chosen through easy to remember methods, will be repeated at some point. And we could also talk about typosquatting...</p>
+<p>Here is a proposition: <strong>a human usable key is an identifier that a human can remember easily in large numbers and distinguish as easily from other identifiers</strong>. I say identifier because it could be a string, a picture, anything that stands out enough to be remember and for which differences could be easily spotted.</p>
+<p>That definition is useful because it is quantifiable. We can measure how many 10 digits phone numbers a human can remember. We can measure how many differences a human can spot in two strings or pictures.</p>
+<h2>Decentralized and/or secure names</h2>
+<p>The original text indicates distributed as "there is no central authority which can control the namespace, which is the same as saying that the namespace spans trust boundaries". The trust boundary is defined as the space in which nodes could be vulnerable to each other (because they trust each other). In a fully distributed system, a node may not be able to force any other node to have a different view of the system.</p>
+<p>Secure means that there is only one correct answer for a name lookup, whoever does the lookup. This is the same as saying that there is a consensus (at least in a distributed system).</p>
+<p>We can see that the decentralized and secure properties are at odds with the consensus problem in a distributed system. This is where systems like NameCoin make the compromise. They exchange an absolute secure view of the system for an eventual consistency, and fully distributed trust boundaries for byzantine problems. They guarantee that, at some point, and unless there are too many traitors in the systems, there will be a universal and unique mapping for a human readable name.</p>
+<p>So, we could replace the "secure" property by: <strong>the whole system recognizes that there is only one good answer for a record at some point in the future</strong>. Again, this is measurable, and it also addresses the oddity in DNS that records have to propagate (so sometimes the view can differ). Systems where identifiers do not give unique responses will not satisfy that definition.</p>
+<p>The last property, "decentralized", can be formulated like this: <strong>a node's view of the names cannot be influenced by a group of unauthorized nodes</strong>. In a centralized system, where there is essentially one node, this definition cannot apply. In a hierarchy of nodes, like DNS, we can easily see that a node's view can be abused, since there is only one node you need to compromise to influence it, its first nameserver (this is used, for good and for bad reasons, in a lot of companies). In a distributed system, this definition becomes quantifiable and joins the byzantine problem: how many traitor nodes do you need to modify a node's view of the system?</p>
+<p>Here, we have three new definitions that are more nuanced, allow some compromise and modulation of the needs, and for which the limits can be measured or calculated. These quantified limits can be useful to describe and compare the future naming system propositions.</p>
+
+    
+
+    
+      
+      
+      
+
+      
+    
+  </article>
+  
+  <article class="post-body">
+    <h2 class="post-title">
       <a href="/crypto/general/security/2014/02/21/how-to-choose-your-secure-messaging-app.html">
         How to choose your secure messaging app
       </a>
@@ -713,114 +792,6 @@
 <p><strong>Edit 4: Someone <a href="http://habrahabr.ru/post/206900/" target="_blank">found a flaw</a> in the <a title="Web archive for Telegram" href="http://web.archive.org/web/20131220000537/https://core.telegram.org/api/end-to-end" target="_blank">end to end secret chat.</a> The key generated from the Diffie-Hellman exchange was combined with a server-provided nonce: <code>key = (pow(g_a, b) mod dh_prime) xor nonce</code>. With that, the server can perform a MITM on the connection and generate the same key for both peers by manipulating the nonce, thus defeating the key verification. Telegram has updated their protocol description and will fix the flaw. (That nonce was introduced to fix RNG issues on mobile devices).</strong></p>
 <p>Seriously, I have never seen anyone use the MAC to generate the encryption key. Even if I wanted to put a backdoor in a protocol, I would not make it so evident...</p>
 <p>To sum it up: <strong>avoid at all costs</strong>. There are no new ideas, and they add their flawed homegrown mix of RSA, AES-IGE, plain SHA1 integrity verification, MAC-Then-Encrypt, and a custom KDF. Instead of Telegram, you should use well known and audited protocols, like OTR (usable in IRC, Jabber) or the Axolotl key ratcheting of TextSecure.</p>
-
-    
-
-    
-      
-      
-      
-
-      
-    
-  </article>
-  
-  <article class="post-body">
-    <h2 class="post-title">
-      <a href="/development/2013/11/18/handling-io-failure.html">
-        Handling IO failure
-      </a>
-    </h2>
-    <div class="post-meta">
-  <span class="post-date">18 Nov 2013</span>
-  <span class="post-categories">
-    
-      &bull;
-
-      
-      
-      
-
-      
-        <a href="/category/development.html">
-          Development
-        </a>
-      
-    
-  </span>
-</div>
-
-    
-      <p>Let's talk a bit about IO programming. Filesystem, network, GUI... You cannot write useful code without doing IO these days. So why is it so damn hard to do in "safe" languages like Haskell?</p>
-<p>Well, in Haskell, you isolate the unsafe parts to be able to reason safely on the rest of the code. What does "unsafe" mean in that context? Mostly, unsafe code is unpredictable, non deterministic and will fail for a number of reasons independent from your program's code.</p>
-<p>Surely, you might think "come on, it cannot be that hard, I'm doing HTTP requests everywhere in my code, and there is no problem". Well, let's see how a simple HTTPS request could fail:</p>
-<ul>
-<li>you are disconnected from the network (you have no IP)</li>
-<li>you are connected to the network, but it is not connected to anything</li>
-<li>your network is connected to Internet, but routers are dropping packets</li>
-<li>your network is connected to Internet, but very slow</li>
-<li>your DNS server is unreachable</li>
-<li>your DNS server drops your packets</li>
-<li>your DNS server cannot parse your request</li>
-<li>your DNS server cannot contact other server to get your answer</li>
-<li>your DNS server sends back an invalid response</li>
-<li>your DNS server sends back an outdated response</li>
-<li>you cannot reach the web server's IP from your network</li>
-<li>the web server drops your packets silently before connecting</li>
-<li>the web server connects, then drops the connection silently</li>
-<li>the web server rejects your connection</li>
-<li>the web server cannot parse your packets, and so, rejects them</li>
-<li>the web server timeouts</li>
-<li>the server's certificate is expired</li>
-<li>the server's certificate is not for the right subject name</li>
-<li>the server's certification chain has parts missing</li>
-<li>the server's certification chain has an unknown root</li>
-<li>the server's certificate was revoked</li>
-<li>the packet's signatures are invalid</li>
-<li>your user agent and the server do not support the same versions of TLS</li>
-<li>your user agent and the server do not have common cipher suites</li>
-<li>the web server closes the connection without warning</li>
-<li>the web server timeouts</li>
-<li>the web server crashes</li>
-<li>the web server cannot parse your HTTP request and rejects it</li>
-<li>your request is too large</li>
-<li>the web server parses your HTTP request correctly, but your cookie or OAuth token is invalid</li>
-<li>the data you requested does not exist</li>
-<li>the data you requested is elsewhere</li>
-<li>your user agent does not support the mime type of the data</li>
-<li>the data requested is too large for a simple response</li>
-<li>the server only sends a part of the data, then drops the connection</li>
-<li>your user agent cannot parse the response</li>
-<li>your user agent can parse the data, but some way or another, it is invalid</li>
-</ul>
-<p>If you have worked for some time with networks, all of those have probably happened to you at some point (and the list is not nearly exhaustive). What did you do in your code? Did you handle all these exceptions? Did you catch all the exceptions (see what I did there)? Do you check for all the error codes? Do you retry the requests where you need to?</p>
-<p>Let's face it: most of the network handling code out there is made of big chunks of procedural code, without much error handling, in blocking mode. In most cases, it is ok. But that is sloppy programming.</p>
-<p>Safe languages do not allow you to write sloppy code like that. So, we are stuck between correct but overly complex code, and simple but failing code. Choose your weapons.</p>
-<p>Personally, I prefer isolating unsafe code in asynchronous systems like futures or actors. I know failure will happen, I know threads will crash, I know I will make errors in my code. That is ok, it happens. So, let's write robust code to handle failure.</p>
-<p>For network errors, I just want to know if the server is unreachable. It is ok, I will try later. If my request's authentication is rejected, I want to know, and must handle that failure. Some errors should be handled seriously, others must be put in the "ok, it failed, whatever" bin.</p>
-<p>Even if languages like Haskell make it harder to perform IO safely, they are still good tools, because they let you isolate unsafe parts, to let you reason on safe, deterministic parts of the program.</p>
-<p><strong>P.S.</strong>: ok, the network case was maybe a bit too much. Surely, filesystem usage will be easier? Just for the fun, let's list some possible failures when you want to open a file for reading and writing:</p>
-<ul>
-<li>invalid path</li>
-<li>correct path, but you do not have the permission</li>
-<li>correct path, you have the permission, but the file does not exists</li>
-<li>you do not have the permission to create the file</li>
-<li>you check that the file does not exists, then you try to create it, but someone already created it in the meantime (fun security bug, that one)</li>
-<li>the file exists, but someone is already writing on it, no concurrent access</li>
-<li>you have the handle you want on the file, but someone just deleted it</li>
-<li>not enough file descriptors available (oh, please, no)</li>
-<li>someone is writing to the file at the same time</li>
-<li>there are so many page faults that your program is slowed down</li>
-<li>the disk is slow, blocking on a large operation</li>
-<li>the disk is full</li>
-<li>you checked that you have enough room, but someone is filling the disk at the same time</li>
-<li>the file is on a networked file system, and it is slow</li>
-<li>the file is on a remote disk, and the network just failed</li>
-<li>hardware failure in the disk</li>
-<li>hardware failure in the RAID array (and for some reason, redundancy was not enough, you lost the data)</li>
-<li>the file is on a USB card that someone just unplugged</li>
-</ul>
-<p>Basically, IO is a nightmare. Please wake me up now.</p>
 
     
 
