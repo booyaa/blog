@@ -104,7 +104,7 @@ llc-4.0 hello.bc -march=bpf -filetype=obj -o hello.o
 I generated the ll file to take a look at the IR in text form)
 
 And now, the code!
-I used the example program from <a href="https://kinvolk.io/blog/2017/09/an-update-on-gobpf---elf-loading-uprobes-more-program-types/" rel="noopener" target="_blank">this blog post</a> as inspiration, and came up with this:
+I used the example program from <a href="https://kinvolk.io/blog/2017/09/an-update-on-gobpf-elf-loading-uprobes-more-program-types/" rel="noopener" target="_blank">this blog post</a> as inspiration, and came up with this:
 
 ```rust
 use std::mem::transmute;
@@ -261,7 +261,7 @@ Now, this is a small hack. To make it more useful, here is what we would need:
 
 * a small library to import BPF functions instead of transmuting the number every time
 * that small library should also have a nice way to interact with BPF maps to transmit data to userland
-* a userland library (in Rust, of course) that can set up maps and load eBPF programs. I should mention here that Julia Evans is currently working on a port of gobpf's BCC part in Rust <a href="https://github.com/jvns/ruby-mem-watcher-demo/blob/master/src/bin/bpf.rs" rel="noopener" target="_blank">for a Ruby profiling tool</a>! The ELF part might not be too far :)
+* a userland library (in Rust, of course) that can set up maps and load eBPF programs. I should mention here that Julia Evans is currently working on a port of gobpf's BCC part in Rust <a href="https://github.com/jvns/ruby-mem-watcher-demo/blob/master/src/bin/count-ruby-allocs.rs" rel="noopener" target="_blank">for a Ruby profiling tool</a>! The ELF part might not be too far :)
 
 That's all, I'll post more once I get more useful code working!
 PS/ if you want to learn more about BPF, <a href="https://qmonnet.github.io/whirl-offload/2016/09/01/dive-into-bpf/" rel="noopener" target="_blank">read this great list</a>!
